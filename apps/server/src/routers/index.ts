@@ -1,2 +1,2 @@
-export const appRouter = {};
-export type AppRouter = typeof appRouter;
+export const appRouter = {}
+export type AppRouter = typeof appRouter

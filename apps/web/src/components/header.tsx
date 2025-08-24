@@ -1,5 +1,5 @@
-import { Link } from "@tanstack/react-router";
-import { Code, Github } from "lucide-react";
+import { Link } from '@tanstack/react-router'
+import { Code, Github } from 'lucide-react'
 
 export default function Header() {
   return (
@@ -23,5 +23,5 @@ export default function Header() {
         </ul>
       </nav>
     </header>
-  );
+  )
 }

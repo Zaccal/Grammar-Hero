@@ -5,3 +5,6 @@ build
 *.lock
 *.log
 *.js
+generated
+.turbo
+*.config
