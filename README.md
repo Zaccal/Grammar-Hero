@@ -1,4 +1,7 @@
-# Grammar-Hero
+<img src="./apps/web/public/Logo.png" alt="Logo" style="width: 250px; margin: 0 auto; display: block;" />
+<h1 style="text-align: center; margin-bottom: 32px;">Grammar Hero</h1>
+
+Grammar Hero is a simple web application designed to help students improve their English grammar skills. The app features a clean, user-friendly interface.
 
 This project was created with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack), a modern TypeScript stack that combines React, TanStack Router, Hono, and more.
 

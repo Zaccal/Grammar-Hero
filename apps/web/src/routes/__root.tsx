@@ -9,6 +9,7 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import '../index.css'
+import { Background } from '@/components/background'
 
 export interface RouterAppContext {}
 
@@ -27,7 +28,7 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
     links: [
       {
         rel: 'icon',
-        href: '/favicon.ico',
+        href: '/Logo.png',
       },
     ],
   }),
@@ -41,11 +42,10 @@ function RootComponent() {
   return (
     <>
       <HeadContent />
-
-      <div className="grid grid-rows-[auto_1fr] h-svh">
+      <Background>
         <Header />
         {isFetching ? <Loader /> : <Outlet />}
-      </div>
+      </Background>
       <Toaster richColors />
       <TanStackRouterDevtools position="bottom-left" />
     </>
