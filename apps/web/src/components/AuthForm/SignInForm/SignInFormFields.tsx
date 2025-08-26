@@ -11,11 +11,11 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 
-interface LoginFormFieldsProps {
+interface SignInFormFieldsProps {
   form: UseFormReturn<SignInSchema>
 }
 
-function LoginFormFields({ form }: LoginFormFieldsProps) {
+function SignInFormFields({ form }: SignInFormFieldsProps) {
   const { isSubmitting } = form.formState
   return (
     <>
@@ -28,11 +28,7 @@ function LoginFormFields({ form }: LoginFormFieldsProps) {
               {!form.formState.errors.email && <FormLabel>Email</FormLabel>}
               <FormMessage />
               <FormControl>
-                <Input
-                  disabled={isSubmitting}
-                  placeholder="examplemail@mail.com"
-                  {...field}
-                />
+                <Input disabled={isSubmitting} {...field} />
               </FormControl>
             </FormItem>
           )}
@@ -55,12 +51,7 @@ function LoginFormFields({ form }: LoginFormFieldsProps) {
                 </Button>
               </div>
               <FormControl>
-                <Input
-                  disabled={isSubmitting}
-                  type="password"
-                  placeholder="Your password"
-                  {...field}
-                />
+                <Input disabled={isSubmitting} type="password" {...field} />
               </FormControl>
             </FormItem>
           )}
@@ -74,4 +65,4 @@ function LoginFormFields({ form }: LoginFormFieldsProps) {
   )
 }
 
-export default LoginFormFields
+export default SignInFormFields

@@ -7,7 +7,7 @@ export const Route = createFileRoute('/')({
     const { data, error } = await authClient.getSession()
     if (error || !data) {
       throw redirect({
-        to: '/login',
+        to: '/sign-in',
       })
     }
   },

@@ -1,15 +1,15 @@
 import { Button } from '@/components/ui/button'
-import { Link } from '@tanstack/react-router'
+import { Link, redirect } from '@tanstack/react-router'
 import { useForm } from 'react-hook-form'
 import { signInSchema, type SignInSchema } from '@/schemas/auth.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Form } from '../../ui/form'
-import LoginFormFields from './loginFormFields'
 import SocialForm from '../SocialForm'
 import { authClient } from '@/lib/auth-client'
 import { toast } from 'sonner'
+import SignInFormFields from './SignInFormFields'
 
-function LoginForm() {
+function SignInForm() {
   const form = useForm<SignInSchema>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -23,6 +23,15 @@ function LoginForm() {
       onError: ({ error }) => {
         toast.error('Something went wrong, please try again.', {
           description: error.message,
+        })
+      },
+      onSuccess: () => {
+        toast.success('Welcome back!', {
+          description: 'You have successfully signed in.',
+        })
+        form.reset()
+        throw redirect({
+          to: '/',
         })
       },
     })
@@ -44,7 +53,7 @@ function LoginForm() {
             </p>
           </div>
 
-          <LoginFormFields form={form} />
+          <SignInFormFields form={form} />
 
           <div className="my-6 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
             <hr className="border-dashed" />
@@ -61,7 +70,7 @@ function LoginForm() {
           <p className="text-accent-foreground text-center text-sm">
             Don't have an account ?
             <Button asChild variant="link" className="px-2">
-              <Link to="/register">Create account</Link>
+              <Link to="/sign-up">Create account</Link>
             </Button>
           </p>
         </div>
@@ -70,4 +79,4 @@ function LoginForm() {
   )
 }
 
-export default LoginForm
+export default SignInForm
