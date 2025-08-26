@@ -3,8 +3,11 @@ import { auth } from './lib/auth'
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
+import { trpcServer } from '@hono/trpc-server'
+import { appRouter } from './routers'
+import { createContext } from './lib/context'
 
-const app = new Hono()
+const app = new Hono().basePath('/api')
 
 app.use(logger())
 app.use(
@@ -17,10 +20,14 @@ app.use(
   })
 )
 
-app.on(['POST', 'GET'], '/api/auth/**', c => auth.handler(c.req.raw))
+app.on(['POST', 'GET'], '/auth/**', c => auth.handler(c.req.raw))
 
-app.get('/', c => {
-  return c.text('OK')
-})
+app.use(
+  '/*',
+  trpcServer({
+    router: appRouter,
+    createContext: (_opts, context) => createContext({ context }),
+  })
+)
 
 export default app

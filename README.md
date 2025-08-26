@@ -1,9 +1,8 @@
 <div align="center">
     <picture>
-      <img alt="Grammar Hero Logo" src="./apps/web/public/Logo.png" height="128">
+      <img alt="Grammar Hero Logo" src="./apps/web/public/Logo.png" height="228">
     </picture>
   <h1>Grammar Hero</h1>
-
 </div>
 
 Grammar Hero is a simple web application designed to help students improve their English grammar skills. The app features a clean, user-friendly interface.
@@ -17,6 +16,7 @@ This project was created with [Better-T-Stack](https://github.com/AmanVarshney01
 - **TailwindCSS** - Utility-first CSS for rapid UI development
 - **shadcn/ui** - Reusable UI components
 - **Hono** - Lightweight, performant server framework
+- **tRPC** - End-to-end type-safe APIs
 - **Bun** - Runtime environment
 - **Prisma** - TypeScript-first ORM
 - **PostgreSQL** - Database engine
