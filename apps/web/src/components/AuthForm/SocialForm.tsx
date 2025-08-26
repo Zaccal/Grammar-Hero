@@ -1,5 +1,5 @@
-import GoogleIcon from '../googleIcon'
-import MicrosoftIcon from '../microsoftIcon'
+import GoogleIcon from '../ui/googleIcon'
+import MicrosoftIcon from '../ui/microsoftIcon'
 import { Button } from '../ui/button'
 
 const SocialForm = () => {

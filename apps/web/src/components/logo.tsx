@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import { TextEffect } from './motion-primitives/text-effect'
+import { TextEffect } from './ui/text-effect'
 
 export function Logo() {
   return (

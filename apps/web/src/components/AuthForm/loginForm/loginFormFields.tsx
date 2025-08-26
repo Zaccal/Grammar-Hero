@@ -24,7 +24,7 @@ function LoginFormFields({ form }: LoginFormFieldsProps) {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="gap-1.5">
+            <FormItem>
               {!form.formState.errors.email && <FormLabel>Email</FormLabel>}
               <FormMessage />
               <FormControl>

@@ -1,5 +1,5 @@
 import Header from '@/components/header'
-import Loader from '@/components/loader'
+import Loader from '@/components/ui/loader'
 import { Toaster } from '@/components/ui/sonner'
 import {
   HeadContent,
@@ -9,7 +9,7 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import '../index.css'
-import { Background } from '@/components/background'
+import { Background } from '@/components/ui/background'
 import { ThemeProvider } from '@/providers/themeProvider'
 
 export interface RouterAppContext {}
