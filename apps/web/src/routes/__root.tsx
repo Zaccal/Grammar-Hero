@@ -10,6 +10,7 @@ import {
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import '../index.css'
 import { Background } from '@/components/background'
+import { ThemeProvider } from '@/providers/themeProvider'
 
 export interface RouterAppContext {}
 
@@ -42,12 +43,14 @@ function RootComponent() {
   return (
     <>
       <HeadContent />
-      <Background>
-        <Header />
-        {isFetching ? <Loader /> : <Outlet />}
-      </Background>
-      <Toaster richColors />
-      <TanStackRouterDevtools position="bottom-left" />
+      <ThemeProvider defaultTheme="light">
+        <Background>
+          <Header />
+          {isFetching ? <Loader /> : <Outlet />}
+        </Background>
+        <Toaster richColors />
+        <TanStackRouterDevtools position="bottom-left" />
+      </ThemeProvider>
     </>
   )
 }

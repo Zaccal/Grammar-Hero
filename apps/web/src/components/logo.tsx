@@ -6,7 +6,13 @@ export function Logo() {
     <>
       <Link to="/" className="text-xl font-black flex items-center ">
         <img src="/Logo.png" alt="Logo" className="w-20" />
-        <TextEffect per="char" preset="scale" delay={0.4}>
+        <TextEffect
+          per="char"
+          speedReveal={1.1}
+          speedSegment={0.3}
+          preset="fade"
+          delay={0.7}
+        >
           Grammar Hero
         </TextEffect>
       </Link>

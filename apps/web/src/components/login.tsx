@@ -8,7 +8,7 @@ export default function LoginPage() {
     <section className="flex items-center justify-center min-h-screen px-4">
       <form
         action=""
-        className="mb-28 bg-muted h-fit w-full max-w-sm overflow-hidden rounded-[calc(var(--radius)+.125rem)] border shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)]"
+        className="mb-28 bg-muted h-fit w-full max-w-sm overflow-hidden rounded-[calc(var(--radius)+.125rem)] border shadow-md shadow-zinc-950/5  dark:[--color-muted:var(--color-zinc-900)]"
       >
         <div className="bg-card -m-px rounded-[calc(var(--radius)+.125rem)] border p-8 pb-6">
           <div className="text-center">
@@ -21,7 +21,7 @@ export default function LoginPage() {
           <div className="mt-6 space-y-6">
             <div className="space-y-2">
               <Label htmlFor="email" className="block text-sm">
-                Username
+                Email
               </Label>
               <Input type="email" required name="email" id="email" />
             </div>

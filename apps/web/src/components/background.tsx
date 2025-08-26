@@ -1,8 +1,32 @@
+import { useTheme } from '@/hooks'
+
 interface BackgroundProps {
   children?: React.ReactNode | React.ReactNode[]
 }
 
 export function Background({ children }: BackgroundProps) {
+  const { theme } = useTheme()
+
+  if (theme === 'dark') {
+    return (
+      <div className="min-h-screen w-full bg-[#0f0f0f] relative text-white">
+        {/* Small Grid Pattern */}
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `
+        linear-gradient(to right, #262626 1px, transparent 1px),
+        linear-gradient(to bottom, #262626 1px, transparent 1px)
+      `,
+            backgroundSize: '20px 20px',
+          }}
+        />
+
+        <div className="relative">{children}</div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen w-full bg-[#f8fafc] relative">
       {/* Top Fade Grid Background */}
