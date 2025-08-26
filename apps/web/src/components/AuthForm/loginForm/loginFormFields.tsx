@@ -1,0 +1,77 @@
+import { Link } from '@tanstack/react-router'
+import { Button } from '../../ui/button'
+import { Input } from '../../ui/input'
+import type { UseFormReturn } from 'react-hook-form'
+import type { SignInSchema } from '@/schemas/auth.schema'
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
+
+interface LoginFormFieldsProps {
+  form: UseFormReturn<SignInSchema>
+}
+
+function LoginFormFields({ form }: LoginFormFieldsProps) {
+  const { isSubmitting } = form.formState
+  return (
+    <>
+      <div className="mt-6 space-y-6">
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem className="gap-1.5">
+              {!form.formState.errors.email && <FormLabel>Email</FormLabel>}
+              <FormMessage />
+              <FormControl>
+                <Input
+                  disabled={isSubmitting}
+                  placeholder="examplemail@mail.com"
+                  {...field}
+                />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem className="gap-1.5">
+              <div className="flex items-center justify-between">
+                <FormLabel>Password</FormLabel>
+                <Button asChild variant="link" size="sm">
+                  <Link
+                    to="/"
+                    className="link intent-info variant-ghost text-sm"
+                  >
+                    Forgot your Password ?
+                  </Link>
+                </Button>
+              </div>
+              <FormControl>
+                <Input
+                  disabled={isSubmitting}
+                  type="password"
+                  placeholder="Your password"
+                  {...field}
+                />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+
+        <Button loading={isSubmitting} type="submit" className="w-full">
+          Sign In
+        </Button>
+      </div>
+    </>
+  )
+}
+
+export default LoginFormFields

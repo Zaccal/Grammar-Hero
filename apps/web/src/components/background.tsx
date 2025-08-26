@@ -7,7 +7,7 @@ interface BackgroundProps {
 export function Background({ children }: BackgroundProps) {
   const { theme } = useTheme()
 
-  if (theme === 'dark') {
+  if (theme !== 'light') {
     return (
       <div className="min-h-screen w-full bg-[#0f0f0f] relative text-white">
         {/* Small Grid Pattern */}

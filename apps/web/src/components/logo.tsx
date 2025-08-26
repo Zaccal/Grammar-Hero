@@ -4,7 +4,7 @@ import { TextEffect } from './motion-primitives/text-effect'
 export function Logo() {
   return (
     <>
-      <Link to="/" className="text-xl font-black flex items-center ">
+      <Link to="/" className="text-lg md:text-xl font-black flex items-center ">
         <img src="/Logo.png" alt="Logo" className="w-20" />
         <TextEffect
           per="char"
