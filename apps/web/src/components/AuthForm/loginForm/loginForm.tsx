@@ -34,7 +34,7 @@ function LoginForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="mb-28 bg-muted h-fit w-full max-w-sm overflow-hidden rounded-[calc(var(--radius)+.125rem)] border shadow-md shadow-zinc-950/5  dark:[--color-muted:var(--color-zinc-900)]"
       >
-        <div className="bg-card -m-px rounded-[calc(var(--radius)+.125rem)] border p-8 pb-6">
+        <div className="bg-card -m-px rounded-[calc(var(--radius)+.125rem)] border p-8 pb-7">
           <div className="text-center">
             <h1 className="mb-1 mt-4 text-xl font-semibold">
               Sign In to Dino Account!
