@@ -44,10 +44,8 @@ function RootComponent() {
     <>
       <HeadContent />
       <ThemeProvider defaultTheme="light">
-        <Background>
-          <Header />
-          {isFetching ? <Loader /> : <Outlet />}
-        </Background>
+        <Header />
+        {isFetching ? <Loader /> : <Outlet />}
         <Toaster richColors />
         <TanStackRouterDevtools position="bottom-left" />
       </ThemeProvider>

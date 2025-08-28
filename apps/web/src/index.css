@@ -212,10 +212,19 @@ body {
     font-size-adjust: 0.51;
     @apply bg-background text-foreground;
   }
+
+  input {
+    @apply font-sans;
+  }
 }
 
 @layer components {
   .container {
     @apply max-w-[96rem] mx-auto w-full px-4 sm:px-6 lg:px-8;
+  }
+
+  .hero-background {
+    background: url('/bg.png') no-repeat center center;
+    background-size: cover;
   }
 }
