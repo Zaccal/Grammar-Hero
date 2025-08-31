@@ -3,7 +3,9 @@ import {
   GreetingDescription,
   GreetingTitle,
 } from '@/components/Greeting/Greeting'
+import { TopicDialog, TopicDialogCard } from '@/components/Topics/Topics'
 import { authClient } from '@/lib/auth-client'
+import { MOCK_TOPICS } from '@/lib/constants'
 import {
   createFileRoute,
   redirect,
@@ -27,16 +29,25 @@ function HomeComponent() {
   const { user } = useLoaderData({ from: '/' })
 
   return (
-    <section>
-      <Greeting>
-        <GreetingTitle>Welcome {user.displayUsername}!</GreetingTitle>
-        <GreetingDescription>
-          Choose a grammar topic and start learning right away! Here you’ll find
-          a variety of grammar lessons designed to help you understand and use
-          English correctly. Explore the topics, practice your skills, and
-          improve your grammar with practical examples and explanations.
-        </GreetingDescription>
-      </Greeting>
-    </section>
+    <>
+      <section>
+        <Greeting>
+          <GreetingTitle>Welcome {user.displayUsername}!</GreetingTitle>
+          <GreetingDescription>
+            Choose a grammar topic and start learning right away! Here you’ll
+            find a variety of grammar lessons designed to help you understand
+            and use English correctly. Explore the topics, practice your skills,
+            and improve your grammar with practical examples and explanations.
+          </GreetingDescription>
+        </Greeting>
+      </section>
+      <section className="py-16">
+        <TopicDialog.List>
+          {MOCK_TOPICS.map(topicData => (
+            <TopicDialogCard key={topicData.id} topic={topicData} />
+          ))}
+        </TopicDialog.List>
+      </section>
+    </>
   )
 }

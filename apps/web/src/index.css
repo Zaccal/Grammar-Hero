@@ -14,6 +14,7 @@ body {
 }
 
 :root {
+  --DIALOG-MAX-H: calc(100vh - 200px);
   --background: oklch(1 0 0);
   --foreground: oklch(0.1408 0.0044 285.8229);
   --card: oklch(1 0 0);
@@ -209,18 +210,20 @@ body {
   }
   body {
     letter-spacing: var(--tracking-normal);
-    font-size-adjust: 0.51;
+    font-size-adjust: 0.6;
     @apply bg-background text-foreground;
   }
 
   input {
+    font-size: 16px;
+    line-height: 24px;
     @apply font-sans;
   }
 }
 
 @layer components {
   .container {
-    @apply max-w-[96rem] mx-auto w-full px-4 sm:px-6 lg:px-8;
+    @apply max-w-[96rem] mx-auto w-full px-4;
   }
 
   .hero-background {
