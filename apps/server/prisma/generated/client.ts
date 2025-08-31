@@ -61,5 +61,16 @@ export type Account = Prisma.AccountModel
  * 
  */
 export type Verification = Prisma.VerificationModel
+/**
+ * Model Topics
+ * 
+ */
+export type Topics = Prisma.TopicsModel
+/**
+ * Model Favorite
+ * 
+ */
+export type Favorite = Prisma.FavoriteModel
 
-
+export type Level = $Enums.Level
+export const Level = $Enums.Level

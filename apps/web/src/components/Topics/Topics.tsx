@@ -1,5 +1,5 @@
 import { getVariantLevel } from '@/lib/getVariantLevel'
-import type { Topics as TypeTopics } from '../../../../server/prisma/generated/client'
+import type { Topics } from '../../../../server/prisma/generated/client'
 import { Badge } from '../ui/Badge'
 import {
   MorphingDialog,
@@ -71,7 +71,7 @@ export function TopicPreview({ children }: TopicsProps) {
 }
 
 interface TopicCardProps {
-  topic: TypeTopics
+  topic: Topics
 }
 
 export function TopicCard({ topic }: TopicCardProps) {

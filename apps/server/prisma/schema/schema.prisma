@@ -8,3 +8,36 @@ datasource db {
   provider = "postgres"
   url      = env("DATABASE_URL")
 }
+
+model Topics {
+  id String @id @default(cuid()) @map("_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+  title String 
+  shortDescription String @map("short_description") 
+  description String
+  duration String
+  image String?
+  likes Int 
+  content String
+  level Level
+
+  user User @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  userId String @map("user_id")
+
+  favorites Favorite[]
+}
+
+enum Level {
+  Basic // A1–A2
+  Intermediate // B1–B2
+  Advanced // C1–C2
+}
+
+model Favorite {
+  id String @id @default(cuid()) @map("_id")
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @unique @map("user_id")
+
+  topics Topics[]
+}

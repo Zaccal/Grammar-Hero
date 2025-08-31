@@ -13,6 +13,9 @@ model User {
   username        String?
   displayUsername String?
 
+  topics Topics[]
+  favorite Favorite?
+
   @@unique([email])
   @@map("user")
   @@unique([username])

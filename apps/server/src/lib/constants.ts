@@ -1,6 +1,5 @@
-import type { Topics } from '../../../server/prisma/generated/client'
+import type { Topics } from 'prisma/generated/client'
 
-// TODO: Remove when I set BD with datas
 export const MOCK_TOPICS: Topics[] = [
   {
     id: '1',

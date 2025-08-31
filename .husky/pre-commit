@@ -1,5 +1,12 @@
 set +e
 
+echo "🧪 Running tests..."
+bun run test
+if [ $? -ne 0 ]; then
+  echo "❌ Tests failed. Commit aborted."
+  exit 1
+fi
+
 echo "🪷 Running Formatter..."
 prettier --write .
 if [ $? -ne 0 ]; then

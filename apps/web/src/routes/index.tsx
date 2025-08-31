@@ -4,13 +4,15 @@ import {
   GreetingTitle,
 } from '@/components/Greeting/Greeting'
 import { TopicDialog, TopicDialogCard } from '@/components/Topics/Topics'
-import { authClient } from '@/lib/auth-client'
-import { MOCK_TOPICS } from '@/lib/constants'
+import { authClient } from '@/utils/auth-client'
 import {
   createFileRoute,
   redirect,
   useLoaderData,
 } from '@tanstack/react-router'
+import { useQuery } from '@tanstack/react-query'
+import { trpc } from '@/utils/trpc'
+import Loader from '@/components/ui/loader'
 
 export const Route = createFileRoute('/')({
   component: HomeComponent,
@@ -27,6 +29,20 @@ export const Route = createFileRoute('/')({
 
 function HomeComponent() {
   const { user } = useLoaderData({ from: '/' })
+  const {
+    data: topics,
+    isLoading,
+    error,
+    isError,
+  } = useQuery(trpc.topics.getAll.queryOptions())
+
+  if (isLoading) return <Loader />
+  if (isError)
+    return (
+      <div className="text-destructive-foreground bg-destructive rounded-lg p-4">
+        {error.message}
+      </div>
+    )
 
   return (
     <>
@@ -43,7 +59,7 @@ function HomeComponent() {
       </section>
       <section className="py-16">
         <TopicDialog.List>
-          {MOCK_TOPICS.map(topicData => (
+          {topics?.map(topicData => (
             <TopicDialogCard key={topicData.id} topic={topicData} />
           ))}
         </TopicDialog.List>

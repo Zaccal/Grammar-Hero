@@ -18,7 +18,10 @@
     "db:generate": "turbo -F server db:generate",
     "db:migrate": "turbo -F server db:migrate"
   },
-  "dependencies": {},
+  "dependencies": {
+    "superjson": "^2.2.2",
+    "zod": "^4.1.5"
+  },
   "devDependencies": {
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",

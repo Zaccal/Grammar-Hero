@@ -1,4 +1,4 @@
-import { authClient } from '@/lib/auth-client'
+import { authClient } from '@/utils/auth-client'
 import { useQuery } from '@tanstack/react-query'
 
 export function useSession() {
