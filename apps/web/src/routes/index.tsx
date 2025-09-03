@@ -3,7 +3,8 @@ import {
   GreetingDescription,
   GreetingTitle,
 } from '@/components/Greeting/Greeting'
-import { TopicDialog, TopicDialogCard } from '@/components/Topics/Topics'
+import { TopicsDialog } from '@/components/Topics/Topics'
+import TopicsDialogCard from '@/components/Topics/TopicsDialogCard'
 import { authClient } from '@/utils/auth-client'
 import {
   createFileRoute,
@@ -58,11 +59,11 @@ function HomeComponent() {
         </Greeting>
       </section>
       <section className="py-16">
-        <TopicDialog.List>
+        <TopicsDialog.List>
           {topics?.map(topicData => (
-            <TopicDialogCard key={topicData.id} topic={topicData} />
+            <TopicsDialogCard key={topicData.id} topic={topicData} />
           ))}
-        </TopicDialog.List>
+        </TopicsDialog.List>
       </section>
     </>
   )

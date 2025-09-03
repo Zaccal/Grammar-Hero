@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignUpRouteImport } from './routes/sign-up'
 import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TopicIdRouteImport } from './routes/topic/$id'
 
 const SignUpRoute = SignUpRouteImport.update({
   id: '/sign-up',
@@ -28,35 +29,44 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TopicIdRoute = TopicIdRouteImport.update({
+  id: '/topic/$id',
+  path: '/topic/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/topic/$id': typeof TopicIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/topic/$id': typeof TopicIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/topic/$id': typeof TopicIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sign-in' | '/sign-up'
+  fullPaths: '/' | '/sign-in' | '/sign-up' | '/topic/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sign-in' | '/sign-up'
-  id: '__root__' | '/' | '/sign-in' | '/sign-up'
+  to: '/' | '/sign-in' | '/sign-up' | '/topic/$id'
+  id: '__root__' | '/' | '/sign-in' | '/sign-up' | '/topic/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SignInRoute: typeof SignInRoute
   SignUpRoute: typeof SignUpRoute
+  TopicIdRoute: typeof TopicIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/topic/$id': {
+      id: '/topic/$id'
+      path: '/topic/$id'
+      fullPath: '/topic/$id'
+      preLoaderRoute: typeof TopicIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SignInRoute: SignInRoute,
   SignUpRoute: SignUpRoute,
+  TopicIdRoute: TopicIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

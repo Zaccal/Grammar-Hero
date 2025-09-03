@@ -27,24 +27,14 @@ import { Button } from '../ui/button'
 import { Link } from '@tanstack/react-router'
 import { Heart, Star } from 'lucide-react'
 import { ScrollArea } from '../ui/scroll-area'
+import { createContext } from '@/hooks'
 
-export const TopicDialog = {
-  Root: Topic,
-  List: TopicsList,
-  Preview: TopicPreview,
-  Content: TopicContent,
-  Image: TopicImage,
-  Title: TopicTitle,
-  Subtitle: TopicSubtitle,
-  Description: TopicDescription,
-  Actions: TopicActions,
-}
-
-interface TopicsProps {
+const topicsContext = createContext<Topics>()
+interface TopicsSharedProps {
   children: React.ReactNode | React.ReactNode[]
 }
 
-export function TopicsList({ children }: TopicsProps) {
+export function TopicsList({ children }: TopicsSharedProps) {
   return (
     <div className="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 ">
       {children}
@@ -52,35 +42,39 @@ export function TopicsList({ children }: TopicsProps) {
   )
 }
 
-export function Topic({ children }: TopicsProps) {
-  return (
-    <MorphingDialog
-      transition={{
-        type: 'spring',
-        bounce: 0.05,
-        duration: 0.25,
-      }}
-    >
-      {children}
-    </MorphingDialog>
-  )
-}
-
-export function TopicPreview({ children }: TopicsProps) {
-  return <MorphingDialogTrigger>{children}</MorphingDialogTrigger>
-}
-
-interface TopicCardProps {
+interface TopicsProps extends TopicsSharedProps {
   topic: Topics
 }
 
-export function TopicCard({ topic }: TopicCardProps) {
+export function Topic({ children, topic }: TopicsProps) {
+  return (
+    <topicsContext.Provider initialValue={topic}>
+      <MorphingDialog
+        transition={{
+          type: 'spring',
+          bounce: 0.05,
+          duration: 0.25,
+        }}
+      >
+        {children}
+      </MorphingDialog>
+    </topicsContext.Provider>
+  )
+}
+
+export function TopicsPreview({ children }: TopicsSharedProps) {
+  return <MorphingDialogTrigger>{children}</MorphingDialogTrigger>
+}
+
+export function TopicsCard() {
+  const { title, image, shortDescription, level, likes } =
+    topicsContext.useSelect(state => state)
   return (
     <>
       <MinimalCard className="h-full text-left">
-        <TopicImage
-          alt={topic.title}
-          src={topic.image}
+        <TopicsImage
+          alt={title}
+          src={image}
           className={cn(
             'relative h-[190px] w-full rounded-[20px] mb-6',
             'shadow-[0px_1px_1px_0px_rgba(0,0,0,0.05),0px_1px_1px_0px_rgba(255,252,240,0.5)_inset,0px_0px_0px_1px_hsla(0,0%,100%,0.1)_inset,0px_0px_1px_0px_rgba(28,27,26,0.5)]',
@@ -88,16 +82,16 @@ export function TopicCard({ topic }: TopicCardProps) {
           )}
         />
         <MinimalCardContent>
-          <MinimalCardTitle>{topic.title}</MinimalCardTitle>
+          <MinimalCardTitle>{title}</MinimalCardTitle>
           <MinimalCardDescription className="h-[48px]">
-            {topic.shortDescription}
+            {shortDescription}
           </MinimalCardDescription>
         </MinimalCardContent>
 
         <MinimalCardFooter className="flex justify-between">
-          <Badge variant={getVariantLevel(topic.level)}>{topic.level}</Badge>
+          <Badge variant={getVariantLevel(level)}>{level}</Badge>
           <div className="flex items-center gap-3">
-            <Likes>{topic.likes}</Likes>
+            <Likes>{likes}</Likes>
             <Favorite />
           </div>
         </MinimalCardFooter>
@@ -106,7 +100,7 @@ export function TopicCard({ topic }: TopicCardProps) {
   )
 }
 
-export function TopicContent({ children }: TopicsProps) {
+export function TopicsContent({ children }: TopicsSharedProps) {
   return (
     <MorphingDialogContainer>
       <MorphingDialogContent
@@ -122,11 +116,11 @@ export function TopicContent({ children }: TopicsProps) {
   )
 }
 
-interface TopicImage extends Omit<MorphingDialogImageProps, 'src'> {
+interface TopicsImage extends Omit<MorphingDialogImageProps, 'src'> {
   src: string | null
 }
 
-export function TopicImage({ src, ...props }: TopicImage) {
+export function TopicsImage({ src, ...props }: TopicsImage) {
   return (
     <>
       <MorphingDialogImage loading="lazy" {...props} src={src ?? '/bg.png'} />
@@ -134,7 +128,7 @@ export function TopicImage({ src, ...props }: TopicImage) {
   )
 }
 
-export function TopicTitle({ children }: TopicsProps) {
+export function TopicsTitle({ children }: TopicsSharedProps) {
   return (
     <MorphingDialogTitle className="text-2xl text-zinc-950 dark:text-zinc-50">
       {children}
@@ -142,7 +136,7 @@ export function TopicTitle({ children }: TopicsProps) {
   )
 }
 
-export function TopicSubtitle({ children }: TopicsProps) {
+export function TopicsSubtitle({ children }: TopicsSharedProps) {
   return (
     <MorphingDialogSubtitle className="text-zinc-700 dark:text-zinc-400">
       {children}
@@ -150,7 +144,7 @@ export function TopicSubtitle({ children }: TopicsProps) {
   )
 }
 
-export function TopicDescription({ children }: TopicsProps) {
+export function TopicsDescription({ children }: TopicsSharedProps) {
   return (
     <MorphingDialogDescription
       disableLayoutAnimation
@@ -165,11 +159,19 @@ export function TopicDescription({ children }: TopicsProps) {
   )
 }
 
-export function TopicActions() {
+export function TopicsActions() {
+  const id = topicsContext.useSelect(state => state.id)
   return (
     <div className="mt-8 flex justify-between items-center">
       <Button asChild size={'lg'}>
-        <Link to={`/`}>Start learning</Link>
+        <Link
+          to={`/topic/$id`}
+          params={{
+            id,
+          }}
+        >
+          Start learning
+        </Link>
       </Button>
       <div className="space-x-3">
         <Button size={'icon'} variant={'secondary'} aria-label="like">
@@ -187,30 +189,14 @@ export function TopicActions() {
   )
 }
 
-export function TopicDialogCard({ topic }: TopicCardProps) {
-  return (
-    <TopicDialog.Root>
-      <TopicDialog.Preview>
-        <TopicCard topic={topic} />
-      </TopicDialog.Preview>
-      <TopicDialog.Content>
-        <TopicDialog.Image
-          src={topic.image}
-          alt={topic.title}
-          className="w-full max-h-[400px] h-full"
-        />
-        <div className="p-6">
-          <TopicDialog.Title>{topic.title}</TopicDialog.Title>
-          <TopicDialog.Subtitle>{topic.duration}</TopicDialog.Subtitle>
-          <TopicDialog.Description>
-            <p className="mt-2 text-sm leading-[1.325rem] text-muted-foreground">
-              {topic.description}
-            </p>
-
-            <TopicDialog.Actions />
-          </TopicDialog.Description>
-        </div>
-      </TopicDialog.Content>
-    </TopicDialog.Root>
-  )
+export const TopicsDialog = {
+  Root: Topic,
+  List: TopicsList,
+  Preview: TopicsPreview,
+  Content: TopicsContent,
+  Image: TopicsImage,
+  Title: TopicsTitle,
+  Subtitle: TopicsSubtitle,
+  Description: TopicsDescription,
+  Actions: TopicsActions,
 }
