@@ -7,14 +7,13 @@
     "check-types": "tsc -b",
     "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
     "dev": "bun run --hot src/index.ts",
-    "test": "vitest run --config ./vitest.config.ts",
-    "test:watch": "vitest --watch --config ./vitest.config.ts",
     "start": "bun run dist/index.js",
     "db:seed": "bun run prisma/seed.ts",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
     "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev"
+    "db:migrate": "prisma migrate dev",
+    "db:run": "docker compose up -d"
   },
   "dependencies": {
     "@hono/trpc-server": "^0.4.0",
@@ -29,7 +28,6 @@
     "@types/bun": "^1.2.6",
     "prisma": "^6.13.0",
     "tsdown": "^0.12.9",
-    "typescript": "^5.8.2",
-    "vitest": "^3.2.4"
+    "typescript": "^5.8.2"
   }
 }
