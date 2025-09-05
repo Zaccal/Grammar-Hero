@@ -20,7 +20,7 @@ function RouteComponent() {
   if (isError) return <ErrorComponent error={error} />
 
   return (
-    <TopicDetails.Root topic={data!} className="container py-40">
+    <TopicDetails.Root topic={data!} className="container py-20">
       <TopicDetails.Header />
       <Separator className="my-3" />
       <TopicDetails.Actions />

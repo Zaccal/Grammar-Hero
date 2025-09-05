@@ -226,6 +226,10 @@ body {
     @apply !max-w-4xl mx-auto w-full px-4 sm:px-6 lg:px-8;
   }
 
+  .container-lg {
+    @apply !max-w-[96rem] mx-auto w-full px-4 sm:px-6 lg:px-8;
+  }
+
   .hero-background {
     background: url('/bg.png') no-repeat center center;
     background-size: cover;
