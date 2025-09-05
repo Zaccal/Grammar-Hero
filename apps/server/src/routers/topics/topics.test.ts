@@ -1,4 +1,4 @@
-import { MOCK_TOPICS } from '../../lib/constants'
+import { MOCK_TOPICS } from '../../lib/getMocksTopics'
 import { describe, expect, it, vi } from 'vitest'
 import { getAll, getById } from './topics.constroller'
 import { TOPICS_SELECT } from './constants'
@@ -34,7 +34,7 @@ describe('topics', () => {
   })
 
   it('should return by id', async () => {
-    const id = '1'
+    const id = '5'
     const topic = (await getById(id)) as TopicExpected
 
     expect(topic.id).toBe(id)

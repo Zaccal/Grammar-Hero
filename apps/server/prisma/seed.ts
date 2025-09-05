@@ -1,4 +1,4 @@
-import { MOCK_TOPICS } from '@/lib/constants'
+import { MOCK_TOPICS } from '@/lib/getMocksTopics'
 import prisma from '../prisma/index'
 import type { TopicsCreateManyInput } from './generated/models'
 

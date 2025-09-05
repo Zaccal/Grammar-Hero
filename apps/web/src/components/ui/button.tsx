@@ -17,6 +17,10 @@ const buttonVariants = cva(
           'bg-destructive text-destructive-foreground hover:bg-destructive/90 data-[state=open]:bg-destructive/90',
         secondary:
           'bg-secondary text-secondary-foreground hover:bg-secondary/90 data-[state=open]:bg-secondary/90',
+        muted:
+          'bg-secondary text-muted-foreground hover:bg-secondary/90 data-[state=open]:bg-secondary/90',
+        mutedGhost:
+          'text-muted-foreground hover:bg-accent hover:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground',
         outline:
           'bg-background text-accent-foreground border border-input hover:bg-accent data-[state=open]:bg-accent',
         dashed:
@@ -413,6 +417,7 @@ function Button({
       )}
       {...(selected && { 'data-state': 'open' })}
       {...props}
+      disabled={loading || props.disabled}
     >
       {loading ? (
         <div className="flex items-center gap-2">

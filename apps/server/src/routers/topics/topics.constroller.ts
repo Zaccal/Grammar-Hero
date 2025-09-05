@@ -1,4 +1,3 @@
-import type { Context } from '@/lib/context'
 import prisma from '../../../prisma/index'
 import { TOPICS_SELECT } from './constants'
 import { TRPCError } from '@trpc/server'

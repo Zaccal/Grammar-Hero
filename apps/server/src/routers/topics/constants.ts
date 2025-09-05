@@ -12,5 +12,6 @@ export const TOPICS_SELECT: TopicsSelect = {
   duration: true,
   likes: true,
   userId: false,
+  user: true,
   image: true,
 }

@@ -10,6 +10,8 @@
     "dev": "turbo dev",
     "build": "turbo build",
     "check-types": "turbo check-types",
+    "test": "vitest run --config ./vitest.config.ts",
+    "test:watch": "vitest --watch --config ./vitest.config.ts",
     "dev:native": "turbo -F native dev",
     "dev:web": "turbo -F web dev",
     "dev:server": "turbo -F server dev",
@@ -26,7 +28,8 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
-    "turbo": "^2.5.4"
+    "turbo": "^2.5.4",
+    "vitest": "^3.2.4"
   },
   "lint-staged": {
     "**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,vue,astro,svelte}": ""

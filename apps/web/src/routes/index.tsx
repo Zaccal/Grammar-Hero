@@ -14,6 +14,7 @@ import {
 import { useQuery } from '@tanstack/react-query'
 import { trpc } from '@/utils/trpc'
 import Loader from '@/components/ui/loader'
+import ErrorComponent from '@/components/ErrorComponent'
 
 export const Route = createFileRoute('/')({
   component: HomeComponent,
@@ -38,12 +39,7 @@ function HomeComponent() {
   } = useQuery(trpc.topics.getAll.queryOptions())
 
   if (isLoading) return <Loader />
-  if (isError)
-    return (
-      <div className="text-destructive-foreground bg-destructive rounded-lg p-4">
-        {error.message}
-      </div>
-    )
+  if (isError) return <ErrorComponent error={error} />
 
   return (
     <>

@@ -1,11 +1,11 @@
 import 'dotenv/config'
-import { auth } from './lib/auth'
+import { auth } from './utils/auth'
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
 import { trpcServer } from '@hono/trpc-server'
 import { appRouter } from './routers'
-import { createContext } from './lib/context'
+import { createContext } from './utils/context'
 
 const app = new Hono().basePath('/api')
 

@@ -1,8 +1,8 @@
-import type { Topics } from '../../../../server/prisma/generated/client'
+import type { Topic } from '@server/routers/topics/topics.types'
 import { TopicsCard, TopicsDialog } from './Topics'
 
 interface TopicsDialogCardProps {
-  topic: Topics
+  topic: Topic
 }
 
 function TopicsDialogCard({ topic }: TopicsDialogCardProps) {

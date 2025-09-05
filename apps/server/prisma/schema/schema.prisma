@@ -19,7 +19,7 @@ model Topics {
   duration String
   image String?
   likes Int 
-  content String
+  content String @db.Text
   level Level
 
   user User @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)

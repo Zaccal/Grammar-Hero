@@ -23,6 +23,7 @@ This project was created with [Better-T-Stack](https://github.com/AmanVarshney01
 - **Authentication** - Email & password authentication with Better Auth
 - **Husky** - Git hooks for code quality
 - **Turborepo** - Optimized monorepo build system
+- **Docker** - for local db development
 
 ## Getting Started
 

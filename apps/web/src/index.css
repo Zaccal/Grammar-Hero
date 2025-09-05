@@ -223,11 +223,28 @@ body {
 
 @layer components {
   .container {
-    @apply max-w-[96rem] mx-auto w-full px-4;
+    @apply !max-w-4xl mx-auto w-full px-4 sm:px-6 lg:px-8;
   }
 
   .hero-background {
     background: url('/bg.png') no-repeat center center;
     background-size: cover;
+  }
+
+  .dot {
+    @apply w-1 h-1 rounded-full bg-muted-foreground;
+  }
+
+  .markdown-body,
+  .markdown-body table * {
+    @apply !font-sans !bg-background !text-foreground;
+  }
+
+  .markdown-body hr {
+    @apply !h-[2px] !bg-muted-foreground;
+  }
+
+  .topic-details-text {
+    @apply text-xs sm:text-sm md:text-base;
   }
 }

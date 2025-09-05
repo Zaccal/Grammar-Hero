@@ -41,7 +41,7 @@ function SignInFormFields({ form }: SignInFormFieldsProps) {
             <FormItem className="gap-1.5">
               <div className="flex items-center justify-between">
                 <FormLabel>Password</FormLabel>
-                <Button asChild variant="link" size="sm">
+                <Button asChild size="sm">
                   <Link
                     to="/"
                     className="link intent-info variant-ghost text-sm"

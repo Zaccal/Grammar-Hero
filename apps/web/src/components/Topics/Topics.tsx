@@ -1,5 +1,4 @@
 import { getVariantLevel } from '@/lib/getVariantLevel'
-import type { Topics } from '../../../../server/prisma/generated/client'
 import { Badge } from '../ui/Badge'
 import {
   MorphingDialog,
@@ -20,16 +19,15 @@ import {
   MinimalCardFooter,
   MinimalCardTitle,
 } from '../ui/SimpleCards'
-import Likes from '../ui/likes'
-import Favorite from '../ui/favorite'
 import { cn } from '@/lib/utils'
 import { Button } from '../ui/button'
 import { Link } from '@tanstack/react-router'
-import { Heart, Star } from 'lucide-react'
+import { Bookmark, Heart } from 'lucide-react'
 import { ScrollArea } from '../ui/scroll-area'
 import { createContext } from '@/hooks'
+import type { Topic } from '@server/routers/topics/topics.types'
 
-const topicsContext = createContext<Topics>()
+const topicsContext = createContext<Topic>()
 interface TopicsSharedProps {
   children: React.ReactNode | React.ReactNode[]
 }
@@ -43,7 +41,7 @@ export function TopicsList({ children }: TopicsSharedProps) {
 }
 
 interface TopicsProps extends TopicsSharedProps {
-  topic: Topics
+  topic: Topic
 }
 
 export function Topic({ children, topic }: TopicsProps) {
@@ -90,9 +88,15 @@ export function TopicsCard() {
 
         <MinimalCardFooter className="flex justify-between">
           <Badge variant={getVariantLevel(level)}>{level}</Badge>
-          <div className="flex items-center gap-3">
-            <Likes>{likes}</Likes>
-            <Favorite />
+          <div className="flex items-center gap-3 text-muted-foreground text-sm">
+            <div className="flex items-center gap-2">
+              <Heart size={21} />
+              <span>{likes}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Bookmark size={21} />
+              <span>18</span>
+            </div>
           </div>
         </MinimalCardFooter>
       </MinimalCard>
@@ -160,7 +164,7 @@ export function TopicsDescription({ children }: TopicsSharedProps) {
 }
 
 export function TopicsActions() {
-  const id = topicsContext.useSelect(state => state.id)
+  const { id, likes } = topicsContext.useSelect(state => state)
   return (
     <div className="mt-8 flex justify-between items-center">
       <Button asChild size={'lg'}>
@@ -173,16 +177,14 @@ export function TopicsActions() {
           Start learning
         </Link>
       </Button>
-      <div className="space-x-3">
-        <Button size={'icon'} variant={'secondary'} aria-label="like">
+      <div className="space-x-3 ">
+        <Button variant={'muted'} aria-label="like">
           <Heart />
+          <span>{likes}</span>
         </Button>
-        <Button
-          size={'icon'}
-          variant={'secondary'}
-          aria-label="add to favorites"
-        >
-          <Star />
+        <Button variant={'muted'} aria-label="add to favorites">
+          <Bookmark />
+          <span>18</span>
         </Button>
       </div>
     </div>
