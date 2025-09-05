@@ -273,6 +273,7 @@ export type TopicsWhereInput = {
   userId?: Prisma.StringFilter<"Topics"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   favorites?: Prisma.FavoriteListRelationFilter
+  bookmark?: Prisma.BookmarkListRelationFilter
 }
 
 export type TopicsOrderByWithRelationInput = {
@@ -290,6 +291,7 @@ export type TopicsOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   favorites?: Prisma.FavoriteOrderByRelationAggregateInput
+  bookmark?: Prisma.BookmarkOrderByRelationAggregateInput
 }
 
 export type TopicsWhereUniqueInput = Prisma.AtLeast<{
@@ -310,6 +312,7 @@ export type TopicsWhereUniqueInput = Prisma.AtLeast<{
   userId?: Prisma.StringFilter<"Topics"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   favorites?: Prisma.FavoriteListRelationFilter
+  bookmark?: Prisma.BookmarkListRelationFilter
 }, "id">
 
 export type TopicsOrderByWithAggregationInput = {
@@ -364,6 +367,7 @@ export type TopicsCreateInput = {
   level: $Enums.Level
   user: Prisma.UserCreateNestedOneWithoutTopicsInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutTopicsInput
+  bookmark?: Prisma.BookmarkCreateNestedManyWithoutTopicsInput
 }
 
 export type TopicsUncheckedCreateInput = {
@@ -380,6 +384,7 @@ export type TopicsUncheckedCreateInput = {
   level: $Enums.Level
   userId: string
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutTopicsInput
+  bookmark?: Prisma.BookmarkUncheckedCreateNestedManyWithoutTopicsInput
 }
 
 export type TopicsUpdateInput = {
@@ -396,6 +401,7 @@ export type TopicsUpdateInput = {
   level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
   user?: Prisma.UserUpdateOneRequiredWithoutTopicsNestedInput
   favorites?: Prisma.FavoriteUpdateManyWithoutTopicsNestedInput
+  bookmark?: Prisma.BookmarkUpdateManyWithoutTopicsNestedInput
 }
 
 export type TopicsUncheckedUpdateInput = {
@@ -412,6 +418,7 @@ export type TopicsUncheckedUpdateInput = {
   level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutTopicsNestedInput
+  bookmark?: Prisma.BookmarkUncheckedUpdateManyWithoutTopicsNestedInput
 }
 
 export type TopicsCreateManyInput = {
@@ -613,6 +620,44 @@ export type TopicsUncheckedUpdateManyWithoutFavoritesNestedInput = {
   deleteMany?: Prisma.TopicsScalarWhereInput | Prisma.TopicsScalarWhereInput[]
 }
 
+export type TopicsCreateNestedManyWithoutBookmarkInput = {
+  create?: Prisma.XOR<Prisma.TopicsCreateWithoutBookmarkInput, Prisma.TopicsUncheckedCreateWithoutBookmarkInput> | Prisma.TopicsCreateWithoutBookmarkInput[] | Prisma.TopicsUncheckedCreateWithoutBookmarkInput[]
+  connectOrCreate?: Prisma.TopicsCreateOrConnectWithoutBookmarkInput | Prisma.TopicsCreateOrConnectWithoutBookmarkInput[]
+  connect?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
+}
+
+export type TopicsUncheckedCreateNestedManyWithoutBookmarkInput = {
+  create?: Prisma.XOR<Prisma.TopicsCreateWithoutBookmarkInput, Prisma.TopicsUncheckedCreateWithoutBookmarkInput> | Prisma.TopicsCreateWithoutBookmarkInput[] | Prisma.TopicsUncheckedCreateWithoutBookmarkInput[]
+  connectOrCreate?: Prisma.TopicsCreateOrConnectWithoutBookmarkInput | Prisma.TopicsCreateOrConnectWithoutBookmarkInput[]
+  connect?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
+}
+
+export type TopicsUpdateManyWithoutBookmarkNestedInput = {
+  create?: Prisma.XOR<Prisma.TopicsCreateWithoutBookmarkInput, Prisma.TopicsUncheckedCreateWithoutBookmarkInput> | Prisma.TopicsCreateWithoutBookmarkInput[] | Prisma.TopicsUncheckedCreateWithoutBookmarkInput[]
+  connectOrCreate?: Prisma.TopicsCreateOrConnectWithoutBookmarkInput | Prisma.TopicsCreateOrConnectWithoutBookmarkInput[]
+  upsert?: Prisma.TopicsUpsertWithWhereUniqueWithoutBookmarkInput | Prisma.TopicsUpsertWithWhereUniqueWithoutBookmarkInput[]
+  set?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
+  disconnect?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
+  delete?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
+  connect?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
+  update?: Prisma.TopicsUpdateWithWhereUniqueWithoutBookmarkInput | Prisma.TopicsUpdateWithWhereUniqueWithoutBookmarkInput[]
+  updateMany?: Prisma.TopicsUpdateManyWithWhereWithoutBookmarkInput | Prisma.TopicsUpdateManyWithWhereWithoutBookmarkInput[]
+  deleteMany?: Prisma.TopicsScalarWhereInput | Prisma.TopicsScalarWhereInput[]
+}
+
+export type TopicsUncheckedUpdateManyWithoutBookmarkNestedInput = {
+  create?: Prisma.XOR<Prisma.TopicsCreateWithoutBookmarkInput, Prisma.TopicsUncheckedCreateWithoutBookmarkInput> | Prisma.TopicsCreateWithoutBookmarkInput[] | Prisma.TopicsUncheckedCreateWithoutBookmarkInput[]
+  connectOrCreate?: Prisma.TopicsCreateOrConnectWithoutBookmarkInput | Prisma.TopicsCreateOrConnectWithoutBookmarkInput[]
+  upsert?: Prisma.TopicsUpsertWithWhereUniqueWithoutBookmarkInput | Prisma.TopicsUpsertWithWhereUniqueWithoutBookmarkInput[]
+  set?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
+  disconnect?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
+  delete?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
+  connect?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
+  update?: Prisma.TopicsUpdateWithWhereUniqueWithoutBookmarkInput | Prisma.TopicsUpdateWithWhereUniqueWithoutBookmarkInput[]
+  updateMany?: Prisma.TopicsUpdateManyWithWhereWithoutBookmarkInput | Prisma.TopicsUpdateManyWithWhereWithoutBookmarkInput[]
+  deleteMany?: Prisma.TopicsScalarWhereInput | Prisma.TopicsScalarWhereInput[]
+}
+
 export type TopicsCreateWithoutUserInput = {
   id?: string
   createdAt?: Date | string
@@ -626,6 +671,7 @@ export type TopicsCreateWithoutUserInput = {
   content: string
   level: $Enums.Level
   favorites?: Prisma.FavoriteCreateNestedManyWithoutTopicsInput
+  bookmark?: Prisma.BookmarkCreateNestedManyWithoutTopicsInput
 }
 
 export type TopicsUncheckedCreateWithoutUserInput = {
@@ -641,6 +687,7 @@ export type TopicsUncheckedCreateWithoutUserInput = {
   content: string
   level: $Enums.Level
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutTopicsInput
+  bookmark?: Prisma.BookmarkUncheckedCreateNestedManyWithoutTopicsInput
 }
 
 export type TopicsCreateOrConnectWithoutUserInput = {
@@ -700,6 +747,7 @@ export type TopicsCreateWithoutFavoritesInput = {
   content: string
   level: $Enums.Level
   user: Prisma.UserCreateNestedOneWithoutTopicsInput
+  bookmark?: Prisma.BookmarkCreateNestedManyWithoutTopicsInput
 }
 
 export type TopicsUncheckedCreateWithoutFavoritesInput = {
@@ -715,6 +763,7 @@ export type TopicsUncheckedCreateWithoutFavoritesInput = {
   content: string
   level: $Enums.Level
   userId: string
+  bookmark?: Prisma.BookmarkUncheckedCreateNestedManyWithoutTopicsInput
 }
 
 export type TopicsCreateOrConnectWithoutFavoritesInput = {
@@ -736,6 +785,59 @@ export type TopicsUpdateWithWhereUniqueWithoutFavoritesInput = {
 export type TopicsUpdateManyWithWhereWithoutFavoritesInput = {
   where: Prisma.TopicsScalarWhereInput
   data: Prisma.XOR<Prisma.TopicsUpdateManyMutationInput, Prisma.TopicsUncheckedUpdateManyWithoutFavoritesInput>
+}
+
+export type TopicsCreateWithoutBookmarkInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  title: string
+  shortDescription: string
+  description: string
+  duration: string
+  image?: string | null
+  likes: number
+  content: string
+  level: $Enums.Level
+  user: Prisma.UserCreateNestedOneWithoutTopicsInput
+  favorites?: Prisma.FavoriteCreateNestedManyWithoutTopicsInput
+}
+
+export type TopicsUncheckedCreateWithoutBookmarkInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  title: string
+  shortDescription: string
+  description: string
+  duration: string
+  image?: string | null
+  likes: number
+  content: string
+  level: $Enums.Level
+  userId: string
+  favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutTopicsInput
+}
+
+export type TopicsCreateOrConnectWithoutBookmarkInput = {
+  where: Prisma.TopicsWhereUniqueInput
+  create: Prisma.XOR<Prisma.TopicsCreateWithoutBookmarkInput, Prisma.TopicsUncheckedCreateWithoutBookmarkInput>
+}
+
+export type TopicsUpsertWithWhereUniqueWithoutBookmarkInput = {
+  where: Prisma.TopicsWhereUniqueInput
+  update: Prisma.XOR<Prisma.TopicsUpdateWithoutBookmarkInput, Prisma.TopicsUncheckedUpdateWithoutBookmarkInput>
+  create: Prisma.XOR<Prisma.TopicsCreateWithoutBookmarkInput, Prisma.TopicsUncheckedCreateWithoutBookmarkInput>
+}
+
+export type TopicsUpdateWithWhereUniqueWithoutBookmarkInput = {
+  where: Prisma.TopicsWhereUniqueInput
+  data: Prisma.XOR<Prisma.TopicsUpdateWithoutBookmarkInput, Prisma.TopicsUncheckedUpdateWithoutBookmarkInput>
+}
+
+export type TopicsUpdateManyWithWhereWithoutBookmarkInput = {
+  where: Prisma.TopicsScalarWhereInput
+  data: Prisma.XOR<Prisma.TopicsUpdateManyMutationInput, Prisma.TopicsUncheckedUpdateManyWithoutBookmarkInput>
 }
 
 export type TopicsCreateManyUserInput = {
@@ -765,6 +867,7 @@ export type TopicsUpdateWithoutUserInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
   favorites?: Prisma.FavoriteUpdateManyWithoutTopicsNestedInput
+  bookmark?: Prisma.BookmarkUpdateManyWithoutTopicsNestedInput
 }
 
 export type TopicsUncheckedUpdateWithoutUserInput = {
@@ -780,6 +883,7 @@ export type TopicsUncheckedUpdateWithoutUserInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutTopicsNestedInput
+  bookmark?: Prisma.BookmarkUncheckedUpdateManyWithoutTopicsNestedInput
 }
 
 export type TopicsUncheckedUpdateManyWithoutUserInput = {
@@ -809,6 +913,7 @@ export type TopicsUpdateWithoutFavoritesInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
   user?: Prisma.UserUpdateOneRequiredWithoutTopicsNestedInput
+  bookmark?: Prisma.BookmarkUpdateManyWithoutTopicsNestedInput
 }
 
 export type TopicsUncheckedUpdateWithoutFavoritesInput = {
@@ -824,9 +929,57 @@ export type TopicsUncheckedUpdateWithoutFavoritesInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  bookmark?: Prisma.BookmarkUncheckedUpdateManyWithoutTopicsNestedInput
 }
 
 export type TopicsUncheckedUpdateManyWithoutFavoritesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  likes?: Prisma.IntFieldUpdateOperationsInput | number
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type TopicsUpdateWithoutBookmarkInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  likes?: Prisma.IntFieldUpdateOperationsInput | number
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
+  user?: Prisma.UserUpdateOneRequiredWithoutTopicsNestedInput
+  favorites?: Prisma.FavoriteUpdateManyWithoutTopicsNestedInput
+}
+
+export type TopicsUncheckedUpdateWithoutBookmarkInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  likes?: Prisma.IntFieldUpdateOperationsInput | number
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutTopicsNestedInput
+}
+
+export type TopicsUncheckedUpdateManyWithoutBookmarkInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -848,10 +1001,12 @@ export type TopicsUncheckedUpdateManyWithoutFavoritesInput = {
 
 export type TopicsCountOutputType = {
   favorites: number
+  bookmark: number
 }
 
 export type TopicsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   favorites?: boolean | TopicsCountOutputTypeCountFavoritesArgs
+  bookmark?: boolean | TopicsCountOutputTypeCountBookmarkArgs
 }
 
 /**
@@ -871,6 +1026,13 @@ export type TopicsCountOutputTypeCountFavoritesArgs<ExtArgs extends runtime.Type
   where?: Prisma.FavoriteWhereInput
 }
 
+/**
+ * TopicsCountOutputType without action
+ */
+export type TopicsCountOutputTypeCountBookmarkArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BookmarkWhereInput
+}
+
 
 export type TopicsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -887,6 +1049,7 @@ export type TopicsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   userId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   favorites?: boolean | Prisma.Topics$favoritesArgs<ExtArgs>
+  bookmark?: boolean | Prisma.Topics$bookmarkArgs<ExtArgs>
   _count?: boolean | Prisma.TopicsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["topics"]>
 
@@ -941,6 +1104,7 @@ export type TopicsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 export type TopicsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   favorites?: boolean | Prisma.Topics$favoritesArgs<ExtArgs>
+  bookmark?: boolean | Prisma.Topics$bookmarkArgs<ExtArgs>
   _count?: boolean | Prisma.TopicsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TopicsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -955,6 +1119,7 @@ export type $TopicsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
     favorites: Prisma.$FavoritePayload<ExtArgs>[]
+    bookmark: Prisma.$BookmarkPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1365,6 +1530,7 @@ export interface Prisma__TopicsClient<T, Null = never, ExtArgs extends runtime.T
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   favorites<T extends Prisma.Topics$favoritesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Topics$favoritesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bookmark<T extends Prisma.Topics$bookmarkArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Topics$bookmarkArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1823,6 +1989,30 @@ export type Topics$favoritesArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.FavoriteScalarFieldEnum | Prisma.FavoriteScalarFieldEnum[]
+}
+
+/**
+ * Topics.bookmark
+ */
+export type Topics$bookmarkArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Bookmark
+   */
+  select?: Prisma.BookmarkSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Bookmark
+   */
+  omit?: Prisma.BookmarkOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BookmarkInclude<ExtArgs> | null
+  where?: Prisma.BookmarkWhereInput
+  orderBy?: Prisma.BookmarkOrderByWithRelationInput | Prisma.BookmarkOrderByWithRelationInput[]
+  cursor?: Prisma.BookmarkWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookmarkScalarFieldEnum | Prisma.BookmarkScalarFieldEnum[]
 }
 
 /**

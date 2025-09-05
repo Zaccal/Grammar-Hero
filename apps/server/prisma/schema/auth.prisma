@@ -19,6 +19,7 @@ model User {
   @@unique([email])
   @@map("user")
   @@unique([username])
+  bookmark Bookmark?
 }
 
 model Session {

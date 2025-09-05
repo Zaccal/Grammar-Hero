@@ -8,7 +8,7 @@ import 'github-markdown-css/github-markdown.css'
 import { cn } from '@/lib/utils'
 
 interface TopicDetailsContentProps {
-  children: string
+  children?: string
   className?: string
 }
 

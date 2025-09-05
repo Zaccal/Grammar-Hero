@@ -399,7 +399,8 @@ export const ModelName = {
   Account: 'Account',
   Verification: 'Verification',
   Topics: 'Topics',
-  Favorite: 'Favorite'
+  Favorite: 'Favorite',
+  Bookmark: 'Bookmark'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -415,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "topics" | "favorite"
+    modelProps: "user" | "session" | "account" | "verification" | "topics" | "favorite" | "bookmark"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -863,6 +864,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Bookmark: {
+      payload: Prisma.$BookmarkPayload<ExtArgs>
+      fields: Prisma.BookmarkFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BookmarkFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookmarkPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BookmarkFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookmarkPayload>
+        }
+        findFirst: {
+          args: Prisma.BookmarkFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookmarkPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BookmarkFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookmarkPayload>
+        }
+        findMany: {
+          args: Prisma.BookmarkFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookmarkPayload>[]
+        }
+        create: {
+          args: Prisma.BookmarkCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookmarkPayload>
+        }
+        createMany: {
+          args: Prisma.BookmarkCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BookmarkCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookmarkPayload>[]
+        }
+        delete: {
+          args: Prisma.BookmarkDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookmarkPayload>
+        }
+        update: {
+          args: Prisma.BookmarkUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookmarkPayload>
+        }
+        deleteMany: {
+          args: Prisma.BookmarkDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BookmarkUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BookmarkUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookmarkPayload>[]
+        }
+        upsert: {
+          args: Prisma.BookmarkUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookmarkPayload>
+        }
+        aggregate: {
+          args: Prisma.BookmarkAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBookmark>
+        }
+        groupBy: {
+          args: Prisma.BookmarkGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BookmarkGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BookmarkCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BookmarkCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -986,6 +1061,14 @@ export const FavoriteScalarFieldEnum = {
 } as const
 
 export type FavoriteScalarFieldEnum = (typeof FavoriteScalarFieldEnum)[keyof typeof FavoriteScalarFieldEnum]
+
+
+export const BookmarkScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId'
+} as const
+
+export type BookmarkScalarFieldEnum = (typeof BookmarkScalarFieldEnum)[keyof typeof BookmarkScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1183,6 +1266,7 @@ export type GlobalOmitConfig = {
   verification?: Prisma.VerificationOmit
   topics?: Prisma.TopicsOmit
   favorite?: Prisma.FavoriteOmit
+  bookmark?: Prisma.BookmarkOmit
 }
 
 /* Types for Logging */

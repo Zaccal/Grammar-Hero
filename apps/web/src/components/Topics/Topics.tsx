@@ -65,7 +65,7 @@ export function TopicsPreview({ children }: TopicsSharedProps) {
 }
 
 export function TopicsCard() {
-  const { title, image, shortDescription, level, likes } =
+  const { title, image, shortDescription, level, likes, bookmark } =
     topicsContext.useSelect(state => state)
   return (
     <>
@@ -95,7 +95,7 @@ export function TopicsCard() {
             </div>
             <div className="flex items-center gap-2">
               <Bookmark size={21} />
-              <span>18</span>
+              <span>{bookmark.length}</span>
             </div>
           </div>
         </MinimalCardFooter>
@@ -164,7 +164,7 @@ export function TopicsDescription({ children }: TopicsSharedProps) {
 }
 
 export function TopicsActions() {
-  const { id, likes } = topicsContext.useSelect(state => state)
+  const { id, likes, bookmark } = topicsContext.useSelect(state => state)
   return (
     <div className="mt-8 flex justify-between items-center">
       <Button asChild size={'lg'}>
@@ -184,7 +184,7 @@ export function TopicsActions() {
         </Button>
         <Button variant={'muted'} aria-label="add to favorites">
           <Bookmark />
-          <span>18</span>
+          <span>{bookmark.length}</span>
         </Button>
       </div>
     </div>

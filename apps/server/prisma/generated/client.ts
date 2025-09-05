@@ -71,6 +71,11 @@ export type Topics = Prisma.TopicsModel
  * 
  */
 export type Favorite = Prisma.FavoriteModel
+/**
+ * Model Bookmark
+ * 
+ */
+export type Bookmark = Prisma.BookmarkModel
 
 export type Level = $Enums.Level
 export const Level = $Enums.Level

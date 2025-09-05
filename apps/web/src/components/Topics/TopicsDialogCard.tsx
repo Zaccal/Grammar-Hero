@@ -21,7 +21,7 @@ function TopicsDialogCard({ topic }: TopicsDialogCardProps) {
           <TopicsDialog.Title>{topic.title}</TopicsDialog.Title>
           <TopicsDialog.Subtitle>{topic.duration}</TopicsDialog.Subtitle>
           <TopicsDialog.Description>
-            <p className="mt-2 text-sm leading-[1.325rem] text-muted-foreground">
+            <p className="mt-2 text-sm text-muted-foreground">
               {topic.description}
             </p>
 

@@ -26,6 +26,7 @@ model Topics {
   userId String @map("user_id")
 
   favorites Favorite[]
+  bookmark Bookmark[]
 }
 
 enum Level {
@@ -37,6 +38,15 @@ enum Level {
 model Favorite {
   id String @id @default(cuid()) @map("_id")
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @unique @map("user_id")
+
+  topics Topics[]
+}
+
+model Bookmark {
+  id String @id @default(cuid()) @map("_id")
+
+  user User @relation(fields: [id], references: [id], onDelete: Cascade)
   userId String @unique @map("user_id")
 
   topics Topics[]

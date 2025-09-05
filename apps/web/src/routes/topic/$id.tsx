@@ -27,7 +27,7 @@ function RouteComponent() {
       <Separator className="my-3" />
       <TopicDetails.Image />
       <TopicDetails.Content className="!mt-24">
-        {data!.content}
+        {data?.content}
       </TopicDetails.Content>
     </TopicDetails.Root>
   )

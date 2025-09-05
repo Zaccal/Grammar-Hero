@@ -73,7 +73,7 @@ export function TopicDetailsHeader() {
 }
 
 export function TopicDetailsActions() {
-  const { likes } = topicDetailsContext.useSelect(state => state)
+  const { likes, bookmark } = topicDetailsContext.useSelect(state => state)
   return (
     <>
       <div className="flex items-center justify-between">
@@ -84,7 +84,7 @@ export function TopicDetailsActions() {
           </Button>
           <Button variant={'mutedGhost'}>
             <Bookmark size={21} />
-            <span>18</span>
+            <span>{bookmark.length}</span>
           </Button>
         </div>
         <TopicDetailsDropdown />
