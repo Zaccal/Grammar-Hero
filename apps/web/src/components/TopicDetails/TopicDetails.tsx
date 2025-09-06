@@ -133,6 +133,7 @@ export function TopicDetailsDropdownContentPublic() {
         <DropdownMenuItem>Report</DropdownMenuItem>
         <DropdownMenuItem>Share</DropdownMenuItem>
         <DropdownMenuItem>Copy link</DropdownMenuItem>
+        <DropdownMenuItem>Add to favorites</DropdownMenuItem>
       </DropdownMenuGroup>
     </>
   )
