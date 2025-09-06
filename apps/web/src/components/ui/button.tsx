@@ -23,6 +23,7 @@ const buttonVariants = cva(
           'text-muted-foreground hover:bg-accent hover:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground',
         outline:
           'bg-background text-accent-foreground border border-input hover:bg-accent data-[state=open]:bg-accent',
+        link: 'text-primary h-auto p-0 bg-transparent rounded-none hover:bg-transparent data-[state=open]:bg-transparent',
         dashed:
           'text-accent-foreground border border-input border-dashed bg-background hover:bg-accent hover:text-accent-foreground data-[state=open]:text-accent-foreground',
         ghost:
