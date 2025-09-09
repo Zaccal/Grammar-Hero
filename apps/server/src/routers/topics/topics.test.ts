@@ -1,6 +1,6 @@
 import { MOCK_TOPICS } from '../../lib/getMocksTopics'
 import { describe, expect, it, vi } from 'vitest'
-import { getAll, getById } from './topics.constroller'
+import { createTopic, getAll, getById } from './topics.constroller'
 import { TOPICS_SELECT } from './constants'
 
 vi.mock('../../../prisma/index', () => {
@@ -13,6 +13,14 @@ vi.mock('../../../prisma/index', () => {
             return data.id === id
           })
         ),
+        create: vi.fn(({ data }) => {
+          return {
+            ...data,
+            id: '123',
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          }
+        }),
       },
     },
   }
@@ -23,7 +31,7 @@ type TopicExpected = Record<string, unknown>
 
 describe('topics', () => {
   it('should return all topics', async () => {
-    const topics = await getAll()
+    const topics = await getAll({})
     expect(Array.isArray(topics)).toBe(true)
     expect(topics.length).toBe(MOCK_TOPICS.length)
     const topic = topics[0] as TopicExpected
@@ -50,5 +58,21 @@ describe('topics', () => {
       code: 'NOT_FOUND',
       message: 'Topic not found',
     })
+  })
+
+  it('it should create topic', async () => {
+    const topic = await createTopic(
+      {
+        title: 'title',
+        description: 'description',
+        shortDescription: 'shortDescription',
+        content: 'content',
+        duration: new Date(),
+        level: 'Basic',
+        image: 'image',
+      },
+      '123'
+    )
+    expect(topic).not.toBeUndefined()
   })
 })
