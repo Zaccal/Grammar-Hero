@@ -17,6 +17,7 @@ import {
 } from '../ui/dropdown-menu'
 import TopicDetailsContent from './TopicDetailsContent'
 import type { Topic } from '@server/routers/topics/topics.types'
+import { getReadTime } from '@/lib/getReadTime'
 
 export const topicDetailsContext = createContext<Topic>()
 
@@ -62,7 +63,7 @@ export function TopicDetailsHeader() {
           <span className="topic-details-text">{user.displayUsername}</span>
         </div>
         <div className="dot"></div>
-        <span className="topic-details-text">{duration} read</span>
+        <span className="topic-details-text">{getReadTime(duration)}</span>
         <div className="dot"></div>
         <span className="topic-details-text">
           {dateformat(createdAt, 'mmm d, yyyy')}

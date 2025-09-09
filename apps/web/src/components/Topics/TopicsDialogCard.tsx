@@ -1,6 +1,6 @@
 import type { Topic } from '@server/routers/topics/topics.types'
 import { TopicsCard, TopicsDialog } from './Topics'
-
+import { getReadTime } from '@/lib/getReadTime'
 interface TopicsDialogCardProps {
   topic: Topic
 }
@@ -19,7 +19,9 @@ function TopicsDialogCard({ topic }: TopicsDialogCardProps) {
         />
         <div className="p-6">
           <TopicsDialog.Title>{topic.title}</TopicsDialog.Title>
-          <TopicsDialog.Subtitle>{topic.duration}</TopicsDialog.Subtitle>
+          <TopicsDialog.Subtitle>
+            {getReadTime(topic.duration)}
+          </TopicsDialog.Subtitle>
           <TopicsDialog.Description>
             <p className="mt-2 text-sm text-muted-foreground">
               {topic.description}

@@ -36,7 +36,7 @@ function HomeComponent() {
     isLoading,
     error,
     isError,
-  } = useQuery(trpc.topics.getAll.queryOptions())
+  } = useQuery(trpc.topics.getAll.queryOptions({}))
 
   if (isLoading) return <Loader />
   if (isError) return <ErrorComponent error={error} />

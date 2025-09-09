@@ -68,10 +68,12 @@ const UserDropdown = () => {
             }}
           />
         </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Plus />
-          <span>Create topic</span>
-        </DropdownMenuItem>
+        <Link to="/createTopic">
+          <DropdownMenuItem>
+            <Plus />
+            <span>Create topic</span>
+          </DropdownMenuItem>
+        </Link>
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => {
