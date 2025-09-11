@@ -24,6 +24,7 @@ This project was created with [Better-T-Stack](https://github.com/AmanVarshney01
 - **Husky** - Git hooks for code quality
 - **Turborepo** - Optimized monorepo build system
 - **Docker** - for local db development
+- **Reactuse** - Utility hooks library, the largest and most useful hook library
 
 ## Getting Started
 
