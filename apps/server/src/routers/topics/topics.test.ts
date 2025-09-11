@@ -1,4 +1,4 @@
-import { MOCK_TOPICS } from '../../lib/getMocksTopics'
+import { MOCK_TOPICS } from '../../utils/getMocksTopics'
 import { describe, expect, it, vi } from 'vitest'
 import { createTopic, getAll, getById } from './topics.constroller'
 import { TOPICS_SELECT } from './constants'

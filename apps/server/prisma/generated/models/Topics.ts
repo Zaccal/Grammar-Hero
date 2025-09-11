@@ -40,7 +40,7 @@ export type TopicsMinAggregateOutputType = {
   title: string | null
   shortDescription: string | null
   description: string | null
-  duration: string | null
+  duration: Date | null
   image: string | null
   likes: number | null
   content: string | null
@@ -55,7 +55,7 @@ export type TopicsMaxAggregateOutputType = {
   title: string | null
   shortDescription: string | null
   description: string | null
-  duration: string | null
+  duration: Date | null
   image: string | null
   likes: number | null
   content: string | null
@@ -227,7 +227,7 @@ export type TopicsGroupByOutputType = {
   title: string
   shortDescription: string
   description: string
-  duration: string
+  duration: Date
   image: string | null
   likes: number
   content: string
@@ -265,7 +265,7 @@ export type TopicsWhereInput = {
   title?: Prisma.StringFilter<"Topics"> | string
   shortDescription?: Prisma.StringFilter<"Topics"> | string
   description?: Prisma.StringFilter<"Topics"> | string
-  duration?: Prisma.StringFilter<"Topics"> | string
+  duration?: Prisma.DateTimeFilter<"Topics"> | Date | string
   image?: Prisma.StringNullableFilter<"Topics"> | string | null
   likes?: Prisma.IntFilter<"Topics"> | number
   content?: Prisma.StringFilter<"Topics"> | string
@@ -304,7 +304,7 @@ export type TopicsWhereUniqueInput = Prisma.AtLeast<{
   title?: Prisma.StringFilter<"Topics"> | string
   shortDescription?: Prisma.StringFilter<"Topics"> | string
   description?: Prisma.StringFilter<"Topics"> | string
-  duration?: Prisma.StringFilter<"Topics"> | string
+  duration?: Prisma.DateTimeFilter<"Topics"> | Date | string
   image?: Prisma.StringNullableFilter<"Topics"> | string | null
   likes?: Prisma.IntFilter<"Topics"> | number
   content?: Prisma.StringFilter<"Topics"> | string
@@ -345,7 +345,7 @@ export type TopicsScalarWhereWithAggregatesInput = {
   title?: Prisma.StringWithAggregatesFilter<"Topics"> | string
   shortDescription?: Prisma.StringWithAggregatesFilter<"Topics"> | string
   description?: Prisma.StringWithAggregatesFilter<"Topics"> | string
-  duration?: Prisma.StringWithAggregatesFilter<"Topics"> | string
+  duration?: Prisma.DateTimeWithAggregatesFilter<"Topics"> | Date | string
   image?: Prisma.StringNullableWithAggregatesFilter<"Topics"> | string | null
   likes?: Prisma.IntWithAggregatesFilter<"Topics"> | number
   content?: Prisma.StringWithAggregatesFilter<"Topics"> | string
@@ -360,7 +360,7 @@ export type TopicsCreateInput = {
   title: string
   shortDescription: string
   description: string
-  duration: string
+  duration: Date | string
   image?: string | null
   likes: number
   content: string
@@ -377,7 +377,7 @@ export type TopicsUncheckedCreateInput = {
   title: string
   shortDescription: string
   description: string
-  duration: string
+  duration: Date | string
   image?: string | null
   likes: number
   content: string
@@ -394,7 +394,7 @@ export type TopicsUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -411,7 +411,7 @@ export type TopicsUncheckedUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -428,7 +428,7 @@ export type TopicsCreateManyInput = {
   title: string
   shortDescription: string
   description: string
-  duration: string
+  duration: Date | string
   image?: string | null
   likes: number
   content: string
@@ -443,7 +443,7 @@ export type TopicsUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -457,7 +457,7 @@ export type TopicsUncheckedUpdateManyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -665,7 +665,7 @@ export type TopicsCreateWithoutUserInput = {
   title: string
   shortDescription: string
   description: string
-  duration: string
+  duration: Date | string
   image?: string | null
   likes: number
   content: string
@@ -681,7 +681,7 @@ export type TopicsUncheckedCreateWithoutUserInput = {
   title: string
   shortDescription: string
   description: string
-  duration: string
+  duration: Date | string
   image?: string | null
   likes: number
   content: string
@@ -726,7 +726,7 @@ export type TopicsScalarWhereInput = {
   title?: Prisma.StringFilter<"Topics"> | string
   shortDescription?: Prisma.StringFilter<"Topics"> | string
   description?: Prisma.StringFilter<"Topics"> | string
-  duration?: Prisma.StringFilter<"Topics"> | string
+  duration?: Prisma.DateTimeFilter<"Topics"> | Date | string
   image?: Prisma.StringNullableFilter<"Topics"> | string | null
   likes?: Prisma.IntFilter<"Topics"> | number
   content?: Prisma.StringFilter<"Topics"> | string
@@ -741,7 +741,7 @@ export type TopicsCreateWithoutFavoritesInput = {
   title: string
   shortDescription: string
   description: string
-  duration: string
+  duration: Date | string
   image?: string | null
   likes: number
   content: string
@@ -757,7 +757,7 @@ export type TopicsUncheckedCreateWithoutFavoritesInput = {
   title: string
   shortDescription: string
   description: string
-  duration: string
+  duration: Date | string
   image?: string | null
   likes: number
   content: string
@@ -794,7 +794,7 @@ export type TopicsCreateWithoutBookmarkInput = {
   title: string
   shortDescription: string
   description: string
-  duration: string
+  duration: Date | string
   image?: string | null
   likes: number
   content: string
@@ -810,7 +810,7 @@ export type TopicsUncheckedCreateWithoutBookmarkInput = {
   title: string
   shortDescription: string
   description: string
-  duration: string
+  duration: Date | string
   image?: string | null
   likes: number
   content: string
@@ -847,7 +847,7 @@ export type TopicsCreateManyUserInput = {
   title: string
   shortDescription: string
   description: string
-  duration: string
+  duration: Date | string
   image?: string | null
   likes: number
   content: string
@@ -861,7 +861,7 @@ export type TopicsUpdateWithoutUserInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -877,7 +877,7 @@ export type TopicsUncheckedUpdateWithoutUserInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -893,7 +893,7 @@ export type TopicsUncheckedUpdateManyWithoutUserInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -907,7 +907,7 @@ export type TopicsUpdateWithoutFavoritesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -923,7 +923,7 @@ export type TopicsUncheckedUpdateWithoutFavoritesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -939,7 +939,7 @@ export type TopicsUncheckedUpdateManyWithoutFavoritesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -954,7 +954,7 @@ export type TopicsUpdateWithoutBookmarkInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -970,7 +970,7 @@ export type TopicsUncheckedUpdateWithoutBookmarkInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -986,7 +986,7 @@ export type TopicsUncheckedUpdateManyWithoutBookmarkInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1128,7 +1128,7 @@ export type $TopicsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     title: string
     shortDescription: string
     description: string
-    duration: string
+    duration: Date
     image: string | null
     likes: number
     content: string
@@ -1566,7 +1566,7 @@ export interface TopicsFieldRefs {
   readonly title: Prisma.FieldRef<"Topics", 'String'>
   readonly shortDescription: Prisma.FieldRef<"Topics", 'String'>
   readonly description: Prisma.FieldRef<"Topics", 'String'>
-  readonly duration: Prisma.FieldRef<"Topics", 'String'>
+  readonly duration: Prisma.FieldRef<"Topics", 'DateTime'>
   readonly image: Prisma.FieldRef<"Topics", 'String'>
   readonly likes: Prisma.FieldRef<"Topics", 'Int'>
   readonly content: Prisma.FieldRef<"Topics", 'String'>

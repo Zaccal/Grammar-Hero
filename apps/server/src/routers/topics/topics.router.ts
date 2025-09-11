@@ -2,11 +2,11 @@ import { protectedProcedure, router } from '@/lib/trpc'
 import { getAll, getById, createTopic } from './topics.constroller'
 import z from 'zod'
 import { topicCreateSchema } from './topics.schema'
-import { searchSchema } from '@/schemas/search.schema'
+import { filterParamsSchema } from '@/schemas/filterParams.schema'
 
 export const topicsRouter = router({
   getAll: protectedProcedure
-    .input(searchSchema)
+    .input(filterParamsSchema)
     .query(({ input }) => getAll(input)),
   getById: protectedProcedure
     .input(z.string())

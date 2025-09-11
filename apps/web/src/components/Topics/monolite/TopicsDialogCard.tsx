@@ -1,8 +1,10 @@
-import type { Topic } from '@server/routers/topics/topics.types'
-import { TopicsCard, TopicsDialog } from './Topics'
+import type { Topic as TopicType } from '@server/routers/topics/topics.types'
 import { getReadTime } from '@/lib/getReadTime'
+import { TopicsDialog } from '../index'
+import { TopicsCard } from './TopicsCard'
+
 interface TopicsDialogCardProps {
-  topic: Topic
+  topic: TopicType
 }
 
 function TopicsDialogCard({ topic }: TopicsDialogCardProps) {
