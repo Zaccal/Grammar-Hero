@@ -1,8 +1,8 @@
 import ErrorComponent from '@/components/ErrorComponent'
-import { TopicDetails } from '@/components/TopicDetails/TopicDetails'
+import { TopicDetails } from '@/components/TopicDetails/index'
 import Loader from '@/components/ui/loader'
 import { Separator } from '@/components/ui/separator'
-import { trpc } from '@/utils/trpc'
+import { trpc } from '@/lib/trpc'
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 
@@ -27,7 +27,24 @@ function RouteComponent() {
     <TopicDetails.Root topic={data!} className="container py-20">
       <TopicDetails.Header />
       <Separator className="my-3" />
-      <TopicDetails.Actions />
+      <TopicDetails.Actions>
+        <div>
+          <TopicDetails.Like />
+          <TopicDetails.Bookmark />
+        </div>
+        <TopicDetails.Dropdown>
+          <TopicDetails.DropdownContentProtected>
+            <TopicDetails.Edit />
+            <TopicDetails.Delete />
+          </TopicDetails.DropdownContentProtected>
+          <TopicDetails.DropdownContentPublic>
+            <TopicDetails.AddFavorites />
+            <TopicDetails.CopyLink />
+            <TopicDetails.Share />
+            <TopicDetails.Report />
+          </TopicDetails.DropdownContentPublic>
+        </TopicDetails.Dropdown>
+      </TopicDetails.Actions>
       <Separator className="my-3" />
       <TopicDetails.Image />
       <TopicDetails.Content className="!mt-12">

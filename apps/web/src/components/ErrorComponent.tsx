@@ -1,7 +1,7 @@
 import type { TRPCClientErrorLike } from '@trpc/client'
 import type { DefaultErrorShape } from '@trpc/server/unstable-core-do-not-import'
 import { Button } from './ui/button'
-import { queryClient } from '@/utils/trpc'
+import { queryClient } from '@/lib/trpc'
 import { useRouter } from '@tanstack/react-router'
 
 interface ErrorComponentProps {

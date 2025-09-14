@@ -1,4 +1,4 @@
-import { authClient } from '@/utils/auth-client'
+import { authClient } from '@/lib/auth-client'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { useNavigate } from '@tanstack/react-router'

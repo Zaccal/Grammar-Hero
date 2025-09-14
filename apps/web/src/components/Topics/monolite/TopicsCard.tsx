@@ -9,7 +9,7 @@ import { topicsContext } from '../Topics'
 import { cn } from '@/lib/utils'
 import { Badge } from '../../ui/Badge'
 import { Heart, Bookmark } from 'lucide-react'
-import { getVariantLevel } from '@/lib/getVariantLevel'
+import { getVariantLevel } from '@/utils/getVariantLevel'
 import { TopicsImage } from '../TopicsImage'
 
 export function TopicsCard() {

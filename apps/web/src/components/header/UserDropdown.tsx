@@ -9,7 +9,7 @@ import {
 } from '../ui/dropdown-menu'
 import { Skeleton } from '../ui/skeleton'
 import { toast } from 'sonner'
-import { getUserImageFallbackText } from '@/lib/getUserImageFallbackText'
+import { getUserImageFallbackText } from '@/utils/getUserImageFallbackText'
 import { LogOut, Moon, Plus, User } from 'lucide-react'
 import { useSignOut } from '@/hooks/useSignOut'
 import { Switch } from '../ui/switch'

@@ -1,5 +1,5 @@
 import type { Topic as TopicType } from '@server/routers/topics/topics.types'
-import { getReadTime } from '@/lib/getReadTime'
+import { getReadTime } from '@/utils/getReadTime'
 import { TopicsDialog } from '../index'
 import { TopicsCard } from './TopicsCard'
 

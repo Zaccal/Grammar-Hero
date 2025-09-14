@@ -5,10 +5,10 @@ import {
 } from '@/components/Greeting/Greeting'
 import TopicsDialogCard from '@/components/Topics/monolite/TopicsDialogCard'
 import { TopicsDialog } from '@/components/Topics/index'
-import { authClient } from '@/utils/auth-client'
+import { authClient } from '@/lib/auth-client'
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
-import { trpc } from '@/utils/trpc'
+import { trpc } from '@/lib/trpc'
 import ErrorComponent from '@/components/ErrorComponent'
 import { Filter } from '@/components/Filter/index'
 import {

@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { signUpSchema, type SignUpSchema } from '@/schemas/auth.schema'
 import { Form } from '@/components/ui/form'
 import SignUpFormFooter from './SignUpFormFooter'
-import { authClient } from '@/utils/auth-client'
+import { authClient } from '@/lib/auth-client'
 import { toast } from 'sonner'
 import { useNavigate } from '@tanstack/react-router'
 

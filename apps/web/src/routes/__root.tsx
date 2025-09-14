@@ -11,7 +11,7 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import '../index.css'
 import { ThemeProvider } from '@/providers/themeProvider'
 import { QueryClientProvider } from '@tanstack/react-query'
-import { queryClient } from '@/utils/trpc'
+import { queryClient } from '@/lib/trpc'
 
 export interface RouterAppContext {}
 
