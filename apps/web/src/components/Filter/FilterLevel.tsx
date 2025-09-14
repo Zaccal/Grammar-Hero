@@ -24,6 +24,7 @@ export function FilterLevel() {
                 <SelectValue placeholder="Level" />
               </SelectTrigger>
               <SelectContent>
+                <SelectItem value="All">All Levels</SelectItem>
                 <SelectItem value="Basic">Basic</SelectItem>
                 <SelectItem value="Intermediate">Intermediate</SelectItem>
                 <SelectItem value="Advanced">Advanced</SelectItem>

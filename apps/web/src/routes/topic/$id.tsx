@@ -19,6 +19,10 @@ function RouteComponent() {
   if (isLoading) return <Loader />
   if (isError) return <ErrorComponent error={error} />
 
+  // after push to topic page remove overflow-hidden from the body
+  // because the user pushed from TopicsDialogCard and it has overflow-hidden, that does not removed after push
+  document.body.classList.remove('overflow-hidden')
+
   return (
     <TopicDetails.Root topic={data!} className="container py-20">
       <TopicDetails.Header />

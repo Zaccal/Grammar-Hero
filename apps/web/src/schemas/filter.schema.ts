@@ -7,7 +7,9 @@ export const sortField = z.enum([
   'likes',
   'duration',
 ])
-export const level = z.enum(['Advanced', 'Basic', 'Intermediate']).optional()
+export const level = z
+  .enum(['Advanced', 'Basic', 'Intermediate', 'All'])
+  .optional()
 export const sort = z.enum(['asc', 'desc'])
 
 export type SortField = z.infer<typeof sortField>

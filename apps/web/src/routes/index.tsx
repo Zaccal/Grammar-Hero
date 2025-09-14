@@ -61,17 +61,15 @@ function HomeComponent() {
           <Filter.Search />
           <Filter.Sheet>
             <Filter.Form className="h-full">
-              <div className="flex flex-col h-full justify-between gap-5">
-                <Filter.SheetBody>
-                  <div className="grid gap-5">
-                    <Filter.Sort />
-                    <Filter.Level />
-                  </div>
-                </Filter.SheetBody>
-                <Filter.SheetFooter>
-                  <Filter.Actions />
-                </Filter.SheetFooter>
-              </div>
+              <Filter.SheetBody className="mb-8">
+                <div className="grid gap-5">
+                  <Filter.Sort />
+                  <Filter.Level />
+                </div>
+              </Filter.SheetBody>
+              <Filter.SheetFooter>
+                <Filter.Actions />
+              </Filter.SheetFooter>
             </Filter.Form>
           </Filter.Sheet>
         </Filter.Root>

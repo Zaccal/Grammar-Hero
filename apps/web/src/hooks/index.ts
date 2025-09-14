@@ -2,4 +2,4 @@ export * from './useTheme'
 export * from './createContext'
 export * from './useSession'
 export * from './useClickOutside'
-export * from './useDebounceCallback/useDebounceCallback';
+export * from './useDebounceCallback/useDebounceCallback'

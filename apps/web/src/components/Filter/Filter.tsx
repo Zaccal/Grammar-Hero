@@ -43,13 +43,19 @@ export function FilterRoot({ children, className, route }: FilterRootProps) {
     defaultValues: {
       sort: searchParams.sort,
       sortField: searchParams.sortField,
-      level: searchParams.level,
+      level: searchParams.level || 'All',
       duration: searchParams.duration,
     },
   })
 
   function onSubmit(data: FilterFormSchema) {
-    console.log(data)
+    navigate({
+      to: route,
+      search: {
+        ...data,
+        level: data.level === 'All' ? undefined : data.level,
+      },
+    })
   }
 
   return (

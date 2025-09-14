@@ -2,7 +2,9 @@ import { filterContext } from './Filter'
 import { Button } from '@/components/ui/button'
 
 export function FilterActions() {
-  const form = filterContext.useSelect(state => state.form)
+  const { form } = filterContext.useSelect(state => ({
+    form: state.form,
+  }))
 
   return (
     <div className="flex flex-col gap-2 w-full">
@@ -14,7 +16,12 @@ export function FilterActions() {
         variant={'outline'}
         className="w-full"
         onClick={() => {
-          form.reset()
+          form.reset({
+            sort: 'desc',
+            sortField: 'likes',
+            level: 'All',
+            duration: undefined,
+          })
         }}
       >
         Reset

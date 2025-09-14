@@ -2,9 +2,7 @@ import { FilterIcon } from 'lucide-react'
 import { Button } from '../ui/button'
 import {
   Sheet,
-  SheetBody,
   SheetContent,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -31,12 +29,4 @@ export function FilterSheet({ children }: FilterSheetProps) {
       </SheetContent>
     </Sheet>
   )
-}
-
-export function FilterSheetFooter({ children }: FilterSheetProps) {
-  return <SheetFooter>{children}</SheetFooter>
-}
-
-export function FilterSheetBody({ children }: FilterSheetProps) {
-  return <SheetBody className="grow">{children}</SheetBody>
 }

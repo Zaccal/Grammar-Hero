@@ -4,11 +4,11 @@ export const filterParamsSchema = z.object({
   query: z.string().optional().catch(''),
   limit: z.number().default(20).catch(20).optional(),
   offset: z.number().default(0).catch(0).optional(),
-  sort: z.enum(['asc', 'desc']).default('asc').catch('asc').optional(),
+  sort: z.enum(['asc', 'desc']).default('desc').catch('desc').optional(),
   sortField: z
     .enum(['createdAt', 'updatedAt', 'title', 'likes', 'duration'])
-    .default('createdAt')
-    .catch('createdAt')
+    .default('likes')
+    .catch('likes')
     .optional(),
   level: z
     .enum(['Advanced', 'Basic', 'Intermediate'])

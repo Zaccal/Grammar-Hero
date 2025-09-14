@@ -1,8 +1,8 @@
-'use client';
+'use client'
 
-import { DateInput, TimeField } from '@/components/ui/datefield';
-import { InputAddon, InputGroup, InputWrapper } from '@/components/ui/input';
-import { Clock3 } from 'lucide-react';
+import { DateInput, TimeField } from '@/components/ui/datefield'
+import { InputAddon, InputGroup, InputWrapper } from '@/components/ui/input'
+import { Clock3 } from 'lucide-react'
 
 export default function InputDemo() {
   return (
@@ -49,5 +49,5 @@ export default function InputDemo() {
         </InputWrapper>
       </div>
     </div>
-  );
+  )
 }
