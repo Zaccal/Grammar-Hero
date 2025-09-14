@@ -49,7 +49,7 @@ export function TopicDetailsHeader() {
         {level}
       </Badge>
       <h1 className="text-2xl md:text-4xl font-black pb-6">{title}</h1>
-      <div className="flex items-center gap-2 md:gap-3 text-muted-foreground">
+      <div className="xs:flex-row flex-col-reverse flex xs:items-center gap-4 md:gap-3 text-muted-foreground">
         <div className="flex items-center gap-2">
           <Avatar className="size-7 md:size-8">
             <AvatarImage
@@ -62,12 +62,15 @@ export function TopicDetailsHeader() {
           </Avatar>
           <span className="topic-details-text">{user.displayUsername}</span>
         </div>
-        <div className="dot"></div>
-        <span className="topic-details-text">{getReadTime(duration)}</span>
-        <div className="dot"></div>
-        <span className="topic-details-text">
-          {dateformat(createdAt, 'mmm d, yyyy')}
-        </span>
+
+        <div className="flex items-center gap-2 md:gap-3 text-muted-foreground">
+          <div className="dot xs:block hidden"></div>
+          <span className="topic-details-text">{getReadTime(duration)}</span>
+          <div className="dot"></div>
+          <span className="topic-details-text">
+            {dateformat(createdAt, 'mmm d, yyyy')}
+          </span>
+        </div>
       </div>
     </>
   )
