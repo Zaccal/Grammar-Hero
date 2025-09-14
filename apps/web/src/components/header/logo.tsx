@@ -12,6 +12,7 @@ export function Logo() {
           speedSegment={0.3}
           preset="fade"
           delay={0.7}
+          className="xs:inline hidden"
         >
           Grammar Hero
         </TextEffect>
