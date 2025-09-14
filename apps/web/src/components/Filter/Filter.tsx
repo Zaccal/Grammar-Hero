@@ -69,7 +69,7 @@ export function FilterRoot({ children, className, route }: FilterRootProps) {
     >
       <div
         className={cn(
-          'flex items-center justify-between gap-2 container-lg mb-12',
+          'space-y-4 sm:space-y-0 sm:flex items-center justify-between gap-2 container-lg mb-12',
           className
         )}
       >
