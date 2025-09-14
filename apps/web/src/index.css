@@ -242,7 +242,7 @@ body {
 
   .markdown-body,
   .markdown-body table * {
-    @apply !font-sans !bg-background !text-foreground;
+    @apply !font-sans dark:!bg-gray-950 !bg-background !text-foreground;
   }
 
   .markdown-body hr {
