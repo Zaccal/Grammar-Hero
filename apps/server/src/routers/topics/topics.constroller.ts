@@ -4,6 +4,7 @@ import { TRPCError } from '@trpc/server'
 import type { TopicCreateSchema } from './topics.schema'
 import type { FilterParamsSchema } from '@/schemas/filterParams.schema'
 import type { Prisma } from 'prisma/generated/client'
+import { getDummyDate } from '../../utils/getDummyDate'
 
 export async function getAll(input: FilterParamsSchema) {
   const where: Prisma.TopicsWhereInput = input.query
@@ -42,10 +43,11 @@ export async function getAll(input: FilterParamsSchema) {
     where: {
       ...where,
       level: input.level,
-      duration: {
-        gte: input.duration
-          ? new Date(`1970-01-01T${input.duration}:00Z`)
-          : undefined,
+      durationMax: {
+        lte: getDummyDate(input.durationMax),
+      },
+      durationMin: {
+        gte: getDummyDate(input.durationMin),
       },
     },
     select: TOPICS_SELECT,
@@ -81,7 +83,8 @@ export async function createTopic(data: TopicCreateSchema, userId: string) {
     return await prisma.topics.create({
       data: {
         ...data,
-        duration: data.duration.toISOString(),
+        durationMin: data.durationMin,
+        durationMax: data.durationMax,
         likes: 0,
         user: {
           connect: {

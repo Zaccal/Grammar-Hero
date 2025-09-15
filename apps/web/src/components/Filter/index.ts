@@ -6,6 +6,7 @@ import { FilterLevel } from './FilterLevel'
 import { FilterSearch } from './FilterSearch'
 import { FilterSheet } from './FilterSheet'
 import { FilterSort } from './FilterSort'
+import { FilterDuration } from './FilterDuration'
 
 export const Filter = {
   Root: FilterRoot,
@@ -17,4 +18,5 @@ export const Filter = {
   Sort: FilterSort,
   Level: FilterLevel,
   Actions: FilterActions,
+  Duration: FilterDuration,
 }

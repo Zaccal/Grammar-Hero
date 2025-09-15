@@ -10,9 +10,11 @@ import { cn } from '@/lib/utils'
 import { useForm, type UseFormReturn } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
+  durationValues,
   filterFormSchema,
   type FilterFormSchema,
 } from '@/schemas/filter.schema'
+import { getDurationOption } from '@/utils/getDurationOption'
 
 interface FilterContext {
   form: UseFormReturn<FilterFormSchema>
@@ -44,16 +46,22 @@ export function FilterRoot({ children, className, route }: FilterRootProps) {
       sort: searchParams.sort,
       sortField: searchParams.sortField,
       level: searchParams.level || 'All',
-      duration: searchParams.duration,
+      duration: getDurationOption(
+        searchParams.durationMin,
+        searchParams.durationMax
+      ),
     },
   })
 
   function onSubmit(data: FilterFormSchema) {
+    const duration = data.duration === undefined ? 'All' : data.duration
     navigate({
       to: route,
       search: {
         ...data,
         level: data.level === 'All' ? undefined : data.level,
+        durationMin: durationValues[duration].min,
+        durationMax: durationValues[duration].max,
       },
     })
   }

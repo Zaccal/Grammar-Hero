@@ -20,7 +20,7 @@ export function FilterActions() {
             sort: 'desc',
             sortField: 'likes',
             level: 'All',
-            duration: undefined,
+            duration: 'All',
           })
         }}
       >

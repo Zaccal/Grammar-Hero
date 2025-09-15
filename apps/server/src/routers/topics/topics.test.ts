@@ -2,6 +2,8 @@ import { MOCK_TOPICS } from '../../utils/getMocksTopics'
 import { describe, expect, it, vi } from 'vitest'
 import { createTopic, getAll, getById } from './topics.constroller'
 import { TOPICS_SELECT } from './constants'
+import { getDummyDate } from '../../utils/getDummyDate'
+import { getMinMax } from '../../utils/getMinMaxMockDate'
 
 vi.mock('../../../prisma/index', () => {
   return {
@@ -36,7 +38,11 @@ describe('topics', () => {
     expect(topics.length).toBe(MOCK_TOPICS.length)
     const topic = topics[0] as TopicExpected
 
+    console.log(topics)
+
     TOPICS_KEYS.forEach(key => {
+      console.log(`${key}: ${topic[key]}`)
+
       expect(topic[key]).not.toBeUndefined()
     })
   })
@@ -61,13 +67,15 @@ describe('topics', () => {
   })
 
   it('it should create topic', async () => {
+    const { min, max } = getMinMax()
     const topic = await createTopic(
       {
         title: 'title',
         description: 'description',
         shortDescription: 'shortDescription',
         content: 'content',
-        duration: new Date(),
+        durationMin: getDummyDate(min)!,
+        durationMax: getDummyDate(max)!,
         level: 'Basic',
         image: 'image',
       },

@@ -1,6 +1,8 @@
 import type { Topic } from '@/routers/topics/topics.types'
 import fs from 'fs'
 import path from 'path'
+import { getMinMax } from './getMinMaxMockDate'
+import { getDummyDate } from './getDummyDate'
 
 const MOCK_FILE = path.resolve(__dirname, 'mock-topics.json')
 
@@ -11,6 +13,7 @@ export function loadMockTopics(): Topic[] {
   return parsed.map(t => {
     const createdAt = new Date(t.createdAt)
     const updatedAt = new Date(t.updatedAt)
+    const { min, max } = getMinMax()
 
     const user: Topic['user'] = {
       id: t.userId,
@@ -30,6 +33,8 @@ export function loadMockTopics(): Topic[] {
       updatedAt,
       user,
       bookmark: [],
+      durationMin: getDummyDate(min)!,
+      durationMax: getDummyDate(max)!,
     }
   })
 }

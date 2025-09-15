@@ -1,5 +1,5 @@
 import dateformat from 'dateformat'
 
-export function getReadTime(time: Date) {
-  return `${time.getMinutes() - 5}-${dateformat(time, 'MM')} minutes read`
+export function getReadTime(min: Date, max: Date) {
+  return `${dateformat(min, 'MM')}-${dateformat(max, 'MM')} minutes read`
 }

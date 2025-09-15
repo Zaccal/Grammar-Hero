@@ -7,7 +7,7 @@ import dateformat from 'dateformat'
 import { getReadTime } from '@/utils/getReadTime'
 
 export function TopicDetailsHeader() {
-  const { title, level, createdAt, duration, user } =
+  const { title, level, createdAt, user, durationMin, durationMax } =
     topicDetailsContext.useSelect(state => state)
 
   return (
@@ -32,7 +32,9 @@ export function TopicDetailsHeader() {
 
         <div className="flex items-center gap-2 md:gap-3 text-muted-foreground">
           <div className="dot xs:block hidden"></div>
-          <span className="topic-details-text">{getReadTime(duration)}</span>
+          <span className="topic-details-text">
+            {getReadTime(durationMin, durationMax)}
+          </span>
           <div className="dot"></div>
           <span className="topic-details-text">
             {dateformat(createdAt, 'mmm d, yyyy')}

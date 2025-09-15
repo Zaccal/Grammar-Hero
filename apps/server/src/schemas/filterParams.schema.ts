@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
+export const DURATION_REGEX = new RegExp(/^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$/)
+
 export const filterParamsSchema = z.object({
   query: z.string().optional().catch(''),
   limit: z.number().default(20).catch(20).optional(),
@@ -14,7 +16,20 @@ export const filterParamsSchema = z.object({
     .enum(['Advanced', 'Basic', 'Intermediate'])
     .optional()
     .catch(undefined),
-  duration: z.string().optional().catch(undefined),
+  durationMin: z
+    .string()
+    .regex(DURATION_REGEX, {
+      message: 'Duration must be in 00:00:00 format',
+    })
+    .optional()
+    .catch(undefined),
+  durationMax: z
+    .string()
+    .regex(DURATION_REGEX, {
+      message: 'Duration must be in 00:00:00 format',
+    })
+    .optional()
+    .catch(undefined),
 })
 
 export type FilterParamsSchema = z.infer<typeof filterParamsSchema>

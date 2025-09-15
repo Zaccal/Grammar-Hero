@@ -1,32 +1,41 @@
 import { MOCK_TOPICS } from '@/utils/getMocksTopics'
 import prisma from '../prisma/index'
-import type { TopicsCreateManyInput } from './generated/models'
+import type { TopicsCreateInput } from './generated/models'
+import { getDummyDate } from '@/utils/getDummyDate'
+import { getMinMax } from '@/utils/getMinMaxMockDate'
 
 async function createMockTopics(userId: string) {
   console.log('🌾 Creating mock topics...')
 
-  const data: TopicsCreateManyInput[] = MOCK_TOPICS.map(topic => ({
-    title: topic.title,
-    shortDescription: topic.shortDescription,
-    description: topic.description,
-    content: topic.content,
-    level: topic.level,
-    duration: new Date(
-      Date.now() + Math.floor(Math.random() * 900000) + 300000
-    ).toISOString(),
-    likes: topic.likes,
-    image: topic.image,
-    userId,
-  }))
-  await prisma.topics.createMany({
-    data,
-  })
+  for (let index = 0; index < MOCK_TOPICS.length; index++) {
+    const { min, max } = getMinMax()
+    const topic = MOCK_TOPICS[index]
+    const data: TopicsCreateInput = {
+      title: topic.title,
+      shortDescription: topic.shortDescription,
+      description: topic.description,
+      content: topic.content,
+      level: topic.level,
+      durationMax: getDummyDate(max) ?? '',
+      durationMin: getDummyDate(min) ?? '',
+      likes: topic.likes,
+      image: topic.image,
+      user: {
+        connect: {
+          id: userId,
+        },
+      },
+    }
+    await prisma.topics.create({
+      data,
+    })
+  }
 }
 
 async function main() {
   console.log('🌱 Seeding database...')
 
-  await createMockTopics('gfCfkgoQ4gjIfSI3sm8H3CPf6JueJm1N')
+  await createMockTopics('9QyneZSLXF8QRsaCbBFvpz6Sv3IzeSBp')
 
   console.log('✅ Database seeded successfully.')
 }

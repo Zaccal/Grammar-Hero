@@ -22,7 +22,7 @@ function TopicsDialogCard({ topic }: TopicsDialogCardProps) {
         <div className="p-6">
           <TopicsDialog.Title>{topic.title}</TopicsDialog.Title>
           <TopicsDialog.Subtitle>
-            {getReadTime(topic.duration)}
+            {getReadTime(topic.durationMin, topic.durationMax)}
           </TopicsDialog.Subtitle>
           <TopicsDialog.Description>
             <p className="mt-2 text-sm text-muted-foreground">

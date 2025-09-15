@@ -16,7 +16,8 @@ model Topics {
   title String 
   shortDescription String @map("short_description") 
   description String
-  duration DateTime  
+  durationMax DateTime @db.Time() @map("duration_max")
+  durationMin DateTime @db.Time()  @map("duration_min")
   image String?
   likes Int 
   content String @db.Text

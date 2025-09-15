@@ -5,7 +5,8 @@ export const topicCreateSchema = z.object({
   description: z.string().min(100),
   shortDescription: z.string().min(56),
   content: z.string().min(100),
-  duration: z.date(),
+  durationMin: z.date(),
+  durationMax: z.date(),
   level: z.enum(['Advanced', 'Basic', 'Intermediate']),
   image: z.url(),
 })

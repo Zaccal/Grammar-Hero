@@ -65,6 +65,7 @@ function HomeComponent() {
                 <div className="grid gap-5">
                   <Filter.Sort />
                   <Filter.Level />
+                  <Filter.Duration />
                 </div>
               </Filter.SheetBody>
               <Filter.SheetFooter>
