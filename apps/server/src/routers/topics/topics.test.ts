@@ -38,11 +38,7 @@ describe('topics', () => {
     expect(topics.length).toBe(MOCK_TOPICS.length)
     const topic = topics[0] as TopicExpected
 
-    console.log(topics)
-
     TOPICS_KEYS.forEach(key => {
-      console.log(`${key}: ${topic[key]}`)
-
       expect(topic[key]).not.toBeUndefined()
     })
   })
