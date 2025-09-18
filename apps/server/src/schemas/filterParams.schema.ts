@@ -1,6 +1,5 @@
+import { DURATION_REGEX } from '../lib/constants'
 import { z } from 'zod'
-
-export const DURATION_REGEX = new RegExp(/^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$/)
 
 export const filterParamsSchema = z.object({
   query: z.string().optional().catch(''),

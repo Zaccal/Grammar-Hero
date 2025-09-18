@@ -1,7 +1,7 @@
 import prisma from '../../../prisma/index'
 import { TOPICS_SELECT } from './constants'
 import { TRPCError } from '@trpc/server'
-import type { TopicCreateSchema } from './topics.schema'
+import type { TopicCreateSchema } from '../../schemas/topics.schema'
 import type { FilterParamsSchema } from '@/schemas/filterParams.schema'
 import type { Prisma } from 'prisma/generated/client'
 import { getDummyDate } from '../../utils/getDummyDate'
@@ -83,8 +83,8 @@ export async function createTopic(data: TopicCreateSchema, userId: string) {
     return await prisma.topics.create({
       data: {
         ...data,
-        durationMin: data.durationMin,
-        durationMax: data.durationMax,
+        durationMin: getDummyDate(data.durationMin)!,
+        durationMax: getDummyDate(data.durationMax)!,
         likes: 0,
         user: {
           connect: {
