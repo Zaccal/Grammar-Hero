@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@hono/trpc-server": "^0.4.0",
+    "@hono/zod-validator": "^0.7.3",
     "@prisma/client": "^6.15.0",
     "@trpc/client": "^11.5.0",
     "@trpc/server": "^11.5.0",

@@ -15,8 +15,8 @@ export const CreateTopicFormDuration = () => {
           <SelectValue placeholder="Duration" />
         </SelectTrigger>
         <SelectContent>
-          {durationOptions.map(option => (
-            <SelectItem key={option} value="option">
+          {Object.values(durationOptions).map(option => (
+            <SelectItem key={option} value={option}>
               {option}
             </SelectItem>
           ))}

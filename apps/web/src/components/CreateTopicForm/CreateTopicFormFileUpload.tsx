@@ -1,26 +1,24 @@
 import FileUpload from '../ui/FileUpload'
 import { useFileUpload } from '@/hooks/useFileUpload'
+import { UPLOAD_FILE_SIZE_MB } from '@server/routers/upload/constants'
 
 interface CreateTopicFormFileUploadProps {
   className?: string
 }
-
-const MAX_FILE_SIZE = 2
 
 export const CreateTopicFormFileUpload = ({
   className,
 }: CreateTopicFormFileUploadProps) => {
   const [fileUploadState, fileUploadActions] = useFileUpload({
     accept: 'image/jpeg,image/png,image/jpg',
-    maxSize: MAX_FILE_SIZE * 1024 * 1024,
+    maxSize: UPLOAD_FILE_SIZE_MB * 1024 * 1024,
+    maxFiles: 1,
   })
   const { files } = fileUploadState
 
-  const fileName = files[0]?.file.name
-
   return (
     <FileUpload
-      maxSizeMb={MAX_FILE_SIZE}
+      maxSizeMb={UPLOAD_FILE_SIZE_MB}
       options={[fileUploadState, fileUploadActions]}
       className={className}
     />

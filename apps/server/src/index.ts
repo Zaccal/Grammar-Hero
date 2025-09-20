@@ -6,8 +6,9 @@ import { logger } from 'hono/logger'
 import { trpcServer } from '@hono/trpc-server'
 import { appRouter } from './routers'
 import { createContext } from './lib/context'
+import { uploadRoute } from './routers/upload/upload.route'
 
-const app = new Hono().basePath('/api')
+const app = new Hono()
 
 app.use(logger())
 app.use(
@@ -20,10 +21,12 @@ app.use(
   })
 )
 
-app.on(['POST', 'GET'], '/auth/**', c => auth.handler(c.req.raw))
+app.on(['POST', 'GET'], 'api/auth/**', c => auth.handler(c.req.raw))
+
+app.route('api/upload', uploadRoute)
 
 app.use(
-  '/*',
+  '/trpc/**',
   trpcServer({
     router: appRouter,
     createContext: (_opts, context) => createContext({ context }),
