@@ -1,4 +1,4 @@
-import Header from '@/components/header/header'
+import Header from '@/components/Header/header'
 import Loader from '@/components/ui/loader'
 import { Toaster } from '@/components/ui/sonner'
 import {

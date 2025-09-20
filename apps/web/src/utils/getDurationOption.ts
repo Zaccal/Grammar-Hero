@@ -1,4 +1,4 @@
-import { DURATION_REGEX } from '@server/schemas/filterParams.schema'
+import { DURATION_REGEX } from '@server/lib/constants'
 import z from 'zod'
 import { durationValues } from '@/schemas/filter.schema'
 
