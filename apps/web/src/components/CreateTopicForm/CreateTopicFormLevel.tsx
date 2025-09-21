@@ -1,3 +1,4 @@
+import { FormControl, FormField, FormItem, FormMessage } from '../ui/form'
 import {
   Select,
   SelectContent,
@@ -5,21 +6,40 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/Select'
+import { createTopicFormContext } from './CreateTopicForm'
+import { useFileUploadMutationState } from '@/hooks/index'
 
 export const CreateTopicFormLevel = () => {
+  const form = createTopicFormContext.useSelect(state => state.form)
+  const { isPending } = useFileUploadMutationState()
+
   return (
     <>
-      <Select>
-        <SelectTrigger>
-          <SelectValue placeholder="Level" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="All">All Levels</SelectItem>
-          <SelectItem value="Basic">Basic</SelectItem>
-          <SelectItem value="Intermediate">Intermediate</SelectItem>
-          <SelectItem value="Advanced">Advanced</SelectItem>
-        </SelectContent>
-      </Select>
+      <FormField
+        control={form.control}
+        name="level"
+        render={({ field }) => (
+          <FormItem>
+            <FormMessage />
+            <FormControl>
+              <Select
+                disabled={isPending}
+                onValueChange={field.onChange}
+                defaultValue={field.value}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Level" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Basic">Basic</SelectItem>
+                  <SelectItem value="Intermediate">Intermediate</SelectItem>
+                  <SelectItem value="Advanced">Advanced</SelectItem>
+                </SelectContent>
+              </Select>
+            </FormControl>
+          </FormItem>
+        )}
+      />
     </>
   )
 }

@@ -1,6 +1,7 @@
 import FileUpload from '../ui/FileUpload'
-import { useFileUpload } from '@/hooks/useFileUpload'
+import { useFileUpload, useFileUploadMutationState } from '@/hooks/index'
 import { UPLOAD_FILE_SIZE_MB } from '@server/routers/upload/constants'
+import { fileUploadStore } from './store'
 
 interface CreateTopicFormFileUploadProps {
   className?: string
@@ -9,18 +10,32 @@ interface CreateTopicFormFileUploadProps {
 export const CreateTopicFormFileUpload = ({
   className,
 }: CreateTopicFormFileUploadProps) => {
+  const { isPending, isError } = useFileUploadMutationState()
+
   const [fileUploadState, fileUploadActions] = useFileUpload({
     accept: 'image/jpeg,image/png,image/jpg',
     maxSize: UPLOAD_FILE_SIZE_MB * 1024 * 1024,
     maxFiles: 1,
+
+    onFilesAdded: addedFiles => {
+      const file = addedFiles[0].file as File
+
+      fileUploadStore.set({ file })
+    },
   })
-  const { files } = fileUploadState
 
   return (
-    <FileUpload
-      maxSizeMb={UPLOAD_FILE_SIZE_MB}
-      options={[fileUploadState, fileUploadActions]}
-      className={className}
-    />
+    <>
+      {isError && (
+        <p className="text-destructive mb-4">Failed to upload file try again</p>
+      )}
+      <div className={isPending ? 'opacity-50 cursor-not-allowed' : ''}>
+        <FileUpload
+          maxSizeMb={UPLOAD_FILE_SIZE_MB}
+          options={[fileUploadState, fileUploadActions]}
+          className={className}
+        />
+      </div>
+    </>
   )
 }

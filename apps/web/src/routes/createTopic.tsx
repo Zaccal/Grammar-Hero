@@ -16,7 +16,7 @@ function RouteComponent() {
         <CreateTopicForm.Description />
       </div>
 
-      <div className="mt-6 flex items-center gap-3">
+      <div className="mt-6 flex justify-between items-center gap-3">
         <CreateTopicForm.Level />
         <CreateTopicForm.Duration />
       </div>

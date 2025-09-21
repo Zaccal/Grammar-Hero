@@ -6,10 +6,18 @@ export const topicCreateSchema = z.object({
   description: z.string().min(100),
   shortDescription: z.string().min(56),
   content: z.string().min(100),
-  durationMin: z.string().regex(DURATION_REGEX),
-  durationMax: z.string().regex(DURATION_REGEX),
-  level: z.enum(['Advanced', 'Basic', 'Intermediate']),
-  image: z.url(),
+  durationMin: z
+    .string()
+    .regex(DURATION_REGEX, { message: 'Invalid duration format' })
+    .optional(),
+  durationMax: z
+    .string()
+    .regex(DURATION_REGEX, { message: 'Invalid duration format' })
+    .optional(),
+  level: z.enum(['Advanced', 'Basic', 'Intermediate'], {
+    message: 'Required level',
+  }),
+  image: z.string().optional(),
 })
 
 export type TopicCreateSchema = z.infer<typeof topicCreateSchema>

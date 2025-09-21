@@ -11,6 +11,7 @@ import { Badge } from '../../ui/Badge'
 import { Heart, Bookmark } from 'lucide-react'
 import { getVariantLevel } from '@/utils/getVariantLevel'
 import { TopicsImage } from '../TopicsImage'
+import { getCuttedText } from '@/utils/getCuttedText'
 
 export function TopicsCard() {
   const { title, image, shortDescription, level, likes, bookmark } =
@@ -28,9 +29,11 @@ export function TopicsCard() {
           )}
         />
         <MinimalCardContent>
-          <MinimalCardTitle>{title}</MinimalCardTitle>
-          <MinimalCardDescription className="h-[48px]">
-            {shortDescription}
+          <MinimalCardTitle title={title}>
+            {getCuttedText(title, 24)}
+          </MinimalCardTitle>
+          <MinimalCardDescription title={shortDescription} className="h-[48px]">
+            {getCuttedText(shortDescription, 58)}
           </MinimalCardDescription>
         </MinimalCardContent>
 
