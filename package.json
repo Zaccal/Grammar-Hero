@@ -22,11 +22,11 @@
   },
   "dependencies": {
     "superjson": "^2.2.2",
-    "zod": "^4.1.5"
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "husky": "^9.1.7",
-    "lint-staged": "^16.1.2",
+    "lint-staged": "^16.2.0",
     "prettier": "^3.6.2",
     "turbo": "^2.5.4",
     "vitest": "^3.2.4"
