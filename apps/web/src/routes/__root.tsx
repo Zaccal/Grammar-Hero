@@ -1,3 +1,4 @@
+import '../index.css'
 import Header from '@/components/Header/header'
 import Loader from '@/components/ui/loader'
 import { Toaster } from '@/components/ui/sonner'
@@ -8,7 +9,6 @@ import {
   useRouterState,
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-import '../index.css'
 import { ThemeProvider } from '@/providers/themeProvider'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClient } from '@/lib/trpc'

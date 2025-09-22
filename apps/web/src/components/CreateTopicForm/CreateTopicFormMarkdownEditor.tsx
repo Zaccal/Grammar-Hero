@@ -24,21 +24,19 @@ export const CreateTopicFormMarkdownEditor = ({
 }: { editorRef: ForwardedRef<MDXEditorMethods> | null } & MDXEditorProps) => {
   const form = createTopicFormContext.useSelect(state => state.form)
   const { isPending } = useFileUploadMutationState()
+
   return (
-    <>
+    <div className={isPending ? 'disabled' : ''}>
       <FormField
         control={form.control}
         name="content"
         render={({ field }) => (
           <FormItem>
-            <FormMessage className="mt-4" />
-            <FormControl
-              className={isPending ? 'opacity-50 cursor-not-allowed' : ''}
-            >
+            <FormControl>
               <MDXEditor
-                className="markdown-editor"
                 placeholder="Start typing..."
                 onChange={field.onChange}
+                contentEditableClassName="markdown-typography"
                 plugins={[
                   headingsPlugin(),
                   listsPlugin(),
@@ -63,6 +61,6 @@ export const CreateTopicFormMarkdownEditor = ({
           </FormItem>
         )}
       />
-    </>
+    </div>
   )
 }

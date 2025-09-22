@@ -4,7 +4,6 @@ import remarkBreaks from 'remark-breaks'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeHighlight from 'rehype-highlight'
-import 'github-markdown-css/github-markdown.css'
 import { cn } from '@/lib/utils'
 
 interface TopicDetailsContentProps {
@@ -17,7 +16,8 @@ const TopicDetailsContent = ({
   className,
 }: TopicDetailsContentProps) => {
   return (
-    <div className={cn(className, 'markdown-body')}>
+    <div className={cn(className, 'markdown-typography')}>
+      {' '}
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkBreaks]}
         rehypePlugins={[rehypeSlug, rehypeAutolinkHeadings, rehypeHighlight]}

@@ -31,8 +31,11 @@ export const CreateTopicForm = ({
 }: CreateTopicFormProps) => {
   const file = fileUploadStore.use(state => state.file)
 
-  const { mutateAsync: uploadFile, isError: isFileUploadError } =
-    useFileUploadMutation()
+  const {
+    mutateAsync: uploadFile,
+    isError: isFileUploadError,
+    isPending: isFileUploadPending,
+  } = useFileUploadMutation()
 
   const { mutateAsync: createTopic } = useMutation(
     trpc.topics.create.mutationOptions({
@@ -77,7 +80,12 @@ export const CreateTopicForm = ({
       <Form {...form}>
         <form className={className} onSubmit={form.handleSubmit(onSubmit)}>
           {children}
-          <Button className="fixed bottom-4 right-4 " size={'lg'} type="submit">
+          <Button
+            className="w-[80%] sm:w-auto fixed bottom-4 right-1/2 translate-x-1/2 sm:translate-x-0 sm:right-4  "
+            size={'lg'}
+            type="submit"
+            loading={isFileUploadPending}
+          >
             Publish
           </Button>
         </form>

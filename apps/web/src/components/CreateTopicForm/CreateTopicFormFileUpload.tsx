@@ -29,7 +29,7 @@ export const CreateTopicFormFileUpload = ({
       {isError && (
         <p className="text-destructive mb-4">Failed to upload file try again</p>
       )}
-      <div className={isPending ? 'opacity-50 cursor-not-allowed' : ''}>
+      <div className={isPending ? 'disabled' : ''}>
         <FileUpload
           maxSizeMb={UPLOAD_FILE_SIZE_MB}
           options={[fileUploadState, fileUploadActions]}
