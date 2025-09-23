@@ -249,6 +249,11 @@ body {
     @apply overflow-y-auto;
   }
 
+  .markdown-editor-toolbar,
+  .mdxeditor-toolbar * {
+    @apply dark:!bg-secondary dark:!text-secondary-foreground;
+  }
+
   .topic-details-text {
     @apply text-xs sm:text-sm md:text-base;
   }
