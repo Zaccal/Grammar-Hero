@@ -1,10 +1,8 @@
 import { CreateTopicFormMarkdownEditor } from './CreateTopicFormMarkdownEditor'
 import { CreateTopicFormMarkdownHint } from './CreateTopicFormMarkdownHint'
 import { CreateTopicFormMarkdownHintLink } from './CreateTopicFormMarkdownHint'
-import {
-  CreateTopicForm as Root,
-  createTopicFormContext,
-} from './CreateTopicForm'
+import { CreateTopicForm as Root } from './CreateTopicForm'
+import { createTopicFormContext } from './CreateTopicFormContext'
 import { CreateTopicFormFileUpload } from './CreateTopicFormFileUpload'
 import { CreateTopicFormTitle } from './CreateTopicFormTitle'
 import { CreateTopicFormShortDescription } from './CreateTopicFormShortDescription'

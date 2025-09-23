@@ -29,7 +29,7 @@ function RouteComponent() {
           here
         </CreateTopicForm.MarkdownHintLink>
       </CreateTopicForm.MarkdownHint>
-      <CreateTopicForm.MarkdownEditor className="mt-4" editorRef={null} />
+      <CreateTopicForm.MarkdownEditor className="mt-4" />
     </CreateTopicForm.Root>
   )
 }

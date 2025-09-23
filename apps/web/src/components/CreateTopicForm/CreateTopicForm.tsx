@@ -1,5 +1,4 @@
-import { createContext } from '@/hooks'
-import { useForm, type UseFormReturn } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Form } from '../ui/form'
 import { fileUploadStore } from './store'
@@ -15,13 +14,7 @@ import { toast } from 'sonner'
 import { durationValues } from '@/schemas/filter.schema'
 import { useRef } from 'react'
 import type { MDXEditorMethods } from '@mdxeditor/editor'
-
-interface CreateTopicFormContext {
-  form: UseFormReturn<CreateTopicFormSchema>
-  markdownEditorRef: React.RefObject<MDXEditorMethods | null>
-}
-
-export const createTopicFormContext = createContext<CreateTopicFormContext>()
+import { createTopicFormContext } from './CreateTopicFormContext'
 
 interface CreateTopicFormProps {
   children: React.ReactNode
@@ -67,7 +60,6 @@ export const CreateTopicForm = ({
       },
       onSuccess: () => {
         toast.success('Thank you for your topic!')
-        //  I need markdownEditorRef to be global for reset the editor content
         markdownEditorRef.current?.setMarkdown('')
         fileUploadStore.set({ file: null })
         form.reset()
@@ -87,7 +79,6 @@ export const CreateTopicForm = ({
       ...data,
       durationMin: durationValues[data.duration]!.min,
       durationMax: durationValues[data.duration]!.max,
-      // If image is undefined, it means that the user didn't upload a new image, so we use the default one from the form
       image: image ?? data.image,
     })
   }

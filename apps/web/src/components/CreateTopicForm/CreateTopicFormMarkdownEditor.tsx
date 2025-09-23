@@ -11,17 +11,13 @@ import {
   UndoRedo,
   linkPlugin,
   linkDialogPlugin,
-  type MDXEditorMethods,
-  type MDXEditorProps,
   tablePlugin,
   InsertTable,
 } from '@mdxeditor/editor'
 import '@mdxeditor/editor/style.css'
 import { FormControl, FormField, FormItem } from '../ui/form'
-import { createTopicFormContext } from './CreateTopicForm'
+import { createTopicFormContext } from './CreateTopicFormContext'
 import { useFileUploadMutationState } from '@/hooks/index'
-import { useRef } from 'react'
-import { Button } from '../ui/button'
 
 interface CreateTopicFormMarkdownEditorProps {
   className?: string
