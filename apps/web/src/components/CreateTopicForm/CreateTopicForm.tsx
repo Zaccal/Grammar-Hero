@@ -13,9 +13,12 @@ import { useMutation } from '@tanstack/react-query'
 import { trpc } from '@/lib/trpc'
 import { toast } from 'sonner'
 import { durationValues } from '@/schemas/filter.schema'
+import { useRef } from 'react'
+import type { MDXEditorMethods } from '@mdxeditor/editor'
 
 interface CreateTopicFormContext {
   form: UseFormReturn<CreateTopicFormSchema>
+  markdownEditorRef: React.RefObject<MDXEditorMethods | null>
 }
 
 export const createTopicFormContext = createContext<CreateTopicFormContext>()
@@ -29,23 +32,18 @@ export const CreateTopicForm = ({
   children,
   className,
 }: CreateTopicFormProps) => {
+  // I control the file upload outside of the form because, file inputs are uncontrolled component
+  // and react-hook-form doesn't support them well
+  // Also, markdown editor is uncontrolled component
+  // So, I control it outside of the form as well, and use the form for validation only for this component
   const file = fileUploadStore.use(state => state.file)
+  const markdownEditorRef = useRef<MDXEditorMethods>(null)
 
   const {
     mutateAsync: uploadFile,
     isError: isFileUploadError,
     isPending: isFileUploadPending,
   } = useFileUploadMutation()
-
-  const { mutateAsync: createTopic } = useMutation(
-    trpc.topics.create.mutationOptions({
-      onError: error => {
-        toast.error('Failed to create topic', {
-          description: error.message,
-        })
-      },
-    })
-  )
 
   const form = useForm<CreateTopicFormSchema>({
     resolver: zodResolver(createTopicFormSchema),
@@ -60,8 +58,25 @@ export const CreateTopicForm = ({
     },
   })
 
+  const { mutateAsync: createTopic } = useMutation(
+    trpc.topics.create.mutationOptions({
+      onError: error => {
+        toast.error('Failed to create topic', {
+          description: error.message,
+        })
+      },
+      onSuccess: () => {
+        toast.success('Thank you for your topic!')
+        //  I need markdownEditorRef to be global for reset the editor content
+        markdownEditorRef.current?.setMarkdown('')
+        form.reset()
+      },
+    })
+  )
+
   async function uploadImageHandler() {
     if (!file) return
+    // TODO: handle response to get the image url
     await uploadFile(file)
   }
 
@@ -76,7 +91,7 @@ export const CreateTopicForm = ({
   }
 
   return (
-    <createTopicFormContext.Provider initialValue={{ form }}>
+    <createTopicFormContext.Provider initialValue={{ form, markdownEditorRef }}>
       <Form {...form}>
         <form className={className} onSubmit={form.handleSubmit(onSubmit)}>
           {children}

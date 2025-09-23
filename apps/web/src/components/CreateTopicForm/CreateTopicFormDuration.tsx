@@ -26,7 +26,7 @@ export const CreateTopicFormDuration = () => {
               <Select
                 disabled={isPending}
                 onValueChange={field.onChange}
-                defaultValue={field.value}
+                value={field.value}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Duration" />

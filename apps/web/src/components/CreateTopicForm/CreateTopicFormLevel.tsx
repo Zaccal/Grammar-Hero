@@ -25,7 +25,7 @@ export const CreateTopicFormLevel = () => {
               <Select
                 disabled={isPending}
                 onValueChange={field.onChange}
-                defaultValue={field.value}
+                value={field.value ?? ''}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Level" />

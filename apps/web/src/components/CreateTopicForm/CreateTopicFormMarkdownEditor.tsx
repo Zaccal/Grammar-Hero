@@ -9,20 +9,31 @@ import {
   thematicBreakPlugin,
   toolbarPlugin,
   UndoRedo,
+  linkPlugin,
+  linkDialogPlugin,
   type MDXEditorMethods,
   type MDXEditorProps,
+  tablePlugin,
+  InsertTable,
 } from '@mdxeditor/editor'
 import '@mdxeditor/editor/style.css'
-import type { ForwardedRef } from 'react'
-import { FormControl, FormField, FormItem, FormMessage } from '../ui/form'
+import { FormControl, FormField, FormItem } from '../ui/form'
 import { createTopicFormContext } from './CreateTopicForm'
 import { useFileUploadMutationState } from '@/hooks/index'
+import { useRef } from 'react'
+import { Button } from '../ui/button'
+
+interface CreateTopicFormMarkdownEditorProps {
+  className?: string
+}
 
 export const CreateTopicFormMarkdownEditor = ({
-  editorRef,
-  ...props
-}: { editorRef: ForwardedRef<MDXEditorMethods> | null } & MDXEditorProps) => {
+  className,
+}: CreateTopicFormMarkdownEditorProps) => {
   const form = createTopicFormContext.useSelect(state => state.form)
+  const editorRef = createTopicFormContext.useSelect(
+    state => state.markdownEditorRef
+  )
   const { isPending } = useFileUploadMutationState()
 
   return (
@@ -34,8 +45,14 @@ export const CreateTopicFormMarkdownEditor = ({
           <FormItem>
             <FormControl>
               <MDXEditor
+                ref={editorRef}
                 placeholder="Start typing..."
-                onChange={field.onChange}
+                onChange={value => {
+                  field.onChange(value)
+                  editorRef.current?.setMarkdown(value)
+                }}
+                className={className}
+                markdown={field.value ?? ''}
                 contentEditableClassName="markdown-typography"
                 plugins={[
                   headingsPlugin(),
@@ -43,19 +60,21 @@ export const CreateTopicFormMarkdownEditor = ({
                   quotePlugin(),
                   thematicBreakPlugin(),
                   markdownShortcutPlugin(),
+                  linkPlugin(),
+                  linkDialogPlugin(),
+                  tablePlugin(),
                   toolbarPlugin({
                     toolbarClassName: 'markdown-editor-toolbar',
                     toolbarContents: () => (
                       <>
                         <UndoRedo />
                         <BoldItalicUnderlineToggles />
+                        <InsertTable />
                         <BlockTypeSelect />
                       </>
                     ),
                   }),
                 ]}
-                ref={editorRef}
-                {...props}
               />
             </FormControl>
           </FormItem>

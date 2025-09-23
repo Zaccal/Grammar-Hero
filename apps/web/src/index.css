@@ -245,10 +245,6 @@ body {
     @apply font-sans prose prose-neutral dark:prose-invert;
   }
 
-  .markdown-editor-toolbar {
-    @apply mb-6;
-  }
-
   .topic-details-text {
     @apply text-xs sm:text-sm md:text-base;
   }
