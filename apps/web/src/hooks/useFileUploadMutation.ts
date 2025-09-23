@@ -16,7 +16,7 @@ export const useFileUploadMutation = () => {
           credentials: 'include',
         }
       )
-      return response.json()
+      return response.json() as Promise<{ url: string }>
     },
   })
 }

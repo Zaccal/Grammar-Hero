@@ -2,6 +2,7 @@ import type { Topic as TopicType } from '@server/routers/topics/topics.types'
 import { getReadTime } from '@/utils/getReadTime'
 import { TopicsDialog } from '../index'
 import { TopicsCard } from './TopicsCard'
+import { getTopicImage } from '@/utils/getTopicImage'
 
 interface TopicsDialogCardProps {
   topic: TopicType
@@ -15,7 +16,7 @@ function TopicsDialogCard({ topic }: TopicsDialogCardProps) {
       </TopicsDialog.Preview>
       <TopicsDialog.Content>
         <TopicsDialog.Image
-          src={topic.image}
+          src={getTopicImage(topic.image)}
           alt={topic.title}
           className="w-full max-h-[400px] h-full"
         />

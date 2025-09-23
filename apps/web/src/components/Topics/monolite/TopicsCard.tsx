@@ -12,6 +12,7 @@ import { Heart, Bookmark } from 'lucide-react'
 import { getVariantLevel } from '@/utils/getVariantLevel'
 import { TopicsImage } from '../TopicsImage'
 import { getCuttedText } from '@/utils/getCuttedText'
+import { getTopicImage } from '@/utils/getTopicImage'
 
 export function TopicsCard() {
   const { title, image, shortDescription, level, likes, bookmark } =
@@ -21,7 +22,7 @@ export function TopicsCard() {
       <MinimalCard className="h-full text-left">
         <TopicsImage
           alt={title}
-          src={image}
+          src={getTopicImage(image)}
           className={cn(
             'relative h-[190px] w-full rounded-[20px] mb-6',
             'shadow-[0px_1px_1px_0px_rgba(0,0,0,0.05),0px_1px_1px_0px_rgba(255,252,240,0.5)_inset,0px_0px_0px_1px_hsla(0,0%,100%,0.1)_inset,0px_0px_1px_0px_rgba(28,27,26,0.5)]',

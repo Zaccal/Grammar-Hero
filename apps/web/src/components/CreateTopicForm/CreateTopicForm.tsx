@@ -76,17 +76,18 @@ export const CreateTopicForm = ({
 
   async function uploadImageHandler() {
     if (!file) return
-    // TODO: handle response to get the image url
-    await uploadFile(file)
+    return (await uploadFile(file)).url
   }
 
   async function onSubmit(data: CreateTopicFormSchema) {
-    await uploadImageHandler()
+    const image = await uploadImageHandler()
     if (isFileUploadError) return
     await createTopic({
       ...data,
       durationMin: durationValues[data.duration]!.min,
       durationMax: durationValues[data.duration]!.max,
+      // If image is undefined, it means that the user didn't upload a new image, so we use the default one from the form
+      image: image ?? data.image,
     })
   }
 
