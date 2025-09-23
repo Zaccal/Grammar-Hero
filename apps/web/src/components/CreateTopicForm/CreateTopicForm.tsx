@@ -69,6 +69,7 @@ export const CreateTopicForm = ({
         toast.success('Thank you for your topic!')
         //  I need markdownEditorRef to be global for reset the editor content
         markdownEditorRef.current?.setMarkdown('')
+        fileUploadStore.set({ file: null })
         form.reset()
       },
     })

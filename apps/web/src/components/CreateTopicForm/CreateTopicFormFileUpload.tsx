@@ -1,5 +1,9 @@
 import FileUpload from '../ui/FileUpload'
-import { useFileUpload, useFileUploadMutationState } from '@/hooks/index'
+import {
+  useDidUpdate,
+  useFileUpload,
+  useFileUploadMutationState,
+} from '@/hooks/index'
 import { UPLOAD_FILE_SIZE_MB } from '@server/routers/upload/constants'
 import { fileUploadStore } from './store'
 
@@ -23,6 +27,12 @@ export const CreateTopicFormFileUpload = ({
       fileUploadStore.set({ file })
     },
   })
+
+  const file = fileUploadStore.use(state => state.file)
+
+  useDidUpdate(() => {
+    if (!file) fileUploadActions.clearFiles()
+  }, [file])
 
   return (
     <>
