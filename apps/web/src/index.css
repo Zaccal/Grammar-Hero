@@ -245,6 +245,10 @@ body {
     @apply font-sans prose prose-neutral dark:prose-invert;
   }
 
+  .mdxeditor {
+    @apply overflow-y-auto;
+  }
+
   .topic-details-text {
     @apply text-xs sm:text-sm md:text-base;
   }
