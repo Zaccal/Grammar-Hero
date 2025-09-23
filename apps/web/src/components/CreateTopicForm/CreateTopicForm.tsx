@@ -9,7 +9,7 @@ import {
 } from '@/schemas/createTopicForm.schema'
 import { Button } from '../ui/button'
 import { useMutation } from '@tanstack/react-query'
-import { trpc } from '@/lib/trpc'
+import { queryClient, trpc } from '@/lib/trpc'
 import { toast } from 'sonner'
 import { durationValues } from '@/schemas/filter.schema'
 import { useRef } from 'react'
@@ -63,6 +63,10 @@ export const CreateTopicForm = ({
         markdownEditorRef.current?.setMarkdown('')
         fileUploadStore.set({ file: null })
         form.reset()
+
+        queryClient.invalidateQueries({
+          queryKey: [trpc.topics.getAll.queryKey],
+        })
       },
     })
   )
