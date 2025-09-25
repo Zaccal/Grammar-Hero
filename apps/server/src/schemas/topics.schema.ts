@@ -17,7 +17,7 @@ export const topicCreateSchema = z.object({
   level: z.enum(['Advanced', 'Basic', 'Intermediate'], {
     message: 'Required level',
   }),
-  image: z.string().optional(),
+  image: z.string(),
 })
 
 export type TopicCreateSchema = z.infer<typeof topicCreateSchema>

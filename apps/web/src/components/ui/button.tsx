@@ -375,6 +375,12 @@ const buttonVariants = cva(
   }
 )
 
+export type ButtonProps = React.ComponentProps<'button'> & {
+  selected?: boolean
+  asChild?: boolean
+  loading?: boolean
+} & VariantProps<typeof buttonVariants>
+
 function Button({
   className,
   selected,
@@ -391,12 +397,7 @@ function Button({
   loading = false,
   children,
   ...props
-}: React.ComponentProps<'button'> &
-  VariantProps<typeof buttonVariants> & {
-    selected?: boolean
-    asChild?: boolean
-    loading?: boolean
-  }) {
+}: ButtonProps) {
   const Comp = asChild ? SlotPrimitive.Slot : 'button'
   return (
     <Comp

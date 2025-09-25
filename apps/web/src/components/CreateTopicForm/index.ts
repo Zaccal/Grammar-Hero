@@ -9,6 +9,7 @@ import { CreateTopicFormShortDescription } from './CreateTopicFormShortDescripti
 import { CreateTopicFormDescription } from './CreateTopicFormDescription'
 import { CreateTopicFormLevel } from './CreateTopicFormLevel'
 import { CreateTopicFormDuration } from './CreateTopicFormDuration'
+import { CreateTopicFormPublish } from './CreateTopicFormPublish'
 
 export const CreateTopicForm = {
   Root: Root,
@@ -22,4 +23,5 @@ export const CreateTopicForm = {
   Description: CreateTopicFormDescription,
   Level: CreateTopicFormLevel,
   Duration: CreateTopicFormDuration,
+  Publish: CreateTopicFormPublish,
 }

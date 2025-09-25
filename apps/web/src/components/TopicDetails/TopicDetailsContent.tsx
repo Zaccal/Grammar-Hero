@@ -15,6 +15,7 @@ const TopicDetailsContent = ({
   children,
   className,
 }: TopicDetailsContentProps) => {
+  // TODO: Create a style for highlighted texts
   return (
     <div className={cn(className, 'markdown-typography')}>
       {' '}

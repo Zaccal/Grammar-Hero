@@ -1,13 +1,12 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Form } from '../ui/form'
-import { fileUploadStore } from './store'
+import { alertDialogCreateTopicStore, fileUploadStore } from './store'
 import { useFileUploadMutation } from '@/hooks/useFileUploadMutation'
 import {
   createTopicFormSchema,
   type CreateTopicFormSchema,
 } from '@/schemas/createTopicForm.schema'
-import { Button } from '../ui/button'
 import { useMutation } from '@tanstack/react-query'
 import { queryClient, trpc } from '@/lib/trpc'
 import { toast } from 'sonner'
@@ -21,6 +20,8 @@ interface CreateTopicFormProps {
   className?: string
 }
 
+export const FORM_ID = 'CREATE_FORM_TRIGGER'
+
 export const CreateTopicForm = ({
   children,
   className,
@@ -32,11 +33,8 @@ export const CreateTopicForm = ({
   const file = fileUploadStore.use(state => state.file)
   const markdownEditorRef = useRef<MDXEditorMethods>(null)
 
-  const {
-    mutateAsync: uploadFile,
-    isError: isFileUploadError,
-    isPending: isFileUploadPending,
-  } = useFileUploadMutation()
+  const { mutateAsync: uploadFile, isError: isFileUploadError } =
+    useFileUploadMutation()
 
   const form = useForm<CreateTopicFormSchema>({
     resolver: zodResolver(createTopicFormSchema),
@@ -68,6 +66,11 @@ export const CreateTopicForm = ({
           queryKey: [trpc.topics.getAll.queryKey],
         })
       },
+      onSettled: () => {
+        alertDialogCreateTopicStore.set({
+          open: false,
+        })
+      },
     })
   )
 
@@ -90,16 +93,16 @@ export const CreateTopicForm = ({
   return (
     <createTopicFormContext.Provider initialValue={{ form, markdownEditorRef }}>
       <Form {...form}>
-        <form className={className} onSubmit={form.handleSubmit(onSubmit)}>
+        <form
+          id={FORM_ID}
+          className={className}
+          onSubmit={form.handleSubmit(onSubmit, () => {
+            alertDialogCreateTopicStore.set({
+              open: false,
+            })
+          })}
+        >
           {children}
-          <Button
-            className="w-[80%] sm:w-auto fixed bottom-4 right-1/2 translate-x-1/2 sm:translate-x-0 sm:right-4  "
-            size={'lg'}
-            type="submit"
-            loading={isFileUploadPending}
-          >
-            Publish
-          </Button>
         </form>
       </Form>
     </createTopicFormContext.Provider>
