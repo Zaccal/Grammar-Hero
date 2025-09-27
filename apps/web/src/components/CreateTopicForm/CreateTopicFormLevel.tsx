@@ -7,11 +7,10 @@ import {
   SelectValue,
 } from '../ui/Select'
 import { createTopicFormContext } from './CreateTopicFormContext'
-import { useFileUploadMutationState } from '@/hooks/index'
 
 export const CreateTopicFormLevel = () => {
   const form = createTopicFormContext.useSelect(state => state.form)
-  const { isPending } = useFileUploadMutationState()
+  const isPending = createTopicFormContext.useSelect(state => state.isPending)
 
   return (
     <>

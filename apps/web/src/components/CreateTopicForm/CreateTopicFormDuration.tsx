@@ -7,12 +7,17 @@ import {
   SelectValue,
 } from '../ui/Select'
 import { createTopicFormContext } from './CreateTopicFormContext'
-import { FormControl, FormField, FormItem, FormMessage } from '../ui/form'
-import { useFileUploadMutationState } from '@/hooks/index'
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '../ui/form'
 
 export const CreateTopicFormDuration = () => {
   const form = createTopicFormContext.useSelect(state => state.form)
-  const { isPending } = useFileUploadMutationState()
+  const isPending = createTopicFormContext.useSelect(state => state.isPending)
 
   return (
     <>
@@ -21,6 +26,7 @@ export const CreateTopicFormDuration = () => {
         name="duration"
         render={({ field }) => (
           <FormItem>
+            <FormLabel>Duration</FormLabel>
             <FormMessage />
             <FormControl>
               <Select

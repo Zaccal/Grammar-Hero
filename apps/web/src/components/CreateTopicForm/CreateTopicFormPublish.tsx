@@ -1,4 +1,3 @@
-import { useFileUploadMutationState } from '@/hooks'
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -11,22 +10,12 @@ import {
 } from '../ui/alert-dialog'
 import { Button, type ButtonProps } from '../ui/button'
 import { FORM_ID } from '@/components/CreateTopicForm/CreateTopicForm'
-import { useMutationState } from '@tanstack/react-query'
-import { trpc } from '@/lib/trpc'
 import Loader from '../ui/loader'
 import { alertDialogCreateTopicStore } from './store'
+import { createTopicFormContext } from './CreateTopicFormContext'
 
 export const CreateTopicFormPublish = ({ children, ...props }: ButtonProps) => {
-  const { isPending: isPendingFileUpload } = useFileUploadMutationState()
-  const createTopicMutationState = useMutationState({
-    filters: {
-      mutationKey: [trpc.topics.create.mutationKey],
-    },
-    select: data => data.state.status === 'pending',
-  })
-  const isPendingCreateTopic = createTopicMutationState.length > 0
-
-  const isPending = isPendingCreateTopic || isPendingFileUpload
+  const isPending = createTopicFormContext.useSelect(state => state.isPending)
 
   // I need the controlled state because I want to close the alertDialog when the loadihng state is finished
   const open = alertDialogCreateTopicStore.use(state => state.open)

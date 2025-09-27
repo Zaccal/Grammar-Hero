@@ -1,11 +1,16 @@
-import { FormControl, FormField, FormItem, FormMessage } from '../ui/form'
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '../ui/form'
 import { Textarea } from '../ui/textarea'
 import { createTopicFormContext } from './CreateTopicFormContext'
-import { useFileUploadMutationState } from '@/hooks/index'
 
 export const CreateTopicFormDescription = () => {
   const form = createTopicFormContext.useSelect(state => state.form)
-  const { isPending } = useFileUploadMutationState()
+  const isPending = createTopicFormContext.useSelect(state => state.isPending)
 
   return (
     <>
@@ -14,6 +19,7 @@ export const CreateTopicFormDescription = () => {
         name="description"
         render={({ field }) => (
           <FormItem>
+            <FormLabel>Description</FormLabel>
             <FormMessage />
             <FormControl>
               <Textarea

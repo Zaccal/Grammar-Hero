@@ -1,11 +1,10 @@
 import { FormControl, FormField, FormItem, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
 import { createTopicFormContext } from './CreateTopicFormContext'
-import { useFileUploadMutationState } from '@/hooks/index'
 
 export const CreateTopicFormTitle = () => {
   const form = createTopicFormContext.useSelect(state => state.form)
-  const { isPending } = useFileUploadMutationState()
+  const isPending = createTopicFormContext.useSelect(state => state.isPending)
 
   return (
     <>

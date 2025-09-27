@@ -12,9 +12,9 @@ import {
   KitchenSinkToolbar,
 } from '@mdxeditor/editor'
 import '@mdxeditor/editor/style.css'
-import { FormControl, FormField, FormItem } from '../ui/form'
+import { FormControl, FormItem } from '../ui/form'
 import { createTopicFormContext } from './CreateTopicFormContext'
-import { useFileUploadMutationState } from '@/hooks/index'
+import { Controller } from 'react-hook-form'
 
 interface CreateTopicFormMarkdownEditorProps {
   className?: string
@@ -27,11 +27,11 @@ export const CreateTopicFormMarkdownEditor = ({
   const editorRef = createTopicFormContext.useSelect(
     state => state.markdownEditorRef
   )
-  const { isPending } = useFileUploadMutationState()
+  const isPending = createTopicFormContext.useSelect(state => state.isPending)
 
   return (
     <div className={isPending ? 'disabled' : ''}>
-      <FormField
+      <Controller
         control={form.control}
         name="content"
         render={({ field }) => (
@@ -42,7 +42,6 @@ export const CreateTopicFormMarkdownEditor = ({
                 placeholder="Start typing..."
                 onChange={value => {
                   field.onChange(value)
-                  editorRef.current?.setMarkdown(value)
                 }}
                 className={className}
                 markdown={field.value ?? ''}

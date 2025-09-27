@@ -1,11 +1,13 @@
 import FileUpload from '../ui/FileUpload'
 import {
+  USE_FILE_UPLOAD_MUTATION_KEY,
   useDidUpdate,
   useFileUpload,
-  useFileUploadMutationState,
 } from '@/hooks/index'
 import { UPLOAD_FILE_SIZE_MB } from '@server/routers/upload/constants'
 import { fileUploadStore } from './store'
+import { createTopicFormContext } from './CreateTopicFormContext'
+import { useMutationState } from '@tanstack/react-query'
 
 interface CreateTopicFormFileUploadProps {
   className?: string
@@ -14,7 +16,14 @@ interface CreateTopicFormFileUploadProps {
 export const CreateTopicFormFileUpload = ({
   className,
 }: CreateTopicFormFileUploadProps) => {
-  const { isPending, isError } = useFileUploadMutationState()
+  const isError =
+    useMutationState({
+      filters: {
+        mutationKey: [USE_FILE_UPLOAD_MUTATION_KEY],
+        status: 'error',
+      },
+    }).length > 0
+  const isPending = createTopicFormContext.useSelect(state => state.isPending)
 
   const [fileUploadState, fileUploadActions] = useFileUpload({
     accept: 'image/jpeg,image/png,image/jpg',

@@ -20,21 +20,3 @@ export const useFileUploadMutation = () => {
     },
   })
 }
-
-export const useFileUploadMutationState = () => {
-  const state = useMutationState({
-    filters: {
-      mutationKey: [USE_FILE_UPLOAD_MUTATION_KEY],
-    },
-  })
-
-  const firstState = state[0]
-
-  return {
-    isPending: firstState?.status === 'pending',
-    data: firstState?.data,
-    error: firstState?.error,
-    isError: firstState?.status === 'error',
-    isSuccess: firstState?.status === 'success',
-  }
-}

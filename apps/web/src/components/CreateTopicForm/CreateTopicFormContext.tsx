@@ -6,6 +6,7 @@ import type { MDXEditorMethods } from '@mdxeditor/editor'
 interface CreateTopicFormContext {
   form: UseFormReturn<CreateTopicFormSchema>
   markdownEditorRef: React.RefObject<MDXEditorMethods | null>
+  isPending: boolean
 }
 
 export const createTopicFormContext = createContext<CreateTopicFormContext>()

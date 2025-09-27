@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Form } from '../ui/form'
 import { alertDialogCreateTopicStore, fileUploadStore } from './store'
-import { useFileUploadMutation } from '@/hooks/useFileUploadMutation'
 import {
   createTopicFormSchema,
   type CreateTopicFormSchema,
@@ -14,6 +13,7 @@ import { durationValues } from '@/schemas/filter.schema'
 import { useRef } from 'react'
 import type { MDXEditorMethods } from '@mdxeditor/editor'
 import { createTopicFormContext } from './CreateTopicFormContext'
+import { useFileUploadMutation } from '@/hooks/useFileUploadMutation'
 
 interface CreateTopicFormProps {
   children: React.ReactNode
@@ -33,8 +33,11 @@ export const CreateTopicForm = ({
   const file = fileUploadStore.use(state => state.file)
   const markdownEditorRef = useRef<MDXEditorMethods>(null)
 
-  const { mutateAsync: uploadFile, isError: isFileUploadError } =
-    useFileUploadMutation()
+  const {
+    mutateAsync: uploadFile,
+    isError: isFileUploadError,
+    isPending: isFileUploadPending,
+  } = useFileUploadMutation()
 
   const form = useForm<CreateTopicFormSchema>({
     resolver: zodResolver(createTopicFormSchema),
@@ -49,30 +52,31 @@ export const CreateTopicForm = ({
     },
   })
 
-  const { mutateAsync: createTopic } = useMutation(
-    trpc.topics.create.mutationOptions({
-      onError: error => {
-        toast.error('Failed to create topic', {
-          description: error.message,
-        })
-      },
-      onSuccess: () => {
-        toast.success('Thank you for your topic!')
-        markdownEditorRef.current?.setMarkdown('')
-        fileUploadStore.set({ file: null })
-        form.reset()
+  const { mutateAsync: createTopic, isPending: isCreatingTopicPending } =
+    useMutation(
+      trpc.topics.create.mutationOptions({
+        onError: error => {
+          toast.error('Failed to create topic', {
+            description: error.message,
+          })
+        },
+        onSuccess: () => {
+          toast.success('Thank you for your topic!')
+          markdownEditorRef.current?.setMarkdown('')
+          fileUploadStore.set({ file: null })
+          form.reset()
 
-        queryClient.invalidateQueries({
-          queryKey: [trpc.topics.getAll.queryKey],
-        })
-      },
-      onSettled: () => {
-        alertDialogCreateTopicStore.set({
-          open: false,
-        })
-      },
-    })
-  )
+          queryClient.invalidateQueries({
+            queryKey: [trpc.topics.getAll.queryKey],
+          })
+        },
+        onSettled: () => {
+          alertDialogCreateTopicStore.set({
+            open: false,
+          })
+        },
+      })
+    )
 
   async function uploadImageHandler() {
     if (!file) return
@@ -91,7 +95,13 @@ export const CreateTopicForm = ({
   }
 
   return (
-    <createTopicFormContext.Provider initialValue={{ form, markdownEditorRef }}>
+    <createTopicFormContext.Provider
+      initialValue={{
+        form,
+        markdownEditorRef,
+        isPending: isCreatingTopicPending || isFileUploadPending,
+      }}
+    >
       <Form {...form}>
         <form
           id={FORM_ID}
