@@ -1,8 +1,8 @@
+import { Button } from '../ui/button'
 import GoogleIcon from '../ui/googleIcon'
 import MicrosoftIcon from '../ui/microsoftIcon'
-import { Button } from '../ui/button'
 
-const SocialForm = () => {
+function SocialForm() {
   return (
     <>
       <div className="grid grid-cols-2 gap-3">

@@ -2,7 +2,7 @@ import type { JSX, ReactNode } from 'react'
 
 import {
   createContext as createReactContext,
-  useContext,
+  use,
   useMemo,
   useState,
 } from 'react'
@@ -58,10 +58,7 @@ export interface CreateContextReturn<Value> {
  * @example
  * const { useSelect, instance, Provider } = createContext<number>(0);
  */
-export const createContext = <Value,>(
-  defaultValue: Value | undefined = undefined,
-  options: CreateContextOptions = {}
-): CreateContextReturn<Value> => {
+export function createContext<Value,>(defaultValue: Value | undefined = undefined, options: CreateContextOptions = {}): CreateContextReturn<Value> {
   const Context = createReactContext<{
     value: Value | undefined
     set: (value: Value) => void
@@ -75,11 +72,11 @@ export const createContext = <Value,>(
   function useSelect(): ContextValue<Value>
   function useSelect<Selected>(selector: (value: Value) => Selected): Selected
   function useSelect<Selected>(selector?: (value: Value) => Selected) {
-    const context = useContext(Context)
+    const context = use(Context)
 
     if (!context && options.strict) {
       throw new Error(
-        `Context hook ${options.name} must be used inside a Provider`
+        `Context hook ${options.name} must be used inside a Provider`,
       )
     }
 
@@ -92,7 +89,7 @@ export const createContext = <Value,>(
 
   const Provider = ({ children, initialValue }: ProviderProps<Value>) => {
     const [profile, setProfile] = useState<Value | undefined>(
-      initialValue ?? defaultValue
+      initialValue ?? defaultValue,
     )
 
     const value = useMemo(
@@ -100,7 +97,7 @@ export const createContext = <Value,>(
         value: profile,
         set: setProfile,
       }),
-      [profile]
+      [profile],
     )
 
     return <Context value={value}>{children}</Context>

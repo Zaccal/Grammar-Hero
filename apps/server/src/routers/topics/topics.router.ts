@@ -1,8 +1,8 @@
-import { protectedProcedure, router } from '@/lib/trpc'
-import { getAll, getById, createTopic } from './topics.constroller'
 import z from 'zod'
-import { topicCreateSchema } from '../../schemas/topics.schema'
+import { protectedProcedure, router } from '@/lib/trpc'
 import { filterParamsSchema } from '@/schemas/filterParams.schema'
+import { topicCreateSchema } from '../../schemas/topics.schema'
+import { createTopic, getAll, getById } from './topics.constroller'
 
 export const topicsRouter = router({
   getAll: protectedProcedure

@@ -1,8 +1,6 @@
-import { Link } from '@tanstack/react-router'
-import { Button } from '../../ui/button'
-import { Input } from '../../ui/input'
 import type { UseFormReturn } from 'react-hook-form'
 import type { SignInSchema } from '@/schemas/auth.schema'
+import { Link } from '@tanstack/react-router'
 import {
   FormControl,
   FormField,
@@ -10,6 +8,8 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import { Button } from '../../ui/button'
+import { Input } from '../../ui/input'
 
 interface SignInFormFieldsProps {
   form: UseFormReturn<SignInSchema>
@@ -41,7 +41,7 @@ function SignInFormFields({ form }: SignInFormFieldsProps) {
             <FormItem className="gap-1.5">
               <div className="flex items-center justify-between">
                 <FormLabel>Password</FormLabel>
-                <Button variant={'link'} asChild size="sm">
+                <Button variant="link" asChild size="sm">
                   <Link
                     to="/"
                     className="link intent-info variant-ghost text-sm"

@@ -1,5 +1,12 @@
 import { durationOptions } from '@/schemas/filter.schema'
 import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '../ui/form'
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -7,15 +14,8 @@ import {
   SelectValue,
 } from '../ui/Select'
 import { createTopicFormContext } from './CreateTopicFormContext'
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../ui/form'
 
-export const CreateTopicFormDuration = () => {
+export function CreateTopicFormDuration() {
   const form = createTopicFormContext.useSelect(state => state.form)
   const isPending = createTopicFormContext.useSelect(state => state.isPending)
 
@@ -38,8 +38,9 @@ export const CreateTopicFormDuration = () => {
                   <SelectValue placeholder="Duration" />
                 </SelectTrigger>
                 <SelectContent>
-                  {Object.values(durationOptions).map(option => {
-                    if (option === 'All') return null
+                  {Object.values(durationOptions).map((option) => {
+                    if (option === 'All')
+                      return null
                     return (
                       <SelectItem key={option} value={option}>
                         {option}

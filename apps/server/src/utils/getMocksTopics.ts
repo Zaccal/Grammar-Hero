@@ -1,8 +1,8 @@
 import type { Topic } from '@/routers/topics/topics.types'
-import fs from 'fs'
-import path from 'path'
-import { getMinMax } from './getMinMaxMockDate'
+import fs from 'node:fs'
+import path from 'node:path'
 import { getDummyDate } from './getDummyDate'
+import { getMinMax } from './getMinMaxMockDate'
 
 const MOCK_FILE = path.resolve(__dirname, 'mock-topics.json')
 
@@ -10,7 +10,7 @@ export function loadMockTopics(): Topic[] {
   const raw = fs.readFileSync(MOCK_FILE, 'utf-8')
   const parsed = JSON.parse(raw) as Topic[]
 
-  return parsed.map(t => {
+  return parsed.map((t) => {
     const createdAt = new Date(t.createdAt)
     const updatedAt = new Date(t.updatedAt)
     const { min, max } = getMinMax()

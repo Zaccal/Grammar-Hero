@@ -1,14 +1,14 @@
-import { topicDetailsContext } from './TopicDetails'
-import { Badge } from '../ui/Badge'
-import { getVariantLevel } from '@/utils/getVariantLevel'
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
-import { getUserImageFallbackText } from '@/utils/getUserImageFallbackText'
 import dateformat from 'dateformat'
 import { getReadTime } from '@/utils/getReadTime'
+import { getUserImageFallbackText } from '@/utils/getUserImageFallbackText'
+import { getVariantLevel } from '@/utils/getVariantLevel'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+import { Badge } from '../ui/Badge'
+import { topicDetailsContext } from './TopicDetailsContext'
 
 export function TopicDetailsHeader() {
-  const { title, level, createdAt, user, durationMin, durationMax } =
-    topicDetailsContext.useSelect(state => state)
+  const { title, level, createdAt, user, durationMin, durationMax }
+    = topicDetailsContext.useSelect(state => state)
 
   return (
     <>

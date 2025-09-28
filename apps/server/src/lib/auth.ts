@@ -1,7 +1,8 @@
+import process from 'node:process'
 import { betterAuth } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
-import prisma from '../../prisma'
 import { openAPI, username } from 'better-auth/plugins'
+import prisma from '../../prisma'
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {

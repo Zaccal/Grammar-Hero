@@ -1,15 +1,16 @@
-import SignUpFormFields from './SignUpFormFields'
-import SocialForm from '../SocialForm'
-import DividerSocial from '../DividerSocial'
-import SignUpFormHeader from './SignUpFormHeader'
-import { useForm } from 'react-hook-form'
+import type { SignUpSchema } from '@/schemas/auth.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { signUpSchema, type SignUpSchema } from '@/schemas/auth.schema'
-import { Form } from '@/components/ui/form'
-import SignUpFormFooter from './SignUpFormFooter'
-import { authClient } from '@/lib/auth-client'
-import { toast } from 'sonner'
 import { useNavigate } from '@tanstack/react-router'
+import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+import { Form } from '@/components/ui/form'
+import { authClient } from '@/lib/auth-client'
+import { signUpSchema } from '@/schemas/auth.schema'
+import DividerSocial from '../DividerSocial'
+import SocialForm from '../SocialForm'
+import SignUpFormFields from './SignUpFormFields'
+import SignUpFormFooter from './SignUpFormFooter'
+import SignUpFormHeader from './SignUpFormHeader'
 
 function SignUpForm() {
   const navigate = useNavigate()
@@ -39,7 +40,7 @@ function SignUpForm() {
             description: error.message,
           })
         },
-      }
+      },
     )
   }
 

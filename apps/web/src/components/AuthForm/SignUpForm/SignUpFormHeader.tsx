@@ -1,4 +1,4 @@
-const SignUpFormHeader = () => {
+function SignUpFormHeader() {
   return (
     <div className="text-center">
       <h1 className="mb-1 mt-4 text-xl font-semibold">

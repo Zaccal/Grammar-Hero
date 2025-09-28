@@ -1,10 +1,9 @@
+import type { Topic as TypeTopic } from '@server/routers/topics/topics.types'
 import { MorphingDialog } from '../ui/morphing-dialog'
-import { createContext } from '@/hooks'
-import type { Topic } from '@server/routers/topics/topics.types'
+import { topicsContext } from './TopicsContext'
 
-export const topicsContext = createContext<Topic>()
 interface TopicsProps {
-  topic: Topic
+  topic: TypeTopic
   children: React.ReactNode | React.ReactNode[]
 }
 

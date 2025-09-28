@@ -1,8 +1,8 @@
 import type { TRPCClientErrorLike } from '@trpc/client'
 import type { DefaultErrorShape } from '@trpc/server/unstable-core-do-not-import'
-import { Button } from './ui/button'
-import { queryClient } from '@/lib/trpc'
 import { useRouter } from '@tanstack/react-router'
+import { queryClient } from '@/lib/trpc'
+import { Button } from './ui/button'
 
 interface ErrorComponentProps {
   error?: TRPCClientErrorLike<{
@@ -11,7 +11,7 @@ interface ErrorComponentProps {
   }>
 }
 
-const ErrorComponent = ({ error }: ErrorComponentProps) => {
+function ErrorComponent({ error }: ErrorComponentProps) {
   const router = useRouter()
 
   const handleReload = () => {
@@ -26,8 +26,8 @@ const ErrorComponent = ({ error }: ErrorComponentProps) => {
           Opps! something went wrong.
         </h1>
         <p className="text-muted-foreground text-sm">
-          {error?.message ??
-            'The page you’re looking for isn’t available right now. It may have been moved, deleted, or the link might be incorrect. Please check the URL or return to the homepage.'}
+          {error?.message
+            ?? 'The page you’re looking for isn’t available right now. It may have been moved, deleted, or the link might be incorrect. Please check the URL or return to the homepage.'}
         </p>
         <Button onClick={handleReload}>Try again!</Button>
       </div>

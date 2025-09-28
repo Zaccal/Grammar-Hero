@@ -1,11 +1,11 @@
-import { Button } from '../ui/button'
 import { Bookmark } from 'lucide-react'
-import { topicDetailsContext } from './TopicDetails'
+import { Button } from '../ui/button'
+import { topicDetailsContext } from './TopicDetailsContext'
 
-export const TopicDetailsBookmark = () => {
+export function TopicDetailsBookmark() {
   const { bookmark } = topicDetailsContext.useSelect(state => state)
   return (
-    <Button variant={'mutedGhost'}>
+    <Button variant="mutedGhost">
       <Bookmark size={21} />
       <span>{bookmark.length}</span>
     </Button>

@@ -1,7 +1,7 @@
+import { createFileRoute, redirect } from '@tanstack/react-router'
 import SignInForm from '@/components/AuthForm/SignInForm/SignInForm'
 import { Background } from '@/components/ui/background'
 import { authClient } from '@/lib/auth-client'
-import { createFileRoute, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/sign-in')({
   component: RouteComponent,

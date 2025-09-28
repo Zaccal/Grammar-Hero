@@ -1,4 +1,4 @@
-export const getMinMax = () => {
+export function getMinMax() {
   const start = Math.floor(Math.random() * 50) + 1
   const end = start + Math.floor(Math.random() * 10) + 1
   const pad = (n: number) => n.toString().padStart(2, '0')

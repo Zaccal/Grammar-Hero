@@ -12,7 +12,7 @@ interface AlertDialogCreateTopicStore {
   open: boolean
 }
 
-export const alertDialogCreateTopicStore =
-  createStore<AlertDialogCreateTopicStore>({
+export const alertDialogCreateTopicStore
+  = createStore<AlertDialogCreateTopicStore>({
     open: false,
   })

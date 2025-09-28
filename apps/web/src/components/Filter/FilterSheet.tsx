@@ -16,12 +16,12 @@ export function FilterSheet({ children }: FilterSheetProps) {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="sm:w-auto w-full" variant={'outline'} type="button">
+        <Button className="sm:w-auto w-full" variant="outline" type="button">
           <FilterIcon />
           Filter
         </Button>
       </SheetTrigger>
-      <SheetContent aria-description={'Filter'} className="flex flex-col">
+      <SheetContent aria-description="Filter" className="flex flex-col">
         <SheetHeader>
           <SheetTitle>Filter</SheetTitle>
         </SheetHeader>

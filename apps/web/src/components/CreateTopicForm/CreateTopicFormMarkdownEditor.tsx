@@ -1,31 +1,31 @@
 import {
   headingsPlugin,
+  KitchenSinkToolbar,
+  linkDialogPlugin,
+  linkPlugin,
   listsPlugin,
   markdownShortcutPlugin,
   MDXEditor,
   quotePlugin,
+  tablePlugin,
   thematicBreakPlugin,
   toolbarPlugin,
-  linkPlugin,
-  linkDialogPlugin,
-  tablePlugin,
-  KitchenSinkToolbar,
 } from '@mdxeditor/editor'
-import '@mdxeditor/editor/style.css'
+import { Controller } from 'react-hook-form'
 import { FormControl, FormItem } from '../ui/form'
 import { createTopicFormContext } from './CreateTopicFormContext'
-import { Controller } from 'react-hook-form'
+import '@mdxeditor/editor/style.css'
 
 interface CreateTopicFormMarkdownEditorProps {
   className?: string
 }
 
-export const CreateTopicFormMarkdownEditor = ({
+export function CreateTopicFormMarkdownEditor({
   className,
-}: CreateTopicFormMarkdownEditorProps) => {
+}: CreateTopicFormMarkdownEditorProps) {
   const form = createTopicFormContext.useSelect(state => state.form)
   const editorRef = createTopicFormContext.useSelect(
-    state => state.markdownEditorRef
+    state => state.markdownEditorRef,
   )
   const isPending = createTopicFormContext.useSelect(state => state.isPending)
 
@@ -40,7 +40,7 @@ export const CreateTopicFormMarkdownEditor = ({
               <MDXEditor
                 ref={editorRef}
                 placeholder="Start typing..."
-                onChange={value => {
+                onChange={(value) => {
                   field.onChange(value)
                 }}
                 className={className}

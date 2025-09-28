@@ -1,8 +1,8 @@
+import { useRouterState } from '@tanstack/react-router'
 import { Github } from 'lucide-react'
 import { Logo } from './logo'
 import ThemeToggle from './ThemeToggle'
 import UserDropdown from './UserDropdown'
-import { useRouterState } from '@tanstack/react-router'
 
 const publicRoutes = ['/sign-in', '/sign-up']
 
@@ -15,7 +15,11 @@ export default function Header() {
         <Logo />
         <ul className="flex items-center gap-8 px-1">
           <li title="Source Code">
-            <a target="_blank" href="https://github.com/Zaccal/Grammar-Hero">
+            <a
+              rel="noreferrer noopener"
+              target="_blank"
+              href="https://github.com/Zaccal/Grammar-Hero"
+            >
               <Github />
             </a>
           </li>

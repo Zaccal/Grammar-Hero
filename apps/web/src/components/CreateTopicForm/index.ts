@@ -1,18 +1,17 @@
-import { CreateTopicFormMarkdownEditor } from './CreateTopicFormMarkdownEditor'
-import { CreateTopicFormMarkdownHint } from './CreateTopicFormMarkdownHint'
-import { CreateTopicFormMarkdownHintLink } from './CreateTopicFormMarkdownHint'
 import { CreateTopicForm as Root } from './CreateTopicForm'
 import { createTopicFormContext } from './CreateTopicFormContext'
-import { CreateTopicFormFileUpload } from './CreateTopicFormFileUpload'
-import { CreateTopicFormTitle } from './CreateTopicFormTitle'
-import { CreateTopicFormShortDescription } from './CreateTopicFormShortDescription'
 import { CreateTopicFormDescription } from './CreateTopicFormDescription'
-import { CreateTopicFormLevel } from './CreateTopicFormLevel'
 import { CreateTopicFormDuration } from './CreateTopicFormDuration'
+import { CreateTopicFormFileUpload } from './CreateTopicFormFileUpload'
+import { CreateTopicFormLevel } from './CreateTopicFormLevel'
+import { CreateTopicFormMarkdownEditor } from './CreateTopicFormMarkdownEditor'
+import { CreateTopicFormMarkdownHint, CreateTopicFormMarkdownHintLink } from './CreateTopicFormMarkdownHint'
 import { CreateTopicFormPublish } from './CreateTopicFormPublish'
+import { CreateTopicFormShortDescription } from './CreateTopicFormShortDescription'
+import { CreateTopicFormTitle } from './CreateTopicFormTitle'
 
 export const CreateTopicForm = {
-  Root: Root,
+  Root,
   Context: createTopicFormContext,
   MarkdownEditor: CreateTopicFormMarkdownEditor,
   MarkdownHint: CreateTopicFormMarkdownHint,

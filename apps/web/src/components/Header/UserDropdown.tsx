@@ -1,4 +1,10 @@
+import { Link } from '@tanstack/react-router'
+import { LogOut, Moon, Plus, User } from 'lucide-react'
+import { useState } from 'react'
+import { toast } from 'sonner'
 import { useSession, useTheme } from '@/hooks'
+import { useSignOut } from '@/hooks/useSignOut'
+import { getUserImageFallbackText } from '@/utils/getUserImageFallbackText'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import {
   DropdownMenu,
@@ -8,21 +14,16 @@ import {
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
 import { Skeleton } from '../ui/skeleton'
-import { toast } from 'sonner'
-import { getUserImageFallbackText } from '@/utils/getUserImageFallbackText'
-import { LogOut, Moon, Plus, User } from 'lucide-react'
-import { useSignOut } from '@/hooks/useSignOut'
 import { Switch } from '../ui/switch'
-import { useState } from 'react'
-import { Link } from '@tanstack/react-router'
 
-const UserDropdown = () => {
+function UserDropdown() {
   const { data, isLoading, isError, error } = useSession()
   const { mutate: signOut } = useSignOut()
   const { theme, setTheme } = useTheme()
   const [darkMode, setDarkMode] = useState(theme === 'dark')
 
-  if (isLoading) return <Skeleton className="size-10 rounded-full" />
+  if (isLoading)
+    return <Skeleton className="size-10 rounded-full" />
   if (isError || !data) {
     toast.error('Something went wrong', {
       description: error?.message,
@@ -50,7 +51,7 @@ const UserDropdown = () => {
           </DropdownMenuItem>
         </Link>
         <DropdownMenuItem
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault()
           }}
           className="flex justify-between items-center"
@@ -60,7 +61,7 @@ const UserDropdown = () => {
             <span>Dark mode</span>
           </div>
           <Switch
-            size={'sm'}
+            size="sm"
             checked={darkMode}
             onCheckedChange={() => {
               setTheme(darkMode ? 'light' : 'dark')

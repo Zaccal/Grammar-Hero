@@ -2,7 +2,7 @@ import { FormControl, FormField, FormItem, FormMessage } from '../ui/form'
 import { Textarea } from '../ui/textarea'
 import { createTopicFormContext } from './CreateTopicFormContext'
 
-export const CreateTopicFormShortDescription = () => {
+export function CreateTopicFormShortDescription() {
   const form = createTopicFormContext.useSelect(state => state.form)
   const isPending = createTopicFormContext.useSelect(state => state.isPending)
 
@@ -16,7 +16,7 @@ export const CreateTopicFormShortDescription = () => {
             <FormMessage />
             <FormControl>
               <Textarea
-                variant={'lg'}
+                variant="lg"
                 disabled={isPending}
                 placeholder="Topic short description"
                 {...field}

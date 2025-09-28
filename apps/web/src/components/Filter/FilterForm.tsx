@@ -1,5 +1,5 @@
 import { Form } from '../ui/form'
-import { filterContext } from './Filter'
+import { filterContext } from './FilterContext'
 
 interface FilterFormProps {
   children?: React.ReactNode

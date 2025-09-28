@@ -2,7 +2,7 @@ import { FormControl, FormField, FormItem, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
 import { createTopicFormContext } from './CreateTopicFormContext'
 
-export const CreateTopicFormTitle = () => {
+export function CreateTopicFormTitle() {
   const form = createTopicFormContext.useSelect(state => state.form)
   const isPending = createTopicFormContext.useSelect(state => state.isPending)
 
@@ -17,7 +17,7 @@ export const CreateTopicFormTitle = () => {
             <FormControl>
               <Input
                 disabled={isPending}
-                variant={'lg'}
+                variant="lg"
                 placeholder="Topic title"
                 {...field}
               />

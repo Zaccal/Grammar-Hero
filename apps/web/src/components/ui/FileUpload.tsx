@@ -1,7 +1,6 @@
 import { AlertCircleIcon, ImageIcon, UploadIcon, XIcon } from 'lucide-react'
 
 import {
-  useFileUpload,
   type FileUploadActions,
   type FileUploadState,
 } from '@/hooks/useFileUpload'

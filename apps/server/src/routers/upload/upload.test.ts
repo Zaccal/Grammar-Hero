@@ -1,6 +1,6 @@
+import type { Context } from 'hono'
 import { describe, expect, it, vi } from 'vitest'
 import { uploadImage } from './upload.controller'
-import type { Context } from 'hono'
 
 vi.mock('./upload.controller', () => ({
   uploadImage: vi.fn().mockResolvedValue({ url: 'test.jpg' }),

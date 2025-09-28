@@ -1,16 +1,15 @@
 'use client'
 
 import type React from 'react'
+import type { ChangeEvent, DragEvent, InputHTMLAttributes } from 'react'
 import {
+
   useCallback,
   useRef,
   useState,
-  type ChangeEvent,
-  type DragEvent,
-  type InputHTMLAttributes,
 } from 'react'
 
-export type FileMetadata = {
+export interface FileMetadata {
   name: string
   size: number
   type: string
@@ -18,13 +17,13 @@ export type FileMetadata = {
   id: string
 }
 
-export type FileWithPreview = {
+export interface FileWithPreview {
   file: File | FileMetadata
   id: string
   preview?: string
 }
 
-export type FileUploadOptions = {
+export interface FileUploadOptions {
   maxFiles?: number // Only used when multiple is true, defaults to Infinity
   maxSize?: number // in bytes
   accept?: string
@@ -34,13 +33,13 @@ export type FileUploadOptions = {
   onFilesAdded?: (addedFiles: FileWithPreview[]) => void // Callback when new files are added
 }
 
-export type FileUploadState = {
+export interface FileUploadState {
   files: FileWithPreview[]
   isDragging: boolean
   errors: string[]
 }
 
-export type FileUploadActions = {
+export interface FileUploadActions {
   addFiles: (files: FileList | File[]) => void
   removeFile: (id: string) => void
   clearFiles: () => void
@@ -58,9 +57,7 @@ export type FileUploadActions = {
   }
 }
 
-export const useFileUpload = (
-  options: FileUploadOptions = {}
-): [FileUploadState, FileUploadActions] => {
+export function useFileUpload(options: FileUploadOptions = {}): [FileUploadState, FileUploadActions] {
   const {
     maxFiles = Infinity,
     maxSize = Infinity,
@@ -89,7 +86,8 @@ export const useFileUpload = (
         if (file.size > maxSize) {
           return `File "${file.name}" exceeds the maximum size of ${formatBytes(maxSize)}.`
         }
-      } else {
+      }
+      else {
         if (file.size > maxSize) {
           return `File "${file.name}" exceeds the maximum size of ${formatBytes(maxSize)}.`
         }
@@ -100,7 +98,7 @@ export const useFileUpload = (
         const fileType = file instanceof File ? file.type || '' : file.type
         const fileExtension = `.${file instanceof File ? file.name.split('.').pop() : file.name.split('.').pop()}`
 
-        const isAccepted = acceptedTypes.some(type => {
+        const isAccepted = acceptedTypes.some((type) => {
           if (type.startsWith('.')) {
             return fileExtension.toLowerCase() === type.toLowerCase()
           }
@@ -118,7 +116,7 @@ export const useFileUpload = (
 
       return null
     },
-    [accept, maxSize]
+    [accept, maxSize],
   )
 
   const createPreview = useCallback(
@@ -128,7 +126,7 @@ export const useFileUpload = (
       }
       return file.url
     },
-    []
+    [],
   )
 
   const generateUniqueId = useCallback((file: File | FileMetadata): string => {
@@ -139,13 +137,13 @@ export const useFileUpload = (
   }, [])
 
   const clearFiles = useCallback(() => {
-    setState(prev => {
+    setState((prev) => {
       // Clean up object URLs
-      prev.files.forEach(file => {
+      prev.files.forEach((file) => {
         if (
-          file.preview &&
-          file.file instanceof File &&
-          file.file.type.startsWith('image/')
+          file.preview
+          && file.file instanceof File
+          && file.file.type.startsWith('image/')
         ) {
           URL.revokeObjectURL(file.preview)
         }
@@ -168,7 +166,8 @@ export const useFileUpload = (
 
   const addFiles = useCallback(
     (newFiles: FileList | File[]) => {
-      if (!newFiles || newFiles.length === 0) return
+      if (!newFiles || newFiles.length === 0)
+        return
 
       const newFilesArray = Array.from(newFiles)
       const errors: string[] = []
@@ -183,9 +182,9 @@ export const useFileUpload = (
 
       // Check if adding these files would exceed maxFiles (only in multiple mode)
       if (
-        multiple &&
-        maxFiles !== Infinity &&
-        state.files.length + newFilesArray.length > maxFiles
+        multiple
+        && maxFiles !== Infinity
+        && state.files.length + newFilesArray.length > maxFiles
       ) {
         errors.push(`You can only upload a maximum of ${maxFiles} files.`)
         setState(prev => ({ ...prev, errors }))
@@ -194,13 +193,13 @@ export const useFileUpload = (
 
       const validFiles: FileWithPreview[] = []
 
-      newFilesArray.forEach(file => {
+      newFilesArray.forEach((file) => {
         // Only check for duplicates if multiple files are allowed
         if (multiple) {
           const isDuplicate = state.files.some(
             existingFile =>
-              existingFile.file.name === file.name &&
-              existingFile.file.size === file.size
+              existingFile.file.name === file.name
+              && existingFile.file.size === file.size,
           )
 
           // Skip duplicate files silently
@@ -214,7 +213,7 @@ export const useFileUpload = (
           errors.push(
             multiple
               ? `Some files exceed the maximum size of ${formatBytes(maxSize)}.`
-              : `File exceeds the maximum size of ${formatBytes(maxSize)}.`
+              : `File exceeds the maximum size of ${formatBytes(maxSize)}.`,
           )
           return
         }
@@ -222,7 +221,8 @@ export const useFileUpload = (
         const error = validateFile(file)
         if (error) {
           errors.push(error)
-        } else {
+        }
+        else {
           validFiles.push({
             file,
             id: generateUniqueId(file),
@@ -236,7 +236,7 @@ export const useFileUpload = (
         // Call the onFilesAdded callback with the newly added valid files
         onFilesAdded?.(validFiles)
 
-        setState(prev => {
+        setState((prev) => {
           const newFiles = !multiple
             ? validFiles
             : [...prev.files, ...validFiles]
@@ -247,7 +247,8 @@ export const useFileUpload = (
             errors,
           }
         })
-      } else if (errors.length > 0) {
+      }
+      else if (errors.length > 0) {
         setState(prev => ({
           ...prev,
           errors,
@@ -270,18 +271,18 @@ export const useFileUpload = (
       clearFiles,
       onFilesChange,
       onFilesAdded,
-    ]
+    ],
   )
 
   const removeFile = useCallback(
     (id: string) => {
-      setState(prev => {
+      setState((prev) => {
         const fileToRemove = prev.files.find(file => file.id === id)
         if (
-          fileToRemove &&
-          fileToRemove.preview &&
-          fileToRemove.file instanceof File &&
-          fileToRemove.file.type.startsWith('image/')
+          fileToRemove
+          && fileToRemove.preview
+          && fileToRemove.file instanceof File
+          && fileToRemove.file.type.startsWith('image/')
         ) {
           URL.revokeObjectURL(fileToRemove.preview)
         }
@@ -296,7 +297,7 @@ export const useFileUpload = (
         }
       })
     },
-    [onFilesChange]
+    [onFilesChange],
   )
 
   const clearErrors = useCallback(() => {
@@ -344,12 +345,13 @@ export const useFileUpload = (
         if (!multiple) {
           const file = e.dataTransfer.files[0]
           addFiles([file])
-        } else {
+        }
+        else {
           addFiles(e.dataTransfer.files)
         }
       }
     },
-    [addFiles, multiple]
+    [addFiles, multiple],
   )
 
   const handleFileChange = useCallback(
@@ -358,7 +360,7 @@ export const useFileUpload = (
         addFiles(e.target.files)
       }
     },
-    [addFiles]
+    [addFiles],
   )
 
   const openFileDialog = useCallback(() => {
@@ -378,7 +380,7 @@ export const useFileUpload = (
         ref: inputRef,
       }
     },
-    [accept, multiple, handleFileChange]
+    [accept, multiple, handleFileChange],
   )
 
   return [
@@ -400,8 +402,9 @@ export const useFileUpload = (
 }
 
 // Helper function to format bytes to human-readable format
-export const formatBytes = (bytes: number, decimals = 2): string => {
-  if (bytes === 0) return '0 Bytes'
+export function formatBytes(bytes: number, decimals = 2): string {
+  if (bytes === 0)
+    return '0 Bytes'
 
   const k = 1024
   const dm = decimals < 0 ? 0 : decimals
@@ -409,5 +412,5 @@ export const formatBytes = (bytes: number, decimals = 2): string => {
 
   const i = Math.floor(Math.log(bytes) / Math.log(k))
 
-  return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + sizes[i]
+  return Number.parseFloat((bytes / k ** i).toFixed(dm)) + sizes[i]
 }

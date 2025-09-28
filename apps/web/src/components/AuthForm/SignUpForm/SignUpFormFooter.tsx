@@ -1,7 +1,7 @@
-import { Button } from '@/components/ui/button'
 import { Link } from '@tanstack/react-router'
+import { Button } from '@/components/ui/button'
 
-const SignUpFormFooter = () => {
+function SignUpFormFooter() {
   return (
     <>
       <div className="p-3">

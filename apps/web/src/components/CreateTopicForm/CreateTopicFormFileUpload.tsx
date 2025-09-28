@@ -1,23 +1,23 @@
-import FileUpload from '../ui/FileUpload'
+import { UPLOAD_FILE_SIZE_MB } from '@server/routers/upload/constants'
+import { useMutationState } from '@tanstack/react-query'
 import {
   USE_FILE_UPLOAD_MUTATION_KEY,
   useDidUpdate,
   useFileUpload,
 } from '@/hooks/index'
-import { UPLOAD_FILE_SIZE_MB } from '@server/routers/upload/constants'
-import { fileUploadStore } from './store'
+import FileUpload from '../ui/FileUpload'
 import { createTopicFormContext } from './CreateTopicFormContext'
-import { useMutationState } from '@tanstack/react-query'
+import { fileUploadStore } from './store'
 
 interface CreateTopicFormFileUploadProps {
   className?: string
 }
 
-export const CreateTopicFormFileUpload = ({
+export function CreateTopicFormFileUpload({
   className,
-}: CreateTopicFormFileUploadProps) => {
-  const isError =
-    useMutationState({
+}: CreateTopicFormFileUploadProps) {
+  const isError
+    = useMutationState({
       filters: {
         mutationKey: [USE_FILE_UPLOAD_MUTATION_KEY],
         status: 'error',
@@ -30,7 +30,7 @@ export const CreateTopicFormFileUpload = ({
     maxSize: UPLOAD_FILE_SIZE_MB * 1024 * 1024,
     maxFiles: 1,
 
-    onFilesAdded: addedFiles => {
+    onFilesAdded: (addedFiles) => {
       const file = addedFiles[0].file as File
 
       fileUploadStore.set({ file })
@@ -40,7 +40,8 @@ export const CreateTopicFormFileUpload = ({
   const file = fileUploadStore.use(state => state.file)
 
   useDidUpdate(() => {
-    if (!file) fileUploadActions.clearFiles()
+    if (!file)
+      fileUploadActions.clearFiles()
   }, [file])
 
   return (

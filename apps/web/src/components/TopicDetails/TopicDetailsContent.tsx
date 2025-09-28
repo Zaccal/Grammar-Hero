@@ -1,9 +1,9 @@
 import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import remarkBreaks from 'remark-breaks'
-import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeHighlight from 'rehype-highlight'
+import rehypeSlug from 'rehype-slug'
+import remarkBreaks from 'remark-breaks'
+import remarkGfm from 'remark-gfm'
 import { cn } from '@/lib/utils'
 
 interface TopicDetailsContentProps {
@@ -11,10 +11,10 @@ interface TopicDetailsContentProps {
   className?: string
 }
 
-const TopicDetailsContent = ({
+function TopicDetailsContent({
   children,
   className,
-}: TopicDetailsContentProps) => {
+}: TopicDetailsContentProps) {
   // TODO: Create a style for highlighted texts
   return (
     <div className={cn(className, 'markdown-typography')}>

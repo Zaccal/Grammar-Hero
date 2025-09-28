@@ -1,11 +1,11 @@
-import { Button } from '../ui/button'
 import { Heart } from 'lucide-react'
-import { topicDetailsContext } from './TopicDetails'
+import { Button } from '../ui/button'
+import { topicDetailsContext } from './TopicDetailsContext'
 
-export const TopicDetailsLike = () => {
+export function TopicDetailsLike() {
   const { likes } = topicDetailsContext.useSelect(state => state)
   return (
-    <Button variant={'mutedGhost'}>
+    <Button variant="mutedGhost">
       <Heart size={21} />
       <span>{likes}</span>
     </Button>

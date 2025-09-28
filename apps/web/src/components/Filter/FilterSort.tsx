@@ -1,6 +1,6 @@
-import { filterContext } from './Filter'
+import type { FilterFormSchema } from '@/schemas/filter.schema'
+import { sortLabels } from '@/schemas/filter.schema'
 import { FormControl, FormField, FormItem, FormLabel } from '../ui/form'
-import { sortLabels, type FilterFormSchema } from '@/schemas/filter.schema'
 import {
   Select,
   SelectContent,
@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/Select'
+import { filterContext } from './FilterContext'
 
 export function FilterSort() {
   const form = filterContext.useSelect(state => state.form)
@@ -22,7 +23,7 @@ export function FilterSort() {
           <FormControl>
             <Select
               value={`${field.value}_${form.watch('sort')}`}
-              onValueChange={value => {
+              onValueChange={(value) => {
                 const [sortField, sort] = value.split('_') as [
                   FilterFormSchema['sortField'],
                   FilterFormSchema['sort'],
@@ -43,7 +44,7 @@ export function FilterSort() {
                     >
                       {label}
                     </SelectItem>
-                  ))
+                  )),
                 )}
               </SelectContent>
             </Select>

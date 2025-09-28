@@ -1,6 +1,8 @@
 import type { Context } from 'hono'
-import path from 'path'
-import { promises as fs } from 'fs'
+import { Buffer } from 'node:buffer'
+import { promises as fs } from 'node:fs'
+import path from 'node:path'
+import process from 'node:process'
 
 export async function uploadImage(file: File, c: Context) {
   const arrayBuffer = await file.arrayBuffer()
@@ -23,7 +25,7 @@ export async function getImage(fileName: string) {
 
   const buffer = await fs.readFile(filePath)
 
-  return new Response(buffer, {
+  return new Response(new Uint8Array(buffer), {
     headers: {
       'Content-Type': 'image/png',
     },

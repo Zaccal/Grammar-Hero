@@ -1,3 +1,5 @@
+import type { ButtonProps } from '../ui/button'
+import { FORM_ID } from '@/components/CreateTopicForm/CreateTopicForm'
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -8,13 +10,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '../ui/alert-dialog'
-import { Button, type ButtonProps } from '../ui/button'
-import { FORM_ID } from '@/components/CreateTopicForm/CreateTopicForm'
+import { Button } from '../ui/button'
 import Loader from '../ui/loader'
-import { alertDialogCreateTopicStore } from './store'
 import { createTopicFormContext } from './CreateTopicFormContext'
+import { alertDialogCreateTopicStore } from './store'
 
-export const CreateTopicFormPublish = ({ children, ...props }: ButtonProps) => {
+export function CreateTopicFormPublish({ children, ...props }: ButtonProps) {
   const isPending = createTopicFormContext.useSelect(state => state.isPending)
 
   // I need the controlled state because I want to close the alertDialog when the loadihng state is finished
@@ -24,7 +25,7 @@ export const CreateTopicFormPublish = ({ children, ...props }: ButtonProps) => {
     <>
       <AlertDialog
         open={open}
-        onOpenChange={state => {
+        onOpenChange={(state) => {
           alertDialogCreateTopicStore.set({
             open: state,
           })

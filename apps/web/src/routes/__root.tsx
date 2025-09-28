@@ -1,17 +1,17 @@
-import '../index.css'
-import Header from '@/components/Header/header'
-import Loader from '@/components/ui/loader'
-import { Toaster } from '@/components/ui/sonner'
+import { QueryClientProvider } from '@tanstack/react-query'
 import {
+  createRootRouteWithContext,
   HeadContent,
   Outlet,
-  createRootRouteWithContext,
   useRouterState,
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-import { ThemeProvider } from '@/providers/themeProvider'
-import { QueryClientProvider } from '@tanstack/react-query'
+import Header from '@/components/Header/header'
+import Loader from '@/components/ui/loader'
+import { Toaster } from '@/components/ui/sonner'
 import { queryClient } from '@/lib/trpc'
+import { ThemeProvider } from '@/providers/themeProvider'
+import '../index.css'
 
 export interface RouterAppContext {}
 

@@ -1,12 +1,13 @@
-import 'dotenv/config'
-import { auth } from './lib/auth'
+import process from 'node:process'
+import { trpcServer } from '@hono/trpc-server'
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
-import { trpcServer } from '@hono/trpc-server'
-import { appRouter } from './routers'
+import { auth } from './lib/auth'
 import { createContext } from './lib/context'
+import { appRouter } from './routers'
 import { uploadRoute } from './routers/upload/upload.route'
+import 'dotenv/config'
 
 const app = new Hono()
 

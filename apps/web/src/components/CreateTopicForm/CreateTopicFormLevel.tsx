@@ -8,7 +8,7 @@ import {
 } from '../ui/Select'
 import { createTopicFormContext } from './CreateTopicFormContext'
 
-export const CreateTopicFormLevel = () => {
+export function CreateTopicFormLevel() {
   const form = createTopicFormContext.useSelect(state => state.form)
   const isPending = createTopicFormContext.useSelect(state => state.isPending)
 

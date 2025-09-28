@@ -1,7 +1,7 @@
-import { Button } from '@/components/ui/button'
 import { Link } from '@tanstack/react-router'
+import { Button } from '@/components/ui/button'
 
-const SignInFormFooter = () => {
+function SignInFormFooter() {
   return (
     <div className="p-3">
       <p className="text-accent-foreground text-center text-sm">

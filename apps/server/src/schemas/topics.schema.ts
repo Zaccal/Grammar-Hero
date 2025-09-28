@@ -1,5 +1,5 @@
-import { DURATION_REGEX } from '../lib/constants'
 import { z } from 'zod'
+import { DURATION_REGEX } from '../lib/constants'
 
 export const topicCreateSchema = z.object({
   title: z.string().min(3),

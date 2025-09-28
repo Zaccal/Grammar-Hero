@@ -1,6 +1,6 @@
 import { DropdownMenuItem } from '../ui/dropdown-menu'
 
-const TopicDetailsEdit = () => {
+function TopicDetailsEdit() {
   return <DropdownMenuItem>Edit</DropdownMenuItem>
 }
 

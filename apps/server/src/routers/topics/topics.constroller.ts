@@ -1,10 +1,10 @@
-import prisma from '../../../prisma/index'
-import { TOPICS_SELECT } from './constants'
-import { TRPCError } from '@trpc/server'
+import type { Prisma } from 'prisma/generated/client'
 import type { TopicCreateSchema } from '../../schemas/topics.schema'
 import type { FilterParamsSchema } from '@/schemas/filterParams.schema'
-import type { Prisma } from 'prisma/generated/client'
+import { TRPCError } from '@trpc/server'
+import prisma from '../../../prisma/index'
 import { getDummyDate } from '../../utils/getDummyDate'
+import { TOPICS_SELECT } from './constants'
 
 export async function getAll(input: FilterParamsSchema) {
   const where: Prisma.TopicsWhereInput = input.query
@@ -57,44 +57,36 @@ export async function getAll(input: FilterParamsSchema) {
 }
 
 export async function getById(id: string) {
-  try {
-    const topic = await prisma.topics.findUnique({
-      where: {
-        id,
-      },
-      select: TOPICS_SELECT,
+  const topic = await prisma.topics.findUnique({
+    where: {
+      id,
+    },
+    select: TOPICS_SELECT,
+  })
+
+  if (!topic) {
+    throw new TRPCError({
+      code: 'NOT_FOUND',
+      message: 'Topic not found',
     })
-
-    if (!topic) {
-      throw new TRPCError({
-        code: 'NOT_FOUND',
-        message: 'Topic not found',
-      })
-    }
-
-    return topic
-  } catch (error) {
-    throw error
   }
+
+  return topic
 }
 
 export async function createTopic(data: TopicCreateSchema, userId: string) {
-  try {
-    return await prisma.topics.create({
-      data: {
-        ...data,
-        durationMin: getDummyDate(data.durationMin)!,
-        durationMax: getDummyDate(data.durationMax)!,
-        likes: 0,
-        user: {
-          connect: {
-            id: userId,
-          },
+  return await prisma.topics.create({
+    data: {
+      ...data,
+      durationMin: getDummyDate(data.durationMin)!,
+      durationMax: getDummyDate(data.durationMax)!,
+      likes: 0,
+      user: {
+        connect: {
+          id: userId,
         },
       },
-      select: TOPICS_SELECT,
-    })
-  } catch (error) {
-    throw error
-  }
+    },
+    select: TOPICS_SELECT,
+  })
 }

@@ -1,5 +1,5 @@
 import { DropdownMenuItem } from '../ui/dropdown-menu'
 
-export const TopicDetailsCopyLink = () => {
+export function TopicDetailsCopyLink() {
   return <DropdownMenuItem>Copy link</DropdownMenuItem>
 }

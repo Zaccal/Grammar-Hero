@@ -1,22 +1,22 @@
 import { durationOptions } from '@/schemas/filter.schema'
 import {
+  FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-  FormControl,
-  FormDescription,
   FormMessage,
 } from '../ui/form'
 import {
   Select,
   SelectContent,
+  SelectItem,
   SelectTrigger,
   SelectValue,
-  SelectItem,
 } from '../ui/Select'
-import { filterContext } from './Filter'
+import { filterContext } from './FilterContext'
 
-export const FilterDuration = () => {
+export function FilterDuration() {
   const form = filterContext.useSelect(state => state.form)
 
   return (

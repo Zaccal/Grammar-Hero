@@ -1,3 +1,9 @@
+import { Bookmark, Heart } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { getCuttedText } from '@/utils/getCuttedText'
+import { getTopicImage } from '@/utils/getTopicImage'
+import { getVariantLevel } from '@/utils/getVariantLevel'
+import { Badge } from '../../ui/Badge'
 import {
   MinimalCard,
   MinimalCardContent,
@@ -5,24 +11,17 @@ import {
   MinimalCardFooter,
   MinimalCardTitle,
 } from '../../ui/SimpleCards'
-import { topicsContext } from '../Topics'
-import { cn } from '@/lib/utils'
-import { Badge } from '../../ui/Badge'
-import { Heart, Bookmark } from 'lucide-react'
-import { getVariantLevel } from '@/utils/getVariantLevel'
+import { topicsContext } from '../TopicsContext'
 import { TopicsImage } from '../TopicsImage'
-import { getCuttedText } from '@/utils/getCuttedText'
-import { getTopicImage } from '@/utils/getTopicImage'
 
 export function TopicsCard() {
-  const { title, image, shortDescription, level, likes, bookmark } =
-    topicsContext.useSelect(state => state)
+  const state = topicsContext.useSelect(state => state)
   return (
     <>
       <MinimalCard className="h-full text-left">
         <TopicsImage
-          alt={title}
-          src={getTopicImage(image)}
+          alt={state.title}
+          src={getTopicImage(state.image)}
           className={cn(
             'relative h-[190px] w-full rounded-[20px] mb-6',
             'shadow-[0px_1px_1px_0px_rgba(0,0,0,0.05),0px_1px_1px_0px_rgba(255,252,240,0.5)_inset,0px_0px_0px_1px_hsla(0,0%,100%,0.1)_inset,0px_0px_1px_0px_rgba(28,27,26,0.5)]',
@@ -30,24 +29,27 @@ export function TopicsCard() {
           )}
         />
         <MinimalCardContent>
-          <MinimalCardTitle title={title}>
-            {getCuttedText(title, 24)}
+          <MinimalCardTitle title={state.title}>
+            {getCuttedText(state.title, 24)}
           </MinimalCardTitle>
-          <MinimalCardDescription title={shortDescription} className="h-[48px]">
-            {getCuttedText(shortDescription, 58)}
+          <MinimalCardDescription
+            title={state.shortDescription}
+            className="h-[48px]"
+          >
+            {getCuttedText(state.shortDescription, 58)}
           </MinimalCardDescription>
         </MinimalCardContent>
 
         <MinimalCardFooter className="flex justify-between">
-          <Badge variant={getVariantLevel(level)}>{level}</Badge>
+          <Badge variant={getVariantLevel(state.level)}>{state.level}</Badge>
           <div className="flex items-center gap-3 text-muted-foreground text-sm">
             <div className="flex items-center gap-2">
               <Heart size={21} />
-              <span>{likes}</span>
+              <span>{state.likes}</span>
             </div>
             <div className="flex items-center gap-2">
               <Bookmark size={21} />
-              <span>{bookmark.length}</span>
+              <span>{state.bookmark.length}</span>
             </div>
           </div>
         </MinimalCardFooter>

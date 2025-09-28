@@ -53,9 +53,9 @@ export const sortLabels: Record<
 
 export const durationValues: Record<
   string,
-  { min: string | undefined; max: string | undefined }
+  { min: string | undefined, max: string | undefined }
 > = {
-  All: { min: '00:00:00', max: undefined },
+  'All': { min: '00:00:00', max: undefined },
   '5-10 min': { min: '00:05:00', max: '00:10:00' },
   '10-15 min': { min: '00:10:00', max: '00:15:00' },
   '15-20 min': { min: '00:15:00', max: '00:20:00' },
@@ -66,5 +66,5 @@ export const durationValues: Record<
 }
 
 export const durationOptions = Object.entries(durationValues).map(
-  ([key]) => key
+  ([key]) => key,
 )

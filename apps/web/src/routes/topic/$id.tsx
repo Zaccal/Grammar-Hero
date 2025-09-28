@@ -1,10 +1,10 @@
+import { useQuery } from '@tanstack/react-query'
+import { createFileRoute } from '@tanstack/react-router'
 import ErrorComponent from '@/components/ErrorComponent'
 import { TopicDetails } from '@/components/TopicDetails/index'
 import Loader from '@/components/ui/loader'
 import { Separator } from '@/components/ui/separator'
 import { trpc } from '@/lib/trpc'
-import { useQuery } from '@tanstack/react-query'
-import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/topic/$id')({
   component: RouteComponent,
@@ -13,11 +13,13 @@ export const Route = createFileRoute('/topic/$id')({
 function RouteComponent() {
   const { id } = Route.useParams()
   const { data, isLoading, isError, error } = useQuery(
-    trpc.topics.getById.queryOptions(id)
+    trpc.topics.getById.queryOptions(id),
   )
 
-  if (isLoading) return <Loader />
-  if (isError) return <ErrorComponent error={error} />
+  if (isLoading)
+    return <Loader />
+  if (isError)
+    return <ErrorComponent error={error} />
 
   // after push to topic page remove overflow-hidden from the body
   // because the user pushed from TopicsDialogCard and it has overflow-hidden, that does not removed after push

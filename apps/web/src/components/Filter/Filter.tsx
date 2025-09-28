@@ -1,29 +1,20 @@
-import { createContext } from '@/hooks'
-import type { FilterParamsSchema } from '@server/schemas/filterParams.schema'
+import type { RouteExtensions } from '@tanstack/router-core'
+import type { FilterFormSchema } from '@/schemas/filter.schema'
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
   useNavigate,
+
   useSearch,
-  type UseNavigateResult,
 } from '@tanstack/react-router'
-import type { RouteExtensions } from '@tanstack/router-core'
+import { useForm } from 'react-hook-form'
 import { cn } from '@/lib/utils'
-import { useForm, type UseFormReturn } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 import {
   durationValues,
   filterFormSchema,
-  type FilterFormSchema,
+
 } from '@/schemas/filter.schema'
 import { getDurationOption } from '@/utils/getDurationOption'
-
-interface FilterContext {
-  form: UseFormReturn<FilterFormSchema>
-  searchParams: Partial<FilterParamsSchema>
-  navigate: UseNavigateResult<'/'>
-  onSubmit: (data: FilterFormSchema) => void
-}
-
-export const filterContext = createContext<FilterContext>()
+import { filterContext } from './FilterContext'
 
 interface FilterRootProps {
   children?: React.ReactNode
@@ -48,7 +39,7 @@ export function FilterRoot({ children, className, route }: FilterRootProps) {
       level: searchParams.level || 'All',
       duration: getDurationOption(
         searchParams.durationMin,
-        searchParams.durationMax
+        searchParams.durationMax,
       ),
     },
   })
@@ -78,7 +69,7 @@ export function FilterRoot({ children, className, route }: FilterRootProps) {
       <div
         className={cn(
           'space-y-4 sm:space-y-0 sm:flex items-center justify-between gap-2 container-lg mb-12',
-          className
+          className,
         )}
       >
         {children}

@@ -1,20 +1,22 @@
+import type { FilterParamsSchema } from '@server/schemas/filterParams.schema'
+import {
+
+  filterParamsSchema,
+} from '@server/schemas/filterParams.schema'
+import { useQuery } from '@tanstack/react-query'
+import { createFileRoute, redirect } from '@tanstack/react-router'
+import ErrorComponent from '@/components/ErrorComponent'
+import { Filter } from '@/components/Filter/index'
 import {
   Greeting,
   GreetingDescription,
   GreetingTitle,
 } from '@/components/Greeting/Greeting'
-import TopicsDialogCard from '@/components/Topics/monolite/TopicsDialogCard'
 import { TopicsDialog } from '@/components/Topics/index'
+import TopicsDialogCard from '@/components/Topics/monolite/TopicsDialogCard'
 import { authClient } from '@/lib/auth-client'
-import { createFileRoute, redirect } from '@tanstack/react-router'
-import { useQuery } from '@tanstack/react-query'
 import { trpc } from '@/lib/trpc'
-import ErrorComponent from '@/components/ErrorComponent'
-import { Filter } from '@/components/Filter/index'
-import {
-  type FilterParamsSchema,
-  filterParamsSchema,
-} from '@server/schemas/filterParams.schema'
+import { getDummyArray } from '@/utils/getDummyArray'
 
 export const Route = createFileRoute('/')({
   component: HomeComponent,
@@ -41,13 +43,18 @@ function HomeComponent() {
     isError,
   } = useQuery(trpc.topics.getAll.queryOptions(searchParams))
 
-  if (isError) return <ErrorComponent error={error} />
+  if (isError)
+    return <ErrorComponent error={error} />
 
   return (
     <>
       <section>
         <Greeting>
-          <GreetingTitle>Welcome {user.displayUsername}!</GreetingTitle>
+          <GreetingTitle>
+            Welcome
+            {user.displayUsername}
+            !
+          </GreetingTitle>
           <GreetingDescription>
             Choose a grammar topic and start learning right away! Here you’ll
             find a variety of grammar lessons designed to help you understand
@@ -76,9 +83,8 @@ function HomeComponent() {
         </Filter.Root>
         <TopicsDialog.List>
           {isLoading
-            ? new Array(16)
-                .fill(0)
-                .map((_, index) => <TopicsDialog.Skeleton key={index} />)
+            ? getDummyArray(6)
+                .map(value => <TopicsDialog.Skeleton key={value} />)
             : topics?.map(topicData => (
                 <TopicsDialogCard key={topicData.id} topic={topicData} />
               ))}

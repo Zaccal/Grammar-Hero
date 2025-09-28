@@ -1,29 +1,32 @@
-import { cn } from '@/lib/utils'
-import { Info } from 'lucide-react'
 import type { AnchorHTMLAttributes } from 'react'
+import { Info } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 interface CreateTopicFormMarkdownHintProps {
   children: React.ReactNode
 }
 
-export const CreateTopicFormMarkdownHint = ({
+export function CreateTopicFormMarkdownHint({
   children,
-}: CreateTopicFormMarkdownHintProps) => {
+}: CreateTopicFormMarkdownHintProps) {
   return (
     <>
       <p className="text-muted-foreground text-xs">
-        <Info className="size-4 inline mr-1" /> {children}{' '}
+        <Info className="size-4 inline mr-1" />
+        {' '}
+        {children}
+        {' '}
       </p>
     </>
   )
 }
 
-export const CreateTopicFormMarkdownHintLink = ({
+export function CreateTopicFormMarkdownHintLink({
   children,
   className,
   target,
   ...props
-}: AnchorHTMLAttributes<HTMLAnchorElement>) => {
+}: AnchorHTMLAttributes<HTMLAnchorElement>) {
   return (
     <a
       target={target ?? '_blank'}

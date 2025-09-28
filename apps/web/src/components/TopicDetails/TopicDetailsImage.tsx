@@ -1,9 +1,10 @@
-import { topicDetailsContext } from './TopicDetails'
 import { getTopicImage } from '@/utils/getTopicImage'
+import { topicDetailsContext } from './TopicDetailsContext'
 
 export function TopicDetailsImage() {
   const { image, title } = topicDetailsContext.useSelect(state => state)
-  if (!image) return null
+  if (!image)
+    return null
   return (
     <>
       <img

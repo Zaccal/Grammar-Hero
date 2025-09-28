@@ -1,19 +1,17 @@
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Form } from '../ui/form'
-import { alertDialogCreateTopicStore, fileUploadStore } from './store'
-import {
-  createTopicFormSchema,
-  type CreateTopicFormSchema,
-} from '@/schemas/createTopicForm.schema'
-import { useMutation } from '@tanstack/react-query'
-import { queryClient, trpc } from '@/lib/trpc'
-import { toast } from 'sonner'
-import { durationValues } from '@/schemas/filter.schema'
-import { useRef } from 'react'
 import type { MDXEditorMethods } from '@mdxeditor/editor'
-import { createTopicFormContext } from './CreateTopicFormContext'
+import type { CreateTopicFormSchema } from '@/schemas/createTopicForm.schema'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation } from '@tanstack/react-query'
+import { useRef } from 'react'
+import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { useFileUploadMutation } from '@/hooks/useFileUploadMutation'
+import { queryClient, trpc } from '@/lib/trpc'
+import { createTopicFormSchema } from '@/schemas/createTopicForm.schema'
+import { durationValues } from '@/schemas/filter.schema'
+import { Form } from '../ui/form'
+import { createTopicFormContext } from './CreateTopicFormContext'
+import { alertDialogCreateTopicStore, fileUploadStore } from './store'
 
 interface CreateTopicFormProps {
   children: React.ReactNode
@@ -22,10 +20,7 @@ interface CreateTopicFormProps {
 
 export const FORM_ID = 'CREATE_FORM_TRIGGER'
 
-export const CreateTopicForm = ({
-  children,
-  className,
-}: CreateTopicFormProps) => {
+export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
   // I control the file upload outside of the form because, file inputs are uncontrolled component
   // and react-hook-form doesn't support them well
   // Also, markdown editor is uncontrolled component
@@ -79,13 +74,15 @@ export const CreateTopicForm = ({
     )
 
   async function uploadImageHandler() {
-    if (!file) return
+    if (!file)
+      return
     return (await uploadFile(file)).url
   }
 
   async function onSubmit(data: CreateTopicFormSchema) {
     const image = await uploadImageHandler()
-    if (isFileUploadError) return
+    if (isFileUploadError)
+      return
     await createTopic({
       ...data,
       durationMin: durationValues[data.duration]!.min,

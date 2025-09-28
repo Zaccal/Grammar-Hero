@@ -1,6 +1,6 @@
+import { createFileRoute } from '@tanstack/react-router'
 import { CreateTopicForm } from '@/components/CreateTopicForm/index'
 import { Separator } from '@/components/ui/separator'
-import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/createTopic')({
   component: RouteComponent,
@@ -24,7 +24,8 @@ function RouteComponent() {
       <Separator className="my-6" />
 
       <CreateTopicForm.MarkdownHint>
-        We use markdown to format the topic content. You can learn markdown{' '}
+        We use markdown to format the topic content. You can learn markdown
+        {' '}
         <CreateTopicForm.MarkdownHintLink href="https://www.markdowntutorial.com/">
           here
         </CreateTopicForm.MarkdownHintLink>
@@ -33,7 +34,7 @@ function RouteComponent() {
 
       <CreateTopicForm.Publish
         className="w-[80%] sm:w-auto fixed bottom-4 right-1/2 translate-x-1/2 sm:translate-x-0 sm:right-4  "
-        size={'lg'}
+        size="lg"
         type="button"
       >
         Publish

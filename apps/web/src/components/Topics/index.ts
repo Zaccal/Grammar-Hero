@@ -1,13 +1,13 @@
 import { Topic } from './Topics'
+import { TopicsActions } from './TopicsActions'
 import { TopicsContent } from './TopicsContent'
+import { TopicsDescription } from './TopicsDescription'
 import { TopicsImage } from './TopicsImage'
 import { TopicsList } from './TopicsList'
 import { TopicsPreview } from './TopicsPreview'
-import { TopicsTitle } from './TopicsTitle'
-import { TopicsSubtitle } from './TopicsSubtitle'
-import { TopicsDescription } from './TopicsDescription'
-import { TopicsActions } from './TopicsActions'
 import { TopicSkeleton } from './TopicsSkeleton'
+import { TopicsSubtitle } from './TopicsSubtitle'
+import { TopicsTitle } from './TopicsTitle'
 
 export const TopicsDialog = {
   Root: Topic,

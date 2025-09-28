@@ -18,7 +18,7 @@ echo "✅ Formatter passed."
 
 
 echo "🔍 Running ESLint..."
-lint-staged
+eslint . --fix
 if [ $? -ne 0 ]; then
 echo "❌ ESLint failed. Commit aborted."
 exit 1

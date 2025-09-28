@@ -1,5 +1,5 @@
 import { DropdownMenuItem } from '../ui/dropdown-menu'
 
-export const TopicDetailsShare = () => {
+export function TopicDetailsShare() {
   return <DropdownMenuItem>Share</DropdownMenuItem>
 }

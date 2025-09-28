@@ -1,3 +1,5 @@
+import type { UseFormReturn } from 'react-hook-form'
+import type { SignUpSchema } from '@/schemas/auth.schema'
 import { Button } from '@/components/ui/button'
 import {
   FormControl,
@@ -7,14 +9,12 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import type { SignUpSchema } from '@/schemas/auth.schema'
-import type { UseFormReturn } from 'react-hook-form'
 
 interface SignUpFormFieldsProps {
   form: UseFormReturn<SignUpSchema>
 }
 
-const SignUpFormFields = ({ form }: SignUpFormFieldsProps) => {
+function SignUpFormFields({ form }: SignUpFormFieldsProps) {
   const { errors, isSubmitting } = form.formState
   return (
     <div className="mt-6 space-y-5.5">
@@ -23,11 +23,13 @@ const SignUpFormFields = ({ form }: SignUpFormFieldsProps) => {
         name="username"
         render={({ field }) => (
           <FormItem>
-            {errors.username ? (
-              <FormMessage />
-            ) : (
-              <FormLabel>Username</FormLabel>
-            )}
+            {errors.username
+              ? (
+                  <FormMessage />
+                )
+              : (
+                  <FormLabel>Username</FormLabel>
+                )}
             <FormControl>
               <Input disabled={isSubmitting} {...field} />
             </FormControl>
@@ -53,11 +55,13 @@ const SignUpFormFields = ({ form }: SignUpFormFieldsProps) => {
         control={form.control}
         render={({ field }) => (
           <FormItem>
-            {errors.password ? (
-              <FormMessage />
-            ) : (
-              <FormLabel>Passoword</FormLabel>
-            )}
+            {errors.password
+              ? (
+                  <FormMessage />
+                )
+              : (
+                  <FormLabel>Passoword</FormLabel>
+                )}
             <FormControl>
               <Input disabled={isSubmitting} type="password" {...field} />
             </FormControl>
@@ -66,7 +70,8 @@ const SignUpFormFields = ({ form }: SignUpFormFieldsProps) => {
       />
 
       <Button loading={isSubmitting} type="submit" className="w-full">
-        Sign Up{' '}
+        Sign Up
+        {' '}
       </Button>
     </div>
   )

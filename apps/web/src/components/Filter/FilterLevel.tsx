@@ -1,5 +1,4 @@
 import { FormControl, FormField, FormItem, FormLabel } from '../ui/form'
-import { filterContext } from './Filter'
 import {
   Select,
   SelectContent,
@@ -7,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/Select'
+import { filterContext } from './FilterContext'
 
 export function FilterLevel() {
   const form = filterContext.useSelect(state => state.form)

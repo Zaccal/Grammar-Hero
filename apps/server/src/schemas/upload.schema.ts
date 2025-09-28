@@ -1,5 +1,5 @@
-import { UPLOAD_FILE_SIZE_MB } from '@/routers/upload/constants'
 import z from 'zod'
+import { UPLOAD_FILE_SIZE_MB } from '@/routers/upload/constants'
 
 export const uploadSchema = z.object({
   file: z

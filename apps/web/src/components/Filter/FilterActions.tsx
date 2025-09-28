@@ -1,5 +1,5 @@
-import { filterContext } from './Filter'
 import { Button } from '@/components/ui/button'
+import { filterContext } from './FilterContext'
 
 export function FilterActions() {
   const { form } = filterContext.useSelect(state => ({
@@ -13,7 +13,7 @@ export function FilterActions() {
       </Button>
       <Button
         type="button"
-        variant={'outline'}
+        variant="outline"
         className="w-full"
         onClick={() => {
           form.reset({

@@ -1,5 +1,5 @@
 import { DropdownMenuItem } from '../ui/dropdown-menu'
 
-export const TopicDetailsAddFavorites = () => {
+export function TopicDetailsAddFavorites() {
   return <DropdownMenuItem>Add to favorites</DropdownMenuItem>
 }

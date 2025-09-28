@@ -1,5 +1,5 @@
-import { DURATION_REGEX } from '../lib/constants'
 import { z } from 'zod'
+import { DURATION_REGEX } from '../lib/constants'
 
 export const filterParamsSchema = z.object({
   query: z.string().optional().catch(''),
