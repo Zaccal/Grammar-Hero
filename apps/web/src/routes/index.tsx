@@ -1,7 +1,7 @@
 import type { FilterParamsSchema } from '@server/schemas/filterParams.schema'
 import { filterParamsSchema } from '@server/schemas/filterParams.schema'
 import { useQuery } from '@tanstack/react-query'
-import { createFileRoute, redirect } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import ErrorComponent from '@/components/ErrorComponent'
 import { Filter } from '@/components/Filter/index'
 import {
@@ -11,21 +11,13 @@ import {
 } from '@/components/Greeting/Greeting'
 import { TopicsDialog } from '@/components/Topics/index'
 import TopicsDialogCard from '@/components/Topics/monolite/TopicsDialogCard'
-import { authClient } from '@/lib/auth-client'
 import { trpc } from '@/lib/trpc'
+import { ensureSession } from '@/middleware'
 import { getDummyArray } from '@/utils/getDummyArray'
 
 export const Route = createFileRoute('/')({
   component: HomeComponent,
-  loader: async () => {
-    const { data, error } = await authClient.getSession()
-    if (error || !data) {
-      throw redirect({
-        to: '/sign-up',
-      })
-    }
-    return data
-  },
+  loader: ensureSession,
   validateSearch: (search: Partial<FilterParamsSchema>) =>
     filterParamsSchema.parse(search),
 })
