@@ -1,11 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { CreateTopicForm } from '@/components/CreateTopicForm/index'
 import { Separator } from '@/components/ui/separator'
-import { protectedMiddleware } from '@/middleware'
+import ensureSession from '@/middleware'
 
 export const Route = createFileRoute('/createTopic')({
   component: RouteComponent,
-  loader: protectedMiddleware
+  loader: ensureSession,
 })
 
 function RouteComponent() {

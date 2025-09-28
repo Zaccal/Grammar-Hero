@@ -2,6 +2,7 @@ import type { FilterParamsSchema } from '@server/schemas/filterParams.schema'
 import { filterParamsSchema } from '@server/schemas/filterParams.schema'
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
+import Cookies from 'js-cookie'
 import ErrorComponent from '@/components/ErrorComponent'
 import { Filter } from '@/components/Filter/index'
 import {
@@ -12,7 +13,7 @@ import {
 import { TopicsDialog } from '@/components/Topics/index'
 import TopicsDialogCard from '@/components/Topics/monolite/TopicsDialogCard'
 import { trpc } from '@/lib/trpc'
-import { ensureSession } from '@/middleware'
+import ensureSession from '@/middleware'
 import { getDummyArray } from '@/utils/getDummyArray'
 
 export const Route = createFileRoute('/')({

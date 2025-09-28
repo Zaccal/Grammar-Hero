@@ -1,9 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { ensureSession } from '@/middleware'
+import ensureSession from '@/middleware'
 
 export const Route = createFileRoute('/profile')({
   component: RouteComponent,
-  loader: ensureSession
+  loader: ensureSession,
 })
 
 function RouteComponent() {
