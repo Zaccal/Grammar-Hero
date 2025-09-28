@@ -13,7 +13,7 @@ export const Route = createFileRoute('/topic/$id')({
 function RouteComponent() {
   const { id } = Route.useParams()
   const { data, isLoading, isError, error } = useQuery(
-    trpc.topics.getById.queryOptions(id),
+    trpc.topics.getById.queryOptions(id)
   )
 
   if (isLoading)

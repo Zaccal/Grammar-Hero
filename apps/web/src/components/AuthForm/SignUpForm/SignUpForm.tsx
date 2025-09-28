@@ -40,7 +40,7 @@ function SignUpForm() {
             description: error.message,
           })
         },
-      },
+      }
     )
   }
 

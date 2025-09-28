@@ -10,7 +10,7 @@ export const uploadRoute = new Hono<BetterAuthVariables>()
 
 uploadRoute.use('/*', authMiddleware)
 
-uploadRoute.post('/', zValidator('form', uploadSchema), async (c) => {
+uploadRoute.post('/', zValidator('form', uploadSchema), async c => {
   const { file } = c.req.valid('form')
 
   return uploadImage(file, c)
@@ -24,5 +24,5 @@ uploadRoute.get(
       const fileName = c.req.param('fileName')
       return getImage(fileName)
     },
-  }),
+  })
 )

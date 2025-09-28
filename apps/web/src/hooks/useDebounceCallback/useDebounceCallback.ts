@@ -21,7 +21,10 @@ export type DebouncedCallback<Params extends unknown[]> = ((
  * @example
  * const debouncedCallback = useDebounceCallback(() => console.log('callback'), 500);
  */
-export function useDebounceCallback<Params extends unknown[], Return>(callback: (...args: Params) => Return, delay: number): DebouncedCallback<Params> {
+export function useDebounceCallback<Params extends unknown[], Return>(
+  callback: (...args: Params) => Return,
+  delay: number
+): DebouncedCallback<Params> {
   const internalCallbackRef = useRef(callback)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const delayRef = useRef(delay)

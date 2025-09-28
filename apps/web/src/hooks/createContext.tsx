@@ -58,7 +58,10 @@ export interface CreateContextReturn<Value> {
  * @example
  * const { useSelect, instance, Provider } = createContext<number>(0);
  */
-export function createContext<Value,>(defaultValue: Value | undefined = undefined, options: CreateContextOptions = {}): CreateContextReturn<Value> {
+export function createContext<Value>(
+  defaultValue: Value | undefined = undefined,
+  options: CreateContextOptions = {}
+): CreateContextReturn<Value> {
   const Context = createReactContext<{
     value: Value | undefined
     set: (value: Value) => void
@@ -76,7 +79,7 @@ export function createContext<Value,>(defaultValue: Value | undefined = undefine
 
     if (!context && options.strict) {
       throw new Error(
-        `Context hook ${options.name} must be used inside a Provider`,
+        `Context hook ${options.name} must be used inside a Provider`
       )
     }
 
@@ -89,7 +92,7 @@ export function createContext<Value,>(defaultValue: Value | undefined = undefine
 
   const Provider = ({ children, initialValue }: ProviderProps<Value>) => {
     const [profile, setProfile] = useState<Value | undefined>(
-      initialValue ?? defaultValue,
+      initialValue ?? defaultValue
     )
 
     const value = useMemo(
@@ -97,7 +100,7 @@ export function createContext<Value,>(defaultValue: Value | undefined = undefine
         value: profile,
         set: setProfile,
       }),
-      [profile],
+      [profile]
     )
 
     return <Context value={value}>{children}</Context>

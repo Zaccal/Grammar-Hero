@@ -10,7 +10,7 @@ export function getDurationOption(min?: string, max?: string) {
 
   if (parseResultMax.success && parseResultMin.success) {
     const foundResult = Object.entries(durationValues).find(
-      ([, value]) => value.min === min && value.max === max,
+      ([, value]) => value.min === min && value.max === max
     )
 
     if (!foundResult)

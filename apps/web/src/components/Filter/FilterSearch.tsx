@@ -35,12 +35,12 @@ export function FilterSearch() {
       <Input
         placeholder="What do you want to learn?"
         value={query}
-        onChange={(e) => {
+        onChange={e => {
           if (!e.target.value.length)
             debounceReset()
           setQuery(e.target.value)
         }}
-        onKeyUp={(e) => {
+        onKeyUp={e => {
           if (e.key === 'Enter')
             searchHandler()
         }}

@@ -51,7 +51,7 @@ function UserDropdown() {
           </DropdownMenuItem>
         </Link>
         <DropdownMenuItem
-          onClick={(e) => {
+          onClick={e => {
             e.preventDefault()
           }}
           className="flex justify-between items-center"

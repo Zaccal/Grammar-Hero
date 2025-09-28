@@ -5,7 +5,10 @@ import { CreateTopicFormDuration } from './CreateTopicFormDuration'
 import { CreateTopicFormFileUpload } from './CreateTopicFormFileUpload'
 import { CreateTopicFormLevel } from './CreateTopicFormLevel'
 import { CreateTopicFormMarkdownEditor } from './CreateTopicFormMarkdownEditor'
-import { CreateTopicFormMarkdownHint, CreateTopicFormMarkdownHintLink } from './CreateTopicFormMarkdownHint'
+import {
+  CreateTopicFormMarkdownHint,
+  CreateTopicFormMarkdownHintLink,
+} from './CreateTopicFormMarkdownHint'
 import { CreateTopicFormPublish } from './CreateTopicFormPublish'
 import { CreateTopicFormShortDescription } from './CreateTopicFormShortDescription'
 import { CreateTopicFormTitle } from './CreateTopicFormTitle'

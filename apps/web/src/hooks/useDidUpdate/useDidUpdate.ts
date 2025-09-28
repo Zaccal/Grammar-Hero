@@ -22,7 +22,7 @@ export function useDidUpdate(effect: EffectCallback, deps?: DependencyList) {
     () => () => {
       mounted.current = false
     },
-    [],
+    []
   )
 
   useIsomorphicLayoutEffect(() => {

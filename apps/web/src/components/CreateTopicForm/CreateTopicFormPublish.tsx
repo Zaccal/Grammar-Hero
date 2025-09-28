@@ -25,7 +25,7 @@ export function CreateTopicFormPublish({ children, ...props }: ButtonProps) {
     <>
       <AlertDialog
         open={open}
-        onOpenChange={(state) => {
+        onOpenChange={state => {
           alertDialogCreateTopicStore.set({
             open: state,
           })

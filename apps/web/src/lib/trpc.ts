@@ -7,7 +7,7 @@ import SuperJSON from 'superjson'
 
 export const queryClient = new QueryClient({
   queryCache: new QueryCache({
-    onError: (error) => {
+    onError: error => {
       toast.error(error.message, {
         action: {
           label: 'retry',

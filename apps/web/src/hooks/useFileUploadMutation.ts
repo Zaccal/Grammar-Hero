@@ -14,7 +14,7 @@ export function useFileUploadMutation() {
           method: 'POST',
           body: formData,
           credentials: 'include',
-        },
+        }
       )
       return response.json() as Promise<{ url: string }>
     },

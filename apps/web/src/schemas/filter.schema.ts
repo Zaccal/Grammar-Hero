@@ -66,5 +66,5 @@ export const durationValues: Record<
 }
 
 export const durationOptions = Object.entries(durationValues).map(
-  ([key]) => key,
+  ([key]) => key
 )

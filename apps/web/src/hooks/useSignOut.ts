@@ -12,7 +12,7 @@ export function useSignOut() {
       toast.success('Goodbye! I hope you come back soon 🦕')
       navigate({ to: '/sign-in' })
     },
-    onError: (error) => {
+    onError: error => {
       toast.error('Something went wrong, please try again.', {
         description: error.message,
       })

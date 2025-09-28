@@ -11,9 +11,9 @@ vi.mock('../../../prisma/index', () => {
       topics: {
         findMany: vi.fn().mockResolvedValue(MOCK_TOPICS),
         findUnique: vi.fn(({ where: { id } }) =>
-          MOCK_TOPICS.find((data) => {
+          MOCK_TOPICS.find(data => {
             return data.id === id
-          }),
+          })
         ),
         create: vi.fn(({ data }) => {
           return {
@@ -38,7 +38,7 @@ describe('topics', () => {
     expect(topics.length).toBe(MOCK_TOPICS.length)
     const topic = topics[0] as TopicExpected
 
-    TOPICS_KEYS.forEach((key) => {
+    TOPICS_KEYS.forEach(key => {
       expect(topic[key]).not.toBeUndefined()
     })
   })
@@ -49,7 +49,7 @@ describe('topics', () => {
 
     expect(topic.id).toBe(id)
 
-    TOPICS_KEYS.forEach((key) => {
+    TOPICS_KEYS.forEach(key => {
       expect(topic[key]).not.toBeUndefined()
     })
   })
@@ -75,7 +75,7 @@ describe('topics', () => {
         level: 'Basic',
         image: 'image',
       },
-      '123',
+      '123'
     )
     expect(topic).not.toBeUndefined()
   })

@@ -19,8 +19,8 @@ const initialState: ThemeProviderState = {
   setTheme: () => null,
 }
 
-export const ThemeProviderContext
-  = createContext<ThemeProviderState>(initialState)
+export const ThemeProviderContext =
+  createContext<ThemeProviderState>(initialState)
 
 export function ThemeProvider({
   children,
@@ -29,7 +29,7 @@ export function ThemeProvider({
   ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme,
+    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
   )
 
   useEffect(() => {
@@ -50,15 +50,16 @@ export function ThemeProvider({
     root.classList.add(theme)
   }, [theme])
 
-  const value = useMemo(() => (
-    {
+  const value = useMemo(
+    () => ({
       theme,
       setTheme: (theme: Theme) => {
         localStorage.setItem(storageKey, theme)
         setTheme(theme)
       },
-    }
-  ), [theme, storageKey])
+    }),
+    [theme, storageKey]
+  )
 
   return (
     <ThemeProviderContext {...props} value={value}>

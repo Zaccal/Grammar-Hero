@@ -23,7 +23,7 @@ export function FilterSort() {
           <FormControl>
             <Select
               value={`${field.value}_${form.watch('sort')}`}
-              onValueChange={(value) => {
+              onValueChange={value => {
                 const [sortField, sort] = value.split('_') as [
                   FilterFormSchema['sortField'],
                   FilterFormSchema['sort'],
@@ -44,7 +44,7 @@ export function FilterSort() {
                     >
                       {label}
                     </SelectItem>
-                  )),
+                  ))
                 )}
               </SelectContent>
             </Select>

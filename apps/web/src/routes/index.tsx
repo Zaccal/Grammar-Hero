@@ -1,8 +1,5 @@
 import type { FilterParamsSchema } from '@server/schemas/filterParams.schema'
-import {
-
-  filterParamsSchema,
-} from '@server/schemas/filterParams.schema'
+import { filterParamsSchema } from '@server/schemas/filterParams.schema'
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import ErrorComponent from '@/components/ErrorComponent'
@@ -83,8 +80,9 @@ function HomeComponent() {
         </Filter.Root>
         <TopicsDialog.List>
           {isLoading
-            ? getDummyArray(6)
-                .map(value => <TopicsDialog.Skeleton key={value} />)
+            ? getDummyArray(6).map(value => (
+                <TopicsDialog.Skeleton key={value} />
+              ))
             : topics?.map(topicData => (
                 <TopicsDialogCard key={topicData.id} topic={topicData} />
               ))}

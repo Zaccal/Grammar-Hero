@@ -26,8 +26,8 @@ function ErrorComponent({ error }: ErrorComponentProps) {
           Opps! something went wrong.
         </h1>
         <p className="text-muted-foreground text-sm">
-          {error?.message
-            ?? 'The page you’re looking for isn’t available right now. It may have been moved, deleted, or the link might be incorrect. Please check the URL or return to the homepage.'}
+          {error?.message ??
+            'The page you’re looking for isn’t available right now. It may have been moved, deleted, or the link might be incorrect. Please check the URL or return to the homepage.'}
         </p>
         <Button onClick={handleReload}>Try again!</Button>
       </div>

@@ -10,7 +10,7 @@ export function loadMockTopics(): Topic[] {
   const raw = fs.readFileSync(MOCK_FILE, 'utf-8')
   const parsed = JSON.parse(raw) as Topic[]
 
-  return parsed.map((t) => {
+  return parsed.map(t => {
     const createdAt = new Date(t.createdAt)
     const updatedAt = new Date(t.updatedAt)
     const { min, max } = getMinMax()

@@ -25,7 +25,7 @@ export function CreateTopicFormMarkdownEditor({
 }: CreateTopicFormMarkdownEditorProps) {
   const form = createTopicFormContext.useSelect(state => state.form)
   const editorRef = createTopicFormContext.useSelect(
-    state => state.markdownEditorRef,
+    state => state.markdownEditorRef
   )
   const isPending = createTopicFormContext.useSelect(state => state.isPending)
 
@@ -40,7 +40,7 @@ export function CreateTopicFormMarkdownEditor({
               <MDXEditor
                 ref={editorRef}
                 placeholder="Start typing..."
-                onChange={(value) => {
+                onChange={value => {
                   field.onChange(value)
                 }}
                 className={className}

@@ -7,8 +7,8 @@ import { Badge } from '../ui/Badge'
 import { topicDetailsContext } from './TopicDetailsContext'
 
 export function TopicDetailsHeader() {
-  const { title, level, createdAt, user, durationMin, durationMax }
-    = topicDetailsContext.useSelect(state => state)
+  const { title, level, createdAt, user, durationMin, durationMax } =
+    topicDetailsContext.useSelect(state => state)
 
   return (
     <>

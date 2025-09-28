@@ -16,8 +16,8 @@ interface CreateTopicFormFileUploadProps {
 export function CreateTopicFormFileUpload({
   className,
 }: CreateTopicFormFileUploadProps) {
-  const isError
-    = useMutationState({
+  const isError =
+    useMutationState({
       filters: {
         mutationKey: [USE_FILE_UPLOAD_MUTATION_KEY],
         status: 'error',
@@ -30,7 +30,7 @@ export function CreateTopicFormFileUpload({
     maxSize: UPLOAD_FILE_SIZE_MB * 1024 * 1024,
     maxFiles: 1,
 
-    onFilesAdded: (addedFiles) => {
+    onFilesAdded: addedFiles => {
       const file = addedFiles[0].file as File
 
       fileUploadStore.set({ file })
