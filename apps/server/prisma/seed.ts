@@ -18,7 +18,6 @@ async function createMockTopics(userId: string) {
       level: topic.level,
       durationMax: getDummyDate(max) ?? '',
       durationMin: getDummyDate(min) ?? '',
-      likes: topic.likes,
       image: topic.image,
       user: {
         connect: {
@@ -35,7 +34,7 @@ async function createMockTopics(userId: string) {
 async function main() {
   console.log('🌱 Seeding database...')
 
-  await createMockTopics('9QyneZSLXF8QRsaCbBFvpz6Sv3IzeSBp')
+  await createMockTopics('AlQSfuMkM5QJWhCoh0sAq0Y1RosJ6ks6')
 
   console.log('✅ Database seeded successfully.')
 }

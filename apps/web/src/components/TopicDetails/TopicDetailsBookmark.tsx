@@ -3,11 +3,11 @@ import { Button } from '../ui/button'
 import { topicDetailsContext } from './TopicDetailsContext'
 
 export function TopicDetailsBookmark() {
-  const { bookmark } = topicDetailsContext.useSelect(state => state)
+  const { _count } = topicDetailsContext.useSelect(state => state)
   return (
     <Button variant="mutedGhost">
       <Bookmark size={21} />
-      <span>{bookmark.length}</span>
+      <span>{_count.bookmark}</span>
     </Button>
   )
 }

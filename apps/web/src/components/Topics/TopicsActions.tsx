@@ -1,10 +1,15 @@
 import { Link } from '@tanstack/react-router'
-import { Bookmark, Heart } from 'lucide-react'
+import { Bookmark } from 'lucide-react'
 import { Button } from '../ui/button'
 import { topicsContext } from './TopicsContext'
 
-export function TopicsActions() {
-  const { id, likes, bookmark } = topicsContext.useSelect(state => state)
+interface TopicsActionsProps {
+  children?: React.ReactNode
+}
+
+export function TopicsActions({ children }: TopicsActionsProps) {
+  const { id, _count } = topicsContext.useSelect(state => state)
+  // ? for while I left the bookmark button non-functional and this component is just a layout
   return (
     <div className="mt-8 flex justify-between items-center">
       <Button asChild size="lg">
@@ -18,13 +23,10 @@ export function TopicsActions() {
         </Link>
       </Button>
       <div className="space-x-3 ">
-        <Button variant="muted" aria-label="like">
-          <Heart />
-          <span>{likes}</span>
-        </Button>
-        <Button variant="muted" aria-label="add to favorites">
+        {children}
+        <Button variant="outline" aria-label="add to favorites">
           <Bookmark />
-          <span>{bookmark.length}</span>
+          <span>{_count.bookmark}</span>
         </Button>
       </div>
     </div>

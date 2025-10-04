@@ -6,11 +6,12 @@ import { TopicsCard } from './TopicsCard'
 
 interface TopicsDialogCardProps {
   topic: TopicType
+  searchParams?: Record<string, string | string[]>
 }
 
-function TopicsDialogCard({ topic }: TopicsDialogCardProps) {
+function TopicsDialogCard({ topic, searchParams }: TopicsDialogCardProps) {
   return (
-    <TopicsDialog.Root topic={topic}>
+    <TopicsDialog.Root topic={topic} searchParams={searchParams}>
       <TopicsDialog.Preview>
         <TopicsCard />
       </TopicsDialog.Preview>
@@ -30,7 +31,9 @@ function TopicsDialogCard({ topic }: TopicsDialogCardProps) {
               {topic.description}
             </p>
 
-            <TopicsDialog.Actions />
+            <TopicsDialog.Actions>
+              <TopicsDialog.Like />
+            </TopicsDialog.Actions>
           </TopicsDialog.Description>
         </div>
       </TopicsDialog.Content>

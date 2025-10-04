@@ -3,10 +3,10 @@ import type { TopicCreateSchema } from '../../schemas/topics.schema'
 import type { FilterParamsSchema } from '@/schemas/filterParams.schema'
 import { TRPCError } from '@trpc/server'
 import prisma from '../../../prisma/index'
-import { getDummyDate } from '../../utils/getDummyDate'
+import { getDummyDate, getFormattedTopics } from '../../utils/index'
 import { TOPICS_SELECT } from './constants'
 
-export async function getAll(input: FilterParamsSchema) {
+export async function getAll(input: FilterParamsSchema, userId: string) {
   const where: Prisma.TopicsWhereInput = input.query
     ? {
         OR: [
@@ -34,10 +34,17 @@ export async function getAll(input: FilterParamsSchema) {
       }
     : {}
 
+  const orderBy =
+    input.sortField !== 'likes' && input.sortField
+      ? { [input.sortField]: input.sort }
+      : {
+          likes: {
+            _count: input.sort,
+          },
+        }
+
   const topics = await prisma.topics.findMany({
-    orderBy: {
-      [input.sortField!]: input.sort,
-    },
+    orderBy,
     take: input.limit,
     skip: input.offset,
     where: {
@@ -50,18 +57,30 @@ export async function getAll(input: FilterParamsSchema) {
         gte: getDummyDate(input.durationMin),
       },
     },
-    select: TOPICS_SELECT,
+    select: {
+      ...TOPICS_SELECT,
+      likes: {
+        where: { userId },
+        select: { id: true, userId: true, topicId: true },
+      },
+    },
   })
 
-  return topics
+  return getFormattedTopics(topics)
 }
 
-export async function getById(id: string) {
+export async function getById(id: string, userId: string) {
   const topic = await prisma.topics.findUnique({
     where: {
       id,
     },
-    select: TOPICS_SELECT,
+    select: {
+      ...TOPICS_SELECT,
+      likes: {
+        where: { userId },
+        select: { id: true, userId: true, topicId: true },
+      },
+    },
   })
 
   if (!topic) {
@@ -71,7 +90,7 @@ export async function getById(id: string) {
     })
   }
 
-  return topic
+  return getFormattedTopics([topic])[0]
 }
 
 export async function createTopic(data: TopicCreateSchema, userId: string) {
@@ -80,7 +99,6 @@ export async function createTopic(data: TopicCreateSchema, userId: string) {
       ...data,
       durationMin: getDummyDate(data.durationMin)!,
       durationMax: getDummyDate(data.durationMax)!,
-      likes: 0,
       user: {
         connect: {
           id: userId,
@@ -89,4 +107,35 @@ export async function createTopic(data: TopicCreateSchema, userId: string) {
     },
     select: TOPICS_SELECT,
   })
+}
+
+export async function toggleLike(topicId: string, userId: string) {
+  const existing = await prisma.like.findUnique({
+    where: {
+      userId_topicId: {
+        topicId,
+        userId,
+      },
+    },
+  })
+
+  if (existing) {
+    await prisma.like.delete({
+      where: {
+        id: existing.id,
+      },
+    })
+
+    return { isLiked: false }
+  }
+  else {
+    await prisma.like.create({
+      data: {
+        topicId,
+        userId,
+      },
+    })
+
+    return { isLiked: true }
+  }
 }

@@ -1,4 +1,5 @@
-import { Bookmark, Heart } from 'lucide-react'
+import { Bookmark } from 'lucide-react'
+import HeartLike from '@/components/ui/HeartLike'
 import { cn } from '@/lib/utils'
 import { getCuttedText } from '@/utils/getCuttedText'
 import { getTopicImage } from '@/utils/getTopicImage'
@@ -16,6 +17,7 @@ import { TopicsImage } from '../TopicsImage'
 
 export function TopicsCard() {
   const state = topicsContext.useSelect(state => state)
+
   return (
     <>
       <MinimalCard className="h-full text-left">
@@ -43,13 +45,18 @@ export function TopicsCard() {
         <MinimalCardFooter className="flex justify-between">
           <Badge variant={getVariantLevel(state.level)}>{state.level}</Badge>
           <div className="flex items-center gap-3 text-muted-foreground text-sm">
-            <div className="flex items-center gap-2">
-              <Heart size={21} />
-              <span>{state.likes}</span>
+            <div
+              className={cn(
+                'flex items-center gap-2',
+                state.isLiked && 'text-destructive'
+              )}
+            >
+              <HeartLike liked={state.isLiked} size={21} />
+              <span>{state._count.likes}</span>
             </div>
             <div className="flex items-center gap-2">
               <Bookmark size={21} />
-              <span>{state.bookmark.length}</span>
+              <span>{state._count.bookmark}</span>
             </div>
           </div>
         </MinimalCardFooter>

@@ -11,12 +11,7 @@ export const TOPICS_SELECT: TopicsSelect = {
   level: true,
   durationMin: true,
   durationMax: true,
-  likes: true,
   user: true,
   image: true,
-  bookmark: {
-    select: {
-      _count: true,
-    },
-  },
+  _count: true,
 }

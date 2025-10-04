@@ -9,12 +9,33 @@ vi.mock('../../../prisma/index', () => {
   return {
     default: {
       topics: {
-        findMany: vi.fn().mockResolvedValue(MOCK_TOPICS),
-        findUnique: vi.fn(({ where: { id } }) =>
-          MOCK_TOPICS.find(data => {
+        findMany: vi.fn().mockResolvedValue(
+          MOCK_TOPICS.map(topic => ({
+            ...topic,
+            _count: {
+              likes: 1,
+              bookmark: 1,
+            },
+            likes: [],
+          }))
+        ),
+        findUnique: vi.fn(({ where: { id } }) => {
+          const topic = MOCK_TOPICS.find(data => {
             return data.id === id
           })
-        ),
+
+          if (!topic)
+            return null
+
+          return {
+            ...topic,
+            _count: {
+              likes: 1,
+              bookmark: 1,
+            },
+            likes: [],
+          }
+        }),
         create: vi.fn(({ data }) => {
           return {
             ...data,
@@ -28,12 +49,12 @@ vi.mock('../../../prisma/index', () => {
   }
 })
 
-const TOPICS_KEYS = Object.keys(TOPICS_SELECT)
+const TOPICS_KEYS = [...Object.keys(TOPICS_SELECT), 'isLiked']
 type TopicExpected = Record<string, unknown>
 
 describe('topics', () => {
   it('should return all topics', async () => {
-    const topics = await getAll({})
+    const topics = await getAll({}, '123')
     expect(Array.isArray(topics)).toBe(true)
     expect(topics.length).toBe(MOCK_TOPICS.length)
     const topic = topics[0] as TopicExpected
@@ -45,7 +66,7 @@ describe('topics', () => {
 
   it('should return by id', async () => {
     const id = '5'
-    const topic = (await getById(id)) as TopicExpected
+    const topic = (await getById(id, '123')) as TopicExpected
 
     expect(topic.id).toBe(id)
 

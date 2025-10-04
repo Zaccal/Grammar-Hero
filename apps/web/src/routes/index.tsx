@@ -72,11 +72,15 @@ function HomeComponent() {
         </Filter.Root>
         <TopicsDialog.List>
           {isLoading
-            ? getDummyArray(6).map(value => (
+            ? getDummyArray(20).map(value => (
                 <TopicsDialog.Skeleton key={value} />
               ))
             : topics?.map(topicData => (
-                <TopicsDialogCard key={topicData.id} topic={topicData} />
+                <TopicsDialogCard
+                  key={topicData.id}
+                  searchParams={searchParams}
+                  topic={topicData}
+                />
               ))}
         </TopicsDialog.List>
       </section>

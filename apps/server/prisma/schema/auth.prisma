@@ -14,12 +14,12 @@ model User {
   displayUsername String?
 
   topics Topics[]
-  favorite Favorite?
+  likes Like[]
+  bookmark Bookmark[]
 
   @@unique([email])
   @@map("user")
   @@unique([username])
-  bookmark Bookmark?
 }
 
 model Session {

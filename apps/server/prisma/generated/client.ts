@@ -67,10 +67,10 @@ export type Verification = Prisma.VerificationModel
  */
 export type Topics = Prisma.TopicsModel
 /**
- * Model Favorite
+ * Model Like
  * 
  */
-export type Favorite = Prisma.FavoriteModel
+export type Like = Prisma.LikeModel
 /**
  * Model Bookmark
  * 

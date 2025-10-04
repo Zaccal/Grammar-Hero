@@ -3,6 +3,7 @@ import { TopicsActions } from './TopicsActions'
 import { TopicsContent } from './TopicsContent'
 import { TopicsDescription } from './TopicsDescription'
 import { TopicsImage } from './TopicsImage'
+import { TopicsLike } from './TopicsLike'
 import { TopicsList } from './TopicsList'
 import { TopicsPreview } from './TopicsPreview'
 import { TopicSkeleton } from './TopicsSkeleton'
@@ -20,4 +21,5 @@ export const TopicsDialog = {
   Description: TopicsDescription,
   Actions: TopicsActions,
   Skeleton: TopicSkeleton,
+  Like: TopicsLike,
 }

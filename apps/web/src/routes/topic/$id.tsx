@@ -5,9 +5,11 @@ import { TopicDetails } from '@/components/TopicDetails/index'
 import Loader from '@/components/ui/loader'
 import { Separator } from '@/components/ui/separator'
 import { trpc } from '@/lib/trpc'
+import ensureSession from '@/middleware'
 
 export const Route = createFileRoute('/topic/$id')({
   component: RouteComponent,
+  loader: ensureSession,
 })
 
 function RouteComponent() {

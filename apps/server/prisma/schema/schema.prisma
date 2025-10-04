@@ -19,15 +19,24 @@ model Topics {
   durationMax DateTime @db.Time() @map("duration_max")
   durationMin DateTime @db.Time()  @map("duration_min")
   image String?
-  likes Int 
   content String @db.Text
   level Level
 
   user User @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   userId String @map("user_id")
 
-  favorites Favorite[]
   bookmark Bookmark[]
+  likes Like[] 
+}
+
+model Like {
+  id String @id @default(cuid()) @map("_id")
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topic Topics @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  userId String  @map("user_id")
+  topicId String  @map("topic_id")
+  @@unique([userId, topicId])
 }
 
 enum Level {
@@ -36,13 +45,6 @@ enum Level {
   Advanced // C1–C2
 }
 
-model Favorite {
-  id String @id @default(cuid()) @map("_id")
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String @unique @map("user_id")
-
-  topics Topics[]
-}
 
 model Bookmark {
   id String @id @default(cuid()) @map("_id")

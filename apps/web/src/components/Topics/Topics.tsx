@@ -4,12 +4,18 @@ import { topicsContext } from './TopicsContext'
 
 interface TopicsProps {
   topic: TypeTopic
+  searchParams?: Record<string, string | string[]>
   children: React.ReactNode | React.ReactNode[]
 }
 
-export function Topic({ children, topic }: TopicsProps) {
+export function Topic({ children, topic, searchParams }: TopicsProps) {
   return (
-    <topicsContext.Provider initialValue={topic}>
+    <topicsContext.Provider
+      initialValue={{
+        ...topic,
+        searchParams,
+      }}
+    >
       <MorphingDialog
         transition={{
           type: 'spring',
