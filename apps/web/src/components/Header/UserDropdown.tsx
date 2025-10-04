@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { toast } from 'sonner'
 import { useSession, useTheme } from '@/hooks'
 import { useSignOut } from '@/hooks/useSignOut'
-import { getUserImageFallbackText } from '@/utils/getUserImageFallbackText'
+import { getUserImageFallbackText } from '@/utils/index'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import {
   DropdownMenu,
@@ -23,7 +23,7 @@ function UserDropdown() {
   const [darkMode, setDarkMode] = useState(theme === 'dark')
 
   if (isLoading)
-return <Skeleton className="size-10 rounded-full" />
+    return <Skeleton className="size-10 rounded-full" />
   if (isError || !data) {
     toast.error('Something went wrong', {
       description: error?.message,

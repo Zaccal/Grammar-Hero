@@ -12,9 +12,7 @@ import {
 import { TopicsDialog } from '@/components/Topics/index'
 import { trpc } from '@/lib/trpc'
 import ensureSession from '@/middleware'
-import { getDummyArray } from '@/utils/getDummyArray'
-import { getReadTime } from '@/utils/getReadTime'
-import { getTopicImage } from '@/utils/getTopicImage'
+import { getDummyArray, getReadTime, getTopicImage } from '@/utils/index'
 
 export const Route = createFileRoute('/')({
   component: HomeComponent,
@@ -40,9 +38,7 @@ function HomeComponent() {
     <>
       <section>
         <Greeting>
-          <GreetingTitle>
-            Welcome {user.displayUsername}!
-          </GreetingTitle>
+          <GreetingTitle>Welcome {user.displayUsername}!</GreetingTitle>
           <GreetingDescription>
             Choose a grammar topic and start learning right away! Here you’ll
             find a variety of grammar lessons designed to help you understand

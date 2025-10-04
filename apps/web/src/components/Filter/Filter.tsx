@@ -5,7 +5,7 @@ import { useNavigate, useSearch } from '@tanstack/react-router'
 import { useForm } from 'react-hook-form'
 import { cn } from '@/lib/utils'
 import { durationValues, filterFormSchema } from '@/schemas/filter.schema'
-import { getDurationOption } from '@/utils/getDurationOption'
+import { getDurationOption } from '@/utils/index'
 import { filterContext } from './FilterContext'
 
 interface FilterRootProps {

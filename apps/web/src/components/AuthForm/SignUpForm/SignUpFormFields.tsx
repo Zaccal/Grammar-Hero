@@ -70,8 +70,7 @@ function SignUpFormFields({ form }: SignUpFormFieldsProps) {
       />
 
       <Button loading={isSubmitting} type="submit" className="w-full">
-        Sign Up
-{' '}
+        Sign Up{' '}
       </Button>
     </div>
   )

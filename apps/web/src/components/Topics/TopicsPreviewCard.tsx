@@ -1,9 +1,7 @@
 import { Bookmark } from 'lucide-react'
 import HeartLike from '@/components/ui/HeartLike'
 import { cn } from '@/lib/utils'
-import { getCuttedText } from '@/utils/getCuttedText'
-import { getTopicImage } from '@/utils/getTopicImage'
-import { getVariantLevel } from '@/utils/getVariantLevel'
+import { getCuttedText, getTopicImage, getVariantLevel } from '@/utils/index'
 import { Badge } from '../ui/Badge'
 import {
   MinimalCard,

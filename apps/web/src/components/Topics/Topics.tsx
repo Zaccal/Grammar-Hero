@@ -9,11 +9,7 @@ interface TopicsProps {
 
 export function Topic({ children, topic }: TopicsProps) {
   return (
-    <topicsContext.Provider
-      initialValue={{
-        ...topic,
-      }}
-    >
+    <topicsContext.Provider initialValue={topic}>
       <MorphingDialog
         transition={{
           type: 'spring',
