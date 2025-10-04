@@ -128,7 +128,7 @@ export async function toggleLike(topicId: string, userId: string) {
 
     return { isLiked: false }
   }
-  else {
+ else {
     await prisma.like.create({
       data: {
         topicId,

@@ -41,7 +41,7 @@ export function CreateTopicFormFileUpload({
 
   useDidUpdate(() => {
     if (!file)
-      fileUploadActions.clearFiles()
+fileUploadActions.clearFiles()
   }, [file])
 
   return (

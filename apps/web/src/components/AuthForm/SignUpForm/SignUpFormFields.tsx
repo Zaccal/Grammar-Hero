@@ -24,12 +24,12 @@ function SignUpFormFields({ form }: SignUpFormFieldsProps) {
         render={({ field }) => (
           <FormItem>
             {errors.username
-              ? (
-                  <FormMessage />
-                )
-              : (
-                  <FormLabel>Username</FormLabel>
-                )}
+? (
+              <FormMessage />
+            )
+: (
+              <FormLabel>Username</FormLabel>
+            )}
             <FormControl>
               <Input disabled={isSubmitting} {...field} />
             </FormControl>
@@ -56,12 +56,12 @@ function SignUpFormFields({ form }: SignUpFormFieldsProps) {
         render={({ field }) => (
           <FormItem>
             {errors.password
-              ? (
-                  <FormMessage />
-                )
-              : (
-                  <FormLabel>Passoword</FormLabel>
-                )}
+? (
+              <FormMessage />
+            )
+: (
+              <FormLabel>Passoword</FormLabel>
+            )}
             <FormControl>
               <Input disabled={isSubmitting} type="password" {...field} />
             </FormControl>
@@ -71,7 +71,7 @@ function SignUpFormFields({ form }: SignUpFormFieldsProps) {
 
       <Button loading={isSubmitting} type="submit" className="w-full">
         Sign Up
-        {' '}
+{' '}
       </Button>
     </div>
   )

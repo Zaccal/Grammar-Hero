@@ -3,7 +3,7 @@ import type { Topics } from '@server/routers/topics/topics.types'
 export function getOptimisticLikedTopics(topics: Topics, topicId: string) {
   return topics.map(data => {
     if (data.id !== topicId)
-      return data
+return data
 
     return {
       ...data,

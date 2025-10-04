@@ -75,14 +75,14 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
 
   async function uploadImageHandler() {
     if (!file)
-      return
+return
     return (await uploadFile(file)).url
   }
 
   async function onSubmit(data: CreateTopicFormSchema) {
     const image = await uploadImageHandler()
     if (isFileUploadError)
-      return
+return
     await createTopic({
       ...data,
       durationMin: durationValues[data.duration]!.min,

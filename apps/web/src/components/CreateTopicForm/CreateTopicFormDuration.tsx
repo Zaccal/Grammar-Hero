@@ -40,7 +40,7 @@ export function CreateTopicFormDuration() {
                 <SelectContent>
                   {Object.values(durationOptions).map(option => {
                     if (option === 'All')
-                      return null
+return null
                     return (
                       <SelectItem key={option} value={option}>
                         {option}

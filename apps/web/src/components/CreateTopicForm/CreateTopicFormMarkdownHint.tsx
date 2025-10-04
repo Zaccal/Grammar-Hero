@@ -13,9 +13,9 @@ export function CreateTopicFormMarkdownHint({
     <>
       <p className="text-muted-foreground text-xs">
         <Info className="size-4 inline mr-1" />
-        {' '}
-        {children}
-        {' '}
+{' '}
+{children}
+{' '}
       </p>
     </>
   )

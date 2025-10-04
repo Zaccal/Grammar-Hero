@@ -7,7 +7,7 @@ export function useSession() {
     queryFn: async () => {
       const { data, error } = await authClient.getSession()
       if (error)
-        throw error
+throw error
       return data
     },
   })

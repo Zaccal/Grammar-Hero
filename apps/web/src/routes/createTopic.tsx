@@ -27,7 +27,7 @@ function RouteComponent() {
 
       <CreateTopicForm.MarkdownHint>
         We use markdown to format the topic content. You can learn markdown
-        {' '}
+{' '}
         <CreateTopicForm.MarkdownHintLink href="https://www.markdowntutorial.com/">
           here
         </CreateTopicForm.MarkdownHintLink>

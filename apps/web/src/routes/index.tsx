@@ -77,7 +77,10 @@ function HomeComponent() {
               <TopicsDialog.Skeleton key={value} />
             ))
             : topics?.map(topic => (
-              <TopicsDialog.Root key={topic.id} topic={topic} searchParams={searchParams}>
+              <TopicsDialog.Root
+                key={topic.id}
+                topic={topic}
+              >
                 <TopicsDialog.Preview>
                   <TopicsDialog.PreviewCard />
                 </TopicsDialog.Preview>

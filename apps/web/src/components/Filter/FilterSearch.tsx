@@ -37,12 +37,12 @@ export function FilterSearch() {
         value={query}
         onChange={e => {
           if (!e.target.value.length)
-            debounceReset()
+debounceReset()
           setQuery(e.target.value)
         }}
         onKeyUp={e => {
           if (e.key === 'Enter')
-            searchHandler()
+searchHandler()
         }}
       />
       <Button className="min-w-10" size="icon" onClick={searchHandler}>

@@ -84,7 +84,7 @@ export function useFileUpload(
           return `File "${file.name}" exceeds the maximum size of ${formatBytes(maxSize)}.`
         }
       }
-      else {
+ else {
         if (file.size > maxSize) {
           return `File "${file.name}" exceeds the maximum size of ${formatBytes(maxSize)}.`
         }
@@ -164,7 +164,7 @@ export function useFileUpload(
   const addFiles = useCallback(
     (newFiles: FileList | File[]) => {
       if (!newFiles || newFiles.length === 0)
-        return
+return
 
       const newFilesArray = Array.from(newFiles)
       const errors: string[] = []
@@ -219,7 +219,7 @@ export function useFileUpload(
         if (error) {
           errors.push(error)
         }
-        else {
+ else {
           validFiles.push({
             file,
             id: generateUniqueId(file),
@@ -245,7 +245,7 @@ export function useFileUpload(
           }
         })
       }
-      else if (errors.length > 0) {
+ else if (errors.length > 0) {
         setState(prev => ({
           ...prev,
           errors,
@@ -343,7 +343,7 @@ export function useFileUpload(
           const file = e.dataTransfer.files[0]
           addFiles([file])
         }
-        else {
+ else {
           addFiles(e.dataTransfer.files)
         }
       }
@@ -401,7 +401,7 @@ export function useFileUpload(
 // Helper function to format bytes to human-readable format
 export function formatBytes(bytes: number, decimals = 2): string {
   if (bytes === 0)
-    return '0 Bytes'
+return '0 Bytes'
 
   const k = 1024
   const dm = decimals < 0 ? 0 : decimals

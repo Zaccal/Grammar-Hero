@@ -23,7 +23,7 @@ vi.mock('../../../prisma/index', () => {
           })
 
           if (!topic)
-            return null
+return null
 
           return {
             ...topic,

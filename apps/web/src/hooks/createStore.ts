@@ -64,7 +64,7 @@ export function createStore<Value>(createState: StoreCreator<Value> | Value) {
   if (typeof createState === 'function') {
     state = (createState as StoreCreator<Value>)(setState, getState)
   }
-  else {
+ else {
     state = createState
   }
 

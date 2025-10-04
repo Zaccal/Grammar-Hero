@@ -14,11 +14,11 @@ export function getDurationOption(min?: string, max?: string) {
     )
 
     if (!foundResult)
-      return 'All'
+return 'All'
 
     return foundResult[0]
   }
-  else {
+ else {
     return 'All'
   }
 }
