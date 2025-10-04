@@ -41,9 +41,7 @@ function HomeComponent() {
       <section>
         <Greeting>
           <GreetingTitle>
-            Welcome
-            {user.displayUsername}
-            !
+            Welcome {user.displayUsername}!
           </GreetingTitle>
           <GreetingDescription>
             Choose a grammar topic and start learning right away! Here you’ll
@@ -77,10 +75,7 @@ function HomeComponent() {
               <TopicsDialog.Skeleton key={value} />
             ))
             : topics?.map(topic => (
-              <TopicsDialog.Root
-                key={topic.id}
-                topic={topic}
-              >
+              <TopicsDialog.Root key={topic.id} topic={topic}>
                 <TopicsDialog.Preview>
                   <TopicsDialog.PreviewCard />
                 </TopicsDialog.Preview>

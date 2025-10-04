@@ -20,6 +20,7 @@ export default antfu({
       'style/operator-linebreak': ['off', 'never'],
       'style/arrow-parens': ['off', 'never'],
       'style/indent': ['off', 'never'],
+      'style/jsx-one-expression-per-line': ['off', 'never'],
     },
   },
 })

@@ -47,10 +47,7 @@ function setOptimisticLike(setter: (value: Topic) => void, value: Topic) {
     isLiked: !value.isLiked,
     _count: {
       ...value._count,
-      likes: value.isLiked
-        ? value._count.likes - 1
-        : value._count.likes + 1,
+      likes: value.isLiked ? value._count.likes - 1 : value._count.likes + 1,
     },
-  }
-  )
+  })
 }
