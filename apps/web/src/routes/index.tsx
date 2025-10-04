@@ -10,10 +10,11 @@ import {
   GreetingTitle,
 } from '@/components/Greeting/Greeting'
 import { TopicsDialog } from '@/components/Topics/index'
-import TopicsDialogCard from '@/components/Topics/monolite/TopicsDialogCard'
 import { trpc } from '@/lib/trpc'
 import ensureSession from '@/middleware'
 import { getDummyArray } from '@/utils/getDummyArray'
+import { getReadTime } from '@/utils/getReadTime'
+import { getTopicImage } from '@/utils/getTopicImage'
 
 export const Route = createFileRoute('/')({
   component: HomeComponent,
@@ -73,15 +74,37 @@ function HomeComponent() {
         <TopicsDialog.List>
           {isLoading
             ? getDummyArray(20).map(value => (
-                <TopicsDialog.Skeleton key={value} />
-              ))
-            : topics?.map(topicData => (
-                <TopicsDialogCard
-                  key={topicData.id}
-                  searchParams={searchParams}
-                  topic={topicData}
-                />
-              ))}
+              <TopicsDialog.Skeleton key={value} />
+            ))
+            : topics?.map(topic => (
+              <TopicsDialog.Root key={topic.id} topic={topic} searchParams={searchParams}>
+                <TopicsDialog.Preview>
+                  <TopicsDialog.PreviewCard />
+                </TopicsDialog.Preview>
+                <TopicsDialog.Content>
+                  <TopicsDialog.Image
+                    src={getTopicImage(topic.image)}
+                    alt={topic.title}
+                    className="w-full max-h-[400px] h-full"
+                  />
+                  <div className="p-6">
+                    <TopicsDialog.Title>{topic.title}</TopicsDialog.Title>
+                    <TopicsDialog.Subtitle>
+                      {getReadTime(topic.durationMin, topic.durationMax)}
+                    </TopicsDialog.Subtitle>
+                    <TopicsDialog.Description>
+                      <p className="mt-2 text-sm text-muted-foreground">
+                        {topic.description}
+                      </p>
+
+                      <TopicsDialog.Actions>
+                        <TopicsDialog.Like />
+                      </TopicsDialog.Actions>
+                    </TopicsDialog.Description>
+                  </div>
+                </TopicsDialog.Content>
+              </TopicsDialog.Root>
+            ))}
         </TopicsDialog.List>
       </section>
     </>

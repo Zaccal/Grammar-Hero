@@ -19,6 +19,7 @@ export default antfu({
       'style/comma-style': ['off', 'never'],
       'style/operator-linebreak': ['off', 'never'],
       'style/arrow-parens': ['off', 'never'],
+      'style/indent': ['off', 'never'],
     },
   },
 })

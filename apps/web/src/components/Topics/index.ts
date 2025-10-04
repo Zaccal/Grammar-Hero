@@ -6,6 +6,7 @@ import { TopicsImage } from './TopicsImage'
 import { TopicsLike } from './TopicsLike'
 import { TopicsList } from './TopicsList'
 import { TopicsPreview } from './TopicsPreview'
+import { TopicsPreviewCard } from './TopicsPreviewCard'
 import { TopicSkeleton } from './TopicsSkeleton'
 import { TopicsSubtitle } from './TopicsSubtitle'
 import { TopicsTitle } from './TopicsTitle'
@@ -14,6 +15,7 @@ export const TopicsDialog = {
   Root: Topic,
   List: TopicsList,
   Preview: TopicsPreview,
+  PreviewCard: TopicsPreviewCard,
   Content: TopicsContent,
   Image: TopicsImage,
   Title: TopicsTitle,

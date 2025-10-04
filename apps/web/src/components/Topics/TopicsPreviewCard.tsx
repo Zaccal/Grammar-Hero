@@ -4,18 +4,18 @@ import { cn } from '@/lib/utils'
 import { getCuttedText } from '@/utils/getCuttedText'
 import { getTopicImage } from '@/utils/getTopicImage'
 import { getVariantLevel } from '@/utils/getVariantLevel'
-import { Badge } from '../../ui/Badge'
+import { Badge } from '../ui/Badge'
 import {
   MinimalCard,
   MinimalCardContent,
   MinimalCardDescription,
   MinimalCardFooter,
   MinimalCardTitle,
-} from '../../ui/SimpleCards'
-import { topicsContext } from '../TopicsContext'
-import { TopicsImage } from '../TopicsImage'
+} from '../ui/SimpleCards'
+import { topicsContext } from './TopicsContext'
+import { TopicsImage } from './TopicsImage'
 
-export function TopicsCard() {
+export function TopicsPreviewCard() {
   const state = topicsContext.useSelect(state => state)
 
   return (
