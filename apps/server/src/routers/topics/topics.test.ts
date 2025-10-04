@@ -1,6 +1,4 @@
 import { describe, expect, it, vi } from 'vitest'
-import { getDummyDate } from '../../utils/getDummyDate'
-import { getMinMax } from '../../utils/getMinMaxMockDate'
 import { MOCK_TOPICS } from '../../utils/getMocksTopics'
 import { TOPICS_SELECT } from './constants'
 import { createTopic, getAll, getById } from './topics.constroller'
@@ -77,22 +75,21 @@ describe('topics', () => {
 
   it('it should retrun not found error', async () => {
     const id = '1123'
-    await expect(getById(id)).rejects.toMatchObject({
+    await expect(getById(id, '123')).rejects.toMatchObject({
       code: 'NOT_FOUND',
       message: 'Topic not found',
     })
   })
 
   it('it should create topic', async () => {
-    const { min, max } = getMinMax()
     const topic = await createTopic(
       {
         title: 'title',
         description: 'description',
         shortDescription: 'shortDescription',
         content: 'content',
-        durationMin: getDummyDate(min)!,
-        durationMax: getDummyDate(max)!,
+        durationMin: '00:05:00',
+        durationMax: '00:10:00',
         level: 'Basic',
         image: 'image',
       },
