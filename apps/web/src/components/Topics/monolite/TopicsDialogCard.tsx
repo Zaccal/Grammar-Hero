@@ -1,4 +1,5 @@
 import type { Topic as TopicType } from '@server/routers/topics/topics.types'
+import type { FilterParamsSchema } from '@server/schemas/filterParams.schema'
 import { getReadTime } from '@/utils/getReadTime'
 import { getTopicImage } from '@/utils/getTopicImage'
 import { TopicsDialog } from '../index'
@@ -6,7 +7,7 @@ import { TopicsCard } from './TopicsCard'
 
 interface TopicsDialogCardProps {
   topic: TopicType
-  searchParams?: Record<string, string | string[]>
+  searchParams?: Partial<FilterParamsSchema>
 }
 
 function TopicsDialogCard({ topic, searchParams }: TopicsDialogCardProps) {

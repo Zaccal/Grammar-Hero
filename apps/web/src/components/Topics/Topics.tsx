@@ -1,10 +1,11 @@
 import type { Topic as TypeTopic } from '@server/routers/topics/topics.types'
+import type { FilterParamsSchema } from '@server/schemas/filterParams.schema'
 import { MorphingDialog } from '../ui/morphing-dialog'
 import { topicsContext } from './TopicsContext'
 
 interface TopicsProps {
   topic: TypeTopic
-  searchParams?: Record<string, string | string[]>
+  searchParams?: Partial<FilterParamsSchema>
   children: React.ReactNode | React.ReactNode[]
 }
 
