@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { MOCK_TOPICS } from '../../utils/getMocksTopics'
 import { TOPICS_SELECT } from './constants'
-import { createTopic, getAll, getById } from './topics.constroller'
+import { createTopic, getAll, getById, toggleBookmark, toggleLike } from './topics.constroller'
 
 vi.mock('../../../prisma/index', () => {
   return {
@@ -22,8 +22,9 @@ vi.mock('../../../prisma/index', () => {
             return data.id === id
           })
 
-          if (!topic)
-return null
+          if (!topic) {
+            return null
+          }
 
           return {
             ...topic,
@@ -43,11 +44,21 @@ return null
           }
         }),
       },
+      like: {
+        findUnique: vi.fn().mockResolvedValue(null),
+        delete: vi.fn().mockResolvedValue(true),
+        create: vi.fn().mockResolvedValue(true),
+      },
+      bookmark: {
+        findUnique: vi.fn().mockResolvedValue(null),
+        delete: vi.fn().mockResolvedValue(true),
+        create: vi.fn().mockResolvedValue(true),
+      }
     },
   }
 })
 
-const TOPICS_KEYS = [...Object.keys(TOPICS_SELECT), 'isLiked']
+const TOPICS_KEYS = [...Object.keys(TOPICS_SELECT), 'isLiked', 'isBookmarked']
 type TopicExpected = Record<string, unknown>
 
 describe('topics', () => {
@@ -96,5 +107,27 @@ describe('topics', () => {
       '123'
     )
     expect(topic).not.toBeUndefined()
+  })
+
+  it('should like topic', async () => {
+    const topicId = '5'
+    const userId = '123'
+    const topic = (await getById(topicId, userId)) as TopicExpected
+    expect(topic.isLiked).toBe(false)
+
+    const response = await toggleLike(topicId, userId)
+
+    expect(response.isLiked).toBe(true)
+  })
+
+  it('should bookmark topic', async () => {
+    const topicId = '5'
+    const userId = '123'
+    const topic = (await getById(topicId, userId)) as TopicExpected
+    expect(topic.isBookmarked).toBe(false)
+
+    const response = await toggleBookmark(topicId, userId)
+
+    expect(response.isBookmarked).toBe(true)
   })
 })

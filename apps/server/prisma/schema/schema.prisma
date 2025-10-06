@@ -50,7 +50,10 @@ model Bookmark {
   id String @id @default(cuid()) @map("_id")
 
   user User @relation(fields: [id], references: [id], onDelete: Cascade)
-  userId String @unique @map("user_id")
+  topics Topics @relation(fields: [topicId], references: [id], onDelete: Cascade)
 
-  topics Topics[]
+  userId String @unique @map("user_id")
+  topicId String @map("topic_id")
+
+  @@unique([userId, topicId])
 }

@@ -1066,7 +1066,8 @@ export type LikeScalarFieldEnum = (typeof LikeScalarFieldEnum)[keyof typeof Like
 
 export const BookmarkScalarFieldEnum = {
   id: 'id',
-  userId: 'userId'
+  userId: 'userId',
+  topicId: 'topicId'
 } as const
 
 export type BookmarkScalarFieldEnum = (typeof BookmarkScalarFieldEnum)[keyof typeof BookmarkScalarFieldEnum]

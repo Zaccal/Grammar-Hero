@@ -63,6 +63,10 @@ export async function getAll(input: FilterParamsSchema, userId: string) {
         where: { userId },
         select: { id: true, userId: true, topicId: true },
       },
+      bookmark: {
+        where: { userId },
+        select: { id: true, userId: true, topicId: true },
+      }
     },
   })
 
@@ -80,6 +84,10 @@ export async function getById(id: string, userId: string) {
         where: { userId },
         select: { id: true, userId: true, topicId: true },
       },
+      bookmark: {
+        where: { userId },
+        select: { id: true, userId: true, topicId: true },
+      }
     },
   })
 
@@ -137,5 +145,36 @@ export async function toggleLike(topicId: string, userId: string) {
     })
 
     return { isLiked: true }
+  }
+}
+
+export async function toggleBookmark(topicId: string, userId: string) {
+  const existing = await prisma.bookmark.findUnique({
+    where: {
+      userId_topicId: {
+        topicId,
+        userId,
+      },
+    },
+  })
+
+  if (existing) {
+    await prisma.bookmark.delete({
+      where: {
+        id: existing.id,
+      },
+    })
+
+    return { isBookmarked: false }
+  }
+ else {
+    await prisma.bookmark.create({
+      data: {
+        topicId,
+        userId,
+      },
+    })
+
+    return { isBookmarked: true }
   }
 }

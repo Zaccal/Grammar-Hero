@@ -549,42 +549,18 @@ export type TopicsUpdateOneRequiredWithoutLikesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TopicsUpdateToOneWithWhereWithoutLikesInput, Prisma.TopicsUpdateWithoutLikesInput>, Prisma.TopicsUncheckedUpdateWithoutLikesInput>
 }
 
-export type TopicsCreateNestedManyWithoutBookmarkInput = {
-  create?: Prisma.XOR<Prisma.TopicsCreateWithoutBookmarkInput, Prisma.TopicsUncheckedCreateWithoutBookmarkInput> | Prisma.TopicsCreateWithoutBookmarkInput[] | Prisma.TopicsUncheckedCreateWithoutBookmarkInput[]
-  connectOrCreate?: Prisma.TopicsCreateOrConnectWithoutBookmarkInput | Prisma.TopicsCreateOrConnectWithoutBookmarkInput[]
-  connect?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
+export type TopicsCreateNestedOneWithoutBookmarkInput = {
+  create?: Prisma.XOR<Prisma.TopicsCreateWithoutBookmarkInput, Prisma.TopicsUncheckedCreateWithoutBookmarkInput>
+  connectOrCreate?: Prisma.TopicsCreateOrConnectWithoutBookmarkInput
+  connect?: Prisma.TopicsWhereUniqueInput
 }
 
-export type TopicsUncheckedCreateNestedManyWithoutBookmarkInput = {
-  create?: Prisma.XOR<Prisma.TopicsCreateWithoutBookmarkInput, Prisma.TopicsUncheckedCreateWithoutBookmarkInput> | Prisma.TopicsCreateWithoutBookmarkInput[] | Prisma.TopicsUncheckedCreateWithoutBookmarkInput[]
-  connectOrCreate?: Prisma.TopicsCreateOrConnectWithoutBookmarkInput | Prisma.TopicsCreateOrConnectWithoutBookmarkInput[]
-  connect?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
-}
-
-export type TopicsUpdateManyWithoutBookmarkNestedInput = {
-  create?: Prisma.XOR<Prisma.TopicsCreateWithoutBookmarkInput, Prisma.TopicsUncheckedCreateWithoutBookmarkInput> | Prisma.TopicsCreateWithoutBookmarkInput[] | Prisma.TopicsUncheckedCreateWithoutBookmarkInput[]
-  connectOrCreate?: Prisma.TopicsCreateOrConnectWithoutBookmarkInput | Prisma.TopicsCreateOrConnectWithoutBookmarkInput[]
-  upsert?: Prisma.TopicsUpsertWithWhereUniqueWithoutBookmarkInput | Prisma.TopicsUpsertWithWhereUniqueWithoutBookmarkInput[]
-  set?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
-  disconnect?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
-  delete?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
-  connect?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
-  update?: Prisma.TopicsUpdateWithWhereUniqueWithoutBookmarkInput | Prisma.TopicsUpdateWithWhereUniqueWithoutBookmarkInput[]
-  updateMany?: Prisma.TopicsUpdateManyWithWhereWithoutBookmarkInput | Prisma.TopicsUpdateManyWithWhereWithoutBookmarkInput[]
-  deleteMany?: Prisma.TopicsScalarWhereInput | Prisma.TopicsScalarWhereInput[]
-}
-
-export type TopicsUncheckedUpdateManyWithoutBookmarkNestedInput = {
-  create?: Prisma.XOR<Prisma.TopicsCreateWithoutBookmarkInput, Prisma.TopicsUncheckedCreateWithoutBookmarkInput> | Prisma.TopicsCreateWithoutBookmarkInput[] | Prisma.TopicsUncheckedCreateWithoutBookmarkInput[]
-  connectOrCreate?: Prisma.TopicsCreateOrConnectWithoutBookmarkInput | Prisma.TopicsCreateOrConnectWithoutBookmarkInput[]
-  upsert?: Prisma.TopicsUpsertWithWhereUniqueWithoutBookmarkInput | Prisma.TopicsUpsertWithWhereUniqueWithoutBookmarkInput[]
-  set?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
-  disconnect?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
-  delete?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
-  connect?: Prisma.TopicsWhereUniqueInput | Prisma.TopicsWhereUniqueInput[]
-  update?: Prisma.TopicsUpdateWithWhereUniqueWithoutBookmarkInput | Prisma.TopicsUpdateWithWhereUniqueWithoutBookmarkInput[]
-  updateMany?: Prisma.TopicsUpdateManyWithWhereWithoutBookmarkInput | Prisma.TopicsUpdateManyWithWhereWithoutBookmarkInput[]
-  deleteMany?: Prisma.TopicsScalarWhereInput | Prisma.TopicsScalarWhereInput[]
+export type TopicsUpdateOneRequiredWithoutBookmarkNestedInput = {
+  create?: Prisma.XOR<Prisma.TopicsCreateWithoutBookmarkInput, Prisma.TopicsUncheckedCreateWithoutBookmarkInput>
+  connectOrCreate?: Prisma.TopicsCreateOrConnectWithoutBookmarkInput
+  upsert?: Prisma.TopicsUpsertWithoutBookmarkInput
+  connect?: Prisma.TopicsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TopicsUpdateToOneWithWhereWithoutBookmarkInput, Prisma.TopicsUpdateWithoutBookmarkInput>, Prisma.TopicsUncheckedUpdateWithoutBookmarkInput>
 }
 
 export type TopicsCreateWithoutUserInput = {
@@ -780,20 +756,47 @@ export type TopicsCreateOrConnectWithoutBookmarkInput = {
   create: Prisma.XOR<Prisma.TopicsCreateWithoutBookmarkInput, Prisma.TopicsUncheckedCreateWithoutBookmarkInput>
 }
 
-export type TopicsUpsertWithWhereUniqueWithoutBookmarkInput = {
-  where: Prisma.TopicsWhereUniqueInput
+export type TopicsUpsertWithoutBookmarkInput = {
   update: Prisma.XOR<Prisma.TopicsUpdateWithoutBookmarkInput, Prisma.TopicsUncheckedUpdateWithoutBookmarkInput>
   create: Prisma.XOR<Prisma.TopicsCreateWithoutBookmarkInput, Prisma.TopicsUncheckedCreateWithoutBookmarkInput>
+  where?: Prisma.TopicsWhereInput
 }
 
-export type TopicsUpdateWithWhereUniqueWithoutBookmarkInput = {
-  where: Prisma.TopicsWhereUniqueInput
+export type TopicsUpdateToOneWithWhereWithoutBookmarkInput = {
+  where?: Prisma.TopicsWhereInput
   data: Prisma.XOR<Prisma.TopicsUpdateWithoutBookmarkInput, Prisma.TopicsUncheckedUpdateWithoutBookmarkInput>
 }
 
-export type TopicsUpdateManyWithWhereWithoutBookmarkInput = {
-  where: Prisma.TopicsScalarWhereInput
-  data: Prisma.XOR<Prisma.TopicsUpdateManyMutationInput, Prisma.TopicsUncheckedUpdateManyWithoutBookmarkInput>
+export type TopicsUpdateWithoutBookmarkInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
+  user?: Prisma.UserUpdateOneRequiredWithoutTopicsNestedInput
+  likes?: Prisma.LikeUpdateManyWithoutTopicNestedInput
+}
+
+export type TopicsUncheckedUpdateWithoutBookmarkInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  likes?: Prisma.LikeUncheckedUpdateManyWithoutTopicNestedInput
 }
 
 export type TopicsCreateManyUserInput = {
@@ -854,53 +857,6 @@ export type TopicsUncheckedUpdateManyWithoutUserInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
-}
-
-export type TopicsUpdateWithoutBookmarkInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  content?: Prisma.StringFieldUpdateOperationsInput | string
-  level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
-  user?: Prisma.UserUpdateOneRequiredWithoutTopicsNestedInput
-  likes?: Prisma.LikeUpdateManyWithoutTopicNestedInput
-}
-
-export type TopicsUncheckedUpdateWithoutBookmarkInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  content?: Prisma.StringFieldUpdateOperationsInput | string
-  level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  likes?: Prisma.LikeUncheckedUpdateManyWithoutTopicNestedInput
-}
-
-export type TopicsUncheckedUpdateManyWithoutBookmarkInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  content?: Prisma.StringFieldUpdateOperationsInput | string
-  level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 

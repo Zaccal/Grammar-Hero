@@ -1,6 +1,9 @@
 import type { Topic } from '@server/routers/topics/topics.types'
 
-export function getOptimisticLike(setter: (value: Topic) => void, value: Topic) {
+export function getOptimisticLike(
+  setter: (value: Topic) => void,
+  value: Topic
+) {
   setter({
     ...value,
     isLiked: !value.isLiked,

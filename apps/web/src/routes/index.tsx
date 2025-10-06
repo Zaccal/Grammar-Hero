@@ -32,7 +32,7 @@ function HomeComponent() {
   } = useQuery(trpc.topics.getAll.queryOptions(searchParams))
 
   if (isError)
-    return <ErrorComponent error={error} />
+return <ErrorComponent error={error} />
 
   return (
     <>
@@ -68,37 +68,37 @@ function HomeComponent() {
         <TopicsDialog.List>
           {isLoading
             ? getDummyArray(20).map(value => (
-              <TopicsDialog.Skeleton key={value} />
-            ))
+                <TopicsDialog.Skeleton key={value} />
+              ))
             : topics?.map(topic => (
-              <TopicsDialog.Root key={topic.id} topic={topic}>
-                <TopicsDialog.Preview>
-                  <TopicsDialog.PreviewCard />
-                </TopicsDialog.Preview>
-                <TopicsDialog.Content>
-                  <TopicsDialog.Image
-                    src={getTopicImage(topic.image)}
-                    alt={topic.title}
-                    className="w-full max-h-[400px] h-full"
-                  />
-                  <div className="p-6">
-                    <TopicsDialog.Title>{topic.title}</TopicsDialog.Title>
-                    <TopicsDialog.Subtitle>
-                      {getReadTime(topic.durationMin, topic.durationMax)}
-                    </TopicsDialog.Subtitle>
-                    <TopicsDialog.Description>
-                      <p className="mt-2 text-sm text-muted-foreground">
-                        {topic.description}
-                      </p>
+                <TopicsDialog.Root key={topic.id} topic={topic}>
+                  <TopicsDialog.Preview>
+                    <TopicsDialog.PreviewCard />
+                  </TopicsDialog.Preview>
+                  <TopicsDialog.Content>
+                    <TopicsDialog.Image
+                      src={getTopicImage(topic.image)}
+                      alt={topic.title}
+                      className="w-full max-h-[400px] h-full"
+                    />
+                    <div className="p-6">
+                      <TopicsDialog.Title>{topic.title}</TopicsDialog.Title>
+                      <TopicsDialog.Subtitle>
+                        {getReadTime(topic.durationMin, topic.durationMax)}
+                      </TopicsDialog.Subtitle>
+                      <TopicsDialog.Description>
+                        <p className="mt-2 text-sm text-muted-foreground">
+                          {topic.description}
+                        </p>
 
-                      <TopicsDialog.Actions>
-                        <TopicsDialog.Like />
-                      </TopicsDialog.Actions>
-                    </TopicsDialog.Description>
-                  </div>
-                </TopicsDialog.Content>
-              </TopicsDialog.Root>
-            ))}
+                        <TopicsDialog.Actions>
+                          <TopicsDialog.Like />
+                        </TopicsDialog.Actions>
+                      </TopicsDialog.Description>
+                    </div>
+                  </TopicsDialog.Content>
+                </TopicsDialog.Root>
+              ))}
         </TopicsDialog.List>
       </section>
     </>
