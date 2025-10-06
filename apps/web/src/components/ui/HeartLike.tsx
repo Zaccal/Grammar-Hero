@@ -5,5 +5,5 @@ interface HeartLikeProps extends LucideProps {
 }
 
 export default function HeartLike({ liked, ...props }: HeartLikeProps) {
-  return liked ? <Heart fill="#ef4444" {...props} /> : <Heart {...props} />
+  return liked ? <Heart fill="#ef4444" color='#ef4444' {...props} /> : <Heart {...props} />
 }

@@ -93,6 +93,7 @@ return <ErrorComponent error={error} />
 
                         <TopicsDialog.Actions>
                           <TopicsDialog.Like />
+                          <TopicsDialog.Bookmark />
                         </TopicsDialog.Actions>
                       </TopicsDialog.Description>
                     </div>

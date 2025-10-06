@@ -49,10 +49,10 @@ enum Level {
 model Bookmark {
   id String @id @default(cuid()) @map("_id")
 
-  user User @relation(fields: [id], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   topics Topics @relation(fields: [topicId], references: [id], onDelete: Cascade)
 
-  userId String @unique @map("user_id")
+  userId String @map("user_id")
   topicId String @map("topic_id")
 
   @@unique([userId, topicId])

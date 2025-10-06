@@ -1,4 +1,4 @@
-import { Bookmark } from 'lucide-react'
+import { Bookmark } from '@/components/ui/bookmark'
 import HeartLike from '@/components/ui/HeartLike'
 import { cn } from '@/lib/utils'
 import { getCuttedText, getTopicImage, getVariantLevel } from '@/utils/index'
@@ -52,8 +52,12 @@ export function TopicsPreviewCard() {
               <HeartLike liked={state.isLiked} size={21} />
               <span>{state._count.likes}</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Bookmark size={21} />
+            <div className={cn(
+                'flex items-center gap-2',
+                state.isBookmarked && 'text-yellow-300'
+              )}
+            >
+              <Bookmark bookmarked={state.isBookmarked} />
               <span>{state._count.bookmark}</span>
             </div>
           </div>

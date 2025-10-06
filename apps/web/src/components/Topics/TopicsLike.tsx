@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { Heart } from 'lucide-react'
+import { toast } from 'sonner'
 import { trpc } from '@/lib/trpc'
 import { getOptimisticLike } from '@/utils'
 import { Button } from '../ui/button'
@@ -25,6 +26,8 @@ export function TopicsLike() {
         if (topicsContextValue) {
           getOptimisticLike(setTopicsContext, topicsContextValue)
         }
+
+        toast.error('Failed to like the topic. Please try again.')
       },
     })
   )

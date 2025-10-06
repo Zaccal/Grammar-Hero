@@ -66,7 +66,7 @@ export async function getAll(input: FilterParamsSchema, userId: string) {
       bookmark: {
         where: { userId },
         select: { id: true, userId: true, topicId: true },
-      }
+      },
     },
   })
 
@@ -87,7 +87,7 @@ export async function getById(id: string, userId: string) {
       bookmark: {
         where: { userId },
         select: { id: true, userId: true, topicId: true },
-      }
+      },
     },
   })
 
@@ -170,8 +170,8 @@ export async function toggleBookmark(topicId: string, userId: string) {
  else {
     await prisma.bookmark.create({
       data: {
-        topicId,
-        userId,
+       userId,
+       topicId
       },
     })
 

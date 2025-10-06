@@ -1,7 +1,13 @@
 import { describe, expect, it, vi } from 'vitest'
 import { MOCK_TOPICS } from '../../utils/getMocksTopics'
 import { TOPICS_SELECT } from './constants'
-import { createTopic, getAll, getById, toggleBookmark, toggleLike } from './topics.constroller'
+import {
+  createTopic,
+  getAll,
+  getById,
+  toggleBookmark,
+  toggleLike,
+} from './topics.constroller'
 
 vi.mock('../../../prisma/index', () => {
   return {
@@ -53,7 +59,7 @@ vi.mock('../../../prisma/index', () => {
         findUnique: vi.fn().mockResolvedValue(null),
         delete: vi.fn().mockResolvedValue(true),
         create: vi.fn().mockResolvedValue(true),
-      }
+      },
     },
   }
 })

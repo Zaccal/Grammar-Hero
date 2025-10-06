@@ -179,15 +179,15 @@ export type BookmarkOrderByWithRelationInput = {
 
 export type BookmarkWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  userId?: string
   userId_topicId?: Prisma.BookmarkUserIdTopicIdCompoundUniqueInput
   AND?: Prisma.BookmarkWhereInput | Prisma.BookmarkWhereInput[]
   OR?: Prisma.BookmarkWhereInput[]
   NOT?: Prisma.BookmarkWhereInput | Prisma.BookmarkWhereInput[]
+  userId?: Prisma.StringFilter<"Bookmark"> | string
   topicId?: Prisma.StringFilter<"Bookmark"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   topics?: Prisma.XOR<Prisma.TopicsScalarRelationFilter, Prisma.TopicsWhereInput>
-}, "id" | "userId" | "userId_topicId">
+}, "id" | "userId_topicId">
 
 export type BookmarkOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -208,8 +208,8 @@ export type BookmarkScalarWhereWithAggregatesInput = {
 }
 
 export type BookmarkCreateInput = {
-  userId: string
-  user?: Prisma.UserCreateNestedOneWithoutBookmarkInput
+  id?: string
+  user: Prisma.UserCreateNestedOneWithoutBookmarkInput
   topics: Prisma.TopicsCreateNestedOneWithoutBookmarkInput
 }
 
@@ -220,7 +220,7 @@ export type BookmarkUncheckedCreateInput = {
 }
 
 export type BookmarkUpdateInput = {
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutBookmarkNestedInput
   topics?: Prisma.TopicsUpdateOneRequiredWithoutBookmarkNestedInput
 }
@@ -238,7 +238,7 @@ export type BookmarkCreateManyInput = {
 }
 
 export type BookmarkUpdateManyMutationInput = {
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type BookmarkUncheckedUpdateManyInput = {
@@ -365,12 +365,12 @@ export type BookmarkUncheckedUpdateManyWithoutTopicsNestedInput = {
 }
 
 export type BookmarkCreateWithoutUserInput = {
-  userId: string
+  id?: string
   topics: Prisma.TopicsCreateNestedOneWithoutBookmarkInput
 }
 
 export type BookmarkUncheckedCreateWithoutUserInput = {
-  userId: string
+  id?: string
   topicId: string
 }
 
@@ -410,8 +410,8 @@ export type BookmarkScalarWhereInput = {
 }
 
 export type BookmarkCreateWithoutTopicsInput = {
-  userId: string
-  user?: Prisma.UserCreateNestedOneWithoutBookmarkInput
+  id?: string
+  user: Prisma.UserCreateNestedOneWithoutBookmarkInput
 }
 
 export type BookmarkUncheckedCreateWithoutTopicsInput = {
@@ -446,22 +446,22 @@ export type BookmarkUpdateManyWithWhereWithoutTopicsInput = {
 }
 
 export type BookmarkCreateManyUserInput = {
-  userId: string
+  id?: string
   topicId: string
 }
 
 export type BookmarkUpdateWithoutUserInput = {
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   topics?: Prisma.TopicsUpdateOneRequiredWithoutBookmarkNestedInput
 }
 
 export type BookmarkUncheckedUpdateWithoutUserInput = {
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   topicId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type BookmarkUncheckedUpdateManyWithoutUserInput = {
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   topicId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -471,7 +471,7 @@ export type BookmarkCreateManyTopicsInput = {
 }
 
 export type BookmarkUpdateWithoutTopicsInput = {
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutBookmarkNestedInput
 }
 

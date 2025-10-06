@@ -19,8 +19,8 @@ export function TopicDetailsLike() {
       onError: () => {
         if (value) {
           getOptimisticLike(set, value)
-          toast.error('Failed to like the topic. Please try again.')
         }
+          toast.error('Failed to like the topic. Please try again.')
       },
     })
   )
@@ -29,11 +29,11 @@ export function TopicDetailsLike() {
     <Button
       onClick={() => toggleLike({ topicId: id })}
       variant="mutedGhost"
-      className={isLiked ? '!text-destructive' : ''}
+      className={isLiked ? 'hover:bg-red-100' : ''}
       aria-label="like"
     >
       <HeartLike liked={isLiked} />
-      <span>{_count.likes}</span>
+      <span className={isLiked ? 'text-destructive' : ''}>{_count.likes}</span>
     </Button>
   )
 }
