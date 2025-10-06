@@ -1,5 +1,9 @@
 import dateformat from 'dateformat'
-import { getReadTime, getUserImageFallbackText, getVariantLevel } from '@/utils/index'
+import {
+  getReadTime,
+  getUserImageFallbackText,
+  getVariantLevel,
+} from '@/utils/index'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { Badge } from '../ui/Badge'
 import { topicDetailsContext } from './TopicDetailsContext'
