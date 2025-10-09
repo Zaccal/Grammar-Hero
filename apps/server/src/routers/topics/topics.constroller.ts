@@ -170,8 +170,8 @@ export async function toggleBookmark(topicId: string, userId: string) {
  else {
     await prisma.bookmark.create({
       data: {
-       userId,
-       topicId
+        userId,
+        topicId,
       },
     })
 

@@ -2,7 +2,13 @@ import z from 'zod'
 import { protectedProcedure, router } from '@/lib/trpc'
 import { filterParamsSchema } from '@/schemas/filterParams.schema'
 import { topicCreateSchema } from '../../schemas/topics.schema'
-import { createTopic, getAll, getById, toggleBookmark, toggleLike } from './topics.constroller'
+import {
+  createTopic,
+  getAll,
+  getById,
+  toggleBookmark,
+  toggleLike,
+} from './topics.constroller'
 
 export const topicsRouter = router({
   getAll: protectedProcedure
@@ -22,10 +28,12 @@ export const topicsRouter = router({
 
       return toggleLike(topicId, userId)
     }),
-  bookmark: protectedProcedure.input(z.object({ topicId: z.string() })).mutation(async ({ input, ctx }) => {
-    const userId = ctx.session.user.id
-    const topicId = input.topicId
+  bookmark: protectedProcedure
+    .input(z.object({ topicId: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      const userId = ctx.session.user.id
+      const topicId = input.topicId
 
-    return toggleBookmark(topicId, userId)
-  })
+      return toggleBookmark(topicId, userId)
+    }),
 })

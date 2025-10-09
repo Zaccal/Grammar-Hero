@@ -20,7 +20,7 @@ export function TopicDetailsLike() {
         if (value) {
           getOptimisticLike(set, value)
         }
-          toast.error('Failed to like the topic. Please try again.')
+        toast.error('Failed to like the topic. Please try again.')
       },
     })
   )

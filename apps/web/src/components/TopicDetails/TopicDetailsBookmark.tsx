@@ -7,28 +7,38 @@ import { getOptimisticBookmark } from '@/utils'
 import { topicDetailsContext } from './TopicDetailsContext'
 
 export function TopicDetailsBookmark() {
-  const { _count, isBookmarked, id } = topicDetailsContext.useSelect(state => state)
+  const { _count, isBookmarked, id } = topicDetailsContext.useSelect(
+    state => state
+  )
   const { set, value } = topicDetailsContext.useSelect()
 
-  const { mutate: toggleBookmark } = useMutation(trpc.topics.bookmark.mutationOptions({
-    onMutate: () => {
-      if (value) {
-        getOptimisticBookmark(set, value)
-      }
-    },
-    onError: () => {
-      if (value) {
-        getOptimisticBookmark(set, value)
-      }
+  const { mutate: toggleBookmark } = useMutation(
+    trpc.topics.bookmark.mutationOptions({
+      onMutate: () => {
+        if (value) {
+          getOptimisticBookmark(set, value)
+        }
+      },
+      onError: () => {
+        if (value) {
+          getOptimisticBookmark(set, value)
+        }
 
-      toast.error('Failed to bookmark the topic. Please try again.')
-    }
-  }))
+        toast.error('Failed to bookmark the topic. Please try again.')
+      },
+    })
+  )
 
   return (
-    <Button onClick={() => toggleBookmark({ topicId: id })} variant="mutedGhost" className={isBookmarked ? 'hover:bg-yellow-100' : ''}>
+    <Button
+      onClick={() => toggleBookmark({ topicId: id })}
+      variant="mutedGhost"
+      className={isBookmarked ? 'hover:bg-yellow-100' : ''}
+    >
       <Bookmark bookmarked={isBookmarked} />
-      <span className={isBookmarked ? 'text-yellow-300' : ''}>{_count.bookmark}</span>
+      <span className={isBookmarked ? 'text-yellow-300' : ''}>
+        {_count.bookmark}
+      </span>
     </Button>
   )
 }

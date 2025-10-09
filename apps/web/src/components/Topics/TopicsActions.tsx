@@ -20,9 +20,7 @@ export function TopicsActions({ children }: TopicsActionsProps) {
           Start learning
         </Link>
       </Button>
-      <div className="space-x-3 ">
-        {children}
-      </div>
+      <div className="space-x-3 ">{children}</div>
     </div>
   )
 }

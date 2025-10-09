@@ -52,7 +52,8 @@ export function TopicsPreviewCard() {
               <HeartLike liked={state.isLiked} size={21} />
               <span>{state._count.likes}</span>
             </div>
-            <div className={cn(
+            <div
+              className={cn(
                 'flex items-center gap-2',
                 state.isBookmarked && 'text-yellow-300'
               )}

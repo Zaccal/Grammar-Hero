@@ -25,5 +25,5 @@ export const TopicsDialog = {
   Actions: TopicsActions,
   Skeleton: TopicSkeleton,
   Like: TopicsLike,
-  Bookmark: TopicsBookmark
+  Bookmark: TopicsBookmark,
 }
