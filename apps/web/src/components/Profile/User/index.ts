@@ -1,11 +1,13 @@
 import { User as Root } from './User'
 import { UserAvatar } from './UserAvatar'
+import { UserContent } from './UserContent'
 import { userContext } from './UserContext'
-import { UserDetails } from './UserDetails'
+import { UserDisplayname } from './UserDisplayname'
 
 export const User = {
   Root,
   Avatar: UserAvatar,
   Context: userContext,
-  Details: UserDetails
+  Content: UserContent,
+  Displayname: UserDisplayname,
 }

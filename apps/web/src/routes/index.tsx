@@ -24,6 +24,7 @@ export const Route = createFileRoute('/')({
 function HomeComponent() {
   const { user } = Route.useLoaderData()
   const searchParams = Route.useSearch()
+  // TODO: I have to made a pagination
   const {
     data: topics,
     isLoading,

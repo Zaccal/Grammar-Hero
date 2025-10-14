@@ -43,6 +43,7 @@ export async function getAll(input: FilterParamsSchema, userId: string) {
           },
         }
 
+  // TODO: add pagination
   const topics = await prisma.topics.findMany({
     orderBy,
     take: input.limit,

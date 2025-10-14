@@ -3,7 +3,9 @@ import { getUserImageFallbackText } from '@/utils'
 import { userContext } from './UserContext'
 
 export function UserAvatar() {
-  const { image, displayUsername, name } = userContext.useSelect(state => state.user)
+  const { image, displayUsername, name } = userContext.useSelect(
+    state => state.user
+  )
   return (
     <>
       <Avatar className="size-20">

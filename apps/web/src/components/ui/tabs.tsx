@@ -1,9 +1,9 @@
-'use client';
+'use client'
 
-import * as React from 'react';
-import { cn } from '@/lib/utils';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { Tabs as TabsPrimitive } from 'radix-ui';
+import * as React from 'react'
+import { cn } from '@/lib/utils'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { Tabs as TabsPrimitive } from 'radix-ui'
 
 // Variants for TabsList
 const tabsListVariants = cva('flex items-center shrink-0', {
@@ -75,7 +75,7 @@ const tabsListVariants = cva('flex items-center shrink-0', {
     variant: 'default',
     size: 'md',
   },
-});
+})
 
 // Variants for TabsTrigger
 const tabsTriggerVariants = cva(
@@ -116,8 +116,8 @@ const tabsTriggerVariants = cva(
       variant: 'default',
       size: 'md',
     },
-  },
-);
+  }
+)
 
 // Variants for TabsContent
 const tabsContentVariants = cva(
@@ -131,22 +131,30 @@ const tabsContentVariants = cva(
     defaultVariants: {
       variant: 'default',
     },
-  },
-);
+  }
+)
 
 // Context
 type TabsContextType = {
-  variant?: 'default' | 'button' | 'line';
-  size?: 'lg' | 'sm' | 'xs' | 'md';
-};
+  variant?: 'default' | 'button' | 'line'
+  size?: 'lg' | 'sm' | 'xs' | 'md'
+}
 const TabsContext = React.createContext<TabsContextType>({
   variant: 'default',
   size: 'md',
-});
+})
+
+export type TabsProps = React.ComponentProps<typeof TabsPrimitive.Root>
 
 // Components
-function Tabs({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Root>) {
-  return <TabsPrimitive.Root data-slot="tabs" className={cn('', className)} {...props} />;
+function Tabs({ className, ...props }: TabsProps) {
+  return (
+    <TabsPrimitive.Root
+      data-slot="tabs"
+      className={cn('', className)}
+      {...props}
+    />
+  )
 }
 
 function TabsList({
@@ -155,20 +163,26 @@ function TabsList({
   shape = 'default',
   size = 'md',
   ...props
-}: React.ComponentProps<typeof TabsPrimitive.List> & VariantProps<typeof tabsListVariants>) {
+}: React.ComponentProps<typeof TabsPrimitive.List> &
+  VariantProps<typeof tabsListVariants>) {
   return (
-    <TabsContext.Provider value={{ variant: variant || 'default', size: size || 'md' }}>
+    <TabsContext.Provider
+      value={{ variant: variant || 'default', size: size || 'md' }}
+    >
       <TabsPrimitive.List
         data-slot="tabs-list"
         className={cn(tabsListVariants({ variant, shape, size }), className)}
         {...props}
       />
     </TabsContext.Provider>
-  );
+  )
 }
 
-function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
-  const { variant, size } = React.useContext(TabsContext);
+function TabsTrigger({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
+  const { variant, size } = React.useContext(TabsContext)
 
   return (
     <TabsPrimitive.Trigger
@@ -176,21 +190,22 @@ function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPr
       className={cn(tabsTriggerVariants({ variant, size }), className)}
       {...props}
     />
-  );
+  )
 }
 
 function TabsContent({
   className,
   variant,
   ...props
-}: React.ComponentProps<typeof TabsPrimitive.Content> & VariantProps<typeof tabsContentVariants>) {
+}: React.ComponentProps<typeof TabsPrimitive.Content> &
+  VariantProps<typeof tabsContentVariants>) {
   return (
     <TabsPrimitive.Content
       data-slot="tabs-content"
       className={cn(tabsContentVariants({ variant }), className)}
       {...props}
     />
-  );
+  )
 }
 
-export { Tabs, TabsContent, TabsList, TabsTrigger };
+export { Tabs, TabsContent, TabsList, TabsTrigger }

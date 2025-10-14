@@ -1,6 +1,7 @@
 export * from './createContext'
 export * from './useClickOutside'
 export * from './useClickOutside'
+export * from './useCounter/useCounter'
 export * from './useDebounceCallback/useDebounceCallback'
 export * from './useDidUpdate/useDidUpdate'
 export * from './useFileUpload'

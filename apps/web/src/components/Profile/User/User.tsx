@@ -9,9 +9,7 @@ interface UserProps {
 export function User({ user, children }: UserProps) {
   return (
     <userContext.Provider initialValue={{ user }}>
-      <div className="flex items-center xs:mx-auto w-fit gap-6">
-        {children}
-      </div>
+      <div className="flex items-center xs:mx-auto w-fit gap-6">{children}</div>
     </userContext.Provider>
   )
 }

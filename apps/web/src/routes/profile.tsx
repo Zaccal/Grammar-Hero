@@ -1,10 +1,27 @@
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { Bookmark, BriefcaseBusiness, Heart, Pen, Upload } from 'lucide-react'
+import {
+  Bookmark,
+  BriefcaseBusiness,
+  Ellipsis,
+  Heart,
+  Menu,
+  Pen,
+} from 'lucide-react'
+import ErrorComponent from '@/components/ErrorComponent'
+import { PaginationTopics } from '@/components/Profile/PaginationTopics'
+import { ProfileTab } from '@/components/Profile/ProfileTabs/index'
 import { User } from '@/components/Profile/User/index'
-import { Works } from '@/components/Profile/Works'
 import { Button } from '@/components/ui/button'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from '@/components/ui/empty'
+import { trpc } from '@/lib/trpc'
 import ensureSession from '@/middleware'
 
 export const Route = createFileRoute('/profile')({
@@ -12,49 +29,81 @@ export const Route = createFileRoute('/profile')({
   loader: ensureSession,
 })
 
+const LIMIT_OF_TOPICS = 10
+
 function RouteComponent() {
   const { user } = Route.useLoaderData()
+  const myTopicsQuery = useInfiniteQuery(
+    trpc.profile.getAllMyTopics.infiniteQueryOptions(
+      {
+        limit: LIMIT_OF_TOPICS,
+      },
+      {
+        getNextPageParam: last => last.nextCursor ?? undefined,
+        initialCursor: undefined,
+      }
+    )
+  )
+
+  if (myTopicsQuery.isError)
+    return <ErrorComponent error={myTopicsQuery.error} />
 
   return (
     <section className="container pt-24">
       <User.Root user={user}>
         <User.Avatar />
-        <User.Details>
+        <User.Content>
+          <User.Displayname />
           {/* Create a route editProfile */}
-          <Button size="lg" variant="outline">
-            <Pen />
-            Edit profile
-          </Button>
-        </User.Details>
+          <div className="flex gap-3">
+            <Button size="lg" variant="outline">
+              <Pen />
+              Edit profile
+            </Button>
+            <Button size="lg" variant="outline">
+              <Ellipsis />
+            </Button>
+          </div>
+        </User.Content>
       </User.Root>
 
-      <Tabs defaultValue="works" className="mt-12 text-sm">
-        <ScrollArea orentation="horizontal" aria-orientation="horizontal" className="w-full whitespace-nowrap">
-          <TabsList variant="line" className="min-w-sm ">
-            <TabsTrigger value="works">
-              <BriefcaseBusiness /> Works
-            </TabsTrigger>
-            <TabsTrigger value="bookmarks">
-              <Bookmark /> Bookmarks
-            </TabsTrigger>
-            <TabsTrigger value="likes">
-              <Heart /> Liked Topics
-            </TabsTrigger>
-          </TabsList>
-        </ScrollArea>
-
-        <TabsContent value="works" className="mt-8">
-          <Works.Root>
-            <Works.Empty />
-          </Works.Root>
-        </TabsContent>
-        <TabsContent value="bookmarks">
-          bookmarks
-        </TabsContent>
-        <TabsContent value="likes">
-          likes
-        </TabsContent>
-      </Tabs>
+      <ProfileTab.Root defaultValue="My Topics">
+        <ProfileTab.Content icon={<Menu />} value="My Topics">
+          <PaginationTopics.Root query={myTopicsQuery}>
+            <PaginationTopics.Empty>
+              <Empty>
+                <EmptyHeader>
+                  <EmptyMedia variant="icon">
+                    <BriefcaseBusiness />
+                  </EmptyMedia>
+                  <EmptyTitle>No Projects Yet</EmptyTitle>
+                  <EmptyDescription>
+                    Become a contributor! Upload your first topic and join our
+                    community of learners and educators
+                  </EmptyDescription>
+                </EmptyHeader>
+                <EmptyContent>
+                  <Button asChild>
+                    <Link to="/createTopic">Let's create!</Link>
+                  </Button>
+                </EmptyContent>
+              </Empty>
+            </PaginationTopics.Empty>
+            <PaginationTopics.List>
+              <PaginationTopics.Skeleton />
+              <PaginationTopics.Render />
+            </PaginationTopics.List>
+            <PaginationTopics.ShowMore />
+            <PaginationTopics.Loader />
+          </PaginationTopics.Root>
+        </ProfileTab.Content>
+        <ProfileTab.Content icon={<Bookmark />} value="Bookmarks">
+          Hello World!
+        </ProfileTab.Content>
+        <ProfileTab.Content icon={<Heart />} value="Liked Topcis">
+          Hello World!
+        </ProfileTab.Content>
+      </ProfileTab.Root>
     </section>
   )
 }
