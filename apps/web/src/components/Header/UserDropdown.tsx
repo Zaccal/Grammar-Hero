@@ -4,8 +4,6 @@ import { useState } from 'react'
 import { toast } from 'sonner'
 import { useSession, useTheme } from '@/hooks'
 import { useSignOut } from '@/hooks/useSignOut'
-import { getUserImageFallbackText } from '@/utils/index'
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,6 +13,7 @@ import {
 } from '../ui/dropdown-menu'
 import { Skeleton } from '../ui/skeleton'
 import { Switch } from '../ui/switch'
+import { User as UserComponent } from '../User/index'
 
 function UserDropdown() {
   const { data, isLoading, isError, error } = useSession()
@@ -23,7 +22,7 @@ function UserDropdown() {
   const [darkMode, setDarkMode] = useState(theme === 'dark')
 
   if (isLoading)
-return <Skeleton className="size-10 rounded-full" />
+    return <Skeleton className="size-10 rounded-full" />
   if (isError || !data) {
     toast.error('Something went wrong', {
       description: error?.message,
@@ -36,12 +35,9 @@ return <Skeleton className="size-10 rounded-full" />
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <Avatar>
-          <AvatarImage src={user.image || ''} alt={user.displayUsername!} />
-          <AvatarFallback>
-            {getUserImageFallbackText(user.displayUsername!)}
-          </AvatarFallback>
-        </Avatar>
+        <UserComponent.Root user={user}>
+          <UserComponent.Avatar className="size-12" classNameFallback="text-base" />
+        </UserComponent.Root>
       </DropdownMenuTrigger>
       <DropdownMenuContent className=" w-[200px]">
         <Link to="/profile">

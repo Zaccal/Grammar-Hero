@@ -51,7 +51,8 @@ function RouteComponent() {
   if (
     (myTopicsQuery.isError ||
       likedTopicsQuery.isError ||
-      bookmarkedTopicsQuery.isError) && error
+      bookmarkedTopicsQuery.isError) &&
+      error
   ) {
     return <ErrorComponent error={error} />
   }

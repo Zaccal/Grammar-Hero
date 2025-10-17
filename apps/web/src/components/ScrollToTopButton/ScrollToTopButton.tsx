@@ -23,10 +23,14 @@ function ScrollToTopButton() {
   }
 
   if (!isVisible)
-    return null
+return null
 
   return (
-    <Button onClick={scrollToTop} size="icon" className="fixed right-5 bottom-5">
+    <Button
+      onClick={scrollToTop}
+      size="icon"
+      className="fixed right-5 bottom-5"
+    >
       <ChevronUp />
     </Button>
   )
