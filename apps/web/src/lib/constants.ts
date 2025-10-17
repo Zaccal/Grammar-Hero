@@ -9,3 +9,5 @@ export const QUERY_OPTION = {
     last.nextCursor ?? undefined,
   initialCursor: undefined,
 }
+
+export const SCROLL_VISIBLE = 600

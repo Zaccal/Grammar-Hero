@@ -11,6 +11,7 @@ import {
 import ErrorComponent from '@/components/ErrorComponent'
 import { PaginationTopics } from '@/components/PaginationTopics'
 import { ProfileTab } from '@/components/ProfileTabs/index'
+import ScrollToTopButton from '@/components/ScrollToTopButton/ScrollToTopButton'
 import { Button } from '@/components/ui/button'
 import {
   Empty,
@@ -39,15 +40,25 @@ function RouteComponent() {
     trpc.profile.getLikedTopics.infiniteQueryOptions(QUERY_INPUT, QUERY_OPTION)
   )
   const bookmarkedTopicsQuery = useInfiniteQuery(
-    trpc.profile.getBookmarkedTopics.infiniteQueryOptions(QUERY_INPUT, QUERY_OPTION)
+    trpc.profile.getBookmarkedTopics.infiniteQueryOptions(
+      QUERY_INPUT,
+      QUERY_OPTION
+    )
   )
-  const error = myTopicsQuery.error ?? likedTopicsQuery.error ?? bookmarkedTopicsQuery.error
+  const error =
+    myTopicsQuery.error ?? likedTopicsQuery.error ?? bookmarkedTopicsQuery.error
 
-  if ((myTopicsQuery.isError || likedTopicsQuery.isError || bookmarkedTopicsQuery.isError) && error)
+  if (
+    (myTopicsQuery.isError ||
+      likedTopicsQuery.isError ||
+      bookmarkedTopicsQuery.isError) && error
+  ) {
     return <ErrorComponent error={error} />
+  }
 
   return (
     <section className="container pt-24">
+      <ScrollToTopButton />
       <User.Root user={user}>
         <User.Avatar />
         <User.Content>
@@ -102,7 +113,8 @@ function RouteComponent() {
                 <EmptyHeader>
                   <EmptyTitle>No topics booked yet</EmptyTitle>
                   <EmptyDescription>
-                    Once you book a topic, it will appear here for easy access. Start exploring and book the ones that interest you!
+                    Once you book a topic, it will appear here for easy access.
+                    Start exploring and book the ones that interest you!
                   </EmptyDescription>
                 </EmptyHeader>
               </Empty>
