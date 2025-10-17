@@ -1,3 +1,4 @@
+import type { InfinityPaginationTopics } from '@server/routers/profile/profile.types'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import {
@@ -9,9 +10,8 @@ import {
   Pen,
 } from 'lucide-react'
 import ErrorComponent from '@/components/ErrorComponent'
-import { PaginationTopics } from '@/components/Profile/PaginationTopics'
-import { ProfileTab } from '@/components/Profile/ProfileTabs/index'
-import { User } from '@/components/Profile/User/index'
+import { PaginationTopics } from '@/components/PaginationTopics'
+import { ProfileTab } from '@/components/ProfileTabs/index'
 import { Button } from '@/components/ui/button'
 import {
   Empty,
@@ -21,6 +21,7 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from '@/components/ui/empty'
+import { User } from '@/components/User/index'
 import { trpc } from '@/lib/trpc'
 import ensureSession from '@/middleware'
 
@@ -30,23 +31,22 @@ export const Route = createFileRoute('/profile')({
 })
 
 const LIMIT_OF_TOPICS = 10
+const QUERY_INPUT = {
+  limit: LIMIT_OF_TOPICS,
+}
+const QUERY_OPTION = {
+  getNextPageParam: (last: InfinityPaginationTopics) => last.nextCursor ?? undefined,
+  initialCursor: undefined,
+}
 
 function RouteComponent() {
   const { user } = Route.useLoaderData()
-  const myTopicsQuery = useInfiniteQuery(
-    trpc.profile.getAllMyTopics.infiniteQueryOptions(
-      {
-        limit: LIMIT_OF_TOPICS,
-      },
-      {
-        getNextPageParam: last => last.nextCursor ?? undefined,
-        initialCursor: undefined,
-      }
-    )
-  )
+  const myTopicsQuery = useInfiniteQuery(trpc.profile.getAllMyTopics.infiniteQueryOptions(QUERY_INPUT, QUERY_OPTION))
+  const likedTopicsQuery = useInfiniteQuery(trpc.profile.getLikedTopics.infiniteQueryOptions(QUERY_INPUT, QUERY_OPTION))
+  const error = myTopicsQuery.error ?? likedTopicsQuery.error
 
-  if (myTopicsQuery.isError)
-    return <ErrorComponent error={myTopicsQuery.error} />
+  if ((myTopicsQuery.isError || likedTopicsQuery.isError) && error)
+    return <ErrorComponent error={error} />
 
   return (
     <section className="container pt-24">
@@ -98,10 +98,27 @@ function RouteComponent() {
           </PaginationTopics.Root>
         </ProfileTab.Content>
         <ProfileTab.Content icon={<Bookmark />} value="Bookmarks">
-          Hello World!
+          <p>Hello world!</p>
         </ProfileTab.Content>
         <ProfileTab.Content icon={<Heart />} value="Liked Topcis">
-          Hello World!
+          <PaginationTopics.Root query={likedTopicsQuery}>
+            <PaginationTopics.Empty>
+              <Empty>
+                <EmptyHeader>
+                  <EmptyTitle>No topics liked yet</EmptyTitle>
+                  <EmptyDescription>
+                    Start exploring and tap the ❤️ on topics you enjoy. Your favorites will show up here once you like them!
+                  </EmptyDescription>
+                </EmptyHeader>
+              </Empty>
+            </PaginationTopics.Empty>
+            <PaginationTopics.List>
+              <PaginationTopics.Skeleton />
+              <PaginationTopics.Render />
+            </PaginationTopics.List>
+            <PaginationTopics.ShowMore />
+            <PaginationTopics.Loader />
+          </PaginationTopics.Root>
         </ProfileTab.Content>
       </ProfileTab.Root>
     </section>
