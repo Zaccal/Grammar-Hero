@@ -12,7 +12,7 @@ import {
 import { TopicsDialog } from '@/components/Topics/index'
 import { trpc } from '@/lib/trpc'
 import ensureSession from '@/middleware'
-import { getDummyArray, getReadTime, getTopicImage } from '@/utils/index'
+import { getDummyArray, getReadTime, getServerImage } from '@/utils/index'
 
 export const Route = createFileRoute('/')({
   component: HomeComponent,
@@ -78,7 +78,7 @@ return <ErrorComponent error={error} />
                   </TopicsDialog.Preview>
                   <TopicsDialog.Content>
                     <TopicsDialog.Image
-                      src={getTopicImage(topic.image)}
+                      src={getServerImage(topic.image)}
                       alt={topic.title}
                       className="w-full max-h-[400px] h-full"
                     />

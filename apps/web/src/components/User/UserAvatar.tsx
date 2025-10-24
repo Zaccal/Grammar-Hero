@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { cn } from '@/lib/utils'
-import { getUserImageFallbackText } from '@/utils'
+import { getServerImage, getUserImageFallbackText } from '@/utils'
 import { userContext } from './UserContext'
 
 interface UserAvatarProps {
@@ -15,7 +15,7 @@ export function UserAvatar({ className, classNameFallback }: UserAvatarProps) {
   return (
     <>
       <Avatar className={cn('size-20', className)}>
-        <AvatarImage src={image ?? undefined} />
+        <AvatarImage src={getServerImage(image ?? '') ?? undefined} />
         <AvatarFallback className={cn('text-xl', classNameFallback)}>
           {getUserImageFallbackText(displayUsername ?? name)}
         </AvatarFallback>

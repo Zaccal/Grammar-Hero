@@ -1,4 +1,4 @@
-import { getTopicImage } from '@/utils/index'
+import { getServerImage } from '@/utils/index'
 import { topicDetailsContext } from './TopicDetailsContext'
 
 export function TopicDetailsImage() {
@@ -9,7 +9,7 @@ return null
     <>
       <img
         className="mt-12 mx-auto w-full rounded-lg border-6 border-transparent outline-4 outline-border"
-        src={getTopicImage(image)}
+        src={getServerImage(image)}
         alt={title}
       />
     </>

@@ -1,6 +1,7 @@
 import dateformat from 'dateformat'
 import {
   getReadTime,
+  getServerImage,
   getUserImageFallbackText,
   getVariantLevel,
 } from '@/utils/index'
@@ -22,7 +23,7 @@ export function TopicDetailsHeader() {
         <div className="flex items-center gap-2">
           <Avatar className="size-7 md:size-8">
             <AvatarImage
-              src={user.image ?? undefined}
+              src={getServerImage(user.image) ?? undefined}
               alt={`User avatar: ${user.displayUsername}`}
             />
             <AvatarFallback>

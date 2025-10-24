@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignUpRouteImport } from './routes/sign-up'
 import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as EditProfileRouteImport } from './routes/editProfile'
 import { Route as CreateTopicRouteImport } from './routes/createTopic'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TopicIdRouteImport } from './routes/topic/$id'
@@ -29,6 +30,11 @@ const SignInRoute = SignInRouteImport.update({
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditProfileRoute = EditProfileRouteImport.update({
+  id: '/editProfile',
+  path: '/editProfile',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreateTopicRoute = CreateTopicRouteImport.update({
@@ -50,6 +56,7 @@ const TopicIdRoute = TopicIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/createTopic': typeof CreateTopicRoute
+  '/editProfile': typeof EditProfileRoute
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/createTopic': typeof CreateTopicRoute
+  '/editProfile': typeof EditProfileRoute
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/createTopic': typeof CreateTopicRoute
+  '/editProfile': typeof EditProfileRoute
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
@@ -77,16 +86,25 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/createTopic'
+    | '/editProfile'
     | '/profile'
     | '/sign-in'
     | '/sign-up'
     | '/topic/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/createTopic' | '/profile' | '/sign-in' | '/sign-up' | '/topic/$id'
+  to:
+    | '/'
+    | '/createTopic'
+    | '/editProfile'
+    | '/profile'
+    | '/sign-in'
+    | '/sign-up'
+    | '/topic/$id'
   id:
     | '__root__'
     | '/'
     | '/createTopic'
+    | '/editProfile'
     | '/profile'
     | '/sign-in'
     | '/sign-up'
@@ -96,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CreateTopicRoute: typeof CreateTopicRoute
+  EditProfileRoute: typeof EditProfileRoute
   ProfileRoute: typeof ProfileRoute
   SignInRoute: typeof SignInRoute
   SignUpRoute: typeof SignUpRoute
@@ -125,6 +144,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/editProfile': {
+      id: '/editProfile'
+      path: '/editProfile'
+      fullPath: '/editProfile'
+      preLoaderRoute: typeof EditProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/createTopic': {
       id: '/createTopic'
       path: '/createTopic'
@@ -152,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CreateTopicRoute: CreateTopicRoute,
+  EditProfileRoute: EditProfileRoute,
   ProfileRoute: ProfileRoute,
   SignInRoute: SignInRoute,
   SignUpRoute: SignUpRoute,

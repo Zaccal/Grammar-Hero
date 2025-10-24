@@ -1,5 +1,3 @@
-'use client'
-
 import type React from 'react'
 import type { ChangeEvent, DragEvent, InputHTMLAttributes } from 'react'
 import { useCallback, useRef, useState } from 'react'
@@ -26,6 +24,7 @@ export interface FileUploadOptions {
   initialFiles?: FileMetadata[]
   onFilesChange?: (files: FileWithPreview[]) => void // Callback when files change
   onFilesAdded?: (addedFiles: FileWithPreview[]) => void // Callback when new files are added
+  onFilesRemoved?: (removedFiles: FileWithPreview) => void
 }
 
 export interface FileUploadState {
@@ -63,6 +62,7 @@ export function useFileUpload(
     initialFiles = [],
     onFilesChange,
     onFilesAdded,
+    onFilesRemoved,
   } = options
 
   const [state, setState] = useState<FileUploadState>({
@@ -84,7 +84,7 @@ export function useFileUpload(
           return `File "${file.name}" exceeds the maximum size of ${formatBytes(maxSize)}.`
         }
       }
- else {
+      else {
         if (file.size > maxSize) {
           return `File "${file.name}" exceeds the maximum size of ${formatBytes(maxSize)}.`
         }
@@ -130,7 +130,7 @@ export function useFileUpload(
     if (file instanceof File) {
       return `${file.name}-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`
     }
-    return file.id
+    return String(file.id)
   }, [])
 
   const clearFiles = useCallback(() => {
@@ -164,7 +164,7 @@ export function useFileUpload(
   const addFiles = useCallback(
     (newFiles: FileList | File[]) => {
       if (!newFiles || newFiles.length === 0)
-return
+        return
 
       const newFilesArray = Array.from(newFiles)
       const errors: string[] = []
@@ -219,7 +219,7 @@ return
         if (error) {
           errors.push(error)
         }
- else {
+        else {
           validFiles.push({
             file,
             id: generateUniqueId(file),
@@ -245,7 +245,7 @@ return
           }
         })
       }
- else if (errors.length > 0) {
+      else if (errors.length > 0) {
         setState(prev => ({
           ...prev,
           errors,
@@ -275,6 +275,9 @@ return
     (id: string) => {
       setState(prev => {
         const fileToRemove = prev.files.find(file => file.id === id)
+        if (fileToRemove) {
+          onFilesRemoved?.(fileToRemove)
+        }
         if (
           fileToRemove &&
           fileToRemove.preview &&
@@ -294,7 +297,7 @@ return
         }
       })
     },
-    [onFilesChange]
+    [onFilesChange, onFilesRemoved]
   )
 
   const clearErrors = useCallback(() => {
@@ -343,7 +346,7 @@ return
           const file = e.dataTransfer.files[0]
           addFiles([file])
         }
- else {
+        else {
           addFiles(e.dataTransfer.files)
         }
       }
@@ -401,7 +404,7 @@ return
 // Helper function to format bytes to human-readable format
 export function formatBytes(bytes: number, decimals = 2): string {
   if (bytes === 0)
-return '0 Bytes'
+    return '0 Bytes'
 
   const k = 1024
   const dm = decimals < 0 ? 0 : decimals

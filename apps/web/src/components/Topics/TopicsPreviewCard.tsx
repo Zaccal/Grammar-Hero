@@ -1,7 +1,7 @@
 import { Bookmark } from '@/components/ui/bookmark'
 import HeartLike from '@/components/ui/HeartLike'
 import { cn } from '@/lib/utils'
-import { getCuttedText, getTopicImage, getVariantLevel } from '@/utils/index'
+import { getCuttedText, getServerImage, getVariantLevel } from '@/utils/index'
 import { Badge } from '../ui/Badge'
 import {
   MinimalCard,
@@ -21,7 +21,7 @@ export function TopicsPreviewCard() {
       <MinimalCard className="h-full text-left">
         <TopicsImage
           alt={state.title}
-          src={getTopicImage(state.image)}
+          src={getServerImage(state.image)}
           className={cn(
             'relative h-[190px] w-full rounded-[20px] mb-6',
             'shadow-[0px_1px_1px_0px_rgba(0,0,0,0.05),0px_1px_1px_0px_rgba(255,252,240,0.5)_inset,0px_0px_0px_1px_hsla(0,0%,100%,0.1)_inset,0px_0px_1px_0px_rgba(28,27,26,0.5)]',

@@ -66,9 +66,11 @@ function RouteComponent() {
           <User.Displayname />
           {/* Create a route editProfile */}
           <div className="flex gap-3">
-            <Button size="lg" variant="outline">
-              <Pen />
-              Edit profile
+            <Button asChild size="lg" variant="outline">
+              <Link to="/editProfile">
+                <Pen />
+                Edit profile
+              </Link>
             </Button>
             <Button size="lg" variant="outline">
               <Ellipsis />

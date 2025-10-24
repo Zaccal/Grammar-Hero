@@ -1,17 +1,7 @@
 import { AlertCircleIcon, ImageIcon, UploadIcon, XIcon } from 'lucide-react'
-
-import {
-  type FileUploadActions,
-  type FileUploadState,
-} from '@/hooks/useFileUpload'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-
-interface FileUploadProps {
-  className?: string
-  maxSizeMb?: number
-  options: [FileUploadState, FileUploadActions]
-}
+import type { FileUploadProps } from '@/types/fileupload.file'
 
 export default function FileUpload({
   className,
@@ -67,7 +57,7 @@ export default function FileUpload({
               </div>
               <p className="mb-1.5 text-sm font-medium">Drop your image here</p>
               <p className="text-muted-foreground text-xs">
-                SVG, PNG, JPG or GIF (max. {maxSizeMb}MB)
+                PNG, JPG (max. {maxSizeMb}MB)
               </p>
               <Button
                 variant="outline"
