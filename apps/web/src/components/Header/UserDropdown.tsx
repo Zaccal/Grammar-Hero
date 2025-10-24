@@ -22,7 +22,7 @@ function UserDropdown() {
   const [darkMode, setDarkMode] = useState(theme === 'dark')
 
   if (isLoading)
-return <Skeleton className="size-10 rounded-full" />
+    return <Skeleton className="size-10 rounded-full" />
   if (isError || !data) {
     toast.error('Something went wrong', {
       description: error?.message,
@@ -42,7 +42,7 @@ return <Skeleton className="size-10 rounded-full" />
           />
         </UserComponent.Root>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className=" w-[200px]">
+      <DropdownMenuContent className="w-[200px]">
         <Link to="/profile">
           <DropdownMenuItem>
             <User />

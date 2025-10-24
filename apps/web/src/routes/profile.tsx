@@ -11,6 +11,7 @@ import {
 import ErrorComponent from '@/components/ErrorComponent'
 import { PaginationTopics } from '@/components/PaginationTopics'
 import { ProfileTab } from '@/components/ProfileTabs/index'
+import QuickEditProfile from '@/components/QuickEditProfile/QuickEditProfile'
 import ScrollToTopButton from '@/components/ScrollToTopButton/ScrollToTopButton'
 import { Button } from '@/components/ui/button'
 import {
@@ -47,13 +48,9 @@ function RouteComponent() {
   )
   const error =
     myTopicsQuery.error ?? likedTopicsQuery.error ?? bookmarkedTopicsQuery.error
+  const isError = myTopicsQuery.isError ?? likedTopicsQuery.isError ?? bookmarkedTopicsQuery.isError
 
-  if (
-    (myTopicsQuery.isError ||
-      likedTopicsQuery.isError ||
-      bookmarkedTopicsQuery.isError) &&
-      error
-  ) {
+  if (isError && error) {
     return <ErrorComponent error={error} />
   }
 
@@ -72,9 +69,11 @@ function RouteComponent() {
                 Edit profile
               </Link>
             </Button>
-            <Button size="lg" variant="outline">
-              <Ellipsis />
-            </Button>
+            <QuickEditProfile>
+              <Button size="lg" variant="outline">
+                <Ellipsis />
+              </Button>
+            </QuickEditProfile>
           </div>
         </User.Content>
       </User.Root>
