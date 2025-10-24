@@ -13,7 +13,6 @@ import { TopicDetailsImage } from './TopicDetailsImage'
 import { TopicDetailsLike } from './TopicDetailsLike'
 import { TopicDetailsReport } from './TopicDetailsReport'
 import { TopicDetailsShare } from './TopicDetailsShare'
-import { TopicDetailsAddFavorites } from './TpoicDetailsAddFavorites'
 
 export const TopicDetails = {
   Root: TopicDetailsRoot,
@@ -22,7 +21,6 @@ export const TopicDetails = {
   Dropdown: TopicDetailsDropdown,
   DropdownContentProtected: TopicDetailsDropdownContentProtected,
   DropdownContentPublic: TopicDetailsDropdownContentPublic,
-  AddFavorites: TopicDetailsAddFavorites,
   CopyLink: TopicDetailsCopyLink,
   Share: TopicDetailsShare,
   Report: TopicDetailsReport,

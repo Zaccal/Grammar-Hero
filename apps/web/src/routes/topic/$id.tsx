@@ -19,9 +19,9 @@ function RouteComponent() {
   )
 
   if (isLoading)
-return <Loader />
+    return <Loader />
   if (isError)
-return <ErrorComponent error={error} />
+    return <ErrorComponent error={error} />
 
   // after push to topic page remove overflow-hidden from the body
   // because the user pushed from TopicsDialogCard and it has overflow-hidden, that does not removed after push
@@ -42,7 +42,6 @@ return <ErrorComponent error={error} />
             <TopicDetails.Delete />
           </TopicDetails.DropdownContentProtected>
           <TopicDetails.DropdownContentPublic>
-            <TopicDetails.AddFavorites />
             <TopicDetails.CopyLink />
             <TopicDetails.Share />
             <TopicDetails.Report />
