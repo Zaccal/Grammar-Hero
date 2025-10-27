@@ -1,5 +1,11 @@
 import { Key, Mail, Trash } from 'lucide-react'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '../ui/dropdown-menu'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu'
 
 interface QuickEditProfileProps {
   children?: React.ReactNode[] | React.ReactNode
@@ -8,9 +14,7 @@ interface QuickEditProfileProps {
 export default function QuickEditProfile({ children }: QuickEditProfileProps) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        {children}
-      </DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent className="w-fit mt-2">
         <DropdownMenuItem>
           <Mail /> Change mail

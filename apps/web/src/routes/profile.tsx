@@ -48,7 +48,10 @@ function RouteComponent() {
   )
   const error =
     myTopicsQuery.error ?? likedTopicsQuery.error ?? bookmarkedTopicsQuery.error
-  const isError = myTopicsQuery.isError ?? likedTopicsQuery.isError ?? bookmarkedTopicsQuery.isError
+  const isError =
+    myTopicsQuery.isError ??
+    likedTopicsQuery.isError ??
+    bookmarkedTopicsQuery.isError
 
   if (isError && error) {
     return <ErrorComponent error={error} />

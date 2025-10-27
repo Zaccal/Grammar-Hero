@@ -26,14 +26,14 @@ export function EditProfileForm({ children, user }: EditProfileFormProps) {
 
   async function uploadHandler() {
     if (!file)
-return null
+      return null
     return (await uploadFile(file)).url
   }
 
   async function submitHandler(data: UdpateProfileSchema) {
     const imageUrl = await uploadHandler()
     if (isError)
-return
+      return
 
     await authClient.updateUser({
       displayUsername: data.displayUsername,

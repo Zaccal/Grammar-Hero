@@ -14,7 +14,11 @@ function RouteComponent() {
     <section className="container py-24">
       <EditProfileForm.Root user={user}>
         <EditProfileForm.Avatar />
-        <EditProfileForm.DisplayUsername />
+        <div className="space-y-5">
+          <EditProfileForm.DisplayUsername />
+          <EditProfileForm.ChangeMail />
+          <EditProfileForm.ChangePassword />
+        </div>
         <EditProfileForm.SaveButton />
       </EditProfileForm.Root>
     </section>

@@ -31,3 +31,7 @@ export async function getImage(fileName: string) {
     },
   })
 }
+
+export async function removeImage() {
+
+}
