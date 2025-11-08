@@ -40,8 +40,7 @@ export function CreateTopicFormFileUpload({
   const file = fileUploadStore.use(state => state.file)
 
   useDidUpdate(() => {
-    if (!file)
-fileUploadActions.clearFiles()
+    if (!file) { fileUploadActions.clearFiles() }
   }, [file])
 
   return (

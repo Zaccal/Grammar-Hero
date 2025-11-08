@@ -25,15 +25,22 @@ export function EditProfileForm({ children, user }: EditProfileFormProps) {
   })
 
   async function uploadHandler() {
-    if (!file)
+    if (!file) {
       return null
-    return (await uploadFile(file)).url
+    }
+    return (
+      await uploadFile({
+        file,
+        exchangeFile: user.image?.split('/')[2] ?? undefined,
+      })
+    ).url
   }
 
   async function submitHandler(data: UdpateProfileSchema) {
     const imageUrl = await uploadHandler()
-    if (isError)
+    if (isError) {
       return
+    }
 
     await authClient.updateUser({
       displayUsername: data.displayUsername,

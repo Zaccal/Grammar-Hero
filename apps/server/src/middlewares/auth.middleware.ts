@@ -9,6 +9,7 @@ export async function authMiddleware(c: Context, next: Next) {
   }
 
   c.set('session', session)
+  c.set('user', session.user)
 
   await next()
 }

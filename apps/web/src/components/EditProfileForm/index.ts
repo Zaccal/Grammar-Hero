@@ -13,5 +13,5 @@ export const EditProfileForm = {
   DisplayUsername: EditProfileFormDisplayUsername,
   SaveButton: EditProfileFormSaveButton,
   ChangeMail: EditProfileFormChangeEmail,
-  ChangePassword: EditProfileFormChangePassword
+  ChangePassword: EditProfileFormChangePassword,
 }

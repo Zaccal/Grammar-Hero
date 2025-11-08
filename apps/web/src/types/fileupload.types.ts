@@ -9,3 +9,8 @@ export interface FileUploadProps {
 export interface FileUploadStore {
   file: File | null
 }
+
+export interface FileUploadMutation {
+  file: File
+  exchangeFile?: string
+}

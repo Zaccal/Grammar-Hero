@@ -1,8 +1,7 @@
 import { isValidElement } from 'react'
 
 export function getComponentName(node: React.ReactNode): string | null {
-  if (!isValidElement(node))
-return null
+  if (!isValidElement(node)) { return null }
 
   const type = node.type
 

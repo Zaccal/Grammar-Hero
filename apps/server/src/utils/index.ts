@@ -1,4 +1,6 @@
 export * from './getDummyDate'
 export * from './getFormattedTopics'
+export * from './getIsFileAllowedType'
+export * from './getIsInsideBase'
 export * from './getMinMaxMockDate'
 export * from './getMocksTopics'

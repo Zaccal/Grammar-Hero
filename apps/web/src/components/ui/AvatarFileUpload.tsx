@@ -1,4 +1,4 @@
-import type { FileUploadProps } from '@/types/fileupload.file'
+import type { FileUploadProps } from '@/types/fileupload.types'
 import { CircleUserRoundIcon, XIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'

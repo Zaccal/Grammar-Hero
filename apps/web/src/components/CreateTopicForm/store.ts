@@ -1,4 +1,4 @@
-import type { FileUploadStore } from '@/types/fileupload.file'
+import type { FileUploadStore } from '@/types/fileupload.types'
 import { createStore } from '@/hooks/createStore'
 
 export const fileUploadStore = createStore<FileUploadStore>({

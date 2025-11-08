@@ -24,6 +24,7 @@
     "db:migrate": "turbo -F server db:migrate"
   },
   "dependencies": {
+    "sanitize-filename": "^1.6.3",
     "superjson": "^2.2.2",
     "zod": "^4.1.11"
   },

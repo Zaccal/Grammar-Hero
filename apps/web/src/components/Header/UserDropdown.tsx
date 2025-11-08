@@ -21,8 +21,7 @@ function UserDropdown() {
   const { theme, setTheme } = useTheme()
   const [darkMode, setDarkMode] = useState(theme === 'dark')
 
-  if (isLoading)
-return <Skeleton className="size-10 rounded-full" />
+  if (isLoading) { return <Skeleton className="size-10 rounded-full" /> }
   if (isError || !data) {
     toast.error('Something went wrong', {
       description: error?.message,

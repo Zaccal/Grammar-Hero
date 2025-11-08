@@ -163,8 +163,7 @@ export function useFileUpload(
 
   const addFiles = useCallback(
     (newFiles: FileList | File[]) => {
-      if (!newFiles || newFiles.length === 0)
-return
+      if (!newFiles || newFiles.length === 0) { return }
 
       const newFilesArray = Array.from(newFiles)
       const errors: string[] = []
@@ -403,8 +402,7 @@ return
 
 // Helper function to format bytes to human-readable format
 export function formatBytes(bytes: number, decimals = 2): string {
-  if (bytes === 0)
-return '0 Bytes'
+  if (bytes === 0) { return '0 Bytes' }
 
   const k = 1024
   const dm = decimals < 0 ? 0 : decimals

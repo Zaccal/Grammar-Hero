@@ -1,7 +1,7 @@
 import { AlertCircleIcon, ImageIcon, UploadIcon, XIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import type { FileUploadProps } from '@/types/fileupload.file'
+import type { FileUploadProps } from '@/types/fileupload.types'
 
 export default function FileUpload({
   className,

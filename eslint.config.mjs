@@ -10,11 +10,13 @@ export default antfu({
   react: true,
   rules: {
     'react/no-context-provider': 'off',
+    'curly': ['error', 'multi-line'],
   },
   stylistic: {
     overrides: {
       'comma-dangle': ['off', 'never'],
       'comma-style': ['off', 'never'],
+      'style/max-statements-per-line': ['error', { max: 3 }],
       'style/comma-dangle': ['off', 'never'],
       'style/comma-style': ['off', 'never'],
       'style/operator-linebreak': ['off', 'never'],

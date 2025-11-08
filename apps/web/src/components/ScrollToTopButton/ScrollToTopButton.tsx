@@ -22,8 +22,7 @@ function ScrollToTopButton() {
     })
   }
 
-  if (!isVisible)
-return null
+  if (!isVisible) { return null }
 
   return (
     <Button
