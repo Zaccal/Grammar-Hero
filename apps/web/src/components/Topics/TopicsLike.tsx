@@ -1,4 +1,5 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useSearch } from '@tanstack/react-router'
 import { Heart } from 'lucide-react'
 import { toast } from 'sonner'
 import { trpc } from '@/lib/trpc'
@@ -7,6 +8,10 @@ import { Button } from '../ui/button'
 import { topicsContext } from './TopicsContext'
 
 export function TopicsLike() {
+  const queryClient = useQueryClient()
+  const searchParams = useSearch({
+    from: '/'
+  })
   const {
     _count: { likes },
     id: topicId,
@@ -29,6 +34,14 @@ export function TopicsLike() {
 
         toast.error('Failed to like the topic. Please try again.')
       },
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: trpc.topics.getAll.queryKey(searchParams),
+         })
+         queryClient.invalidateQueries({
+          queryKey: trpc.topics.getById.queryKey(topicId),
+         })
+      }
     })
   )
 

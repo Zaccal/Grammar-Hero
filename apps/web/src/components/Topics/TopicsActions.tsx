@@ -7,7 +7,7 @@ interface TopicsActionsProps {
 }
 
 export function TopicsActions({ children }: TopicsActionsProps) {
-  const { id, _count } = topicsContext.useSelect(state => state)
+  const id = topicsContext.useSelect(state => state.id)
   return (
     <div className="mt-8 flex justify-between items-center">
       <Button asChild size="lg">

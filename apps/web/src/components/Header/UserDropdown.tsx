@@ -39,7 +39,9 @@ function UserDropdown() {
       <DropdownMenuTrigger>
         <Avatar className="size-12 text-base">
           <AvatarImage src={getServerImage(user.image ?? '')} />
-          <AvatarFallback>{getUserImageFallbackText(user.displayUsername ?? user.name)}</AvatarFallback>
+          <AvatarFallback>
+            {getUserImageFallbackText(user.displayUsername ?? user.name)}
+          </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-[200px]">
