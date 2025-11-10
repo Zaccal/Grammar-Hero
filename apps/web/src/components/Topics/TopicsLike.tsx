@@ -10,7 +10,7 @@ import { topicsContext } from './TopicsContext'
 export function TopicsLike() {
   const queryClient = useQueryClient()
   const searchParams = useSearch({
-    from: '/'
+    from: '/',
   })
   const {
     _count: { likes },
@@ -37,11 +37,11 @@ export function TopicsLike() {
       onSuccess: () => {
         queryClient.invalidateQueries({
           queryKey: trpc.topics.getAll.queryKey(searchParams),
-         })
-         queryClient.invalidateQueries({
+        })
+        queryClient.invalidateQueries({
           queryKey: trpc.topics.getById.queryKey(topicId),
-         })
-      }
+        })
+      },
     })
   )
 

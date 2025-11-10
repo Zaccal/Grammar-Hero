@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useSearch } from '@tanstack/react-router'
 import { toast } from 'sonner'
 import { trpc } from '@/lib/trpc'
 import { getOptimisticLike } from '@/utils'
@@ -29,7 +28,7 @@ export function TopicDetailsLike() {
         queryClient.invalidateQueries({
           queryKey: [trpc.topics.getById.queryKey(id)],
         })
-      }
+      },
     })
   )
 
