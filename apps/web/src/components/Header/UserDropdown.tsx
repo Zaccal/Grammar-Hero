@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { toast } from 'sonner'
 import { useSession, useTheme } from '@/hooks'
 import { useSignOut } from '@/hooks/useSignOut'
-import { getServerImage } from '@/utils'
+import { getServerImage, getUserImageFallbackText } from '@/utils'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import {
   DropdownMenu,
@@ -15,7 +15,6 @@ import {
 } from '../ui/dropdown-menu'
 import { Skeleton } from '../ui/skeleton'
 import { Switch } from '../ui/switch'
-import { User as UserComponent } from '../User/index'
 
 function UserDropdown() {
   const { data, isLoading, isError, error } = useSession()
@@ -38,10 +37,10 @@ function UserDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-       <Avatar className="size-12 text-base">
+        <Avatar className="size-12 text-base">
           <AvatarImage src={getServerImage(user.image ?? '')} />
-          <AvatarFallback />
-       </Avatar>
+          <AvatarFallback>{getUserImageFallbackText(user.displayUsername ?? user.name)}</AvatarFallback>
+        </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-[200px]">
         <Link to="/profile">

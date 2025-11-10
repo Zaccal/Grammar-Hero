@@ -10,6 +10,6 @@ export function useUpdateUser() {
     mutationFn: (data: UserUpdate) => authClient.updateUser(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: sessionQueryKey })
-    }
+    },
   })
 }

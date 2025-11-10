@@ -10,7 +10,7 @@ function EditProfileFormChangePassword() {
           <Input value="******" disabled />
           <Key />
         </InputWrapper>
-        <Button>Change</Button>
+        <Button type="button">Change</Button>
       </div>
     </>
   )

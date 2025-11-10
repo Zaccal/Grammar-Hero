@@ -12,7 +12,7 @@ function EditProfileFormChangeEmail() {
         <Input value={email} disabled />
         <AtSign />
       </InputWrapper>
-      <Button>Change</Button>
+      <Button type="button">Change</Button>
     </div>
   )
 }
