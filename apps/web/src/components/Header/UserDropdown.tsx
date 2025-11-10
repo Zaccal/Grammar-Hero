@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { toast } from 'sonner'
 import { useSession, useTheme } from '@/hooks'
 import { useSignOut } from '@/hooks/useSignOut'
+import { getServerImage } from '@/utils'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -36,12 +38,10 @@ function UserDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <UserComponent.Root user={user}>
-          <UserComponent.Avatar
-            className="size-12"
-            classNameFallback="text-base"
-          />
-        </UserComponent.Root>
+       <Avatar className="size-12 text-base">
+          <AvatarImage src={getServerImage(user.image ?? '')} />
+          <AvatarFallback />
+       </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-[200px]">
         <Link to="/profile">

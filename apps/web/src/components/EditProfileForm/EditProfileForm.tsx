@@ -23,7 +23,11 @@ export function EditProfileForm({ children, user }: EditProfileFormProps) {
       displayUsername: user.displayUsername ?? '',
     },
   })
-  const { mutateAsync: updateUser, isError: isUpdateUserError, error: updateUserError } = useUpdateUser()
+  const {
+    mutateAsync: updateUser,
+    isError: isUpdateUserError,
+    error: updateUserError,
+  } = useUpdateUser()
 
   async function uploadHandler() {
     if (!file) {
@@ -52,6 +56,8 @@ export function EditProfileForm({ children, user }: EditProfileFormProps) {
     if (isUpdateUserError) {
       toast.error(updateUserError?.message || 'Error updating profile')
     }
+
+    toast.success('Profile updated successfully')
   }
 
   return (
