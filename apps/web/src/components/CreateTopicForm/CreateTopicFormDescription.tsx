@@ -19,7 +19,6 @@ export function CreateTopicFormDescription() {
         name="description"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Description</FormLabel>
             <FormMessage />
             <FormControl>
               <Textarea

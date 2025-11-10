@@ -26,7 +26,6 @@ export function CreateTopicFormDuration() {
         name="duration"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Duration</FormLabel>
             <FormMessage />
             <FormControl>
               <Select
