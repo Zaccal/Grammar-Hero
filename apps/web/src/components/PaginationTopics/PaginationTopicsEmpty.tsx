@@ -14,7 +14,9 @@ export function PaginationTopicsEmpty({
     state => state.query.isLoading
   )
 
-  if (!isEmpty || isLoading) { return null }
+  if (!isEmpty || isLoading) {
+    return null
+  }
 
   return <>{children}</>
 }

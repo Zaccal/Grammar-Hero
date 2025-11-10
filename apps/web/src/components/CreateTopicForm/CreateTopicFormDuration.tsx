@@ -39,7 +39,9 @@ export function CreateTopicFormDuration() {
                 </SelectTrigger>
                 <SelectContent>
                   {Object.values(durationOptions).map(option => {
-                    if (option === 'All') { return null }
+                    if (option === 'All') {
+                      return null
+                    }
                     return (
                       <SelectItem key={option} value={option}>
                         {option}

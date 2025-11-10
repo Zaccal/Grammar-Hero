@@ -34,7 +34,9 @@ export function useDebounceCallback<Params extends unknown[], Return>(
 
   const debounced = useMemo(() => {
     const cancel = () => {
-      if (!timerRef.current) { return }
+      if (!timerRef.current) {
+        return
+      }
       clearTimeout(timerRef.current)
       timerRef.current = null
     }

@@ -13,7 +13,9 @@ export function getDurationOption(min?: string, max?: string) {
       ([, value]) => value.min === min && value.max === max
     )
 
-    if (!foundResult) { return 'All' }
+    if (!foundResult) {
+      return 'All'
+    }
 
     return foundResult[0]
   }

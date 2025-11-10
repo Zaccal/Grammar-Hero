@@ -36,11 +36,15 @@ export function FilterSearch() {
         placeholder="What do you want to learn?"
         value={query}
         onChange={e => {
-          if (!e.target.value.length) { debounceReset() }
+          if (!e.target.value.length) {
+            debounceReset()
+          }
           setQuery(e.target.value)
         }}
         onKeyUp={e => {
-          if (e.key === 'Enter') { searchHandler() }
+          if (e.key === 'Enter') {
+            searchHandler()
+          }
         }}
       />
       <Button className="min-w-10" size="icon" onClick={searchHandler}>

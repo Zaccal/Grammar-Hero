@@ -68,7 +68,7 @@ export async function removeImage(fileName: string, userId: string) {
         code: 'BAD_REQUEST',
         message: 'Target is not a file',
       })
-}
+    }
     size = info.size
   }
  catch (err: any) {

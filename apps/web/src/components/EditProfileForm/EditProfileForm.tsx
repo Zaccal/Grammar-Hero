@@ -2,8 +2,8 @@ import type { UdpateProfileSchema } from '@/schemas/updateProfile.schema'
 import type { User } from '@/types/user.type'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { useFileUploadMutation } from '@/hooks'
-import { authClient } from '@/lib/auth-client'
+import { toast } from 'sonner'
+import { useFileUploadMutation, useUpdateUser } from '@/hooks'
 import { udpateProfileSchema } from '@/schemas/updateProfile.schema'
 import { Form } from '../ui/form'
 import { editProfileFormContext } from './EditProfileFormContext'
@@ -23,6 +23,7 @@ export function EditProfileForm({ children, user }: EditProfileFormProps) {
       displayUsername: user.displayUsername ?? '',
     },
   })
+  const { mutateAsync: updateUser, isError: isUpdateUserError, error: updateUserError } = useUpdateUser()
 
   async function uploadHandler() {
     if (!file) {
@@ -39,13 +40,18 @@ export function EditProfileForm({ children, user }: EditProfileFormProps) {
   async function submitHandler(data: UdpateProfileSchema) {
     const imageUrl = await uploadHandler()
     if (isError) {
+      toast.error('Error uploading image')
       return
     }
 
-    await authClient.updateUser({
+    await updateUser({
       displayUsername: data.displayUsername,
       image: imageUrl,
     })
+
+    if (isUpdateUserError) {
+      toast.error(updateUserError?.message || 'Error updating profile')
+    }
   }
 
   return (

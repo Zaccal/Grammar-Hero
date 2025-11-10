@@ -32,7 +32,9 @@ function HomeComponent() {
     isError,
   } = useQuery(trpc.topics.getAll.queryOptions(searchParams))
 
-  if (isError) { return <ErrorComponent error={error} /> }
+  if (isError) {
+    return <ErrorComponent error={error} />
+  }
 
   return (
     <>

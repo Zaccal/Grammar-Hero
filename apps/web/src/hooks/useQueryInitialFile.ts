@@ -8,7 +8,9 @@ export function useQueryInitalFile(url: string) {
       const response = await fetch(getServerImage(url), {
         credentials: 'include',
       })
-      if (!response.ok) { throw new Error('Failed to fetch user avatar') }
+      if (!response.ok) {
+        throw new Error('Failed to fetch user avatar')
+      }
       return response.json()
     },
   })
