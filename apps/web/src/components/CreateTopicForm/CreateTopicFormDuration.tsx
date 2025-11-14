@@ -1,10 +1,5 @@
 import { durationOptions } from '@/schemas/filter.schema'
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from '../ui/form'
+import { FormControl, FormField, FormItem, FormMessage } from '../ui/form'
 import {
   Select,
   SelectContent,

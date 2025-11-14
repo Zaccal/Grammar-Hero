@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/check-param-names */
 import type { StateRef } from '../useRefState/useRefState'
 import type { HookTarget } from '@/lib'
 import { useEffect, useRef, useState } from 'react'
@@ -51,6 +52,7 @@ export interface UseIntersectionObserver {
   ): UseIntersectionObserverReturn
 }
 
+// eslint-disable-next-line jsdoc/require-returns-check
 /**
  * @name useIntersectionObserver
  * @description - Hook that gives you intersection observer state
@@ -61,9 +63,9 @@ export interface UseIntersectionObserver {
  *
  * @overload
  * @param {HookTarget} target The target element to detect intersection
- * @param {boolean} [options.enabled=true] The IntersectionObserver options
+ * @param {boolean} [options.enabled] The IntersectionObserver options
  * @param {((entries: IntersectionObserverEntry[], observer: IntersectionObserver) => void) | undefined} [options.onChange] The callback to execute when intersection is detected
- * @param {HookTarget} [options.root=document] The root element to observe
+ * @param {HookTarget} [options.root] The root element to observe
  * @returns {UseIntersectionObserverReturn} An object containing the state
  *
  * @example
@@ -71,9 +73,9 @@ export interface UseIntersectionObserver {
  *
  * @overload
  * @template Target The target element
- * @param {boolean} [options.enabled=true] The IntersectionObserver options
+ * @param {boolean} [options.enabled] The IntersectionObserver options
  * @param {((entries: IntersectionObserverEntry[], observer: IntersectionObserver) => void) | undefined} [options.onChange] The callback to execute when intersection is detected
- * @param {HookTarget} [options.root=document] The root element to observe
+ * @param {HookTarget} [options.root] The root element to observe
  * @returns {UseIntersectionObserverReturn & { ref: StateRef<Target> }} A React ref to attach to the target element
  *
  * @example
@@ -121,10 +123,10 @@ export const useIntersectionObserver = ((...params: any[]) => {
   internalCallbackRef.current = callback
 
   useEffect(() => {
-    if (!enabled || (!target && !internalRef.state)) return
+    if (!enabled || (!target && !internalRef.state)) { return }
 
     const element = target ? isTarget.getElement(target) : internalRef.current
-    if (!element) return
+    if (!element) { return }
 
     const observer = new IntersectionObserver(
       (entries, observer) => {
@@ -139,12 +141,14 @@ export const useIntersectionObserver = ((...params: any[]) => {
       }
     )
 
+    // eslint-disable-next-line react-hooks-extra/no-direct-set-state-in-use-effect
     setObserver(observer)
     observer.observe(element as Element)
 
     return () => {
       observer.disconnect()
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     target,
     internalRef.state,
@@ -154,7 +158,7 @@ export const useIntersectionObserver = ((...params: any[]) => {
     enabled,
   ])
 
-  if (target) return { observer, entries }
+  if (target) { return { observer, entries } }
   return {
     observer,
     ref: internalRef,

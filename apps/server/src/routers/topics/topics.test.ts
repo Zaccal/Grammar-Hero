@@ -69,9 +69,12 @@ type TopicExpected = Record<string, unknown>
 
 describe('topics', () => {
   it('should return all topics', async () => {
-    const topics = await getAll({
-      limit: 10,
-    }, '123')
+    const topics = await getAll(
+      {
+        limit: 10,
+      },
+      '123'
+    )
     expect(topics).not.toBeUndefined()
     expect(topics).not.toBeNull()
 
