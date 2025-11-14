@@ -36,7 +36,7 @@ export function TopicsBookmark() {
         queryClient.invalidateQueries({
           queryKey: trpc.topics.getById.queryKey(id),
         })
-      }
+      },
     })
   )
 

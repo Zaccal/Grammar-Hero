@@ -1,6 +1,6 @@
 import type { FilterParamsSchema } from '@server/schemas/filterParams.schema'
 import { filterParamsSchema } from '@server/schemas/filterParams.schema'
-import { useQuery } from '@tanstack/react-query'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import ErrorComponent from '@/components/ErrorComponent'
 import { Filter } from '@/components/Filter/index'
@@ -9,10 +9,19 @@ import {
   GreetingDescription,
   GreetingTitle,
 } from '@/components/Greeting/Greeting'
+import { PaginationTopics } from '@/components/PaginationTopics'
+import ScrollToTopButton from '@/components/ScrollToTopButton/ScrollToTopButton'
 import { TopicsDialog } from '@/components/Topics/index'
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyTitle,
+} from '@/components/ui/empty'
+import { QUERY_OPTION } from '@/lib/constants'
 import { trpc } from '@/lib/trpc'
 import ensureSession from '@/middleware'
-import { getDummyArray, getReadTime, getServerImage } from '@/utils/index'
+import { getReadTime, getServerImage } from '@/utils/index'
 
 export const Route = createFileRoute('/')({
   component: HomeComponent,
@@ -24,16 +33,14 @@ export const Route = createFileRoute('/')({
 function HomeComponent() {
   const { user } = Route.useLoaderData()
   const searchParams = Route.useSearch()
-  // TODO: I have to made a pagination
-  const {
-    data: topics,
-    isLoading,
-    error,
-    isError,
-  } = useQuery(trpc.topics.getAll.queryOptions(searchParams))
+  const topicsQuery = useInfiniteQuery(
+    trpc.topics.getAll.infiniteQueryOptions(searchParams, QUERY_OPTION)
+  )
 
-  if (isError) {
-    return <ErrorComponent error={error} />
+  const topics = topicsQuery.data?.pages.flatMap(page => page.items)
+
+  if (topicsQuery.isError) {
+    return <ErrorComponent error={topicsQuery.error} />
   }
 
   return (
@@ -67,12 +74,23 @@ function HomeComponent() {
             </Filter.Form>
           </Filter.Sheet>
         </Filter.Root>
-        <TopicsDialog.List>
-          {isLoading
-            ? getDummyArray(20).map(value => (
-                <TopicsDialog.Skeleton key={value} />
-              ))
-            : topics?.map(topic => (
+        <ScrollToTopButton />
+        <PaginationTopics.Root query={topicsQuery}>
+          <PaginationTopics.Empty>
+            <Empty>
+              <EmptyHeader>
+                <EmptyTitle>No Topics Yet</EmptyTitle>
+                <EmptyDescription>
+                  It looks like there aren’t any topics here right now. Start by
+                  creating a new one to get the discussion going!
+                </EmptyDescription>
+              </EmptyHeader>
+            </Empty>
+          </PaginationTopics.Empty>
+          <PaginationTopics.IntersectionObserver>
+            <TopicsDialog.List>
+              <PaginationTopics.Skeleton />
+              {topics?.map(topic => (
                 <TopicsDialog.Root key={topic.id} topic={topic}>
                   <TopicsDialog.Preview>
                     <TopicsDialog.PreviewCard />
@@ -102,7 +120,10 @@ function HomeComponent() {
                   </TopicsDialog.Content>
                 </TopicsDialog.Root>
               ))}
-        </TopicsDialog.List>
+            </TopicsDialog.List>
+          </PaginationTopics.IntersectionObserver>
+          <PaginationTopics.Loader />
+        </PaginationTopics.Root>
       </section>
     </>
   )

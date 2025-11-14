@@ -30,9 +30,9 @@ function ScrollToTopButton() {
     <Button
       onClick={scrollToTop}
       size="icon"
-      className="fixed right-5 bottom-5"
+      className="fixed right-5 bottom-5 size-12"
     >
-      <ChevronUp />
+      <ChevronUp size={32} />
     </Button>
   )
 }

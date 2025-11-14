@@ -69,10 +69,17 @@ type TopicExpected = Record<string, unknown>
 
 describe('topics', () => {
   it('should return all topics', async () => {
-    const topics = await getAll({}, '123')
-    expect(Array.isArray(topics)).toBe(true)
-    expect(topics.length).toBe(MOCK_TOPICS.length)
-    const topic = topics[0] as TopicExpected
+    const topics = await getAll({
+      limit: 10,
+    }, '123')
+    expect(topics).not.toBeUndefined()
+    expect(topics).not.toBeNull()
+
+    expect(topics).toHaveProperty('items')
+
+    expect(Array.isArray(topics.items)).toBe(true)
+    expect(topics.items.length).toBe(10)
+    const topic = topics.items[0] as TopicExpected
 
     TOPICS_KEYS.forEach(key => {
       expect(topic[key]).not.toBeUndefined()

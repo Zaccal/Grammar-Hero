@@ -1,5 +1,6 @@
 import { PaginationTopics as Root } from './PaginationTopics'
 import { PaginationTopicsEmpty } from './PaginationTopicsEmpty'
+import { PaginationTopicsObserverIntersection } from './PaginationTopicsIntersectionObserver'
 import { PaginationTopicsList } from './PaginationTopicsList'
 import { PaginationTopicsLoader } from './PaginationTopicsLoader'
 import { PaginationTopicsRender } from './PaginationTopicsRender'
@@ -14,4 +15,5 @@ export const PaginationTopics = {
   Render: PaginationTopicsRender,
   List: PaginationTopicsList,
   Empty: PaginationTopicsEmpty,
+  IntersectionObserver: PaginationTopicsObserverIntersection,
 }

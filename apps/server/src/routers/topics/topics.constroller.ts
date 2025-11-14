@@ -7,6 +7,7 @@ import { getDummyDate, getFormattedTopics } from '../../utils/index'
 import { TOPICS_SELECT } from './constants'
 
 export async function getAll(input: FilterParamsSchema, userId: string) {
+  const cursor = input.cursor ? { id: input.cursor } : undefined
   const where: Prisma.TopicsWhereInput = input.query
     ? {
         OR: [
@@ -46,8 +47,8 @@ export async function getAll(input: FilterParamsSchema, userId: string) {
   // TODO: add pagination
   const topics = await prisma.topics.findMany({
     orderBy,
-    take: input.limit,
-    skip: input.offset,
+    cursor,
+    take: input.limit + 1,
     where: {
       ...where,
       level: input.level,
@@ -71,7 +72,12 @@ export async function getAll(input: FilterParamsSchema, userId: string) {
     },
   })
 
-  return getFormattedTopics(topics)
+  const hasMore = topics.length > input.limit
+  const pageRows = hasMore ? topics.slice(0, input.limit) : topics
+  const nextCursor = hasMore ? pageRows[pageRows.length - 1].id : undefined
+  const items = getFormattedTopics(topics).slice(0, input.limit)
+
+  return { items, nextCursor }
 }
 
 export async function getById(id: string, userId: string) {
