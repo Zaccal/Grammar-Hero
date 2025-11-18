@@ -3,6 +3,7 @@ import { betterAuth } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
 import { openAPI, username } from 'better-auth/plugins'
 import prisma from '../../prisma'
+import { resend } from './resend'
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -12,6 +13,33 @@ export const auth = betterAuth({
   trustedOrigins: [process.env.CORS_ORIGIN || ''],
   emailAndPassword: {
     enabled: true,
+  },
+  user: {
+    changeEmail: {
+      enabled: true,
+      sendChangeEmailVerification: async ({ user, url }) => {
+        const { error } = await resend.emails.send({
+          from: 'Grammar Hero <grammarhero@gmail.com>',
+          to: user.email,
+          subject: 'Hello World',
+          html: `<a href="${url}">link</a>`,
+        })
+
+        if (error) {
+          throw new Error(error.message)
+        }
+      },
+    },
+  },
+  emailVerification: {
+    sendVerificationEmail: async ({ user, url }) => {
+      await resend.emails.send({
+        from: 'Grammar Hero <grammarhero@gmail.com>',
+        to: user.email,
+        subject: 'Hello World',
+        html: `<a href="${url}">link</a>`,
+      })
+    },
   },
   advanced: {
     defaultCookieAttributes: {

@@ -123,10 +123,14 @@ export const useIntersectionObserver = ((...params: any[]) => {
   internalCallbackRef.current = callback
 
   useEffect(() => {
-    if (!enabled || (!target && !internalRef.state)) { return }
+    if (!enabled || (!target && !internalRef.state)) {
+      return
+    }
 
     const element = target ? isTarget.getElement(target) : internalRef.current
-    if (!element) { return }
+    if (!element) {
+      return
+    }
 
     const observer = new IntersectionObserver(
       (entries, observer) => {
@@ -148,7 +152,7 @@ export const useIntersectionObserver = ((...params: any[]) => {
     return () => {
       observer.disconnect()
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     target,
     internalRef.state,
@@ -158,7 +162,9 @@ export const useIntersectionObserver = ((...params: any[]) => {
     enabled,
   ])
 
-  if (target) { return { observer, entries } }
+  if (target) {
+    return { observer, entries }
+  }
   return {
     observer,
     ref: internalRef,

@@ -6,10 +6,15 @@ export interface StateRef<Value> {
   state?: Value
 }
 
-function createRefState<Value>(initialValue: Value | undefined, setState: (value: Value) => void) {
+function createRefState<Value>(
+  initialValue: Value | undefined,
+  setState: (value: Value) => void
+) {
   let temp = initialValue
   function ref(value: Value) {
-    if (temp === value) { return }
+    if (temp === value) {
+      return
+    }
     temp = value
     setState(temp)
   }
@@ -19,7 +24,9 @@ function createRefState<Value>(initialValue: Value | undefined, setState: (value
       return temp
     },
     set(value: Value) {
-      if (temp === value) { return }
+      if (temp === value) {
+        return
+      }
       temp = value
       setState(temp)
     },

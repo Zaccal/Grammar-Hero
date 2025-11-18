@@ -41,14 +41,16 @@ function getElement(target: HookTarget) {
 
 export function target(target: Target) {
   return {
-  value: target,
-  type: targetSymbol,
-}
+    value: target,
+    type: targetSymbol,
+  }
 }
 
 export function isTarget(target: HookTarget) {
-  return typeof target === 'object' &&
+  return (
+    typeof target === 'object' &&
     ('current' in target || (target && (target as any).type === targetSymbol))
+  )
 }
 
 isTarget.wrap = target
