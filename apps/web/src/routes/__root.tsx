@@ -9,6 +9,7 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import Header from '@/components/Header/header'
 import Loader from '@/components/ui/loader'
 import { Toaster } from '@/components/ui/sonner'
+import { HIDE_HEADER_PATHS } from '@/lib/constants'
 import { queryClient } from '@/lib/trpc'
 import { ThemeProvider } from '@/providers/themeProvider'
 import '../index.css'
@@ -41,12 +42,18 @@ function RootComponent() {
     select: s => s.isLoading,
   })
 
+  const pathname = useRouterState({
+    select: state => state.location.pathname
+  })
+
+  const hideHeader = HIDE_HEADER_PATHS.includes(pathname)
+
   return (
     <>
       <HeadContent />
       <QueryClientProvider client={queryClient}>
         <ThemeProvider defaultTheme="light">
-          <Header />
+          {!hideHeader && <Header /> }
           {isFetching ? <Loader /> : <Outlet />}
           <Toaster richColors />
           <TanStackRouterDevtools position="bottom-left" />

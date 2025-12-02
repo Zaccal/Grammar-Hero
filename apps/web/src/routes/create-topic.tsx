@@ -3,7 +3,7 @@ import { CreateTopicForm } from '@/components/CreateTopicForm/index'
 import { Separator } from '@/components/ui/separator'
 import ensureSession from '@/middleware'
 
-export const Route = createFileRoute('/createTopic')({
+export const Route = createFileRoute('/create-topic')({
   component: RouteComponent,
   loader: ensureSession,
 })

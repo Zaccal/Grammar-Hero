@@ -11,3 +11,5 @@ export const QUERY_OPTION = {
 }
 
 export const SCROLL_VISIBLE = 600
+
+export const HIDE_HEADER_PATHS = ['/otp-email']

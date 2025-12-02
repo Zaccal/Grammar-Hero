@@ -18,14 +18,14 @@ export const auth = betterAuth({
     changeEmail: {
       enabled: true,
       sendChangeEmailVerification: async ({ user, url }) => {
-        const { error } = await resend.emails.send({
+        const data = await resend.emails.send({
           from: 'Grammar Hero <grammarhero@gmail.com>',
           to: user.email,
           subject: 'Hello World',
           html: `<a href="${url}">link</a>`,
         })
 
-        if (error) {
+        if (data.error) {
           throw new Error(error.message)
         }
       },
@@ -33,12 +33,16 @@ export const auth = betterAuth({
   },
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
-      await resend.emails.send({
-        from: 'Grammar Hero <grammarhero@gmail.com>',
+      const data = await resend.emails.send({
+        from: 'Grammar Hero <no-reply@grammarhero.adilet.info>',
         to: user.email,
         subject: 'Hello World',
         html: `<a href="${url}">link</a>`,
       })
+
+      if (data.error) {
+        throw new Error(data.error.message)
+      }
     },
   },
   advanced: {

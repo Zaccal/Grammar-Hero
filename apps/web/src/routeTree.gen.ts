@@ -12,8 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignUpRouteImport } from './routes/sign-up'
 import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as ProfileRouteImport } from './routes/profile'
-import { Route as EditProfileRouteImport } from './routes/editProfile'
-import { Route as CreateTopicRouteImport } from './routes/createTopic'
+import { Route as OtpEmailRouteImport } from './routes/otp-email'
+import { Route as EditProfileRouteImport } from './routes/edit-profile'
+import { Route as CreateTopicRouteImport } from './routes/create-topic'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TopicIdRouteImport } from './routes/topic/$id'
 
@@ -32,14 +33,19 @@ const ProfileRoute = ProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OtpEmailRoute = OtpEmailRouteImport.update({
+  id: '/otp-email',
+  path: '/otp-email',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EditProfileRoute = EditProfileRouteImport.update({
-  id: '/editProfile',
-  path: '/editProfile',
+  id: '/edit-profile',
+  path: '/edit-profile',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreateTopicRoute = CreateTopicRouteImport.update({
-  id: '/createTopic',
-  path: '/createTopic',
+  id: '/create-topic',
+  path: '/create-topic',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -55,8 +61,9 @@ const TopicIdRoute = TopicIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/createTopic': typeof CreateTopicRoute
-  '/editProfile': typeof EditProfileRoute
+  '/create-topic': typeof CreateTopicRoute
+  '/edit-profile': typeof EditProfileRoute
+  '/otp-email': typeof OtpEmailRoute
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
@@ -64,8 +71,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/createTopic': typeof CreateTopicRoute
-  '/editProfile': typeof EditProfileRoute
+  '/create-topic': typeof CreateTopicRoute
+  '/edit-profile': typeof EditProfileRoute
+  '/otp-email': typeof OtpEmailRoute
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
@@ -74,8 +82,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/createTopic': typeof CreateTopicRoute
-  '/editProfile': typeof EditProfileRoute
+  '/create-topic': typeof CreateTopicRoute
+  '/edit-profile': typeof EditProfileRoute
+  '/otp-email': typeof OtpEmailRoute
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
@@ -85,8 +94,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/createTopic'
-    | '/editProfile'
+    | '/create-topic'
+    | '/edit-profile'
+    | '/otp-email'
     | '/profile'
     | '/sign-in'
     | '/sign-up'
@@ -94,8 +104,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/createTopic'
-    | '/editProfile'
+    | '/create-topic'
+    | '/edit-profile'
+    | '/otp-email'
     | '/profile'
     | '/sign-in'
     | '/sign-up'
@@ -103,8 +114,9 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/createTopic'
-    | '/editProfile'
+    | '/create-topic'
+    | '/edit-profile'
+    | '/otp-email'
     | '/profile'
     | '/sign-in'
     | '/sign-up'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CreateTopicRoute: typeof CreateTopicRoute
   EditProfileRoute: typeof EditProfileRoute
+  OtpEmailRoute: typeof OtpEmailRoute
   ProfileRoute: typeof ProfileRoute
   SignInRoute: typeof SignInRoute
   SignUpRoute: typeof SignUpRoute
@@ -144,17 +157,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/editProfile': {
-      id: '/editProfile'
-      path: '/editProfile'
-      fullPath: '/editProfile'
+    '/otp-email': {
+      id: '/otp-email'
+      path: '/otp-email'
+      fullPath: '/otp-email'
+      preLoaderRoute: typeof OtpEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/edit-profile': {
+      id: '/edit-profile'
+      path: '/edit-profile'
+      fullPath: '/edit-profile'
       preLoaderRoute: typeof EditProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/createTopic': {
-      id: '/createTopic'
-      path: '/createTopic'
-      fullPath: '/createTopic'
+    '/create-topic': {
+      id: '/create-topic'
+      path: '/create-topic'
+      fullPath: '/create-topic'
       preLoaderRoute: typeof CreateTopicRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CreateTopicRoute: CreateTopicRoute,
   EditProfileRoute: EditProfileRoute,
+  OtpEmailRoute: OtpEmailRoute,
   ProfileRoute: ProfileRoute,
   SignInRoute: SignInRoute,
   SignUpRoute: SignUpRoute,

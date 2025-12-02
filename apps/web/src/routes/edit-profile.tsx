@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { EditProfileForm } from '@/components/EditProfileForm'
 import ensureSession from '@/middleware'
 
-export const Route = createFileRoute('/editProfile')({
+export const Route = createFileRoute('/edit-profile')({
   component: RouteComponent,
   loader: ensureSession,
 })
