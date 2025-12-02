@@ -2,9 +2,9 @@ name: Run Bun Vitest
 
 on:
   push:
-    branches: [main]
+    branches: ["*"]
   pull_request:
-    branches: [main]
+    branches: ["*"]
 
 jobs:
   test:
@@ -17,7 +17,7 @@ jobs:
       - name: Install Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: "latest"
+          bun-version: latest
 
       - name: Install dependencies
         run: bun install
