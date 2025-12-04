@@ -1,5 +1,5 @@
 import type { ButtonProps } from '../ui/button'
-import { FORM_ID } from '@/components/CreateTopicForm/CreateTopicForm'
+import { FORM_ID } from '@/lib/constants'
 import {
   AlertDialog,
   AlertDialogCancel,

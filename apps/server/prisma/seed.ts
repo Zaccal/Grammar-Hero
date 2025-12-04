@@ -4,6 +4,8 @@ import type { TopicsCreateInput } from './generated/models'
 import { getDummyDate } from '@/utils/getDummyDate'
 import { getMinMax } from '@/utils/getMinMaxMockDate'
 
+const USER_ID = 'XQIzVpl7F8N2G0t1iHgwOhfodvoWjLGH'
+
 async function createMockTopics(userId: string) {
   console.log('🌾 Creating mock topics...')
 
@@ -34,7 +36,7 @@ async function createMockTopics(userId: string) {
 async function main() {
   console.log('🌱 Seeding database...')
 
-  await createMockTopics('AlQSfuMkM5QJWhCoh0sAq0Y1RosJ6ks6')
+  await createMockTopics(USER_ID)
 
   console.log('✅ Database seeded successfully.')
 }

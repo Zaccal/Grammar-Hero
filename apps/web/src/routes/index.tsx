@@ -36,7 +36,6 @@ function HomeComponent() {
   const topicsQuery = useInfiniteQuery(
     trpc.topics.getAll.infiniteQueryOptions(searchParams, QUERY_OPTION)
   )
-
   const topics = topicsQuery.data?.pages.flatMap(page => page.items)
 
   if (topicsQuery.isError) {

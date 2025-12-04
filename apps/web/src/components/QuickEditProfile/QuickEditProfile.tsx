@@ -13,6 +13,7 @@ interface QuickEditProfileProps {
 
 export default function QuickEditProfile({ children }: QuickEditProfileProps) {
   return (
+    <>
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent className="w-fit mt-2">
@@ -28,5 +29,6 @@ export default function QuickEditProfile({ children }: QuickEditProfileProps) {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
+    </>
   )
 }

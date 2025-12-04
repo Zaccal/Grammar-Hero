@@ -7,6 +7,7 @@ export default antfu({
     './apps/web/src/routeTree.gen.ts',
   ],
   formatters: true,
+  typescript: true,
   react: true,
   rules: {
     'react/no-context-provider': 'off',

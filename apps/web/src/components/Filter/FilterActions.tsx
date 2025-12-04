@@ -8,7 +8,7 @@ export function FilterActions() {
 
   return (
     <div className="flex flex-col gap-2 w-full">
-      <Button type="submit" className="w-full">
+      <Button type="submit" fullWidth>
         Apply
       </Button>
       <Button

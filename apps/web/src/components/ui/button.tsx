@@ -381,6 +381,7 @@ export type ButtonProps = React.ComponentProps<'button'> & {
   selected?: boolean
   asChild?: boolean
   loading?: boolean
+  fullWidth?: boolean
 } & VariantProps<typeof buttonVariants>
 
 function Button({
@@ -397,6 +398,7 @@ function Button({
   asChild = false,
   placeholder = false,
   loading = false,
+  fullWidth = false,
   children,
   ...props
 }: ButtonProps) {
@@ -417,7 +419,8 @@ function Button({
           underline,
           className,
         }),
-        asChild && props.disabled && 'pointer-events-none opacity-50'
+        asChild && props.disabled && 'pointer-events-none opacity-50',
+        fullWidth && 'w-full'
       )}
       {...(selected && { 'data-state': 'open' })}
       {...props}

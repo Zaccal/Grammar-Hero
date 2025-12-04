@@ -1,29 +1,37 @@
 import { AtSign } from 'lucide-react'
-import { authClient } from '@/lib/auth-client'
+import { useState } from 'react'
+import { useSession } from '@/hooks'
+import { ChangeEmailForm } from '../ChangeEmailForm/index'
 import { Button } from '../ui/button'
+import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog'
 import { Input, InputWrapper } from '../ui/input'
-import { editProfileFormContext } from './EditProfileFormContext'
 
 function EditProfileFormChangeEmail() {
-  const { email } = editProfileFormContext.useSelect(state => state.user)
-
-  async function changeEmailHandler() {
-    authClient.changeEmail({
-      newEmail: 'mainjs76@gmail.com',
-      callbackURL: '/',
-    })
-  }
+  const { data } = useSession()
+  const [open, setOpen] = useState(false)
 
   return (
-    <div className="flex items-center gap-3">
-      <InputWrapper>
-        <Input value={email} disabled />
-        <AtSign />
-      </InputWrapper>
-      <Button onClick={changeEmailHandler} type="button">
-        Change
-      </Button>
-    </div>
+    <Dialog open={open} onOpenChange={state => setOpen(state)}>
+      <div className="flex items-center gap-3">
+        <InputWrapper>
+          <Input value={data?.user.email} disabled />
+          <AtSign />
+        </InputWrapper>
+        <DialogTrigger asChild>
+          <Button type="button">
+            Change
+          </Button>
+        </DialogTrigger>
+      </div>
+      <DialogContent className="sm:max-w-[440px]">
+        <ChangeEmailForm.Root options={{
+          onSuccess: () => setOpen(false)
+        }}
+        >
+          <ChangeEmailForm.NewEmailField />
+        </ChangeEmailForm.Root>
+      </DialogContent>
+    </Dialog>
   )
 }
 

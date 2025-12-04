@@ -6,6 +6,7 @@ import { useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { useFileUploadMutation } from '@/hooks/useFileUploadMutation'
+import { FORM_ID } from '@/lib/constants'
 import { queryClient, trpc } from '@/lib/trpc'
 import { createTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import { durationValues } from '@/schemas/filter.schema'
@@ -17,8 +18,6 @@ interface CreateTopicFormProps {
   children: React.ReactNode
   className?: string
 }
-
-export const FORM_ID = 'CREATE_FORM_TRIGGER'
 
 export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
   // I control the file upload outside of the form because, file inputs are uncontrolled component

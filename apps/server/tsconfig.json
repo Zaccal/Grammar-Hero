@@ -4,12 +4,12 @@
     "target": "ESNext",
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
-    "baseUrl": "./",
     "module": "ESNext",
     "moduleResolution": "bundler",
     "paths": {
       "@/*": ["./src/*"],
-      "prisma": ["node_modules/prisma"]
+      "@/prisma": ["./node_modules/prisma"],
+      "*": ["./*"]
     },
     "types": ["bun"],
     "strict": true,

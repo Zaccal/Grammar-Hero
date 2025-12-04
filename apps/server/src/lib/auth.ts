@@ -17,23 +17,13 @@ export const auth = betterAuth({
   user: {
     changeEmail: {
       enabled: true,
-      sendChangeEmailVerification: async ({ user, url }) => {
-        const { error } = await resend.emails.send({
-          from: 'Grammar Hero <grammarhero@gmail.com>',
-          to: user.email,
-          subject: 'Hello World',
-          html: `<a href="${url}">link</a>`,
-        })
 
-        if (error) {
-          throw new Error(error.message)
-        }
-      },
     },
+
   },
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
-      await resend.emails.send({
+      void resend.emails.send({
         from: 'Grammar Hero <grammarhero@gmail.com>',
         to: user.email,
         subject: 'Hello World',

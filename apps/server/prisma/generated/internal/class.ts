@@ -22,7 +22,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "/home/adil/Документы/works/Grammar-Hero/apps/server/prisma/generated",
+      "value": "/home/adil/Works/Grammar-Hero/apps/server/prisma/generated",
       "fromEnvVar": null
     },
     "config": {
@@ -37,7 +37,7 @@ const config: runtime.GetPrismaClientConfig = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/adil/Документы/works/Grammar-Hero/apps/server/prisma/schema/schema.prisma",
+    "sourceFilePath": "/home/adil/Works/Grammar-Hero/apps/server/prisma/schema/schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "../schema",
@@ -47,6 +47,7 @@ const config: runtime.GetPrismaClientConfig = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
