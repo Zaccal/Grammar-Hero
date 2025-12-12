@@ -62,7 +62,7 @@ const TOPICS_KEYS = [...Object.keys(TOPICS_SELECT), 'isLiked', 'isBookmarked']
 type TopicExpected = Record<string, unknown>
 
 describe('profile', () => {
-  it("get user's topics", async () => {
+  it('get user\'s topics', async () => {
     const topics = await getAllMyTopics('123', { cursor: undefined, limit: 10 })
 
     expect(Array.isArray(topics.items)).toBeTruthy()

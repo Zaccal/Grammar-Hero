@@ -23,9 +23,11 @@ function SignUpFormFields({ form }: SignUpFormFieldsProps) {
         name="username"
         render={({ field }) => (
           <FormItem>
-            {errors.username ? (
+            {errors.username
+? (
               <FormMessage />
-            ) : (
+            )
+: (
               <FormLabel>Username</FormLabel>
             )}
             <FormControl>
@@ -53,9 +55,11 @@ function SignUpFormFields({ form }: SignUpFormFieldsProps) {
         control={form.control}
         render={({ field }) => (
           <FormItem>
-            {errors.password ? (
+            {errors.password
+? (
               <FormMessage />
-            ) : (
+            )
+: (
               <FormLabel>Passoword</FormLabel>
             )}
             <FormControl>

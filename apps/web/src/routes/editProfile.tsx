@@ -19,7 +19,6 @@ function RouteComponent() {
           <EditProfileForm.ChangeMail />
           <EditProfileForm.ChangePassword />
         </div>
-        <EditProfileForm.SaveButton />
       </EditProfileForm.Root>
     </section>
   )

@@ -1,13 +1,20 @@
+import type { UseFormReturn } from 'react-hook-form'
+import type { UdpateProfileSchema } from '@/schemas/updateProfile.schema'
+import { useSession } from '@/hooks'
 import { Button } from '../ui/button'
-import { editProfileFormContext } from './EditProfileFormContext'
 import { fileUploadStore } from './store'
 
-export function EditProfileFormSaveButton() {
-  const { form, user } = editProfileFormContext.useSelect(state => state)
+interface EditProfileFormSaveButtonProps {
+  form: UseFormReturn<UdpateProfileSchema>
+}
+
+export function EditProfileFormSaveButton({ form }: EditProfileFormSaveButtonProps) {
   const { file, isDeleted } = fileUploadStore.use(state => state)
+  const { data: session } = useSession()
+  const user = session?.user
 
   const displayUsername = form.watch('displayUsername')
-  const usernameChanged = displayUsername !== user.displayUsername
+  const usernameChanged = displayUsername !== user?.displayUsername
   const newAvatarUploaded = Boolean(file)
 
   const isDisabled = !usernameChanged && !newAvatarUploaded && !isDeleted

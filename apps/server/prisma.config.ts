@@ -6,7 +6,7 @@ import 'dotenv/config'
 export default {
   schema: path.join('prisma', 'schema'),
   datasource: {
-    url: process.env.DATABASE_URL ?? ''
+    url: process.env.DATABASE_URL ?? '',
   },
   migrations: {
     path: path.join('prisma', 'migrations'),

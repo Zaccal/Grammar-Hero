@@ -70,7 +70,8 @@ export async function removeImage(fileName: string, userId: string) {
       })
     }
     size = info.size
-  } catch (err: any) {
+  }
+ catch (err: any) {
     if (err?.code === 'ENOENT') {
       throw new TRPCError({ code: 'NOT_FOUND', message: 'Image not found' })
     }
@@ -83,7 +84,8 @@ export async function removeImage(fileName: string, userId: string) {
 
   try {
     await unlink(path.join(IMAGES_PATH, validFileName))
-  } catch (err) {
+  }
+ catch (err) {
     throw new TRPCError({
       code: 'INTERNAL_SERVER_ERROR',
       message: 'Failed to delete image',
