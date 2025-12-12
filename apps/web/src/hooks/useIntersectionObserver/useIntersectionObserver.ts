@@ -12,8 +12,10 @@ export type UseIntersectionObserverCallback = (
 ) => void
 
 /** The intersection observer options type */
-export interface UseIntersectionObserverOptions
-  extends Omit<IntersectionObserverInit, 'root'> {
+export interface UseIntersectionObserverOptions extends Omit<
+  IntersectionObserverInit,
+  'root'
+> {
   /** The enabled state of the intersection observer */
   enabled?: boolean
   /** The callback to execute when intersection is detected */

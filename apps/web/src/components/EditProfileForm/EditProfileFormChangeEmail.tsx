@@ -18,15 +18,14 @@ function EditProfileFormChangeEmail() {
           <AtSign />
         </InputWrapper>
         <DialogTrigger asChild>
-          <Button type="button">
-            Change
-          </Button>
+          <Button type="button">Change</Button>
         </DialogTrigger>
       </div>
       <DialogContent className="sm:max-w-[440px]">
-        <ChangeEmailForm.Root options={{
-          onSuccess: () => setOpen(false)
-        }}
+        <ChangeEmailForm.Root
+          options={{
+            onSuccess: () => setOpen(false),
+          }}
         >
           <ChangeEmailForm.NewEmailField />
         </ChangeEmailForm.Root>

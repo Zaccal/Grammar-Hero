@@ -20,7 +20,10 @@ export function useChangeEmail(options?: UseChangeEmailProps) {
   return useMutation({
     mutationKey: CHANGE_EMAIL_MUTATION_KEY,
     mutationFn: async (newEmail: string) => {
-      const { data, error } = await authClient.changeEmail({ newEmail, callbackURL: redirectTo })
+      const { data, error } = await authClient.changeEmail({
+        newEmail,
+        callbackURL: redirectTo,
+      })
 
       if (error) {
         throw error
@@ -31,15 +34,15 @@ export function useChangeEmail(options?: UseChangeEmailProps) {
     onSuccess: () => {
       options?.onSuccess?.()
       queryClient.invalidateQueries({
-        queryKey: sessionQueryKey
+        queryKey: sessionQueryKey,
       })
       toast.success('Email has changed successfully!')
     },
-    onError: (error) => {
+    onError: error => {
       options?.onError?.(error)
       toast.error('Something went wrong!', {
-        description: error.message
+        description: error.message,
       })
-    }
+    },
   })
 }

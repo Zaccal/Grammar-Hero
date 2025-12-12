@@ -60,7 +60,7 @@ export function EditProfileForm({ children, user }: EditProfileFormProps) {
     }
 
     queryClient.invalidateQueries({
-      queryKey: sessionQueryKey
+      queryKey: sessionQueryKey,
     })
     toast.success('Profile updated successfully')
   }
@@ -68,9 +68,7 @@ export function EditProfileForm({ children, user }: EditProfileFormProps) {
   return (
     <editProfileFormContext.Provider initialValue={{ form, user }}>
       <form onSubmit={form.handleSubmit(submitHandler)}>
-        <Form {...form}>
-          {children}
-        </Form>
+        <Form {...form}>{children}</Form>
       </form>
     </editProfileFormContext.Provider>
   )

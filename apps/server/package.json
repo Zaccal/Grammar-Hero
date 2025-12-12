@@ -18,6 +18,7 @@
   "dependencies": {
     "@hono/trpc-server": "^0.4.1",
     "@hono/zod-validator": "^0.7.5",
+    "@prisma/adapter-pg": "^7.1.0",
     "@prisma/client": "^7.1.0",
     "@tanstack/router-core": "^1.141.1",
     "@trpc/client": "^11.7.2",

@@ -15,13 +15,17 @@ interface ChangeEmailFormProps {
   options?: UseChangeEmailProps
 }
 
-export function ChangeEmailForm({ children, className, options }: ChangeEmailFormProps) {
+export function ChangeEmailForm({
+  children,
+  className,
+  options,
+}: ChangeEmailFormProps) {
   const changeEmailMutation = useChangeEmail(options)
   const form = useForm<ChangeEmailSchema>({
     resolver: zodResolver(changeEmailSchema),
     defaultValues: {
       newEmail: '',
-    }
+    },
   })
 
   async function sumbitHandler(data: ChangeEmailSchema) {
@@ -39,7 +43,9 @@ export function ChangeEmailForm({ children, className, options }: ChangeEmailFor
       >
         <Form {...form}>
           {children}
-          <Button loading={form.formState.isSubmitting} type="submit" fullWidth>Change Email</Button>
+          <Button loading={form.formState.isSubmitting} type="submit" fullWidth>
+            Change Email
+          </Button>
         </Form>
       </form>
     </changeEmailFormContext.Provider>

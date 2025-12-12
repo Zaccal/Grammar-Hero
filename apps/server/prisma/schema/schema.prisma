@@ -1,59 +1,53 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../generated"
+  provider     = "prisma-client"
+  output       = "../generated"
   moduleFormat = "esm"
 }
 
 datasource db {
   provider = "postgres"
-  url      = env("DATABASE_URL")
 }
 
 model Topics {
-  id String @id @default(cuid()) @map("_id")
-  createdAt  DateTime @default(now()) @map("created_at")
-  updatedAt  DateTime @updatedAt @map("updated_at")
-  title String 
-  shortDescription String @map("short_description") 
-  description String
-  durationMax DateTime @db.Time() @map("duration_max")
-  durationMin DateTime @db.Time()  @map("duration_min")
-  image String?
-  content String @db.Text
-  level Level
-
-  user User @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  userId String @map("user_id")
-
-  bookmark Bookmark[]
-  likes Like[] 
+  id               String     @id @default(cuid()) @map("_id")
+  createdAt        DateTime   @default(now()) @map("created_at")
+  updatedAt        DateTime   @updatedAt @map("updated_at")
+  title            String
+  shortDescription String     @map("short_description")
+  description      String
+  durationMax      DateTime   @map("duration_max") @db.Time(6)
+  durationMin      DateTime   @map("duration_min") @db.Time(6)
+  image            String?
+  content          String
+  level            Level
+  userId           String     @map("user_id")
+  bookmark         Bookmark[]
+  likes            Like[]
+  user             User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Like {
-  id String @id @default(cuid()) @map("_id")
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  topic Topics @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  id      String @id @default(cuid()) @map("_id")
+  userId  String @map("user_id")
+  topicId String @map("topic_id")
+  topic   Topics @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  userId String  @map("user_id")
-  topicId String  @map("topic_id")
+  @@unique([userId, topicId])
+}
+
+model Bookmark {
+  id      String @id @default(cuid()) @map("_id")
+  userId  String @map("user_id")
+  topicId String @map("topic_id")
+  topics  Topics @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@unique([userId, topicId])
 }
 
 enum Level {
-  Basic // A1–A2
-  Intermediate // B1–B2
-  Advanced // C1–C2
-}
-
-
-model Bookmark {
-  id String @id @default(cuid()) @map("_id")
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  topics Topics @relation(fields: [topicId], references: [id], onDelete: Cascade)
-
-  userId String @map("user_id")
-  topicId String @map("topic_id")
-
-  @@unique([userId, topicId])
+  Basic
+  Intermediate
+  Advanced
 }

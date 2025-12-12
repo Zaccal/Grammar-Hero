@@ -77,8 +77,7 @@ const dateInputStyles = `
 `
 
 interface DateInputProps
-  extends DateInputPropsRa,
-    VariantProps<typeof inputVariants> {
+  extends DateInputPropsRa, VariantProps<typeof inputVariants> {
   className?: string
   variant?: VariantProps<typeof inputVariants>['variant']
 }
