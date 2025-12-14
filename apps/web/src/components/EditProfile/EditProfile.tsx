@@ -32,9 +32,7 @@ export function EditProfile({ children, user }: EditProfileProps) {
 
   return (
     <FormProvider {...form}>
-      <form onSubmit={form.handleSubmit(submitHandler)}>
-        {children}
-      </form>
+      <form onSubmit={form.handleSubmit(submitHandler)}>{children}</form>
     </FormProvider>
   )
 }

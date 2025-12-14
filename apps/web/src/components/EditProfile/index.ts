@@ -7,5 +7,5 @@ export const EditProfile = {
   Root,
   AvatarField: EditProfileAvatarField,
   NameField: EditProfileNameField,
-  Submit: EditProfileSubmit
+  Submit: EditProfileSubmit,
 }
