@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useLocation } from '@tanstack/react-router'
 import { toast } from 'sonner'
 import { authClient } from '@/lib/auth-client'
-import { sessionQueryKey } from './useSession'
+import { SESSION_QUERY_KEY } from './useSession'
 
 export const CHANGE_EMAIL_MUTATION_KEY = ['changeEmail']
 
@@ -34,7 +34,7 @@ export function useChangeEmail(options?: UseChangeEmailProps) {
     onSuccess: () => {
       options?.onSuccess?.()
       queryClient.invalidateQueries({
-        queryKey: sessionQueryKey,
+        queryKey: SESSION_QUERY_KEY,
       })
       toast.success('Email has changed successfully!')
     },

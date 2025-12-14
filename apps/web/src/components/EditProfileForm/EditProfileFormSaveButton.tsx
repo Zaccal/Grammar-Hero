@@ -8,7 +8,9 @@ interface EditProfileFormSaveButtonProps {
   form: UseFormReturn<UdpateProfileSchema>
 }
 
-export function EditProfileFormSaveButton({ form }: EditProfileFormSaveButtonProps) {
+export function EditProfileFormSaveButton({
+  form,
+}: EditProfileFormSaveButtonProps) {
   const { file, isDeleted } = fileUploadStore.use(state => state)
   const { data: session } = useSession()
   const user = session?.user

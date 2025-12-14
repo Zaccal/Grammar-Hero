@@ -1,12 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import { authClient } from '@/lib/auth-client'
 
-// TODO: Change the name of variable to UPPERCASE it is constant
-export const sessionQueryKey = ['session']
+export const SESSION_QUERY_KEY = ['session']
 
 export function useSession() {
   return useQuery({
-    queryKey: sessionQueryKey,
+    queryKey: SESSION_QUERY_KEY,
     queryFn: async () => {
       const { data, error } = await authClient.getSession()
       if (error) {
