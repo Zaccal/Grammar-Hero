@@ -28,6 +28,7 @@ export function EditProfileFormAvatar() {
       fileUploadStore.set({
         file,
         isDeleted: false,
+        isSelected: true
       })
     },
     onFilesRemoved: () => {

@@ -17,7 +17,7 @@ interface EditProfileFormProps {
 
 export function EditProfileForm({ children, user }: EditProfileFormProps) {
   const { mutateAsync: uploadFile, isError } = useFileUploadMutation()
-  const file = fileUploadStore.use(state => state.file)
+  const { file, isDeleted, isSelected } = fileUploadStore.use(state => state)
   const form = useForm<UdpateProfileSchema>({
     resolver: zodResolver(udpateProfileSchema),
     defaultValues: {
@@ -39,16 +39,25 @@ export function EditProfileForm({ children, user }: EditProfileFormProps) {
   }
 
   async function submitHandler(data: UdpateProfileSchema) {
-    const imageUrl = await uploadHandler()
-    if (isError) {
-      toast.error('Error uploading image')
-      return
+    let image
+
+    if (isDeleted) {
+      image = null
+    }
+
+    if (isSelected && file && !isDeleted) {
+      const imageUrl = await uploadHandler()
+      if (isError) {
+       toast.error('Error uploading image')
+       return
+      }
+      image = imageUrl
     }
 
     await updateUser({
       displayUsername: data.displayUsername,
-      image: imageUrl,
-    })
+    ...(image !== undefined && { image })
+     })
   }
 
   return (
