@@ -12,10 +12,11 @@ function RouteComponent() {
 
   return (
     <section className="container py-24">
-    <EditProfile.Root user={user}>
-      <EditProfile.AvatarField initalState={user.image} />
-      <EditProfile.NameField />
-    </EditProfile.Root>
+      <EditProfile.Root user={user}>
+        <EditProfile.AvatarField initalState={user.image} />
+        <EditProfile.NameField />
+        <EditProfile.Submit />
+      </EditProfile.Root>
     </section>
   )
 }

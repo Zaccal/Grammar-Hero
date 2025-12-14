@@ -1,4 +1,5 @@
 export * from './createContext'
+export * from './useAvatarUpload'
 export * from './useClickOutside'
 export * from './useClickOutside'
 export * from './useDebounceCallback/useDebounceCallback'

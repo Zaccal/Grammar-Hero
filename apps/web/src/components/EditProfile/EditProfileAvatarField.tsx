@@ -9,7 +9,9 @@ interface EditProfileAvatarFieldProps {
   initalState?: string | null
 }
 
-export function EditProfileAvatarField({ initalState }: EditProfileAvatarFieldProps) {
+export function EditProfileAvatarField({
+  initalState,
+}: EditProfileAvatarFieldProps) {
   const form = useFormContext<UdpateProfileSchema>()
   const [fileUploadState, fileUploadActions] = useFileUpload({
     accept: 'image/jpeg,image/png,image/jpg',
@@ -25,24 +27,32 @@ export function EditProfileAvatarField({ initalState }: EditProfileAvatarFieldPr
     },
 
     initialFiles: initalState
-? [
-      {
-        id: 'INITAL_STATE',
-        name: 'inital file',
-        size: UPLOAD_FILE_SIZE_MB * 1024 * 1024,
-        type: 'image/jpeg,image/png,image/jpg',
-        url: getServerImage(initalState)
-      }
-    ]
-: undefined
+      ? [
+          {
+            id: 'INITAL_STATE',
+            name: 'inital file',
+            size: UPLOAD_FILE_SIZE_MB * 1024 * 1024,
+            type: 'image/jpeg,image/png,image/jpg',
+            url: getServerImage(initalState),
+          },
+        ]
+      : undefined,
   })
 
   return (
     <>
       {fileUploadState.errors.map(errorMessage => (
-        <p className="text-destructive text-sm text-center mb-6" key={errorMessage}>{errorMessage}</p>
+        <p
+          className="text-destructive text-sm text-center mb-6"
+          key={errorMessage}
+        >
+          {errorMessage}
+        </p>
       ))}
-      <AvatarFileUpload options={[fileUploadState, fileUploadActions]} maxSizeMb={UPLOAD_FILE_SIZE_MB} />
+      <AvatarFileUpload
+        options={[fileUploadState, fileUploadActions]}
+        maxSizeMb={UPLOAD_FILE_SIZE_MB}
+      />
     </>
   )
 }
