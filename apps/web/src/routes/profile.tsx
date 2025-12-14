@@ -34,6 +34,7 @@ export const Route = createFileRoute('/profile')({
 
 function RouteComponent() {
   const { user } = Route.useLoaderData()
+
   const myTopicsQuery = useInfiniteQuery(
     trpc.profile.getAllMyTopics.infiniteQueryOptions(QUERY_INPUT, QUERY_OPTION)
   )

@@ -22,7 +22,7 @@ export async function uploadImage(
 
   await fs.mkdir(IMAGES_PATH, { recursive: true })
 
-  const fileName = `${userId}-${validFileName}`
+  const fileName = `${userId}-${validFileName.trim()}`
   const filePath = path.join(IMAGES_PATH, fileName)
 
   if (exchangeFile) {

@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { EditProfileForm } from '@/components/EditProfileForm'
+import { EditProfile } from '@/components/EditProfile/index'
 import ensureSession from '@/middleware'
 
 export const Route = createFileRoute('/editProfile')({
@@ -12,14 +12,10 @@ function RouteComponent() {
 
   return (
     <section className="container py-24">
-      <EditProfileForm.Root user={user}>
-        <EditProfileForm.Avatar />
-        <div className="space-y-5">
-          <EditProfileForm.DisplayUsername />
-          <EditProfileForm.ChangeMail />
-          <EditProfileForm.ChangePassword />
-        </div>
-      </EditProfileForm.Root>
+    <EditProfile.Root user={user}>
+      <EditProfile.AvatarField initalState={user.image} />
+      <EditProfile.NameField />
+    </EditProfile.Root>
     </section>
   )
 }
