@@ -15,7 +15,7 @@ function RouteComponent() {
       <EditProfile.Root user={user}>
         <EditProfile.AvatarField initalState={user.image} />
         <EditProfile.NameField />
-        <EditProfile.Submit user={user} />
+        <EditProfile.Submit />
       </EditProfile.Root>
     </section>
   )

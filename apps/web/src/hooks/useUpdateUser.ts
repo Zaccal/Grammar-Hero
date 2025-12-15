@@ -4,7 +4,11 @@ import { toast } from 'sonner'
 import { authClient } from '@/lib/auth-client'
 import { SESSION_QUERY_KEY } from './useSession'
 
-export function useUpdateUser() {
+interface UseUpdateUser {
+  onSuccess?: () => void
+}
+
+export function useUpdateUser(options?: UseUpdateUser) {
   const queryClient = useQueryClient()
 
   return useMutation({
@@ -17,6 +21,7 @@ export function useUpdateUser() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: SESSION_QUERY_KEY })
+      if (options && options.onSuccess) { options.onSuccess() }
       toast.success('Profile updated successfully')
     },
     onError: error => {
