@@ -21,7 +21,9 @@ export function useUpdateUser(options?: UseUpdateUser) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: SESSION_QUERY_KEY })
-      if (options && options.onSuccess) { options.onSuccess() }
+      if (options && options.onSuccess) {
+        options.onSuccess()
+      }
       toast.success('Profile updated successfully')
     },
     onError: error => {

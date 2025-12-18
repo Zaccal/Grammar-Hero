@@ -20,8 +20,8 @@ export function EditProfile({ children, user }: EditProfileProps) {
   })
   const { mutateAsync: updateUser } = useUpdateUser({
     onSuccess: () => {
-      form.reset()
-    }
+      form.setValue('image', undefined)
+    },
   })
   const uploadFileHandler = useAvatarUpload(user.image)
 
@@ -36,7 +36,9 @@ export function EditProfile({ children, user }: EditProfileProps) {
 
   return (
     <FormProvider {...form}>
-      <form className="space-y-4" onSubmit={form.handleSubmit(submitHandler)}>{children}</form>
+      <form className="space-y-4" onSubmit={form.handleSubmit(submitHandler)}>
+        {children}
+      </form>
     </FormProvider>
   )
 }
