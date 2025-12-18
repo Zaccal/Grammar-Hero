@@ -20,6 +20,12 @@ export function EditProfile({ children, user }: EditProfileProps) {
   })
   const { mutateAsync: updateUser } = useUpdateUser({
     onSuccess: () => {
+      // After a successful update, the avatar field is set to undefined.
+      // This disables the Save button, indicating that no changes are pending,
+      // so the user cannot click it again.
+      // The username field is not reset after saving.
+      // Resetting it would restore the previous value only,
+      // which breaks the Save button state detection.
       form.setValue('image', undefined)
     },
   })

@@ -22,10 +22,14 @@ export const auth = betterAuth({
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
       void resend.emails.send({
-        from: 'Grammar Hero <grammarhero@gmail.com>',
-        to: user.email,
-        subject: 'Hello World',
-        html: `<a href="${url}">link</a>`,
+        to: [user.email],
+        template: {
+          id: '3fbf86e2-f0fd-425b-9b45-4f317605d964',
+          variables: {
+            username: user.name,
+            changeEmailLink: url
+          }
+        }
       })
     },
   },
