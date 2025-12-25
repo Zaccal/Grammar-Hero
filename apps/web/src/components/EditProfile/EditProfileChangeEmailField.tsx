@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { ChangeEmailForm } from '../ChangeEmailForm'
 import { Button } from '../ui/button'
 import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog'
@@ -8,8 +9,10 @@ interface EditProfileChangeEmailFieldProps {
 }
 
 export function EditProfileChangeEmailField({ currentEmail }: EditProfileChangeEmailFieldProps) {
+  const [open, setOpen] = useState(false)
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={state => setOpen(state)}>
       <div className="flex w-full items-center gap-2">
         <Input type="email" disabled value={currentEmail} />
         <DialogTrigger>
@@ -19,7 +22,12 @@ export function EditProfileChangeEmailField({ currentEmail }: EditProfileChangeE
         </DialogTrigger>
       </div>
       <DialogContent className="sm:max-w-[448px]">
-        <ChangeEmailForm.Root>
+        <ChangeEmailForm.Root options={{
+          onSuccess() {
+            setOpen(false)
+          },
+        }}
+        >
           <ChangeEmailForm.NewEmailField />
         </ChangeEmailForm.Root>
       </DialogContent>

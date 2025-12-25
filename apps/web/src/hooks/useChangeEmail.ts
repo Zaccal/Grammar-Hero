@@ -36,7 +36,7 @@ export function useChangeEmail(options?: UseChangeEmailProps) {
       queryClient.invalidateQueries({
         queryKey: SESSION_QUERY_KEY,
       })
-      toast.success('Email has changed successfully!')
+      toast.success('Confirmation Sent to Old Email')
     },
     onError: error => {
       options?.onError?.(error)
