@@ -1,3 +1,6 @@
+import type { InputProps } from '../ui/input'
+import type { ChangeEmailSchema } from '@/schemas/changeEmail.schema'
+import { useFormContext } from 'react-hook-form'
 import {
   FormControl,
   FormField,
@@ -6,10 +9,9 @@ import {
   FormMessage,
 } from '../ui/form'
 import { Input } from '../ui/input'
-import { changeEmailFormContext } from './ChangeEmailContext'
 
-export function ChangeEmailNewEmailField() {
-  const form = changeEmailFormContext.useSelect(state => state.form)
+export function ChangeEmailFormNewEmailField(props: InputProps) {
+  const form = useFormContext<ChangeEmailSchema>()
 
   return (
     <>
@@ -21,7 +23,7 @@ export function ChangeEmailNewEmailField() {
             <FormLabel>New Email</FormLabel>
             <FormMessage />
             <FormControl>
-              <Input placeholder="your new email" {...field} />
+              <Input placeholder="your new email" {...props} {...field} />
             </FormControl>
           </FormItem>
         )}

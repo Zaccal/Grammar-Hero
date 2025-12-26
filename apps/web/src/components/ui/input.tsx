@@ -121,12 +121,14 @@ const inputWrapperVariants = cva(
   }
 )
 
+export type InputProps = React.ComponentProps<'input'> & VariantProps<typeof inputVariants>
+
 function Input({
   className,
   type,
   variant,
   ...props
-}: React.ComponentProps<'input'> & VariantProps<typeof inputVariants>) {
+}: InputProps) {
   return (
     <input
       data-slot="input"

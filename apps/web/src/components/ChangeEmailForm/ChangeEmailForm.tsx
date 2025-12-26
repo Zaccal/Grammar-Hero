@@ -1,13 +1,11 @@
 import type { UseChangeEmailProps } from '@/hooks/useChangeEmail'
 import type { ChangeEmailSchema } from '@/schemas/changeEmail.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 import { useChangeEmail } from '@/hooks/useChangeEmail'
 import { cn } from '@/lib/utils'
 import { changeEmailSchema } from '@/schemas/changeEmail.schema'
-import { Button } from '../ui/button'
 import { Form } from '../ui/form'
-import { changeEmailFormContext } from './ChangeEmailContext'
 
 interface ChangeEmailFormProps {
   children?: React.ReactNode | React.ReactNode[]
@@ -33,7 +31,7 @@ export function ChangeEmailForm({
   }
 
   return (
-    <changeEmailFormContext.Provider initialValue={{ form }}>
+    <FormProvider {...form}>
       <form
         className={cn('space-y-4', className)}
         onSubmit={event => {
@@ -43,11 +41,8 @@ export function ChangeEmailForm({
       >
         <Form {...form}>
           {children}
-          <Button loading={form.formState.isSubmitting} type="submit" fullWidth>
-            Change Email
-          </Button>
         </Form>
       </form>
-    </changeEmailFormContext.Provider>
+    </FormProvider>
   )
 }

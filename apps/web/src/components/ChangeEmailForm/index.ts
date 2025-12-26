@@ -1,9 +1,9 @@
-import { changeEmailFormContext } from './ChangeEmailContext'
 import { ChangeEmailForm as Root } from './ChangeEmailForm'
-import { ChangeEmailNewEmailField } from './ChangeEmailNewEmailField'
+import { ChangeEmailFormNewEmailField } from './ChangeEmailFormNewEmailField'
+import { ChangeEmailFormSubmit } from './ChangeEmailFormSubmit'
 
 export const ChangeEmailForm = {
   Root,
-  Context: changeEmailFormContext,
-  NewEmailField: ChangeEmailNewEmailField,
+  NewEmailField: ChangeEmailFormNewEmailField,
+  Submit: ChangeEmailFormSubmit
 }
