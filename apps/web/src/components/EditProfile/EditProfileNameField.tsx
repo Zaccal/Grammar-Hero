@@ -9,7 +9,7 @@ import {
 } from '../ui/form'
 import { Input } from '../ui/input'
 
-function EditProfileNameField() {
+export function EditProfileNameField() {
   const form = useFormContext<UdpateProfileSchema>()
 
   return (
@@ -30,5 +30,3 @@ function EditProfileNameField() {
     </>
   )
 }
-
-export default EditProfileNameField

@@ -32,17 +32,17 @@ export function ChangeEmailForm({
 
   return (
     <FormProvider {...form}>
-      <form
-        className={cn('space-y-4', className)}
-        onSubmit={event => {
-          event.stopPropagation()
-          form.handleSubmit(sumbitHandler)(event)
-        }}
-      >
-        <Form {...form}>
+      <Form {...form}>
+        <form
+          className={cn('space-y-4', className)}
+          onSubmit={event => {
+            event.stopPropagation()
+            form.handleSubmit(sumbitHandler)(event)
+          }}
+        >
           {children}
-        </Form>
-      </form>
+        </form>
+      </Form>
     </FormProvider>
   )
 }
