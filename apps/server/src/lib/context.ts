@@ -6,11 +6,13 @@ export interface CreateCotextOptions {
 }
 
 export async function createContext({ context }: CreateCotextOptions) {
+  const headers = context.req.raw.headers
   const session = await auth.api.getSession({
-    headers: context.req.raw.headers,
+    headers,
   })
   return {
     session,
+    headers
   }
 }
 
