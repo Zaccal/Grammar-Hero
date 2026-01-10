@@ -5,7 +5,7 @@ import { openAPI, username } from 'better-auth/plugins'
 import prisma from '../../prisma'
 import { resend } from './resend'
 
-export const auth = betterAuth({
+export const auth: ReturnType<typeof betterAuth> = betterAuth({
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
@@ -27,9 +27,9 @@ export const auth = betterAuth({
           id: '3fbf86e2-f0fd-425b-9b45-4f317605d964',
           variables: {
             username: user.name,
-            changeEmailLink: url
-          }
-        }
+            changeEmailLink: url,
+          },
+        },
       })
     },
   },
