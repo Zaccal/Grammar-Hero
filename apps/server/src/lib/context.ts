@@ -12,7 +12,7 @@ export async function createContext({ context }: CreateCotextOptions) {
   })
   return {
     session,
-    headers
+    headers,
   }
 }
 

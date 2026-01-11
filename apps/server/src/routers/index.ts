@@ -8,6 +8,6 @@ export const appRouter = router({
   protectedHealthCheck: protectedProcedure.query(() => 'ok'),
   profile: profileRouter,
   topics: topicsRouter,
-  account: accountRouter
+  account: accountRouter,
 })
 export type AppRouter = typeof appRouter
