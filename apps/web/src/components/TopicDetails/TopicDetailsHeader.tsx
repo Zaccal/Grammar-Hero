@@ -24,13 +24,15 @@ export function TopicDetailsHeader() {
           <Avatar className="size-7 md:size-8">
             <AvatarImage
               src={getServerImage(user.image) ?? undefined}
-              alt={`User avatar: ${user.displayUsername}`}
+              alt={`User avatar: ${user.displayUsername ?? user.name}`}
             />
             <AvatarFallback>
               {getUserImageFallbackText(user.displayUsername ?? user.name)}
             </AvatarFallback>
           </Avatar>
-          <span className="topic-details-text">{user.displayUsername}</span>
+          <span className="topic-details-text">
+            {user.displayUsername ?? user.name}
+          </span>
         </div>
 
         <div className="flex items-center gap-2 md:gap-3 text-muted-foreground">

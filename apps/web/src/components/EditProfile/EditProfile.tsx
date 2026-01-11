@@ -14,7 +14,7 @@ export function EditProfile({ children, user }: EditProfileProps) {
   const form = useForm({
     resolver: zodResolver(udpateProfileSchema),
     defaultValues: {
-      displayUsername: user.displayUsername ?? user.username ?? '',
+      displayUsername: user.displayUsername ?? user.username ?? user.name,
       image: undefined,
     },
   })
