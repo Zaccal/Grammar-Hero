@@ -7,16 +7,19 @@ interface PaginationTopicsEmptyProps {
 export function PaginationTopicsEmpty({
   children,
 }: PaginationTopicsEmptyProps) {
-  const isEmpty = !paginationTopicsContext.useSelect(
-    state => state.query.data?.pages.length
+  const pages = paginationTopicsContext.useSelect(
+    state => state.query.data?.pages[0].items
   )
   const isLoading = paginationTopicsContext.useSelect(
     state => state.query.isLoading
   )
+  const isEmpty = pages && pages.length === 0
 
-  if (!isEmpty || isLoading) {
-    return null
+  if (!isLoading) {
+    if (isEmpty) {
+      return <>{children}</>
+    }
   }
 
-  return <>{children}</>
+  return null
 }

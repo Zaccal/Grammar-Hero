@@ -10,6 +10,10 @@ export const Route = createFileRoute('/sign-up')({
     if (session || error) {
       throw redirect({
         to: '/',
+        replace: true,
+        search: {
+          limit: 15,
+        },
       })
     }
   },

@@ -7,7 +7,7 @@ import { authClient } from '@/lib/auth-client'
 import { signInSchema } from '@/schemas/auth.schema'
 import { Form } from '../../ui/form'
 import DividerSocial from '../DividerSocial'
-import SocialForm from '../SocialForm'
+import SocialForm from '../SocialForm/SocialForm'
 import SignInFormFields from './SignInFormFields'
 import SignInFormFooter from './SignInFormFooter'
 import SignInFormHeader from './SignInFormHeader'
@@ -34,30 +34,27 @@ function SignInForm() {
           description: 'You have successfully signed in. Let’s keep learning!',
         })
         form.reset()
-        navigate({ to: '/' })
+        navigate({ to: '/', replace: true, search: { limit: 15 } })
       },
     })
   }
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="mb-28 bg-muted h-fit w-full max-w-sm overflow-hidden rounded-[calc(var(--radius)+.125rem)] border shadow-md shadow-zinc-950/5  dark:[--color-muted:var(--color-zinc-900)]"
-      >
-        <div className="bg-card -m-px rounded-[calc(var(--radius)+.125rem)] border p-8 pb-7">
-          <SignInFormHeader />
+    <div className="mb-28 bg-muted h-fit w-full max-w-sm overflow-hidden rounded-[calc(var(--radius)+.125rem)] border shadow-md shadow-zinc-950/5  dark:[--color-muted:var(--color-zinc-900)]">
+      <div className="bg-card -m-px rounded-[calc(var(--radius)+.125rem)] border p-8 pb-7">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="">
+            <SignInFormHeader />
 
-          <SignInFormFields form={form} />
+            <SignInFormFields form={form} />
 
-          <DividerSocial />
-
-          <SocialForm />
-        </div>
-
-        <SignInFormFooter />
-      </form>
-    </Form>
+            <DividerSocial />
+          </form>
+        </Form>
+        <SocialForm />
+      </div>
+      <SignInFormFooter />
+    </div>
   )
 }
 

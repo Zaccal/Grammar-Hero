@@ -11,5 +11,5 @@ export const EditProfile = {
   NameField: EditProfileNameField,
   Submit: EditProfileSubmit,
   EmailField: EditProfileChangeEmailField,
-  PasswordField: EditProfileChangePasswordField
+  PasswordField: EditProfileChangePasswordField,
 }

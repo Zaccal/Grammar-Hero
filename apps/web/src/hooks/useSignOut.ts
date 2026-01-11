@@ -7,15 +7,19 @@ export function useSignOut() {
   const navigate = useNavigate()
 
   return useMutation({
-    mutationFn: () => authClient.signOut(),
-    onSuccess: () => {
-      toast.success('Goodbye! I hope you come back soon 🦕')
-      navigate({ to: '/sign-in' })
-    },
-    onError: error => {
-      toast.error('Something went wrong, please try again.', {
-        description: error.message,
+    mutationFn: async () => {
+      const promise = authClient.signOut()
+
+      toast.promise(promise, {
+        loading: 'Signing out...',
+        success: 'Goodbye! I hope you come back soon 🦕',
+        error: 'Something went wrong, please try again.',
       })
+
+      await promise
+    },
+    onSuccess: () => {
+      navigate({ to: '/sign-in' })
     },
   })
 }

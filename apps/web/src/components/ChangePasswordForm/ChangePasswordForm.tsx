@@ -12,15 +12,18 @@ interface ChangePasswordFormProps {
   options: UseChangePassword
 }
 
-export function ChangePasswordForm({ children, options }: ChangePasswordFormProps) {
+export function ChangePasswordForm({
+  children,
+  options,
+}: ChangePasswordFormProps) {
   const { mutateAsync: changePassword } = useChangePassword(options)
   const form = useForm<ChangePasswordSchema>({
     resolver: zodResolver(changePasswordSchema),
     defaultValues: {
       comfirmPassword: '',
       newPassword: '',
-      currentPassword: ''
-    }
+      currentPassword: '',
+    },
   })
 
   async function submitHandler(data: ChangePasswordSchema) {

@@ -16,9 +16,11 @@ export function useChangePassword(options?: UseChangePassword) {
       const { data: response, error } = await authClient.changePassword({
         newPassword: data.newPassword,
         currentPassword: data.currentPassword,
-        revokeOtherSessions: true
+        revokeOtherSessions: true,
       })
-      if (error) { throw error }
+      if (error) {
+        throw error
+      }
       return response
     },
     onSuccess: () => {
@@ -27,8 +29,8 @@ export function useChangePassword(options?: UseChangePassword) {
     },
     onError: error => {
       toast.error('Something went wrong!', {
-        description: error.message
+        description: error.message,
       })
-    }
+    },
   })
 }

@@ -1,7 +1,13 @@
 import type { InputProps } from '../ui/input'
 import type { ChangePasswordSchema } from '@/schemas/changePassword.schema'
 import { useFormContext } from 'react-hook-form'
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '../ui/form'
 import { Input } from '../ui/input'
 
 interface ChangePasswordFormFieldProps extends InputProps {
@@ -9,7 +15,11 @@ interface ChangePasswordFormFieldProps extends InputProps {
   label: string
 }
 
-export function ChangePasswordFormField({ name, label, ...props }: ChangePasswordFormFieldProps) {
+export function ChangePasswordFormField({
+  name,
+  label,
+  ...props
+}: ChangePasswordFormFieldProps) {
   const form = useFormContext<ChangePasswordSchema>()
 
   return (

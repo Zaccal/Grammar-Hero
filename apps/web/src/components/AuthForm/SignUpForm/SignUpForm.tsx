@@ -7,7 +7,7 @@ import { Form } from '@/components/ui/form'
 import { authClient } from '@/lib/auth-client'
 import { signUpSchema } from '@/schemas/auth.schema'
 import DividerSocial from '../DividerSocial'
-import SocialForm from '../SocialForm'
+import SocialForm from '../SocialForm/SocialForm'
 import SignUpFormFields from './SignUpFormFields'
 import SignUpFormFooter from './SignUpFormFooter'
 import SignUpFormHeader from './SignUpFormHeader'
@@ -33,7 +33,13 @@ function SignUpForm() {
         onSuccess: () => {
           toast.success('Welcome! Your Dino account has been created 🦕🎉')
           form.reset()
-          navigate({ to: '/' })
+          navigate({
+            to: '/',
+            replace: true,
+            search: {
+              limit: 15,
+            },
+          })
         },
         onError: ({ error }) => {
           toast.error('Something went wrong', {

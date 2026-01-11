@@ -8,12 +8,20 @@ interface ChangeEmailFormSubmitProps extends ButtonProps {
   children?: ReactNode | ReactNode[] | string
 }
 
-export function ChangeEmailFormSubmit({ children, ...props }: ChangeEmailFormSubmitProps) {
+export function ChangeEmailFormSubmit({
+  children,
+  ...props
+}: ChangeEmailFormSubmitProps) {
   const form = useFormContext<ChangeEmailSchema>()
 
   return (
     <>
-      <Button {...props} loading={form.formState.isSubmitting} type="submit" fullWidth>
+      <Button
+        {...props}
+        loading={form.formState.isSubmitting}
+        type="submit"
+        fullWidth
+      >
         {children}
       </Button>
     </>

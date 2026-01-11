@@ -5,5 +5,5 @@ import { ChangeEmailFormSubmit } from './ChangeEmailFormSubmit'
 export const ChangeEmailForm = {
   Root,
   NewEmailField: ChangeEmailFormNewEmailField,
-  Submit: ChangeEmailFormSubmit
+  Submit: ChangeEmailFormSubmit,
 }

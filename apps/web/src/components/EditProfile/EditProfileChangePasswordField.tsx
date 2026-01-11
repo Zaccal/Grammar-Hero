@@ -15,24 +15,37 @@ export function EditProfileChangePasswordField() {
       <div className="flex w-full items-center gap-2">
         <Input type="password" disabled value="123345678" />
         <DialogTrigger>
-          <Button type="button">
-            Change
-          </Button>
+          <Button type="button">Change</Button>
         </DialogTrigger>
       </div>
       <DialogContent className="sm:max-w-[448px]">
-        <ChangePasswordForm.Root options={{
-          onSuccess: () => {
-            setOpen(false)
-          }
-        }}
+        <ChangePasswordForm.Root
+          options={{
+            onSuccess: () => {
+              setOpen(false)
+            },
+          }}
         >
-          <ChangePasswordForm.Field type="password" label="Current password" name="currentPassword" />
-          <ChangePasswordForm.Field type="password" label="New password" name="newPassword" />
-          <ChangePasswordForm.Field type="password" label="Comfirm password" name="comfirmPassword" />
+          <ChangePasswordForm.Field
+            type="password"
+            label="Current password"
+            name="currentPassword"
+          />
+          <ChangePasswordForm.Field
+            type="password"
+            label="New password"
+            name="newPassword"
+          />
+          <ChangePasswordForm.Field
+            type="password"
+            label="Comfirm password"
+            name="comfirmPassword"
+          />
           <ChangePasswordForm.Submit>Change password</ChangePasswordForm.Submit>
           <div className="flex justify-center">
-            <Link className="text-sm text-primary" to="/createTopic">Forgot password?</Link>
+            <Link className="text-sm text-primary" to="/createTopic">
+              Forgot password?
+            </Link>
           </div>
         </ChangePasswordForm.Root>
       </DialogContent>

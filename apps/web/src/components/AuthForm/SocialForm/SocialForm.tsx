@@ -1,15 +1,12 @@
-import { Button } from '../ui/button'
-import GoogleIcon from '../ui/googleIcon'
-import MicrosoftIcon from '../ui/microsoftIcon'
+import { Button } from '@/components/ui/button'
+import MicrosoftIcon from '@/components/ui/microsoftIcon'
+import GoogleForm from './GoogleForm'
 
 function SocialForm() {
   return (
     <>
       <div className="grid grid-cols-2 gap-3">
-        <Button type="button" variant="outline">
-          <GoogleIcon />
-          <span>Google</span>
-        </Button>
+        <GoogleForm />
         <Button type="button" variant="outline">
           <MicrosoftIcon />
           <span>Microsoft</span>

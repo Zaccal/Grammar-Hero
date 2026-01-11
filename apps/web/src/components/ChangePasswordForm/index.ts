@@ -5,5 +5,5 @@ import { ChangePasswordFormSubmit } from './ChangePasswordFormSubmit'
 export const ChangePasswordForm = {
   Root,
   Field: ChangePasswordFormField,
-  Submit: ChangePasswordFormSubmit
+  Submit: ChangePasswordFormSubmit,
 }
