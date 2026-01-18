@@ -43,7 +43,7 @@ function SignInFormFields({ form }: SignInFormFieldsProps) {
                 <FormLabel>Password</FormLabel>
                 <Button variant="link" asChild size="sm">
                   <Link
-                    to="/"
+                    to="/forgot-password"
                     className="link intent-info variant-ghost text-sm"
                   >
                     Forgot your Password ?

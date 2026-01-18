@@ -48,7 +48,6 @@ export async function getLikedTopics(
 
   const topics = await prisma.topics.findMany({
     where: {
-      userId,
       likes: {
         some: {
           userId,
@@ -90,7 +89,6 @@ export async function getBookmarkedTopics(
 
   const topics = await prisma.topics.findMany({
     where: {
-      userId,
       bookmark: {
         some: {
           userId,

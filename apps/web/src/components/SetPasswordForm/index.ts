@@ -5,8 +5,7 @@ import { SetPasswordFormSubmit } from './SetPasswordFormSubmit'
 const SetPasswordForm = {
   Root,
   Field: SetPasswordFormField,
-  Submit: SetPasswordFormSubmit
-
+  Submit: SetPasswordFormSubmit,
 }
 
 export default SetPasswordForm

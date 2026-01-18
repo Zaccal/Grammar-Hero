@@ -1,8 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { EditProfile } from '@/components/EditProfile/index'
 import ensureSession from '@/middleware'
-import { useQuery } from '@tanstack/react-query'
-import { trpc } from '@/lib/trpc'
 
 export const Route = createFileRoute('/editProfile')({
   component: RouteComponent,

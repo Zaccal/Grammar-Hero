@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 import { authClient } from '@/lib/auth-client'
+import { queryClient } from '@/lib/trpc'
 
 export function useSignOut() {
   const navigate = useNavigate()
@@ -19,6 +20,7 @@ export function useSignOut() {
       await promise
     },
     onSuccess: () => {
+      queryClient.clear()
       navigate({ to: '/sign-in' })
     },
   })

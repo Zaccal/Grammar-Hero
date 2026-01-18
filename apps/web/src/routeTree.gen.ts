@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignUpRouteImport } from './routes/sign-up'
 import { Route as SignInRouteImport } from './routes/sign-in'
+import { Route as SetPasswordRouteImport } from './routes/set-password'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as OtpPageRouteImport } from './routes/otp-page'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as EditProfileRouteImport } from './routes/editProfile'
 import { Route as CreateTopicRouteImport } from './routes/createTopic'
 import { Route as IndexRouteImport } from './routes/index'
@@ -27,9 +30,24 @@ const SignInRoute = SignInRouteImport.update({
   path: '/sign-in',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SetPasswordRoute = SetPasswordRouteImport.update({
+  id: '/set-password',
+  path: '/set-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OtpPageRoute = OtpPageRouteImport.update({
+  id: '/otp-page',
+  path: '/otp-page',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EditProfileRoute = EditProfileRouteImport.update({
@@ -57,7 +75,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/createTopic': typeof CreateTopicRoute
   '/editProfile': typeof EditProfileRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/otp-page': typeof OtpPageRoute
   '/profile': typeof ProfileRoute
+  '/set-password': typeof SetPasswordRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
   '/topic/$id': typeof TopicIdRoute
@@ -66,7 +87,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/createTopic': typeof CreateTopicRoute
   '/editProfile': typeof EditProfileRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/otp-page': typeof OtpPageRoute
   '/profile': typeof ProfileRoute
+  '/set-password': typeof SetPasswordRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
   '/topic/$id': typeof TopicIdRoute
@@ -76,7 +100,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/createTopic': typeof CreateTopicRoute
   '/editProfile': typeof EditProfileRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/otp-page': typeof OtpPageRoute
   '/profile': typeof ProfileRoute
+  '/set-password': typeof SetPasswordRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
   '/topic/$id': typeof TopicIdRoute
@@ -87,7 +114,10 @@ export interface FileRouteTypes {
     | '/'
     | '/createTopic'
     | '/editProfile'
+    | '/forgot-password'
+    | '/otp-page'
     | '/profile'
+    | '/set-password'
     | '/sign-in'
     | '/sign-up'
     | '/topic/$id'
@@ -96,7 +126,10 @@ export interface FileRouteTypes {
     | '/'
     | '/createTopic'
     | '/editProfile'
+    | '/forgot-password'
+    | '/otp-page'
     | '/profile'
+    | '/set-password'
     | '/sign-in'
     | '/sign-up'
     | '/topic/$id'
@@ -105,7 +138,10 @@ export interface FileRouteTypes {
     | '/'
     | '/createTopic'
     | '/editProfile'
+    | '/forgot-password'
+    | '/otp-page'
     | '/profile'
+    | '/set-password'
     | '/sign-in'
     | '/sign-up'
     | '/topic/$id'
@@ -115,7 +151,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CreateTopicRoute: typeof CreateTopicRoute
   EditProfileRoute: typeof EditProfileRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  OtpPageRoute: typeof OtpPageRoute
   ProfileRoute: typeof ProfileRoute
+  SetPasswordRoute: typeof SetPasswordRoute
   SignInRoute: typeof SignInRoute
   SignUpRoute: typeof SignUpRoute
   TopicIdRoute: typeof TopicIdRoute
@@ -137,11 +176,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignInRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/set-password': {
+      id: '/set-password'
+      path: '/set-password'
+      fullPath: '/set-password'
+      preLoaderRoute: typeof SetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile': {
       id: '/profile'
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/otp-page': {
+      id: '/otp-page'
+      path: '/otp-page'
+      fullPath: '/otp-page'
+      preLoaderRoute: typeof OtpPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/editProfile': {
@@ -179,7 +239,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CreateTopicRoute: CreateTopicRoute,
   EditProfileRoute: EditProfileRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  OtpPageRoute: OtpPageRoute,
   ProfileRoute: ProfileRoute,
+  SetPasswordRoute: SetPasswordRoute,
   SignInRoute: SignInRoute,
   SignUpRoute: SignUpRoute,
   TopicIdRoute: TopicIdRoute,

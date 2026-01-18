@@ -25,10 +25,13 @@ function UserDropdown() {
   if (isLoading) {
     return <Skeleton className="size-10 rounded-full" />
   }
-  if (isError || !data) {
+  if (isError) {
     toast.error('Something went wrong', {
       description: error?.message,
     })
+    return null
+  }
+  if (!data) {
     return null
   }
 

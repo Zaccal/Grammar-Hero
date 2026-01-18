@@ -1,16 +1,32 @@
 import process from 'node:process'
 import { betterAuth } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
-import { openAPI, username } from 'better-auth/plugins'
+import { emailOTP, openAPI, username } from 'better-auth/plugins'
 import prisma from '../../prisma'
-import { resend } from './resend'
+import { EmailTemplate, resend } from './resend'
 
 export const auth: ReturnType<typeof betterAuth> = betterAuth({
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
   baseURL: process.env.BETTER_AUTH_URL,
-  plugins: [openAPI(), username()],
+  plugins: [
+    openAPI(),
+    username(),
+    emailOTP({
+      sendVerificationOTP: async ({ email, otp }) => {
+        void resend.emails.send({
+          to: [email],
+          template: {
+            id: EmailTemplate.EMAIL_VERIFICATION_OTP,
+            variables: {
+              OTP: otp,
+            },
+          },
+        })
+      },
+    }),
+  ],
   trustedOrigins: [process.env.CORS_ORIGIN || ''],
   emailAndPassword: {
     enabled: true,
@@ -26,12 +42,17 @@ export const auth: ReturnType<typeof betterAuth> = betterAuth({
       enabled: true,
     },
   },
+  account: {
+    accountLinking: {
+      enabled: true,
+    },
+  },
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
       void resend.emails.send({
         to: [user.email],
         template: {
-          id: '3fbf86e2-f0fd-425b-9b45-4f317605d964',
+          id: EmailTemplate.EMAIL_VERIFICATION_LINK,
           variables: {
             username: user.name,
             changeEmailLink: url,

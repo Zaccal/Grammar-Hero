@@ -34,7 +34,7 @@ function SignInForm() {
           description: 'You have successfully signed in. Let’s keep learning!',
         })
         form.reset()
-        navigate({ to: '/', replace: true, search: { limit: 15 } })
+        navigate({ to: '/', replace: true })
       },
     })
   }

@@ -3,8 +3,13 @@ import { authClient } from '@/lib/auth-client'
 
 export const SESSION_QUERY_KEY = ['session']
 
-export function useSession() {
+interface UseSessionProps {
+  enabled?: boolean
+}
+
+export function useSession(options: UseSessionProps = {}) {
   return useQuery({
+    ...options,
     queryKey: SESSION_QUERY_KEY,
     queryFn: async () => {
       const { data, error } = await authClient.getSession()
