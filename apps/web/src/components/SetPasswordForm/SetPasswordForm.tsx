@@ -7,7 +7,7 @@ import { useForgotPassword } from '@/hooks'
 import { authClient } from '@/lib/auth-client'
 import { setPasswordSchema } from '@/schemas/setPassword.schema'
 
-export interface SetPasswordOptions {
+interface SetPasswordOptions {
   email: string
   otp: string
 }
