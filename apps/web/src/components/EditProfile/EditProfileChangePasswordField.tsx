@@ -5,8 +5,19 @@ import { Button } from '../ui/button'
 import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog'
 import { Input } from '../ui/input'
 
-export function EditProfileChangePasswordField() {
+interface EditProfileChangePasswordFieldProps {
+  providerId: string
+}
+
+export function EditProfileChangePasswordField({
+  providerId,
+}: EditProfileChangePasswordFieldProps) {
   const [open, setOpen] = useState(false)
+
+  if (providerId !== 'credential') {
+    return null
+  }
+
   return (
     <Dialog open={open} onOpenChange={state => setOpen(state)}>
       <div className="flex w-full items-center gap-2">
