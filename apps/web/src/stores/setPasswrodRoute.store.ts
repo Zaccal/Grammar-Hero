@@ -7,5 +7,5 @@ export interface SetPasswordRouteStoreOptions {
 
 export const SetPasswordRouteStore = createStore<SetPasswordRouteStoreOptions>({
   email: '',
-  otp: ''
+  otp: '',
 })

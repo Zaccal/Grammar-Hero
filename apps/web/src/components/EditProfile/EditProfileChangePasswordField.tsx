@@ -7,7 +7,6 @@ import { Input } from '../ui/input'
 
 export function EditProfileChangePasswordField() {
   const [open, setOpen] = useState(false)
-
   return (
     <Dialog open={open} onOpenChange={state => setOpen(state)}>
       <div className="flex w-full items-center gap-2">
