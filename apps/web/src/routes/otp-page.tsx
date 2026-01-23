@@ -28,15 +28,16 @@ import { useVerifyOtp } from '@/hooks'
 import { useTimer } from '@/hooks/useTimer/useTimer'
 import { authClient } from '@/lib/auth-client'
 import { OTPSchema } from '@/schemas/otp.schema'
-import { SetPasswordRouteStore } from '@/stores/setPasswrodRoute.store'
+import { AuthRegistrationStore } from '@/stores/authRegistration.store'
+import { OTPPropsStore } from '@/stores/otpProps.store'
 
-interface OtpRouteProps {
+interface OtpRouteParams {
   email: string
 }
 
 export const Route = createFileRoute('/otp-page')({
   component: RouteComponent,
-  validateSearch: (search: Record<string, unknown>): OtpRouteProps => {
+  validateSearch: (search: Record<string, unknown>): OtpRouteParams => {
     if (!search.email) {
       throw new Error('Email is required')
     }
@@ -46,6 +47,7 @@ export const Route = createFileRoute('/otp-page')({
 
 function RouteComponent() {
   const navigate = useNavigate()
+  const redirectUrl = OTPPropsStore.use(state => state.redirectUrl)
   const timer = useTimer(60, {
     immediately: false,
   })
@@ -58,12 +60,12 @@ function RouteComponent() {
   })
   const { mutateAsync: verifyOtp, isPending } = useVerifyOtp({
     onSuccess: () => {
-      SetPasswordRouteStore.set({
+      AuthRegistrationStore.set({
         email: search.email,
         otp: form.getValues().otp,
       })
       navigate({
-        to: '/set-password',
+        to: redirectUrl ?? '/set-password',
         replace: true,
       })
     },
@@ -142,7 +144,7 @@ function RouteComponent() {
                 >
                   {timer.active
                     ? `You can resend in ${String(timer.minutes).padStart(2, '0')}:${String(timer.seconds).padStart(2, '0')}`
-                    : 'Didn\'t receive the OTP?'}
+                    : "Didn't receive the OTP?"}
                 </Button>
               </div>
             </form>

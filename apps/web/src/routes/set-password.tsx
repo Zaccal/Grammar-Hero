@@ -7,14 +7,14 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { SetPasswordRouteStore } from '@/stores/setPasswrodRoute.store'
+import { AuthRegistrationStore } from '@/stores/authRegistration.store'
 
 export const Route = createFileRoute('/set-password')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  const options = SetPasswordRouteStore.use(state => state)
+  const options = AuthRegistrationStore.use(state => state)
   return (
     <div className="container">
       <div className="flex flex-col items-center justify-center mt-32">

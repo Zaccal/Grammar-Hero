@@ -31,14 +31,18 @@ export function useForgotPassword(options?: UseForgotPasswordProps) {
   })
 }
 
-export function useVerifyOtp(options?: UseForgotPasswordProps) {
+interface UseVerifyOtpProps extends UseForgotPasswordProps {
+  type?: 'sign-in' | 'email-verification' | 'forget-password'
+}
+
+export function useVerifyOtp(options?: UseVerifyOtpProps) {
   return useMutation({
     mutationKey: FORGOT_PASSWORD_MUTATION_KEY,
-    mutationFn: async ({ email, otp }: { email: string, otp: string }) => {
+    mutationFn: async ({ email, otp }: { email: string; otp: string }) => {
       const { data, error } = await authClient.emailOtp.checkVerificationOtp({
         email,
         otp,
-        type: 'forget-password',
+        type: options?.type ?? 'forget-password',
       })
       if (error) {
         throw error
