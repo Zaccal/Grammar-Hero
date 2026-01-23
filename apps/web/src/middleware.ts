@@ -9,6 +9,7 @@ export default async function ensureSession() {
     queryFn: async () => {
       const { data, error } = await authClient.getSession()
       if (error) {
+        await authClient.signOut()
         throw error
       }
       return data
