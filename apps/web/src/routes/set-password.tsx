@@ -1,4 +1,3 @@
-import type { SetPasswordOptions } from '@/components/SetPasswordForm/SetPasswordForm'
 import { createFileRoute } from '@tanstack/react-router'
 import SetPasswordForm from '@/components/SetPasswordForm'
 import {
@@ -8,28 +7,14 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { SetPasswordRouteStore } from '@/stores/setPasswrodRoute.store'
 
 export const Route = createFileRoute('/set-password')({
   component: RouteComponent,
-  validateSearch: (
-    searchParams: Record<string, unknown>
-  ): SetPasswordOptions => {
-    const email = searchParams.email as string | undefined
-    const otp = searchParams.otp as string | undefined
-
-    if (!email || !otp) {
-      throw new Error('Invalid email or otp')
-    }
-
-    return {
-      email: decodeURIComponent(email),
-      otp: decodeURIComponent(otp),
-    }
-  },
 })
 
 function RouteComponent() {
-  const params = Route.useSearch()
+  const options = SetPasswordRouteStore.use(state => state)
   return (
     <div className="container">
       <div className="flex flex-col items-center justify-center mt-32">
@@ -41,7 +26,7 @@ function RouteComponent() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <SetPasswordForm.Root options={params}>
+            <SetPasswordForm.Root options={options}>
               <SetPasswordForm.Field
                 type="password"
                 label="New Password"

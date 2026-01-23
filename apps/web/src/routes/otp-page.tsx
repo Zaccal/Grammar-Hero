@@ -28,6 +28,7 @@ import { useVerifyOtp } from '@/hooks'
 import { useTimer } from '@/hooks/useTimer/useTimer'
 import { authClient } from '@/lib/auth-client'
 import { OTPSchema } from '@/schemas/otp.schema'
+import { SetPasswordRouteStore } from '@/stores/setPasswrodRoute.store'
 
 interface OtpRouteProps {
   email: string
@@ -57,13 +58,13 @@ function RouteComponent() {
   })
   const { mutateAsync: verifyOtp, isPending } = useVerifyOtp({
     onSuccess: () => {
+      SetPasswordRouteStore.set({
+        email: search.email,
+        otp: form.getValues().otp,
+      })
       navigate({
         to: '/set-password',
         replace: true,
-        search: {
-          email: encodeURIComponent(search.email),
-          otp: encodeURIComponent(form.getValues().otp),
-        },
       })
     },
   })
