@@ -3,7 +3,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from '@tanstack/react-router'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
+import { SESSION_QUERY_KEY } from '@/hooks'
 import { authClient } from '@/lib/auth-client'
+import { queryClient } from '@/lib/trpc'
 import { signInSchema } from '@/schemas/auth.schema'
 import { Form } from '../../ui/form'
 import DividerSocial from '../DividerSocial'
@@ -29,7 +31,8 @@ function SignInForm() {
           description: error.message,
         })
       },
-      onSuccess: () => {
+      onSuccess: async () => {
+        await queryClient.invalidateQueries({ queryKey: SESSION_QUERY_KEY })
         toast.success('Great to see you again! 🦕', {
           description: 'You have successfully signed in. Let’s keep learning!',
         })

@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { Edit } from 'lucide-react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -24,9 +25,10 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from '@/components/ui/input-otp'
-import { useVerifyOtp } from '@/hooks'
+import { SESSION_QUERY_KEY, useVerifyOtp } from '@/hooks'
 import { useTimer } from '@/hooks/useTimer/useTimer'
 import { authClient } from '@/lib/auth-client'
+import { queryClient } from '@/lib/trpc'
 import { OTPSchema } from '@/schemas/otp.schema'
 import { AuthRegistrationStore } from '@/stores/authRegistration.store'
 import { OTPPropsStore } from '@/stores/otpProps.store'
@@ -37,7 +39,7 @@ export const Route = createFileRoute('/otp-page')({
 
 function RouteComponent() {
   const navigate = useNavigate()
-  const { email, redirectUrl } = OTPPropsStore.use(state => state)
+  const OTPProps = OTPPropsStore.use(state => state)
   const timer = useTimer(60, {
     immediately: false,
   })
@@ -48,22 +50,42 @@ function RouteComponent() {
     },
   })
   const { mutateAsync: verifyOtp, isPending } = useVerifyOtp({
-    onSuccess: () => {
+    onSuccess: async () => {
       AuthRegistrationStore.set({
-        email,
+        email: OTPProps.email,
         otp: form.getValues().otp,
       })
+
+      const { error } = await authClient.signIn.emailOtp({
+        email: OTPProps.email,
+        otp: form.getValues().otp,
+        fetchOptions: {
+          onSuccess: async () => {
+            await queryClient.invalidateQueries({ queryKey: SESSION_QUERY_KEY })
+          },
+        },
+      })
+
+      if (error) {
+        toast.error('Failed to sign in, please try again')
+        navigate({
+          to: '/sign-in',
+          replace: true,
+        })
+      }
+
       navigate({
-        to: redirectUrl ?? '/set-password',
+        to: OTPProps.redirectUrl ?? '/set-password',
         replace: true,
       })
     },
+    type: OTPProps.type,
   })
 
   async function submitHandler(data: OTPSchemaType) {
     await verifyOtp({
       otp: data.otp,
-      email,
+      email: OTPProps.email,
     })
   }
 
@@ -71,8 +93,8 @@ function RouteComponent() {
     if (!timer.active) {
       timer.start()
       await authClient.emailOtp.sendVerificationOtp({
-        email,
-        type: 'forget-password',
+        email: OTPProps.email,
+        type: OTPProps.type,
       })
     }
   }
@@ -87,7 +109,7 @@ function RouteComponent() {
             to="/forgot-password"
             className="mx-auto flex items-center gap-2 text-primary text-sm"
           >
-            {email} <Edit size={18} />
+            {OTPProps.email} <Edit size={18} />
           </Link>
         </CardHeader>
         <CardContent>

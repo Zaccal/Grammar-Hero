@@ -23,8 +23,6 @@ import { trpc } from '@/lib/trpc'
 import ensureSession from '@/middleware'
 import { getReadTime, getServerImage } from '@/utils/index'
 
-// TODO: fix a bug when the user sign in it refreshs wihtout stoping
-// the user needs to reload page for fixing it
 export const Route = createFileRoute('/')({
   component: HomeComponent,
   loader: ensureSession,

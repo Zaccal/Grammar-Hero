@@ -45,7 +45,11 @@ function RouteComponent() {
   })
 
   async function submitHandler(data: ForgotPasswordSchema) {
-    OTPPropsStore.set({ email: data.newEmail, redirectUrl: '/set-password' })
+    OTPPropsStore.set({
+      email: data.newEmail,
+      redirectUrl: '/set-password',
+      type: 'forget-password',
+    })
     await forgotPassword({
       email: data.newEmail,
     })

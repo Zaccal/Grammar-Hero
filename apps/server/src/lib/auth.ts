@@ -30,6 +30,7 @@ export const auth: ReturnType<typeof betterAuth> = betterAuth({
   trustedOrigins: [process.env.CORS_ORIGIN || ''],
   emailAndPassword: {
     enabled: true,
+    autoSignIn: false
   },
   socialProviders: {
     google: {

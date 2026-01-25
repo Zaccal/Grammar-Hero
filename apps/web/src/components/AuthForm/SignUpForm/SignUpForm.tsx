@@ -2,9 +2,8 @@ import type { SignUpSchema } from '@/schemas/auth.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from '@tanstack/react-router'
 import { useForm } from 'react-hook-form'
-import { toast } from 'sonner'
 import { Form } from '@/components/ui/form'
-import { authClient } from '@/lib/auth-client'
+import { useSignUp } from '@/hooks/useSignUp'
 import { signUpSchema } from '@/schemas/auth.schema'
 import DividerSocial from '../DividerSocial'
 import SocialForm from '../SocialForm/SocialForm'
@@ -22,32 +21,16 @@ function SignUpForm() {
       username: '',
     },
   })
+  const { mutateAsync: signUp } = useSignUp({
+    onSuccess: () => {
+      navigate({
+        to: '/otp-page',
+      })
+    },
+  })
 
   async function onSubmit(data: SignUpSchema) {
-    await authClient.signUp.email(
-      {
-        ...data,
-        name: data.username,
-      },
-      {
-        onSuccess: () => {
-          toast.success('Welcome! Your Dino account has been created 🦕🎉')
-          form.reset()
-          navigate({
-            to: '/',
-            replace: true,
-            search: {
-              limit: 15,
-            },
-          })
-        },
-        onError: ({ error }) => {
-          toast.error('Something went wrong', {
-            description: error.message,
-          })
-        },
-      }
-    )
+    await signUp(data)
   }
 
   return (
