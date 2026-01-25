@@ -31,27 +31,16 @@ import { OTPSchema } from '@/schemas/otp.schema'
 import { AuthRegistrationStore } from '@/stores/authRegistration.store'
 import { OTPPropsStore } from '@/stores/otpProps.store'
 
-interface OtpRouteParams {
-  email: string
-}
-
 export const Route = createFileRoute('/otp-page')({
   component: RouteComponent,
-  validateSearch: (search: Record<string, unknown>): OtpRouteParams => {
-    if (!search.email) {
-      throw new Error('Email is required')
-    }
-    return { email: decodeURIComponent(search.email as string) }
-  },
 })
 
 function RouteComponent() {
   const navigate = useNavigate()
-  const redirectUrl = OTPPropsStore.use(state => state.redirectUrl)
+  const { email, redirectUrl } = OTPPropsStore.use(state => state)
   const timer = useTimer(60, {
     immediately: false,
   })
-  const search = Route.useSearch()
   const form = useForm<OTPSchemaType>({
     resolver: zodResolver(OTPSchema),
     defaultValues: {
@@ -61,7 +50,7 @@ function RouteComponent() {
   const { mutateAsync: verifyOtp, isPending } = useVerifyOtp({
     onSuccess: () => {
       AuthRegistrationStore.set({
-        email: search.email,
+        email,
         otp: form.getValues().otp,
       })
       navigate({
@@ -74,7 +63,7 @@ function RouteComponent() {
   async function submitHandler(data: OTPSchemaType) {
     await verifyOtp({
       otp: data.otp,
-      email: search.email,
+      email,
     })
   }
 
@@ -82,7 +71,7 @@ function RouteComponent() {
     if (!timer.active) {
       timer.start()
       await authClient.emailOtp.sendVerificationOtp({
-        email: search.email,
+        email,
         type: 'forget-password',
       })
     }
@@ -98,7 +87,7 @@ function RouteComponent() {
             to="/forgot-password"
             className="mx-auto flex items-center gap-2 text-primary text-sm"
           >
-            {search.email} <Edit size={18} />
+            {email} <Edit size={18} />
           </Link>
         </CardHeader>
         <CardContent>
