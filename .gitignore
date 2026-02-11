@@ -3,3 +3,4 @@ node_modules
 .alchemy
 .env
 ./apps/server/src/images/*
+./apps/server/prisma/seed.ts
