@@ -5,18 +5,8 @@ import { Button } from '../ui/button'
 import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog'
 import { Input } from '../ui/input'
 
-interface EditProfileChangePasswordFieldProps {
-  providerId: string
-}
-
-export function EditProfileChangePasswordField({
-  providerId,
-}: EditProfileChangePasswordFieldProps) {
+export function EditProfileChangePasswordField() {
   const [open, setOpen] = useState(false)
-
-  if (providerId !== 'credential') {
-    return null
-  }
 
   return (
     <Dialog open={open} onOpenChange={state => setOpen(state)}>

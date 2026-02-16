@@ -21,6 +21,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { useForgotPassword } from '@/hooks'
 import { changeEmailSchema as forgotPasswordSchema } from '@/schemas/changeEmail.schema'
+import { OTPPropsStore } from '@/stores/otpProps.store'
 
 export const Route = createFileRoute('/forgot-password')({
   component: RouteComponent,
@@ -39,14 +40,16 @@ function RouteComponent() {
       navigation({
         to: '/otp-page',
         replace: true,
-        search: {
-          email: encodeURIComponent(form.getValues().newEmail),
-        },
       })
     },
   })
 
   async function submitHandler(data: ForgotPasswordSchema) {
+    OTPPropsStore.set({
+      email: data.newEmail,
+      redirectUrl: '/set-password',
+      type: 'forget-password',
+    })
     await forgotPassword({
       email: data.newEmail,
     })

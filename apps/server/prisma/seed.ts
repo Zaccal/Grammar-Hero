@@ -4,7 +4,7 @@ import type { TopicsCreateInput } from './generated/models'
 import { getDummyDate } from '@/utils/getDummyDate'
 import { getMinMax } from '@/utils/getMinMaxMockDate'
 
-const USER_ID = '7EPKB59o0OYJgs8rPsC0J4LkClF6ToWx'
+const USER_ID = 'KyxnLgDeBuCzJK5TQLtg8OyVrEJi8H2Z'
 
 async function createMockTopics(userId: string) {
   console.log('🌾 Creating mock topics...')

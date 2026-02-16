@@ -25,7 +25,7 @@ function RouteComponent() {
         <EditProfile.AvatarField initalState={user.image} />
         <EditProfile.NameField />
         <EditProfile.EmailField currentEmail={user.email} />
-        <EditProfile.PasswordField providerId={account.providerId} />
+        {account.providerId === 'credential' && <EditProfile.PasswordField />}
         <EditProfile.Submit />
       </EditProfile.Root>
     </section>
