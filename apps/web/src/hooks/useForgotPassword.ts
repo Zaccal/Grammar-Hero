@@ -38,7 +38,7 @@ interface UseVerifyOtpProps extends UseForgotPasswordProps {
 export function useVerifyOtp(options?: UseVerifyOtpProps) {
   return useMutation({
     mutationKey: FORGOT_PASSWORD_MUTATION_KEY,
-    mutationFn: async ({ email, otp }: { email: string; otp: string }) => {
+    mutationFn: async ({ email, otp }: { email: string, otp: string }) => {
       const { data, error } = await authClient.emailOtp.checkVerificationOtp({
         email,
         otp,

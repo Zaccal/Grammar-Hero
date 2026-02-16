@@ -3,9 +3,11 @@ import type { ChangeEmailSchema } from '@/schemas/changeEmail.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useChangeEmail } from '@/hooks/useChangeEmail'
+import { useTimer } from '@/hooks/useTimer/useTimer'
 import { cn } from '@/lib/utils'
 import { changeEmailSchema } from '@/schemas/changeEmail.schema'
 import { Form } from '../ui/form'
+import { ChangeEmailFormStore } from './ChangeEmailFormStore'
 
 interface ChangeEmailFormProps {
   children?: React.ReactNode | React.ReactNode[]
@@ -18,7 +20,17 @@ export function ChangeEmailForm({
   className,
   options,
 }: ChangeEmailFormProps) {
-  const changeEmailMutation = useChangeEmail(options)
+  const timer = useTimer(60, {
+    immediately: false
+  })
+  const changeEmailMutation = useChangeEmail({
+    ...options,
+    onSuccess: () => {
+      timer.start()
+      ChangeEmailFormStore.set(timer)
+      options?.onSuccess?.()
+    }
+  })
   const form = useForm<ChangeEmailSchema>({
     resolver: zodResolver(changeEmailSchema),
     defaultValues: {

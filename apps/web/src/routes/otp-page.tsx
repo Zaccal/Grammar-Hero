@@ -144,7 +144,7 @@ function RouteComponent() {
                 >
                   {timer.active
                     ? `You can resend in ${String(timer.minutes).padStart(2, '0')}:${String(timer.seconds).padStart(2, '0')}`
-                    : "Didn't receive the OTP?"}
+                    : 'Didn\'t receive the OTP?'}
                 </Button>
               </div>
             </form>

@@ -17,6 +17,7 @@ import { Route as OtpPageRouteImport } from './routes/otp-page'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as EditProfileRouteImport } from './routes/editProfile'
 import { Route as CreateTopicRouteImport } from './routes/createTopic'
+import { Route as ChangeEmailRouteImport } from './routes/change-email'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TopicIdRouteImport } from './routes/topic/$id'
 
@@ -60,6 +61,11 @@ const CreateTopicRoute = CreateTopicRouteImport.update({
   path: '/createTopic',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChangeEmailRoute = ChangeEmailRouteImport.update({
+  id: '/change-email',
+  path: '/change-email',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -73,6 +79,7 @@ const TopicIdRoute = TopicIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/change-email': typeof ChangeEmailRoute
   '/createTopic': typeof CreateTopicRoute
   '/editProfile': typeof EditProfileRoute
   '/forgot-password': typeof ForgotPasswordRoute
@@ -85,6 +92,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/change-email': typeof ChangeEmailRoute
   '/createTopic': typeof CreateTopicRoute
   '/editProfile': typeof EditProfileRoute
   '/forgot-password': typeof ForgotPasswordRoute
@@ -98,6 +106,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/change-email': typeof ChangeEmailRoute
   '/createTopic': typeof CreateTopicRoute
   '/editProfile': typeof EditProfileRoute
   '/forgot-password': typeof ForgotPasswordRoute
@@ -112,6 +121,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/change-email'
     | '/createTopic'
     | '/editProfile'
     | '/forgot-password'
@@ -124,6 +134,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/change-email'
     | '/createTopic'
     | '/editProfile'
     | '/forgot-password'
@@ -136,6 +147,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/change-email'
     | '/createTopic'
     | '/editProfile'
     | '/forgot-password'
@@ -149,6 +161,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ChangeEmailRoute: typeof ChangeEmailRoute
   CreateTopicRoute: typeof CreateTopicRoute
   EditProfileRoute: typeof EditProfileRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
@@ -218,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreateTopicRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/change-email': {
+      id: '/change-email'
+      path: '/change-email'
+      fullPath: '/change-email'
+      preLoaderRoute: typeof ChangeEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -237,6 +257,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ChangeEmailRoute: ChangeEmailRoute,
   CreateTopicRoute: CreateTopicRoute,
   EditProfileRoute: EditProfileRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,

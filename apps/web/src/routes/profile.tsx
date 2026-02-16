@@ -5,15 +5,16 @@ import {
   BriefcaseBusiness,
   Ellipsis,
   Heart,
+  Mail,
   Menu,
   Pen,
 } from 'lucide-react'
 import ErrorComponent from '@/components/ErrorComponent'
 import { PaginationTopics } from '@/components/PaginationTopics'
 import { ProfileTab } from '@/components/ProfileTabs/index'
-import QuickEditProfile from '@/components/QuickEditProfile/QuickEditProfile'
 import ScrollToTopButton from '@/components/ScrollToTopButton/ScrollToTopButton'
 import { Button } from '@/components/ui/button'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import {
   Empty,
   EmptyContent,
@@ -73,11 +74,20 @@ function RouteComponent() {
                 Edit profile
               </Link>
             </Button>
-            <QuickEditProfile>
-              <Button size="lg" variant="outline">
-                <Ellipsis />
-              </Button>
-            </QuickEditProfile>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button size="lg" variant="outline">
+                  <Ellipsis />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="sm:max-w-md">
+                <Link to="/change-email">
+                  <DropdownMenuItem>
+                    <Mail /> Change email
+                  </DropdownMenuItem>
+                </Link>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </User.Content>
       </User.Root>

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useTimer } from '@/hooks/useTimer/useTimer'
 import { ChangeEmailForm } from '../ChangeEmailForm'
 import { Button } from '../ui/button'
 import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog'
@@ -13,9 +12,6 @@ export function EditProfileChangeEmailField({
   currentEmail,
 }: EditProfileChangeEmailFieldProps) {
   const [open, setOpen] = useState(false)
-  const timer = useTimer(30, {
-    immediately: false,
-  })
 
   return (
     <Dialog open={open} onOpenChange={state => setOpen(state)}>
@@ -25,23 +21,17 @@ export function EditProfileChangeEmailField({
           <Button type="button">Change</Button>
         </DialogTrigger>
       </div>
-      <DialogContent className="sm:max-w-[448px]">
+      <DialogContent className="sm:max-w-md">
         <ChangeEmailForm.Root
           options={{
             onSuccess() {
-              timer.start()
               setOpen(false)
             },
           }}
         >
-          <ChangeEmailForm.NewEmailField disabled={timer.active} />
-          {timer.active && (
-            <p className="text-muted-foreground text-sm">
-              Email sent. You can retry in{' '}
-              {String(timer.seconds).padStart(2, '0')}s
-            </p>
-          )}
-          <ChangeEmailForm.Submit disabled={timer.active}>
+          <ChangeEmailForm.NewEmailField />
+          <ChangeEmailForm.Timer />
+          <ChangeEmailForm.Submit>
             Change email
           </ChangeEmailForm.Submit>
         </ChangeEmailForm.Root>
