@@ -14,7 +14,9 @@ export function ChangeEmailFormSubmit({
   ...props
 }: ChangeEmailFormSubmitProps) {
   const form = useFormContext<ChangeEmailSchema>()
-  const timerActive = ChangeEmailFormStore.use(state => state ? state.active : false)
+  const timerActive = ChangeEmailFormStore.use(state =>
+    state ? state.active : false
+  )
 
   return (
     <>

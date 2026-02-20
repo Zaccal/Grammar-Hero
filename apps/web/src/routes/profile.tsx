@@ -5,16 +5,25 @@ import {
   BriefcaseBusiness,
   Ellipsis,
   Heart,
+  Lock,
   Mail,
   Menu,
   Pen,
+  Trash,
 } from 'lucide-react'
+import { DeleteAccount } from '@/components/DeleteAccount'
 import ErrorComponent from '@/components/ErrorComponent'
 import { PaginationTopics } from '@/components/PaginationTopics'
 import { ProfileTab } from '@/components/ProfileTabs/index'
 import ScrollToTopButton from '@/components/ScrollToTopButton/ScrollToTopButton'
 import { Button } from '@/components/ui/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 import {
   Empty,
   EmptyContent,
@@ -74,20 +83,33 @@ function RouteComponent() {
                 Edit profile
               </Link>
             </Button>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button size="lg" variant="outline">
-                  <Ellipsis />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="sm:max-w-md">
-                <Link to="/change-email">
-                  <DropdownMenuItem>
-                    <Mail /> Change email
-                  </DropdownMenuItem>
-                </Link>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <DeleteAccount.Root>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button size="lg" variant="outline">
+                    <Ellipsis />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="sm:max-w-md">
+                  <Link to="/change-email">
+                    <DropdownMenuItem>
+                      <Mail /> Change email
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link to="/change-password">
+                    <DropdownMenuItem>
+                      <Lock /> Change password
+                    </DropdownMenuItem>
+                  </Link>
+                  <DropdownMenuSeparator />
+                  <DeleteAccount.Trigger>
+                    <DropdownMenuItem variant="destructive">
+                      <Trash /> Delete account
+                    </DropdownMenuItem>
+                  </DeleteAccount.Trigger>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </DeleteAccount.Root>
           </div>
         </User.Content>
       </User.Root>

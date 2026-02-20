@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SuccessRouteImport } from './routes/success'
 import { Route as SignUpRouteImport } from './routes/sign-up'
 import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as SetPasswordRouteImport } from './routes/set-password'
@@ -17,10 +18,16 @@ import { Route as OtpPageRouteImport } from './routes/otp-page'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as EditProfileRouteImport } from './routes/editProfile'
 import { Route as CreateTopicRouteImport } from './routes/createTopic'
+import { Route as ChangePasswordRouteImport } from './routes/change-password'
 import { Route as ChangeEmailRouteImport } from './routes/change-email'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TopicIdRouteImport } from './routes/topic/$id'
 
+const SuccessRoute = SuccessRouteImport.update({
+  id: '/success',
+  path: '/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SignUpRoute = SignUpRouteImport.update({
   id: '/sign-up',
   path: '/sign-up',
@@ -61,6 +68,11 @@ const CreateTopicRoute = CreateTopicRouteImport.update({
   path: '/createTopic',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChangePasswordRoute = ChangePasswordRouteImport.update({
+  id: '/change-password',
+  path: '/change-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChangeEmailRoute = ChangeEmailRouteImport.update({
   id: '/change-email',
   path: '/change-email',
@@ -80,6 +92,7 @@ const TopicIdRoute = TopicIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/change-email': typeof ChangeEmailRoute
+  '/change-password': typeof ChangePasswordRoute
   '/createTopic': typeof CreateTopicRoute
   '/editProfile': typeof EditProfileRoute
   '/forgot-password': typeof ForgotPasswordRoute
@@ -88,11 +101,13 @@ export interface FileRoutesByFullPath {
   '/set-password': typeof SetPasswordRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/success': typeof SuccessRoute
   '/topic/$id': typeof TopicIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/change-email': typeof ChangeEmailRoute
+  '/change-password': typeof ChangePasswordRoute
   '/createTopic': typeof CreateTopicRoute
   '/editProfile': typeof EditProfileRoute
   '/forgot-password': typeof ForgotPasswordRoute
@@ -101,12 +116,14 @@ export interface FileRoutesByTo {
   '/set-password': typeof SetPasswordRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/success': typeof SuccessRoute
   '/topic/$id': typeof TopicIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/change-email': typeof ChangeEmailRoute
+  '/change-password': typeof ChangePasswordRoute
   '/createTopic': typeof CreateTopicRoute
   '/editProfile': typeof EditProfileRoute
   '/forgot-password': typeof ForgotPasswordRoute
@@ -115,6 +132,7 @@ export interface FileRoutesById {
   '/set-password': typeof SetPasswordRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/success': typeof SuccessRoute
   '/topic/$id': typeof TopicIdRoute
 }
 export interface FileRouteTypes {
@@ -122,6 +140,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/change-email'
+    | '/change-password'
     | '/createTopic'
     | '/editProfile'
     | '/forgot-password'
@@ -130,11 +149,13 @@ export interface FileRouteTypes {
     | '/set-password'
     | '/sign-in'
     | '/sign-up'
+    | '/success'
     | '/topic/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/change-email'
+    | '/change-password'
     | '/createTopic'
     | '/editProfile'
     | '/forgot-password'
@@ -143,11 +164,13 @@ export interface FileRouteTypes {
     | '/set-password'
     | '/sign-in'
     | '/sign-up'
+    | '/success'
     | '/topic/$id'
   id:
     | '__root__'
     | '/'
     | '/change-email'
+    | '/change-password'
     | '/createTopic'
     | '/editProfile'
     | '/forgot-password'
@@ -156,12 +179,14 @@ export interface FileRouteTypes {
     | '/set-password'
     | '/sign-in'
     | '/sign-up'
+    | '/success'
     | '/topic/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChangeEmailRoute: typeof ChangeEmailRoute
+  ChangePasswordRoute: typeof ChangePasswordRoute
   CreateTopicRoute: typeof CreateTopicRoute
   EditProfileRoute: typeof EditProfileRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
@@ -170,11 +195,19 @@ export interface RootRouteChildren {
   SetPasswordRoute: typeof SetPasswordRoute
   SignInRoute: typeof SignInRoute
   SignUpRoute: typeof SignUpRoute
+  SuccessRoute: typeof SuccessRoute
   TopicIdRoute: typeof TopicIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/success': {
+      id: '/success'
+      path: '/success'
+      fullPath: '/success'
+      preLoaderRoute: typeof SuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sign-up': {
       id: '/sign-up'
       path: '/sign-up'
@@ -231,6 +264,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreateTopicRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/change-password': {
+      id: '/change-password'
+      path: '/change-password'
+      fullPath: '/change-password'
+      preLoaderRoute: typeof ChangePasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/change-email': {
       id: '/change-email'
       path: '/change-email'
@@ -258,6 +298,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChangeEmailRoute: ChangeEmailRoute,
+  ChangePasswordRoute: ChangePasswordRoute,
   CreateTopicRoute: CreateTopicRoute,
   EditProfileRoute: EditProfileRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
@@ -266,6 +307,7 @@ const rootRouteChildren: RootRouteChildren = {
   SetPasswordRoute: SetPasswordRoute,
   SignInRoute: SignInRoute,
   SignUpRoute: SignUpRoute,
+  SuccessRoute: SuccessRoute,
   TopicIdRoute: TopicIdRoute,
 }
 export const routeTree = rootRouteImport

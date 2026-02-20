@@ -9,7 +9,7 @@ import { Form } from '../ui/form'
 
 interface ChangePasswordFormProps {
   children: ReactNode | ReactNode[]
-  options: UseChangePassword
+  options?: UseChangePassword
 }
 
 export function ChangePasswordForm({

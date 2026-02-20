@@ -1,6 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ChangeEmailForm } from '@/components/ChangeEmailForm'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 
 export const Route = createFileRoute('/change-email')({
   component: RouteComponent,

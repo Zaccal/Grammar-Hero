@@ -13,7 +13,9 @@ import { ChangeEmailFormStore } from './ChangeEmailFormStore'
 
 export function ChangeEmailFormNewEmailField(props: InputProps) {
   const form = useFormContext<ChangeEmailSchema>()
-  const timerActive = ChangeEmailFormStore.use(state => state ? state.active : false)
+  const timerActive = ChangeEmailFormStore.use(state =>
+    state ? state.active : false
+  )
 
   return (
     <>
@@ -25,7 +27,12 @@ export function ChangeEmailFormNewEmailField(props: InputProps) {
             <FormLabel>New Email</FormLabel>
             <FormMessage />
             <FormControl>
-              <Input placeholder="your new email" disabled={timerActive} {...props} {...field} />
+              <Input
+                placeholder="your new email"
+                disabled={timerActive}
+                {...props}
+                {...field}
+              />
             </FormControl>
           </FormItem>
         )}

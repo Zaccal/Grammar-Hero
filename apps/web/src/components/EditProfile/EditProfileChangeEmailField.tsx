@@ -31,9 +31,7 @@ export function EditProfileChangeEmailField({
         >
           <ChangeEmailForm.NewEmailField />
           <ChangeEmailForm.Timer />
-          <ChangeEmailForm.Submit>
-            Change email
-          </ChangeEmailForm.Submit>
+          <ChangeEmailForm.Submit>Change email</ChangeEmailForm.Submit>
         </ChangeEmailForm.Root>
       </DialogContent>
     </Dialog>

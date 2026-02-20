@@ -11,8 +11,7 @@ export function ChangeEmailFormTimer() {
     <>
       {timer.active && (
         <p className="text-muted-foreground text-sm">
-          Email sent. You can retry in{' '}
-          {String(timer.seconds).padStart(2, '0')}s
+          Email sent. You can retry in {String(timer.seconds).padStart(2, '0')}s
         </p>
       )}
     </>

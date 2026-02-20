@@ -21,7 +21,7 @@ export function ChangeEmailForm({
   options,
 }: ChangeEmailFormProps) {
   const timer = useTimer(60, {
-    immediately: false
+    immediately: false,
   })
   const changeEmailMutation = useChangeEmail({
     ...options,
@@ -29,7 +29,7 @@ export function ChangeEmailForm({
       timer.start()
       ChangeEmailFormStore.set(timer)
       options?.onSuccess?.()
-    }
+    },
   })
   const form = useForm<ChangeEmailSchema>({
     resolver: zodResolver(changeEmailSchema),

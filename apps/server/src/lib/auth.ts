@@ -30,7 +30,7 @@ export const auth: ReturnType<typeof betterAuth> = betterAuth({
   trustedOrigins: [process.env.CORS_ORIGIN || ''],
   emailAndPassword: {
     enabled: true,
-    autoSignIn: false
+    autoSignIn: false,
   },
   socialProviders: {
     google: {
@@ -43,6 +43,21 @@ export const auth: ReturnType<typeof betterAuth> = betterAuth({
     changeEmail: {
       enabled: true,
     },
+    deleteUser: {
+      enabled: true,
+      sendDeleteAccountVerification: async ({ url, user }) => {
+        void resend.emails.send({
+          to: [user.email],
+          template: {
+            id: EmailTemplate.EMAIL_DELETING_ACCOUNT,
+            variables: {
+              username: user.name,
+              confirmationLink: url,
+            },
+          },
+        })
+      }
+    }
   },
   account: {
     accountLinking: {

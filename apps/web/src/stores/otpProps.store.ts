@@ -9,5 +9,5 @@ export interface OTPPropsOptions {
 
 export const OTPPropsStore = createStore<OTPPropsOptions>({
   email: '',
-  type: 'email-verification'
+  type: 'email-verification',
 })

@@ -12,10 +12,12 @@ export function useGoogleAuth(options?: UseGoogleAuthOptions) {
   return useMutation({
     mutationKey: GOOGLE_MUTATION_KEY,
     mutationFn: async () => {
-      return await authClient.signIn.social({
+      const { data, error } = await authClient.signIn.social({
         provider: 'google',
         callbackURL: options?.callbackUrl,
       })
+      if (error) { throw error }
+      return data
     },
     onError: error => {
       toast.error('Failed to authenticate with Google', {

@@ -50,10 +50,9 @@ function SignInForm() {
             <SignInFormHeader />
 
             <SignInFormFields form={form} />
-
-            <DividerSocial />
           </form>
         </Form>
+        <DividerSocial />
         <SocialForm />
       </div>
       <SignInFormFooter />
