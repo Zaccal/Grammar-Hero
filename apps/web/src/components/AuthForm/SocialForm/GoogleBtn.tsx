@@ -8,14 +8,21 @@ export default function GoogleBtn() {
     callbackUrl: import.meta.env.VITE_CLIENT_URL,
   })
 
-  function submitHandler(event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) {
+  function submitHandler(
+    event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) {
     event.stopPropagation()
 
     googleAuth()
   }
 
   return (
-    <Button onClick={submitHandler} fullWidth loading={isPending} variant="outline">
+    <Button
+      onClick={submitHandler}
+      fullWidth
+      loading={isPending}
+      variant="outline"
+    >
       <GoogleIcon />
       <span>Google</span>
     </Button>

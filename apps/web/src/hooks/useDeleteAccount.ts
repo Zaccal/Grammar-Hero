@@ -14,7 +14,7 @@ export function useDeleteAccount(options?: UseMutationOptions) {
     mutationFn: async () => {
       const params = router.buildLocation({
         to: '/success',
-        search: SUCCESS_DELETING_ACCOUNT
+        search: SUCCESS_DELETING_ACCOUNT,
       })
       const promise = authClient.deleteUser({
         callbackURL: import.meta.env.VITE_CLIENT_URL + params.href,
@@ -23,7 +23,7 @@ export function useDeleteAccount(options?: UseMutationOptions) {
       toast.promise(promise, {
         loading: 'Sending confirmation email',
         success: 'Email has been sent',
-        error: 'Failed to delete account'
+        error: 'Failed to delete account',
       })
 
       const { data, error } = await promise
@@ -34,10 +34,10 @@ export function useDeleteAccount(options?: UseMutationOptions) {
     },
     onError: (error, variables, onMutationResult, context) => {
       toast.error('Failed to delete account', {
-        description: error.message
+        description: error.message,
       })
       options?.onError?.(error, variables, onMutationResult, context)
     },
-    ...options
+    ...options,
   })
 }

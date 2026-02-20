@@ -5,9 +5,5 @@ interface DeleteAccountTriggerProps {
 }
 
 export function DeleteAccountTrigger({ children }: DeleteAccountTriggerProps) {
-  return (
-    <DialogTrigger asChild>
-      {children}
-    </DialogTrigger>
-  )
+  return <DialogTrigger asChild>{children}</DialogTrigger>
 }

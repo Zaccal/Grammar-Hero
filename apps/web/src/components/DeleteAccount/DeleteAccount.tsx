@@ -3,7 +3,14 @@ import { useState } from 'react'
 import { useSession } from '@/hooks'
 import { useDeleteAccount } from '@/hooks/useDeleteAccount'
 import { Button } from '../ui/button'
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '../ui/dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '../ui/dialog'
 import { Separator } from '../ui/separator'
 
 interface DeleteAccountProps {
@@ -16,7 +23,7 @@ export function DeleteAccount({ children }: DeleteAccountProps) {
   const { mutateAsync: deleteAccount } = useDeleteAccount({
     onSuccess: () => {
       setOpen(false)
-    }
+    },
   })
 
   if (!data) {
@@ -37,7 +44,9 @@ export function DeleteAccount({ children }: DeleteAccountProps) {
               <Trash size={18} />
             </div>
           </div>
-          <DialogTitle className="text-center max-w-xs mx-auto leading-6">Are you sure you want to delete your account?</DialogTitle>
+          <DialogTitle className="text-center max-w-xs mx-auto leading-6">
+            Are you sure you want to delete your account?
+          </DialogTitle>
           <DialogDescription className="text-center mt-2">
             {data.user.email}
           </DialogDescription>
@@ -46,7 +55,8 @@ export function DeleteAccount({ children }: DeleteAccountProps) {
         <div>
           <p className="mt-2 flex items-start gap-2 p-4 bg-destructive/10 rounded-md text-destructive">
             <CircleAlert size={32} />
-            This action is irreversible and will permanently delete your account.
+            This action is irreversible and will permanently delete your
+            account.
           </p>
         </div>
         <Separator />

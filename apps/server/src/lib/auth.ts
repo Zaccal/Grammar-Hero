@@ -56,8 +56,8 @@ export const auth: ReturnType<typeof betterAuth> = betterAuth({
             },
           },
         })
-      }
-    }
+      },
+    },
   },
   account: {
     accountLinking: {

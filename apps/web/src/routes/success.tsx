@@ -2,13 +2,20 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { zodValidator } from '@tanstack/zod-adapter'
 import { BadgeCheck, Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { SuccessSchema } from '@/schemas/success.schema'
 
 export const Route = createFileRoute('/success')({
   component: RouteComponent,
-  validateSearch: zodValidator(SuccessSchema)
+  validateSearch: zodValidator(SuccessSchema),
 })
 
 function RouteComponent() {
@@ -23,8 +30,12 @@ function RouteComponent() {
               <Check size={32} />
             </div>
           </div>
-          <CardTitle className="text-center mb-2">{searchParams.title}</CardTitle>
-          <CardDescription className="text-center">{searchParams.description}</CardDescription>
+          <CardTitle className="text-center mb-2">
+            {searchParams.title}
+          </CardTitle>
+          <CardDescription className="text-center">
+            {searchParams.description}
+          </CardDescription>
         </CardHeader>
         <Separator />
         <CardContent>

@@ -16,7 +16,9 @@ export function useGoogleAuth(options?: UseGoogleAuthOptions) {
         provider: 'google',
         callbackURL: options?.callbackUrl,
       })
-      if (error) { throw error }
+      if (error) {
+        throw error
+      }
       return data
     },
     onError: error => {
