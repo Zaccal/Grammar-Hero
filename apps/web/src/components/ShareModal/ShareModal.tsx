@@ -1,13 +1,6 @@
+import type { DialogProps } from '@radix-ui/react-dialog'
 import { Dialog } from '../ui/dialog'
 
-interface ShareModalProps {
-  children?: React.ReactNode | React.ReactNode[]
-}
-
-export function ShareModal({ children }: ShareModalProps) {
-  return (
-    <Dialog>
-      {children}
-    </Dialog>
-  )
+export function ShareModal({ children, ...props }: DialogProps) {
+  return <Dialog {...props}>{children}</Dialog>
 }
