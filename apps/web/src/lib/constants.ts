@@ -24,33 +24,33 @@ export const SUCCESS_DELETING_ACCOUNT: SuccessSchemaType = {
 
 export const MEDIA_ICONS: Record<Media, string> = {
   whatsapp: '/whatsapp.png',
-  discord: '/discord.png',
+  linkedin: '/linkedin.png',
   facebook: '/facebook.png',
   messenger: '/messenger.png',
   reddit: '/reddit.png',
   telegram: '/telegram.png',
   twitter: '/twitter.png',
-  wechat: '/wechat.png',
+  line: '/line.png',
 }
 
 export const MEDIA_COLORS: Record<Media, string> = {
   whatsapp: '#ebfdf0',
-  discord: '#f2f3fb',
+  linkedin: '#eef3ff',
   facebook: '#e8f1fe',
   messenger: '#e6f4ff',
   reddit: '#ffece7',
   telegram: '#e6f3f8',
   twitter: '#eaf5ff',
-  wechat: '#f3f7ea',
+  line: '#f3f7ea',
 }
 
 export const MEDIA_TITLES: Record<Media, string> = {
   whatsapp: 'WhatsApp',
-  discord: 'Discord',
+  linkedin: 'LinkedIn',
   facebook: 'Facebook',
   messenger: 'Messenger',
   reddit: 'Reddit',
   telegram: 'Telegram',
   twitter: 'Twitter',
-  wechat: 'WeChat',
+  line: 'Line',
 }

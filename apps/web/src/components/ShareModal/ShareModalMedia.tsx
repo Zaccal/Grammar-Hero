@@ -1,21 +1,64 @@
 import type { Media } from '@/types/shareModal.type'
-
+import {
+  FacebookMessengerShareButton,
+  FacebookShareButton,
+  LineShareButton,
+  LinkedinShareButton,
+  TelegramShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from 'react-share'
 import { MEDIA_COLORS, MEDIA_ICONS, MEDIA_TITLES } from '@/lib/constants'
+import RedditShareButtonCustom from '../ui/RedditShareButtonCustom'
 
 interface ShareModalMediaProps {
   media: Media
 }
 
-export function ShareModalMedia({ media }: ShareModalMediaProps) {
-  // const ShareModalMediaButtonMap: Record<Media, unknown> = {
-  //   twitter: TwitterShareButton,
-  //   facebook: FacebookShareButton,
-  //   reddit: RedditShareButton,
-  //   messenger: FacebookMessengerShareButton,
-  //   telegram: TelegramShareButton,
-  //   whatsapp: WhatsappShareButton,
-  // }
+interface ShareModalMediaProps {
+  media: Media
+  url: string
+  title: string
+}
 
+const SHARE_BUTTONS = {
+  facebook: FacebookShareButton,
+  messenger: FacebookMessengerShareButton,
+  reddit: RedditShareButtonCustom,
+  telegram: TelegramShareButton,
+  twitter: TwitterShareButton,
+  whatsapp: WhatsappShareButton,
+  linkedin: LinkedinShareButton,
+  line: LineShareButton,
+}
+
+export function ShareModalMedia({ media, title, url }: ShareModalMediaProps) {
+  const ShareButton = SHARE_BUTTONS[media]
+
+  if (!ShareButton) {
+    return null
+  }
+
+  if (media === 'messenger') {
+    return (
+      <ShareButton
+        title={title}
+        url={url}
+        appId={import.meta.env.VITE_FACEBOOK_APP_ID}
+      >
+        <ShareModalMediaContent media={media} />
+      </ShareButton>
+    )
+  }
+
+  return (
+    <ShareButton appId="" title={title} url={url}>
+      <ShareModalMediaContent media={media} />
+    </ShareButton>
+  )
+}
+
+function ShareModalMediaContent({ media }: { media: Media }) {
   return (
     <div className="flex flex-col items-center justify-center gap-2">
       <div

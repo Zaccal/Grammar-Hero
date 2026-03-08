@@ -1,9 +1,9 @@
 export type Media =
   | 'whatsapp'
-  | 'discord'
+  | 'linkedin'
   | 'twitter'
   | 'reddit'
   | 'facebook'
   | 'telegram'
   | 'messenger'
-  | 'wechat'
+  | 'line'

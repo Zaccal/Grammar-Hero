@@ -5,6 +5,8 @@ import { useShare } from '@/hooks'
 import { ShareModal } from '../ShareModal'
 import { DropdownMenuItem } from '../ui/dropdown-menu'
 
+const SHARE_TITLE = '@GrammarHero — Improve Your English 🚀'
+
 export function TopicDetailsShare() {
   const [open, setOpen] = useState(false)
   const { url } = useLocation()
@@ -19,8 +21,7 @@ export function TopicDetailsShare() {
         text: 'Practice grammar, fix mistakes, and boost your English skills with @GrammarHero',
         url,
       })
-    }
-    else {
+    } else {
       setOpen(prev => !prev)
     }
   }
@@ -32,14 +33,14 @@ export function TopicDetailsShare() {
       </ShareModal.Trigger>
       <ShareModal.Content>
         <ShareModal.Grid>
-          <ShareModal.Media media="twitter" />
-          <ShareModal.Media media="facebook" />
-          <ShareModal.Media media="reddit" />
-          <ShareModal.Media media="discord" />
-          <ShareModal.Media media="whatsapp" />
-          <ShareModal.Media media="messenger" />
-          <ShareModal.Media media="telegram" />
-          <ShareModal.Media media="wechat" />
+          <ShareModal.Media url={url} media="twitter" title={SHARE_TITLE} />
+          <ShareModal.Media url={url} media="facebook" title={SHARE_TITLE} />
+          <ShareModal.Media url={url} media="reddit" title={SHARE_TITLE} />
+          <ShareModal.Media url={url} media="linkedin" title={SHARE_TITLE} />
+          <ShareModal.Media url={url} media="whatsapp" title={SHARE_TITLE} />
+          <ShareModal.Media url={url} media="messenger" title={SHARE_TITLE} />
+          <ShareModal.Media url={url} media="telegram" title={SHARE_TITLE} />
+          <ShareModal.Media url={url} media="line" title={SHARE_TITLE} />
         </ShareModal.Grid>
         <ShareModal.Link link={url} />
       </ShareModal.Content>
