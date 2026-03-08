@@ -20,7 +20,7 @@ export function TopicDetailsShare() {
         url,
       })
     }
- else {
+    else {
       setOpen(prev => !prev)
     }
   }
