@@ -16,5 +16,5 @@ export default function RedditShareButtonCustom({
     window.open(shareUrl, '_blank')
   }
 
-  return <div onClick={handleClick}>{children}</div>
+  return <div className="cursor-pointer" onClick={handleClick}>{children}</div>
 }
