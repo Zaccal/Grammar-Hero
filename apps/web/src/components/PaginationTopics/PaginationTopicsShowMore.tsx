@@ -7,8 +7,7 @@ export function PaginationTopicsShowMore() {
 
   return (
     <>
-      {hasNextPage && !isFetchingNextPage
-? (
+      {hasNextPage && !isFetchingNextPage ? (
         <Button
           onClick={() => fetchNextPage()}
           variant="outline"
@@ -17,8 +16,7 @@ export function PaginationTopicsShowMore() {
         >
           Show More
         </Button>
-      )
-: undefined}
+      ) : undefined}
     </>
   )
 }

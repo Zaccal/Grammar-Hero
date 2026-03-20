@@ -21,7 +21,8 @@ export function TopicDetailsShare() {
         text: 'Practice grammar, fix mistakes, and boost your English skills with @GrammarHero',
         url,
       })
-    } else {
+    }
+ else {
       setOpen(prev => !prev)
     }
   }
