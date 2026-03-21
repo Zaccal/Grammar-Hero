@@ -1,8 +1,10 @@
+import { useSession } from '@/hooks'
 import {
   DropdownMenuGroup,
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from '../ui/dropdown-menu'
+import { topicDetailsContext } from './TopicDetailsContext'
 
 interface TopicDetailsDropdownContentProtectedProps {
   children?: React.ReactNode
@@ -11,11 +13,20 @@ interface TopicDetailsDropdownContentProtectedProps {
 export function TopicDetailsDropdownContentProtected({
   children,
 }: TopicDetailsDropdownContentProtectedProps) {
+  const topicUserId = topicDetailsContext.useSelect(state => state.user.id)
+  const { data: session } = useSession()
+  const currentUserId = session?.user.id
+
+  if (!currentUserId || topicUserId !== currentUserId) {
+    return null
+  }
+
   return (
     <>
       <DropdownMenuLabel>Special options</DropdownMenuLabel>
       <DropdownMenuSeparator />
       <DropdownMenuGroup>{children}</DropdownMenuGroup>
+      <DropdownMenuSeparator />
     </>
   )
 }

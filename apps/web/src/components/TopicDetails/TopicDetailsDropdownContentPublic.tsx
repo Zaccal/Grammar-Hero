@@ -1,7 +1,6 @@
 import {
   DropdownMenuGroup,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
 } from '../ui/dropdown-menu'
 
 interface TopicDetailsDropdownContentPublicProps {
@@ -13,7 +12,6 @@ export function TopicDetailsDropdownContentPublic({
 }: TopicDetailsDropdownContentPublicProps) {
   return (
     <>
-      <DropdownMenuSeparator />
       <DropdownMenuLabel>Options</DropdownMenuLabel>
       <DropdownMenuGroup>{children}</DropdownMenuGroup>
     </>
