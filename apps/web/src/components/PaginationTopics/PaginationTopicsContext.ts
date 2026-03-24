@@ -13,4 +13,5 @@ export interface PaginationTopicsContextProps {
   >
 }
 
-export const PaginationTopicsContext = createContext<PaginationTopicsContextProps>()
+export const PaginationTopicsContext =
+  createContext<PaginationTopicsContextProps>()

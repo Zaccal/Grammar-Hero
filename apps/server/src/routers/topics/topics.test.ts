@@ -26,7 +26,9 @@ vi.mock('../../../prisma/index', () => {
 
         findUnique: vi.fn(({ where: { id } }) => {
           const topic = topicsDb.find(t => t.id === id)
-          if (!topic) { return null }
+          if (!topic) {
+            return null
+          }
 
           return {
             ...topic,

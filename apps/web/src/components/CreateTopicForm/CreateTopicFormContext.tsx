@@ -9,4 +9,5 @@ interface CreateTopicFormContextProps {
   isPending: boolean
 }
 
-export const CreateTopicFormContext = createContext<CreateTopicFormContextProps>()
+export const CreateTopicFormContext =
+  createContext<CreateTopicFormContextProps>()

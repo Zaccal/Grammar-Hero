@@ -1,5 +1,5 @@
 import { CreateTopicForm as Root } from './CreateTopicForm'
-import { createTopicFormContext } from './CreateTopicFormContext'
+import { CreateTopicFormContext } from './CreateTopicFormContext'
 import { CreateTopicFormDescription } from './CreateTopicFormDescription'
 import { CreateTopicFormDuration } from './CreateTopicFormDuration'
 import { CreateTopicFormFileUpload } from './CreateTopicFormFileUpload'
@@ -15,7 +15,7 @@ import { CreateTopicFormTitle } from './CreateTopicFormTitle'
 
 export const CreateTopicForm = {
   Root,
-  Context: createTopicFormContext,
+  Context: CreateTopicFormContext,
   MarkdownEditor: CreateTopicFormMarkdownEditor,
   MarkdownHint: CreateTopicFormMarkdownHint,
   MarkdownHintLink: CreateTopicFormMarkdownHintLink,
