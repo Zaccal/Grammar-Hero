@@ -4,13 +4,13 @@ import { Bookmark } from '@/components/ui/bookmark'
 import { Button } from '@/components/ui/button'
 import { trpc } from '@/lib/trpc'
 import { getOptimisticBookmark } from '@/utils'
-import { topicDetailsContext } from './TopicDetailsContext'
+import { TopicDetailsContext } from './TopicDetailsContext'
 
 export function TopicDetailsBookmark() {
-  const { _count, isBookmarked, id } = topicDetailsContext.useSelect(
+  const { _count, isBookmarked, id } = TopicDetailsContext.useSelect(
     state => state
   )
-  const { set, value } = topicDetailsContext.useSelect()
+  const { set, value } = TopicDetailsContext.useSelect()
 
   const { mutate: toggleBookmark } = useMutation(
     trpc.topics.bookmark.mutationOptions({

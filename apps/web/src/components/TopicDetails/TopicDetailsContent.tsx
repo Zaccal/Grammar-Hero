@@ -11,7 +11,7 @@ interface TopicDetailsContentProps {
   className?: string
 }
 
-function TopicDetailsContent({
+export function TopicDetailsContent({
   children,
   className,
 }: TopicDetailsContentProps) {
@@ -28,5 +28,3 @@ function TopicDetailsContent({
     </div>
   )
 }
-
-export default TopicDetailsContent

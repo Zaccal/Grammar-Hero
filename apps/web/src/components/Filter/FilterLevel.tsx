@@ -6,10 +6,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/Select'
-import { filterContext } from './FilterContext'
+import { FilterContext } from './FilterContext'
 
 export function FilterLevel() {
-  const form = filterContext.useSelect(state => state.form)
+  const form = FilterContext.useSelect(state => state.form)
 
   return (
     <FormField

@@ -1,6 +1,6 @@
 import type { Topic as TypeTopic } from '@server/routers/topics/topics.types'
 import { MorphingDialog } from '../ui/morphing-dialog'
-import { topicsContext } from './TopicsContext'
+import { TopicsContext } from './TopicsContext'
 
 interface TopicsProps {
   topic: TypeTopic
@@ -9,7 +9,7 @@ interface TopicsProps {
 
 export function Topic({ children, topic }: TopicsProps) {
   return (
-    <topicsContext.Provider initialValue={topic}>
+    <TopicsContext.Provider initialValue={topic}>
       <MorphingDialog
         transition={{
           type: 'spring',
@@ -19,6 +19,6 @@ export function Topic({ children, topic }: TopicsProps) {
       >
         {children}
       </MorphingDialog>
-    </topicsContext.Provider>
+    </TopicsContext.Provider>
   )
 }

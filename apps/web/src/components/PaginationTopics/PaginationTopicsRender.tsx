@@ -1,9 +1,9 @@
 import { Link } from '@tanstack/react-router'
 import { TopicsDialog } from '@/components/Topics'
-import { paginationTopicsContext } from './PaginationTopicsContext'
+import { PaginationTopicsContext } from './PaginationTopicsContext'
 
 export function PaginationTopicsRender() {
-  const data = paginationTopicsContext.useSelect(state => state.query.data)
+  const data = PaginationTopicsContext.useSelect(state => state.query.data)
   const myTopics = data?.pages.flatMap(p => p.items) ?? []
 
   return (

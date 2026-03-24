@@ -1,7 +1,4 @@
-import {
-  DropdownMenuGroup,
-  DropdownMenuLabel,
-} from '../ui/dropdown-menu'
+import { DropdownMenuGroup, DropdownMenuLabel } from '../ui/dropdown-menu'
 
 interface TopicDetailsDropdownContentPublicProps {
   children?: React.ReactNode

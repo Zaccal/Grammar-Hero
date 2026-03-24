@@ -1,4 +1,4 @@
-import { paginationTopicsContext } from './PaginationTopicsContext'
+import { PaginationTopicsContext } from './PaginationTopicsContext'
 
 interface PaginationTopicsEmptyProps {
   children: React.ReactNode | React.ReactNode[]
@@ -7,10 +7,10 @@ interface PaginationTopicsEmptyProps {
 export function PaginationTopicsEmpty({
   children,
 }: PaginationTopicsEmptyProps) {
-  const pages = paginationTopicsContext.useSelect(
+  const pages = PaginationTopicsContext.useSelect(
     state => state.query.data?.pages[0].items
   )
-  const isLoading = paginationTopicsContext.useSelect(
+  const isLoading = PaginationTopicsContext.useSelect(
     state => state.query.isLoading
   )
   const isEmpty = pages && pages.length === 0

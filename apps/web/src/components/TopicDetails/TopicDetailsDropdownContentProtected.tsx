@@ -4,7 +4,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from '../ui/dropdown-menu'
-import { topicDetailsContext } from './TopicDetailsContext'
+import { TopicDetailsContext } from './TopicDetailsContext'
 
 interface TopicDetailsDropdownContentProtectedProps {
   children?: React.ReactNode
@@ -13,7 +13,7 @@ interface TopicDetailsDropdownContentProtectedProps {
 export function TopicDetailsDropdownContentProtected({
   children,
 }: TopicDetailsDropdownContentProtectedProps) {
-  const topicUserId = topicDetailsContext.useSelect(state => state.user.id)
+  const topicUserId = TopicDetailsContext.useSelect(state => state.user.id)
   const { data: session } = useSession()
   const currentUserId = session?.user.id
 

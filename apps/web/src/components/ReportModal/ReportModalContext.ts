@@ -1,8 +1,8 @@
 import { createContext } from '@/hooks'
 
-interface ReportModalContext {
+interface ReportModalContextProps {
   onSuccess?: () => void
   userId: string
 }
 
-export const reportModalContext = createContext<ReportModalContext>()
+export const ReportModalContext = createContext<ReportModalContextProps>()

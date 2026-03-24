@@ -1,4 +1,4 @@
-import type React from 'react'
+import type * as React from 'react'
 import type { ChangeEvent, DragEvent, InputHTMLAttributes } from 'react'
 import { useCallback, useRef, useState } from 'react'
 

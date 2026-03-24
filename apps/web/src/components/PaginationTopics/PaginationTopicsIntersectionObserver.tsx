@@ -1,5 +1,5 @@
 import { useIntersectionObserver } from '@/hooks'
-import { paginationTopicsContext } from './PaginationTopicsContext'
+import { PaginationTopicsContext } from './PaginationTopicsContext'
 
 interface PaginationTopicsObserverIntersectionProps {
   children?: React.ReactNode | React.ReactNode[]
@@ -8,7 +8,7 @@ interface PaginationTopicsObserverIntersectionProps {
 export function PaginationTopicsObserverIntersection({
   children,
 }: PaginationTopicsObserverIntersectionProps) {
-  const { hasNextPage, fetchNextPage } = paginationTopicsContext.useSelect(
+  const { hasNextPage, fetchNextPage } = PaginationTopicsContext.useSelect(
     state => state.query
   )
   const intersectionObserver = useIntersectionObserver<HTMLDivElement>({

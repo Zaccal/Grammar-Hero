@@ -6,11 +6,11 @@ import type { TRPCClientErrorLike } from '@trpc/client'
 import type { TRPCInfiniteData } from '@trpc/tanstack-react-query'
 import { createContext } from '@/hooks/index'
 
-export interface PaginationTopicsContext {
+export interface PaginationTopicsContextProps {
   query: UseInfiniteQueryResult<
     TRPCInfiniteData<PaginationShema, InfinityPaginationTopics>,
     TRPCClientErrorLike<AppRouter>
   >
 }
 
-export const paginationTopicsContext = createContext<PaginationTopicsContext>()
+export const PaginationTopicsContext = createContext<PaginationTopicsContextProps>()

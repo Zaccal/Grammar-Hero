@@ -1,8 +1,8 @@
 import type { User } from '@/types/user.type'
 import { createContext } from '@/hooks'
 
-interface UserContext {
+interface UserContextProps {
   user: User
 }
 
-export const userContext = createContext<UserContext>()
+export const UserContext = createContext<UserContextProps>()

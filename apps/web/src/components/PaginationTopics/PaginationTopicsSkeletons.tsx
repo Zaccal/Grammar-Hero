@@ -1,9 +1,9 @@
 import { TopicsDialog } from '@/components/Topics'
 import { getDummyArray } from '@/utils'
-import { paginationTopicsContext } from './PaginationTopicsContext'
+import { PaginationTopicsContext } from './PaginationTopicsContext'
 
 export function PaginationTopicsSkeletons() {
-  const isLoading = paginationTopicsContext.useSelect(
+  const isLoading = PaginationTopicsContext.useSelect(
     state => state.query.isLoading
   )
 

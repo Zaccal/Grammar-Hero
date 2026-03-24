@@ -13,7 +13,7 @@ import {
 } from '@mdxeditor/editor'
 import { Controller } from 'react-hook-form'
 import { FormControl, FormItem } from '../ui/form'
-import { createTopicFormContext } from './CreateTopicFormContext'
+import { CreateTopicFormContext } from './CreateTopicFormContext'
 import '@mdxeditor/editor/style.css'
 
 interface CreateTopicFormMarkdownEditorProps {
@@ -23,11 +23,11 @@ interface CreateTopicFormMarkdownEditorProps {
 export function CreateTopicFormMarkdownEditor({
   className,
 }: CreateTopicFormMarkdownEditorProps) {
-  const form = createTopicFormContext.useSelect(state => state.form)
-  const editorRef = createTopicFormContext.useSelect(
+  const form = CreateTopicFormContext.useSelect(state => state.form)
+  const editorRef = CreateTopicFormContext.useSelect(
     state => state.markdownEditorRef
   )
-  const isPending = createTopicFormContext.useSelect(state => state.isPending)
+  const isPending = CreateTopicFormContext.useSelect(state => state.isPending)
 
   return (
     <div className={isPending ? 'disabled' : ''}>

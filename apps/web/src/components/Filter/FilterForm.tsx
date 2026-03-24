@@ -1,5 +1,5 @@
 import { Form } from '../ui/form'
-import { filterContext } from './FilterContext'
+import { FilterContext } from './FilterContext'
 
 interface FilterFormProps {
   children?: React.ReactNode
@@ -7,8 +7,8 @@ interface FilterFormProps {
 }
 
 export function FilterForm({ children, className }: FilterFormProps) {
-  const form = filterContext.useSelect(state => state.form)
-  const onSubmit = filterContext.useSelect(state => state.onSubmit)
+  const form = FilterContext.useSelect(state => state.form)
+  const onSubmit = FilterContext.useSelect(state => state.onSubmit)
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className={className}>

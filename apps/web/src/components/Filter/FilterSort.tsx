@@ -8,10 +8,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/Select'
-import { filterContext } from './FilterContext'
+import { FilterContext } from './FilterContext'
 
 export function FilterSort() {
-  const form = filterContext.useSelect(state => state.form)
+  const form = FilterContext.useSelect(state => state.form)
 
   return (
     <FormField

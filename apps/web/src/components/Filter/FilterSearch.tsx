@@ -3,10 +3,10 @@ import { useState } from 'react'
 import { useDebounceCallback } from '@/hooks'
 import { Button } from '../ui/button'
 import { Input, InputGroup } from '../ui/input'
-import { filterContext } from './FilterContext'
+import { FilterContext } from './FilterContext'
 
 export function FilterSearch() {
-  const { searchParams, navigate } = filterContext.useSelect(state => state)
+  const { searchParams, navigate } = FilterContext.useSelect(state => state)
   const [query, setQuery] = useState(searchParams.query)
 
   function searchHandler() {

@@ -1,6 +1,6 @@
 import type { DialogProps } from '@radix-ui/react-dialog'
 import { Dialog } from '../ui/dialog'
-import { reportModalContext } from './ReportModalContext'
+import { ReportModalContext } from './ReportModalContext'
 
 interface ReportModalProps extends DialogProps {
   onSuccess?: () => void
@@ -14,13 +14,13 @@ export function ReportModal({
   ...props
 }: ReportModalProps) {
   return (
-    <reportModalContext.Provider
+    <ReportModalContext.Provider
       initialValue={{
         onSuccess,
         userId,
       }}
     >
       <Dialog {...props}>{children}</Dialog>
-    </reportModalContext.Provider>
+    </ReportModalContext.Provider>
   )
 }

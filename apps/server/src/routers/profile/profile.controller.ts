@@ -33,7 +33,7 @@ export async function getAllMyTopics(
 
   const hasMore = topics.length > limit
   const pageRows = hasMore ? topics.slice(0, limit) : topics
-  const nextCursor = hasMore ? pageRows[pageRows.length - 1].id : undefined
+  const nextCursor = hasMore ? pageRows.at(-1)?.id : undefined
 
   const items = getFormattedTopics(pageRows)
 
@@ -74,7 +74,7 @@ export async function getLikedTopics(
   const hasMore = topics.length > limit
 
   const pageRows = hasMore ? topics.slice(0, limit) : topics
-  const nextCursor = hasMore ? pageRows[pageRows.length - 1].id : undefined
+  const nextCursor = hasMore ? pageRows.at(-1)?.id : undefined
 
   const items = getFormattedTopics(pageRows)
 
@@ -115,7 +115,7 @@ export async function getBookmarkedTopics(
   const hasMore = topics.length > limit
 
   const pageRows = hasMore ? topics.slice(0, limit) : topics
-  const nextCursor = hasMore ? pageRows[pageRows.length - 1].id : undefined
+  const nextCursor = hasMore ? pageRows.at(-1)?.id : undefined
 
   const items = getFormattedTopics(pageRows)
 

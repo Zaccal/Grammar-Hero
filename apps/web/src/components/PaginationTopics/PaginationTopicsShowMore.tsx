@@ -1,9 +1,9 @@
 import { Button } from '@/components/ui/button'
-import { paginationTopicsContext } from './PaginationTopicsContext'
+import { PaginationTopicsContext } from './PaginationTopicsContext'
 
 export function PaginationTopicsShowMore() {
   const { hasNextPage, fetchNextPage, isFetchingNextPage } =
-    paginationTopicsContext.useSelect(state => state.query)
+    PaginationTopicsContext.useSelect(state => state.query)
 
   return (
     <>

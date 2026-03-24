@@ -1,13 +1,13 @@
-import type { PaginationTopicsContext } from './PaginationTopicsContext'
+import type { PaginationTopicsContextProps } from './PaginationTopicsContext'
 import { useDidUpdate } from '@/hooks'
-import { paginationTopicsContext } from './PaginationTopicsContext'
+import { PaginationTopicsContext } from './PaginationTopicsContext'
 
-interface PaginationTopicsProps extends PaginationTopicsContext {
+interface PaginationTopicsProps extends PaginationTopicsContextProps {
   children?: React.ReactElement | React.ReactElement[]
 }
 
 function Container({ query, children }: PaginationTopicsProps) {
-  const { set } = paginationTopicsContext.useSelect()
+  const { set } = PaginationTopicsContext.useSelect()
 
   useDidUpdate(() => {
     set({ query })
@@ -18,8 +18,8 @@ function Container({ query, children }: PaginationTopicsProps) {
 
 export function PaginationTopics(props: PaginationTopicsProps) {
   return (
-    <paginationTopicsContext.Provider initialValue={{ query: props.query }}>
+    <PaginationTopicsContext.Provider initialValue={{ query: props.query }}>
       <Container {...props} />
-    </paginationTopicsContext.Provider>
+    </PaginationTopicsContext.Provider>
   )
 }

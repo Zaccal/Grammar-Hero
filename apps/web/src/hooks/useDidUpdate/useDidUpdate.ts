@@ -16,21 +16,21 @@ import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect/useIsomo
  * useDidUpdate(() => console.log("effect runs on updates"), deps);
  */
 export function useDidUpdate(effect: EffectCallback, deps?: DependencyList) {
-  const mounted = useRef(false)
+  const ref = useRef(false)
 
   useIsomorphicLayoutEffect(
     () => () => {
-      mounted.current = false
+      ref.current = false
     },
     []
   )
 
   useIsomorphicLayoutEffect(() => {
-    if (mounted.current) {
+    if (ref.current) {
       return effect()
     }
 
-    mounted.current = true
+    ref.current = true
     return undefined
   }, deps)
 }

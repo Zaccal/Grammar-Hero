@@ -32,7 +32,8 @@ export interface UseShareReturn {
  * @example
  * const { share, supported } = useShare();
  */
-export function useShare(params?: UseShareParams) {
+
+ export function useShare(params?: UseShareParams) {
   const supported =
     typeof navigator !== 'undefined' &&
     'share' in navigator &&

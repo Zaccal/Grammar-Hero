@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/button'
-import { filterContext } from './FilterContext'
+import { FilterContext } from './FilterContext'
 
 export function FilterActions() {
-  const { form } = filterContext.useSelect(state => ({
+  const { form } = FilterContext.useSelect(state => ({
     form: state.form,
   }))
 

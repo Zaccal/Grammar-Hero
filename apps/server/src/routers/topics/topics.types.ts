@@ -1,5 +1,5 @@
+import type { Prisma } from '@prisma/client'
 import type { inferRouterOutputs } from '@trpc/server'
-import type { Prisma } from 'prisma/generated/client'
 import type { AppRouter } from '..'
 import type { TOPICS_SELECT } from './constants'
 

@@ -16,9 +16,9 @@ export function TopicsContent({ children }: TopicsContentProps) {
         style={{
           borderRadius: '24px',
         }}
-        className="pointer-events-auto relative flex max-h-[var(--DIALOG-MAX-H)] w-full flex-col overflow-hidden border border-zinc-950/10 bg-white dark:border-zinc-50/10 dark:bg-zinc-900 sm:w-[500px]"
+        className="pointer-events-auto relative flex max-h-(--DIALOG-MAX-H) w-full flex-col overflow-hidden border border-zinc-950/10 bg-white dark:border-zinc-50/10 dark:bg-zinc-900 sm:w-[500px]"
       >
-        <ScrollArea className="!overflow-y-auto ">{children}</ScrollArea>
+        <ScrollArea className="overflow-y-auto!">{children}</ScrollArea>
         <MorphingDialogClose className="text-zinc-50" />
       </MorphingDialogContent>
     </MorphingDialogContainer>

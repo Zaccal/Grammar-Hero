@@ -11,7 +11,7 @@ import { queryClient, trpc } from '@/lib/trpc'
 import { createTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import { durationValues } from '@/schemas/filter.schema'
 import { Form } from '../ui/form'
-import { createTopicFormContext } from './CreateTopicFormContext'
+import { CreateTopicFormContext } from './CreateTopicFormContext'
 import { alertDialogCreateTopicStore, fileUploadStore } from './store'
 
 interface CreateTopicFormProps {
@@ -93,7 +93,7 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
   }
 
   return (
-    <createTopicFormContext.Provider
+    <CreateTopicFormContext.Provider
       initialValue={{
         form,
         markdownEditorRef,
@@ -113,6 +113,6 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
           {children}
         </form>
       </Form>
-    </createTopicFormContext.Provider>
+    </CreateTopicFormContext.Provider>
   )
 }

@@ -1,7 +1,7 @@
-import type { Prisma } from 'prisma/generated/client'
 import type { TopicCreateSchema } from '../../schemas/topics.schema'
 import type { FilterParamsSchema } from '@/schemas/filterParams.schema'
 import { TRPCError } from '@trpc/server'
+import { Prisma } from '../../../prisma/generated/client'
 import prisma from '../../../prisma/index'
 import { getDummyDate, getFormattedTopics } from '../../utils/index'
 import { TOPICS_SELECT } from './constants'
@@ -48,7 +48,7 @@ export async function getAll(input: FilterParamsSchema, userId: string) {
   const topics = await prisma.topics.findMany({
     orderBy,
     cursor,
-    take: input.limit + 1,
+    take: (input.limit ?? 12) + 1,
     where: {
       ...where,
       level: input.level,
@@ -72,10 +72,10 @@ export async function getAll(input: FilterParamsSchema, userId: string) {
     },
   })
 
-  const hasMore = topics.length > input.limit
-  const pageRows = hasMore ? topics.slice(0, input.limit) : topics
-  const nextCursor = hasMore ? pageRows[pageRows.length - 1].id : undefined
-  const items = getFormattedTopics(topics).slice(0, input.limit)
+  const hasMore = topics.length > (input.limit ?? 12)
+  const pageRows = hasMore ? topics.slice(0, input.limit ?? 12) : topics
+  const nextCursor = hasMore ? pageRows.at(-1).id : undefined
+  const items = getFormattedTopics(topics).slice(0, input.limit ?? 12)
 
   return { items, nextCursor }
 }
@@ -109,6 +109,7 @@ export async function getById(id: string, userId: string) {
 }
 
 export async function createTopic(data: TopicCreateSchema, userId: string) {
+  // FIXME: if the duration fields is 35+ it breaks (durationMax is missing)
   return await prisma.topics.create({
     data: {
       ...data,
@@ -183,5 +184,32 @@ export async function toggleBookmark(topicId: string, userId: string) {
     })
 
     return { isBookmarked: true }
+  }
+}
+
+export async function deleteTopic(topicId: string, userId: string) {
+  try {
+    const topic = await prisma.topics.delete({
+      where: {
+        id: topicId,
+        userId,
+      },
+    })
+
+    return { success: true, topic }
+  }
+ catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === 'P2025') {
+        throw new TRPCError({ code: 'NOT_FOUND', message: 'Topic not found' })
+      }
+
+      throw new TRPCError({
+        code: 'INTERNAL_SERVER_ERROR',
+        message: error.message,
+      })
+    }
+
+    throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR' })
   }
 }

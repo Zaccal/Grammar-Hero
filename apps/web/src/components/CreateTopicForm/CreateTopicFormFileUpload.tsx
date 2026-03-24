@@ -6,7 +6,7 @@ import {
   useFileUpload,
 } from '@/hooks/index'
 import FileUpload from '../ui/FileUpload'
-import { createTopicFormContext } from './CreateTopicFormContext'
+import { CreateTopicFormContext } from './CreateTopicFormContext'
 import { fileUploadStore } from './store'
 
 interface CreateTopicFormFileUploadProps {
@@ -23,7 +23,7 @@ export function CreateTopicFormFileUpload({
         status: 'error',
       },
     }).length > 0
-  const isPending = createTopicFormContext.useSelect(state => state.isPending)
+  const isPending = CreateTopicFormContext.useSelect(state => state.isPending)
 
   const [fileUploadState, fileUploadActions] = useFileUpload({
     accept: 'image/jpeg,image/png,image/jpg',

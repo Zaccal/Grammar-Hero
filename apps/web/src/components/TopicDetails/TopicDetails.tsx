@@ -1,5 +1,5 @@
 import type { Topic } from '@server/routers/topics/topics.types'
-import { topicDetailsContext } from './TopicDetailsContext'
+import { TopicDetailsContext } from './TopicDetailsContext'
 
 interface TopicDetailsProps {
   topic: Topic
@@ -13,8 +13,8 @@ export function TopicDetailsRoot({
   className,
 }: TopicDetailsProps) {
   return (
-    <topicDetailsContext.Provider initialValue={topic}>
+    <TopicDetailsContext.Provider initialValue={topic}>
       <div className={className}>{children}</div>
-    </topicDetailsContext.Provider>
+    </TopicDetailsContext.Provider>
   )
 }

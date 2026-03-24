@@ -4,11 +4,11 @@ import type { UseFormReturn } from 'react-hook-form'
 import type { FilterFormSchema } from '@/schemas/filter.schema'
 import { createContext } from '@/hooks'
 
-interface FilterContext {
+interface FilterContextProps {
   form: UseFormReturn<FilterFormSchema>
   searchParams: Partial<FilterParamsSchema>
   navigate: UseNavigateResult<'/'>
   onSubmit: (data: FilterFormSchema) => void
 }
 
-export const filterContext = createContext<FilterContext>()
+export const FilterContext = createContext<FilterContextProps>()

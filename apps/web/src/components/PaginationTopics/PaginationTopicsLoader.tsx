@@ -1,8 +1,8 @@
 import Loader from '@/components/ui/loader'
-import { paginationTopicsContext } from './PaginationTopicsContext'
+import { PaginationTopicsContext } from './PaginationTopicsContext'
 
 export function PaginationTopicsLoader() {
-  const isFetchingNextPage = paginationTopicsContext.useSelect(
+  const isFetchingNextPage = PaginationTopicsContext.useSelect(
     state => state.query.isFetchingNextPage
   )
 

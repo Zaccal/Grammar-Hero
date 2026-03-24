@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { cn } from '@/lib/utils'
 import { durationValues, filterFormSchema } from '@/schemas/filter.schema'
 import { getDurationOption } from '@/utils/index'
-import { filterContext } from './FilterContext'
+import { FilterContext } from './FilterContext'
 
 interface FilterRootProps {
   children?: React.ReactNode
@@ -50,7 +50,7 @@ export function FilterRoot({ children, className, route }: FilterRootProps) {
   }
 
   return (
-    <filterContext.Provider
+    <FilterContext.Provider
       initialValue={{
         form,
         searchParams,
@@ -66,6 +66,6 @@ export function FilterRoot({ children, className, route }: FilterRootProps) {
       >
         {children}
       </div>
-    </filterContext.Provider>
+    </FilterContext.Provider>
   )
 }

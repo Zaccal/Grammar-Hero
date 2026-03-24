@@ -12,11 +12,11 @@ import {
 } from '../ui/alert-dialog'
 import { Button } from '../ui/button'
 import Loader from '../ui/loader'
-import { createTopicFormContext } from './CreateTopicFormContext'
+import { CreateTopicFormContext } from './CreateTopicFormContext'
 import { alertDialogCreateTopicStore } from './store'
 
 export function CreateTopicFormPublish({ children, ...props }: ButtonProps) {
-  const isPending = createTopicFormContext.useSelect(state => state.isPending)
+  const isPending = CreateTopicFormContext.useSelect(state => state.isPending)
 
   // I need the controlled state because I want to close the alertDialog when the loadihng state is finished
   const open = alertDialogCreateTopicStore.use(state => state.open)

@@ -1,10 +1,10 @@
 import { FormControl, FormField, FormItem, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
-import { createTopicFormContext } from './CreateTopicFormContext'
+import { CreateTopicFormContext } from './CreateTopicFormContext'
 
 export function CreateTopicFormTitle() {
-  const form = createTopicFormContext.useSelect(state => state.form)
-  const isPending = createTopicFormContext.useSelect(state => state.isPending)
+  const form = CreateTopicFormContext.useSelect(state => state.form)
+  const isPending = CreateTopicFormContext.useSelect(state => state.isPending)
 
   return (
     <>

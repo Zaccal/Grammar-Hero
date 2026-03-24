@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { cn } from '@/lib/utils'
 import { getServerImage, getUserImageFallbackText } from '@/utils'
-import { userContext } from './UserContext'
+import { UserContext } from './UserContext'
 
 interface UserAvatarProps {
   className?: string
@@ -9,7 +9,7 @@ interface UserAvatarProps {
 }
 
 export function UserAvatar({ className, classNameFallback }: UserAvatarProps) {
-  const { image, displayUsername, name } = userContext.useSelect(
+  const { image, displayUsername, name } = UserContext.useSelect(
     state => state.user
   )
   return (

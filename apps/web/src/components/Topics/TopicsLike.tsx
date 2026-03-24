@@ -5,7 +5,7 @@ import { toast } from 'sonner'
 import { trpc } from '@/lib/trpc'
 import { getOptimisticLike } from '@/utils'
 import { Button } from '../ui/button'
-import { topicsContext } from './TopicsContext'
+import { TopicsContext } from './TopicsContext'
 
 export function TopicsLike() {
   const queryClient = useQueryClient()
@@ -16,9 +16,9 @@ export function TopicsLike() {
     _count: { likes },
     id: topicId,
     isLiked,
-  } = topicsContext.useSelect(state => state)
+  } = TopicsContext.useSelect(state => state)
   const { set: setTopicsContext, value: topicsContextValue } =
-    topicsContext.useSelect()
+    TopicsContext.useSelect()
 
   const { mutate: toggleLike } = useMutation(
     trpc.topics.like.mutationOptions({

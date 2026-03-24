@@ -1,5 +1,5 @@
 import type { User as UserType } from '@/types/user.type'
-import { userContext } from './UserContext'
+import { UserContext } from './UserContext'
 
 interface UserProps {
   user: UserType
@@ -8,8 +8,8 @@ interface UserProps {
 
 export function User({ user, children }: UserProps) {
   return (
-    <userContext.Provider initialValue={{ user }}>
+    <UserContext.Provider initialValue={{ user }}>
       <div className="flex items-center xs:mx-auto w-fit gap-6">{children}</div>
-    </userContext.Provider>
+    </UserContext.Provider>
   )
 }

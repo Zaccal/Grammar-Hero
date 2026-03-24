@@ -3,51 +3,52 @@ import { MOCK_TOPICS } from '../../utils/getMocksTopics'
 import { TOPICS_SELECT } from './constants'
 import {
   createTopic,
+  deleteTopic,
   getAll,
   getById,
   toggleBookmark,
   toggleLike,
 } from './topics.constroller'
 
+let topicsDb = [...MOCK_TOPICS]
+
 vi.mock('../../../prisma/index', () => {
   return {
     default: {
       topics: {
-        findMany: vi.fn().mockResolvedValue(
-          MOCK_TOPICS.map(topic => ({
+        findMany: vi.fn().mockImplementation(() => {
+          return topicsDb.map(topic => ({
             ...topic,
-            _count: {
-              likes: 1,
-              bookmark: 1,
-            },
+            _count: { likes: 1, bookmark: 1 },
             likes: [],
           }))
-        ),
-        findUnique: vi.fn(({ where: { id } }) => {
-          const topic = MOCK_TOPICS.find(data => {
-            return data.id === id
-          })
+        }),
 
-          if (!topic) {
-            return null
-          }
+        findUnique: vi.fn(({ where: { id } }) => {
+          const topic = topicsDb.find(t => t.id === id)
+          if (!topic) { return null }
 
           return {
             ...topic,
-            _count: {
-              likes: 1,
-              bookmark: 1,
-            },
+            _count: { likes: 1, bookmark: 1 },
             likes: [],
           }
         }),
+
         create: vi.fn(({ data }) => {
-          return {
+          const newTopic = {
             ...data,
             id: '123',
             createdAt: new Date(),
             updatedAt: new Date(),
           }
+          topicsDb.push(newTopic)
+          return newTopic
+        }),
+
+        delete: vi.fn(({ where: { id } }) => {
+          topicsDb = topicsDb.filter(t => t.id !== id)
+          return true
         }),
       },
       like: {
@@ -145,5 +146,15 @@ describe('topics', () => {
     const response = await toggleBookmark(topicId, userId)
 
     expect(response.isBookmarked).toBe(true)
+  })
+
+  it('should delete topic', async () => {
+    const topicId = '5'
+    const userId = '123'
+    await deleteTopic(topicId, userId)
+    await expect(getById(topicId, userId)).rejects.toMatchObject({
+      code: 'NOT_FOUND',
+      message: 'Topic not found',
+    })
   })
 })

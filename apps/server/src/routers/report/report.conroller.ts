@@ -7,26 +7,26 @@ import { EmailTemplate, resend } from '@/lib/resend'
 export async function createReport(user: User, input: ReportSchema) {
   const localUser = await prisma.user.findFirst({
     where: {
-      id: input.userId
-    }
+      id: input.userId,
+    },
   })
 
   if (!localUser) {
     throw new TRPCError({
       code: 'NOT_FOUND',
-      message: 'User not found'
+      message: 'User not found',
     })
   }
 
   void resend.emails.send({
-   to: [localUser.email],
-   template: {
-     id: EmailTemplate.EMAIL_REPORT,
-     variables: {
-       username: localUser.name,
-       reason: input.reason,
-       message: input.message
-     }
-   }
+    to: [localUser.email],
+    template: {
+      id: EmailTemplate.EMAIL_REPORT,
+      variables: {
+        username: localUser.name,
+        reason: input.reason,
+        message: input.message,
+      },
+    },
   })
 }

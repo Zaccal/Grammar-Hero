@@ -1,8 +1,8 @@
 import { getServerImage } from '@/utils/index'
-import { topicDetailsContext } from './TopicDetailsContext'
+import { TopicDetailsContext } from './TopicDetailsContext'
 
 export function TopicDetailsImage() {
-  const { image, title } = topicDetailsContext.useSelect(state => state)
+  const { image, title } = TopicDetailsContext.useSelect(state => state)
   if (!image) {
     return null
   }

@@ -7,11 +7,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/Select'
-import { createTopicFormContext } from './CreateTopicFormContext'
+import { CreateTopicFormContext } from './CreateTopicFormContext'
 
 export function CreateTopicFormDuration() {
-  const form = createTopicFormContext.useSelect(state => state.form)
-  const isPending = createTopicFormContext.useSelect(state => state.isPending)
+  const form = CreateTopicFormContext.useSelect(state => state.form)
+  const isPending = CreateTopicFormContext.useSelect(state => state.isPending)
 
   return (
     <>

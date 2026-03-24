@@ -12,6 +12,7 @@ export default antfu({
   rules: {
     'react/no-context-provider': 'off',
     'curly': ['error', 'multi-line'],
+    '@eslint-react/no-unnecessary-use-prefix': 'off'
   },
   stylistic: {
     overrides: {

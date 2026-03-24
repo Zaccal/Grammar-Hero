@@ -2,10 +2,10 @@ import type { MouseEvent } from 'react'
 import { useState } from 'react'
 import { ReportModal } from '../ReportModal'
 import { DropdownMenuItem } from '../ui/dropdown-menu'
-import { topicDetailsContext } from './TopicDetailsContext'
+import { TopicDetailsContext } from './TopicDetailsContext'
 
 export function TopicDetailsReport() {
-  const userId = topicDetailsContext.useSelect(state => state.user.id)
+  const userId = TopicDetailsContext.useSelect(state => state.user.id)
   const [open, setOpen] = useState(false)
 
   function handleClick(event: MouseEvent<HTMLDivElement>) {

@@ -4,6 +4,7 @@ import { filterParamsSchema } from '@/schemas/filterParams.schema'
 import { topicCreateSchema } from '../../schemas/topics.schema'
 import {
   createTopic,
+  deleteTopic,
   getAll,
   getById,
   toggleBookmark,
@@ -36,4 +37,7 @@ export const topicsRouter = router({
 
       return toggleBookmark(topicId, userId)
     }),
+  delete: protectedProcedure
+    .input(z.string())
+    .mutation(({ input, ctx }) => deleteTopic(input, ctx.session.user.id)),
 })

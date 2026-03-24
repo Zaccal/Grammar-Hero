@@ -10,11 +10,11 @@ import { reportSchema } from '@/schemas/report.schema'
 import { Button } from '../ui/button'
 import { DialogContent, DialogHeader, DialogTitle } from '../ui/dialog'
 import { Form } from '../ui/form'
-import { reportModalContext } from './ReportModalContext'
+import { ReportModalContext } from './ReportModalContext'
 
 export function ReportModalContent({ children, ...props }: DialogContentProps) {
-  const reportOnSuccess = reportModalContext.useSelect(state => state.onSuccess)
-  const userId = reportModalContext.useSelect(state => state.userId)
+  const reportOnSuccess = ReportModalContext.useSelect(state => state.onSuccess)
+  const userId = ReportModalContext.useSelect(state => state.userId)
   const form = useForm<ReportSchema>({
     resolver: zodResolver(reportSchema),
     defaultValues: {

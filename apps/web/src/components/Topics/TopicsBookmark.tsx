@@ -5,15 +5,15 @@ import { toast } from 'sonner'
 import { trpc } from '@/lib/trpc'
 import { getOptimisticBookmark } from '@/utils'
 import { Button } from '../ui/button'
-import { topicsContext } from './TopicsContext'
+import { TopicsContext } from './TopicsContext'
 
 export function TopicsBookmark() {
   const queryClient = useQueryClient()
   const searchParams = useSearch({
     from: '/',
   })
-  const { _count, isBookmarked, id } = topicsContext.useSelect(state => state)
-  const { set, value } = topicsContext.useSelect()
+  const { _count, isBookmarked, id } = TopicsContext.useSelect(state => state)
+  const { set, value } = TopicsContext.useSelect()
 
   const { mutate: toggleBookmark } = useMutation(
     trpc.topics.bookmark.mutationOptions({

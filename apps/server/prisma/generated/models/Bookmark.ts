@@ -1166,6 +1166,11 @@ export type BookmarkFindManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Skip the first `n` Bookmarks.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of Bookmarks.
+   */
   distinct?: Prisma.BookmarkScalarFieldEnum | Prisma.BookmarkScalarFieldEnum[]
 }
 
