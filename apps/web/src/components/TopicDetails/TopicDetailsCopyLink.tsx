@@ -4,12 +4,13 @@ import { useCopy } from '@/hooks'
 import { DropdownMenuItem } from '../ui/dropdown-menu'
 
 export function TopicDetailsCopyLink() {
-  const { href } = useLocation()
   const { copy, copied } = useCopy()
+  const { pathname, hash } = useLocation()
+  const url = `${window.location.origin}${pathname}${hash}`
 
   function handlerCopyLink(event: MouseEvent<HTMLDivElement>) {
     event.preventDefault()
-    copy(href)
+    copy(url)
   }
 
   return (

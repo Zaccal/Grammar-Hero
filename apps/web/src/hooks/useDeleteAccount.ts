@@ -17,7 +17,7 @@ export function useDeleteAccount(options?: UseMutationOptions) {
         search: SUCCESS_DELETING_ACCOUNT,
       })
       const promise = authClient.deleteUser({
-        callbackURL: import.meta.env.VITE_CLIENT_URL + params.href,
+        callbackURL: window.location.origin + params.href,
       })
 
       toast.promise(promise, {

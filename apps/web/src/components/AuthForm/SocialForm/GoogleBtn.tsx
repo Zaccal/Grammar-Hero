@@ -5,7 +5,7 @@ import { useGoogleAuth } from '@/hooks'
 
 export default function GoogleBtn() {
   const { mutate: googleAuth, isPending } = useGoogleAuth({
-    callbackUrl: import.meta.env.VITE_CLIENT_URL,
+    callbackUrl: window.location.origin,
   })
 
   function submitHandler(
