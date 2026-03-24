@@ -1,10 +1,9 @@
-import type { User } from 'node_modules/better-auth/dist/index.mjs'
 import type { ReportSchema } from '@/schemas/report.schema'
 import { TRPCError } from '@trpc/server'
 import prisma from 'prisma'
 import { EmailTemplate, resend } from '@/lib/resend'
 
-export async function createReport(user: User, input: ReportSchema) {
+export async function createReport(input: ReportSchema) {
   const localUser = await prisma.user.findFirst({
     where: {
       id: input.userId,
@@ -26,6 +25,7 @@ export async function createReport(user: User, input: ReportSchema) {
         username: localUser.name,
         reason: input.reason,
         message: input.message,
+        topicLink: input.topicLink,
       },
     },
   })

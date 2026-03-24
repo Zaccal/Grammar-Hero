@@ -41,6 +41,7 @@ export function ReportModalContent({ children, ...props }: DialogContentProps) {
     await createReport({
       ...data,
       userId,
+      topicLink: window.location.href,
     })
   }
 
