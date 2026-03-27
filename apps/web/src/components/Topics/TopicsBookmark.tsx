@@ -1,14 +1,13 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import { useSearch } from '@tanstack/react-router'
 import { Bookmark } from 'lucide-react'
 import { toast } from 'sonner'
 import { trpc } from '@/lib/trpc'
-import { getOptimisticBookmark } from '@/utils'
+import { getOptimisticBookmark, invalidateProfileTopics, invalidateTopics } from '@/utils'
 import { Button } from '../ui/button'
 import { TopicsContext } from './TopicsContext'
 
 export function TopicsBookmark() {
-  const queryClient = useQueryClient()
   const searchParams = useSearch({
     from: '/',
   })
@@ -30,12 +29,8 @@ export function TopicsBookmark() {
         toast.error('Failed to bookmark the topic. Please try again.')
       },
       onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: trpc.topics.getAll.queryKey(searchParams),
-        })
-        queryClient.invalidateQueries({
-          queryKey: trpc.topics.getById.queryKey(id),
-        })
+        invalidateTopics(searchParams, id)
+        invalidateProfileTopics()
       },
     })
   )

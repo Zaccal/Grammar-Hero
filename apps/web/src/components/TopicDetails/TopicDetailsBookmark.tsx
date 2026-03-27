@@ -4,6 +4,7 @@ import { Bookmark } from '@/components/ui/bookmark'
 import { Button } from '@/components/ui/button'
 import { trpc } from '@/lib/trpc'
 import { getOptimisticBookmark } from '@/utils'
+import { invalidateProfileTopics } from '@/utils/invalidateProfileTopics'
 import { TopicDetailsContext } from './TopicDetailsContext'
 
 export function TopicDetailsBookmark() {
@@ -25,6 +26,9 @@ export function TopicDetailsBookmark() {
         }
 
         toast.error('Failed to bookmark the topic. Please try again.')
+      },
+      onSuccess: () => {
+        invalidateProfileTopics()
       },
     })
   )

@@ -3,8 +3,8 @@ import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { TriangleAlert } from 'lucide-react'
 import { toast } from 'sonner'
-import { QUERY_INPUT, QUERY_OPTION } from '@/lib/constants'
-import { queryClient, trpc } from '@/lib/trpc'
+import { trpc } from '@/lib/trpc'
+import { invalidateProfileTopics } from '@/utils/invalidateProfileTopics'
 import { Button } from '../ui/button'
 import {
   Dialog,
@@ -23,14 +23,8 @@ export function DeleteTopicModal({ topicId, ...props }: DeleteTopicModalProps) {
   const { mutate: deleteTopic, isPending } = useMutation(
     trpc.topics.delete.mutationOptions({
       onSuccess: async () => {
-        // TODO: on creating, liking, bookmarking change invalidate like this
-        // TODO: Invalidate bookmarked, liked topics
-        await queryClient.invalidateQueries(
-          trpc.profile.getAllMyTopics.infiniteQueryOptions(
-            QUERY_INPUT,
-            QUERY_OPTION
-          )
-        )
+        await invalidateProfileTopics()
+
         if (props.onOpenChange) {
           props.onOpenChange(false)
         }

@@ -6,7 +6,7 @@ import { useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { useFileUploadMutation } from '@/hooks/useFileUploadMutation'
-import { FORM_ID } from '@/lib/constants'
+import { FORM_ID, QUERY_INPUT, QUERY_OPTION } from '@/lib/constants'
 import { queryClient, trpc } from '@/lib/trpc'
 import { createTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import { durationValues } from '@/schemas/filter.schema'
@@ -54,15 +54,18 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
             description: error.message,
           })
         },
-        onSuccess: () => {
+        onSuccess: async () => {
           toast.success('Thank you for your topic!')
           markdownEditorRef.current?.setMarkdown('')
           fileUploadStore.set({ file: null })
           form.reset()
 
-          queryClient.invalidateQueries({
-            queryKey: [trpc.topics.getAll.queryKey],
-          })
+          await queryClient.invalidateQueries(
+            trpc.profile.getAllMyTopics.infiniteQueryOptions(
+              QUERY_INPUT,
+              QUERY_OPTION
+            )
+          )
         },
         onSettled: () => {
           alertDialogCreateTopicStore.set({
