@@ -6,6 +6,8 @@ import { createTopicFormSchema as editTopicFormSchema } from '@/schemas/createTo
 import { getServerImage } from '@/utils'
 import { Form } from '../ui/form'
 import { EditTopicContext } from './EditTopicContext'
+import { EDIT_FORM_ID } from '@/lib/constants'
+import { EditTopicAlertDialogStore } from './store'
 
 interface EditTopicProps {
   children?: React.ReactNode | React.ReactNode[]
@@ -20,7 +22,7 @@ export function EditTopic({ children, topic }: EditTopicProps) {
     image: getServerImage(topic.image),
     level: topic.level,
     description: topic.description,
-    duration: `${topic.durationMin}-${topic.durationMax}`,
+    duration: `${topic.durationMin.getMinutes()}-${topic.durationMax.getMinutes()} min`,
   }
 
   const form = useForm<EditTopicFormSchema>({
@@ -33,7 +35,14 @@ export function EditTopic({ children, topic }: EditTopicProps) {
   return (
     <EditTopicContext.Provider initialValue={initialValues}>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>{children}</form>
+        <form
+          id={EDIT_FORM_ID}
+          onSubmit={form.handleSubmit(onSubmit, () => {
+            EditTopicAlertDialogStore.set(false)
+          })}
+        >
+          {children}
+        </form>
       </Form>
     </EditTopicContext.Provider>
   )

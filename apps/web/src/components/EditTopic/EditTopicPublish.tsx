@@ -1,5 +1,4 @@
-import type { ButtonProps } from '../ui/button'
-import { CREATE_FORM_ID } from '@/lib/constants'
+import { EDIT_FORM_ID } from '@/lib/constants'
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -10,27 +9,15 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '../ui/alert-dialog'
-import { Button } from '../ui/button'
-import Loader from '../ui/loader'
-import { CreateTopicFormContext } from './CreateTopicFormContext'
-import { alertDialogCreateTopicStore } from './store'
+import { Button, type ButtonProps } from '../ui/button'
+import { EditTopicAlertDialogStore } from './store'
 
-export function CreateTopicFormPublish({ children, ...props }: ButtonProps) {
-  const isPending = CreateTopicFormContext.useSelect(state => state.isPending)
-
-  // I need the controlled state because I want to close the alertDialog when the loadihng state is finished
-  const open = alertDialogCreateTopicStore.use(state => state.open)
+export function EditTopicPublish({ children, ...props }: ButtonProps) {
+  const open = EditTopicAlertDialogStore.use(state => state)
 
   return (
     <>
-      <AlertDialog
-        open={open}
-        onOpenChange={state => {
-          alertDialogCreateTopicStore.set({
-            open: state,
-          })
-        }}
-      >
+      <AlertDialog open={open} onOpenChange={EditTopicAlertDialogStore.set}>
         <AlertDialogTrigger asChild>
           <Button {...props}>{children}</Button>
         </AlertDialogTrigger>
@@ -46,8 +33,8 @@ export function CreateTopicFormPublish({ children, ...props }: ButtonProps) {
 
           <AlertDialogFooter>
             <AlertDialogCancel>Not sure</AlertDialogCancel>
-            <Button loading={isPending} type="submit" form={CREATE_FORM_ID}>
-              Publish
+            <Button form={EDIT_FORM_ID} type="submit">
+              Confirm
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>

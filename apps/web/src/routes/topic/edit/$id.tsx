@@ -5,6 +5,8 @@ import ErrorComponent from '@/components/ErrorComponent'
 import Loader from '@/components/ui/loader'
 import { trpc } from '@/lib/trpc'
 import ensureSession from '@/middleware'
+import { Separator } from '@/components/ui/separator'
+import { CreateTopicForm } from '@/components/CreateTopicForm'
 
 export const Route = createFileRoute('/topic/edit/$id')({
   component: RouteComponent,
@@ -31,6 +33,30 @@ function RouteComponent() {
     <div className="container pt-10">
       <EditTopic.Root topic={topic!}>
         <EditTopic.Image />
+        <div className="space-y-4 my-6">
+          <EditTopic.Title />
+          <EditTopic.ShortDescription />
+          <EditTopic.Description />
+        </div>
+        <div className="flex justify-between items-center">
+          <EditTopic.Level />
+          <EditTopic.Duration />
+        </div>
+        <Separator className="my-5" />
+        <CreateTopicForm.MarkdownHint>
+          We use markdown to format the topic content. You can learn markdown{' '}
+          <CreateTopicForm.MarkdownHintLink href="https://www.markdowntutorial.com/">
+            here
+          </CreateTopicForm.MarkdownHintLink>
+        </CreateTopicForm.MarkdownHint>
+        <EditTopic.MarkdownEditor className="mt-4" />
+        <EditTopic.Publish
+          className="w-[80%] sm:w-auto fixed bottom-4 right-1/2 translate-x-1/2 sm:translate-x-0 sm:right-4"
+          type="button"
+          size={'lg'}
+        >
+          Edit Topic
+        </EditTopic.Publish>
       </EditTopic.Root>
     </div>
   )

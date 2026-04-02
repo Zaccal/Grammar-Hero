@@ -14,7 +14,8 @@ export const QUERY_OPTION = {
 
 export const SCROLL_VISIBLE = 600
 
-export const FORM_ID = 'CREATE_FORM_TRIGGER'
+export const CREATE_FORM_ID = 'CREATE_FORM_TRIGGER'
+export const EDIT_FORM_ID = 'EDIT_FORM_TRIGGER'
 
 export const SUCCESS_DELETING_ACCOUNT: SuccessSchemaType = {
   title: 'Account Deleted',

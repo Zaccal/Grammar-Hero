@@ -6,7 +6,7 @@ import { useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { useFileUploadMutation } from '@/hooks/useFileUploadMutation'
-import { FORM_ID } from '@/lib/constants'
+import { CREATE_FORM_ID } from '@/lib/constants'
 import { queryClient, trpc } from '@/lib/trpc'
 import { createTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import { durationValues } from '@/schemas/filter.schema'
@@ -102,7 +102,7 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
     >
       <Form {...form}>
         <form
-          id={FORM_ID}
+          id={CREATE_FORM_ID}
           className={className}
           onSubmit={form.handleSubmit(onSubmit, () => {
             alertDialogCreateTopicStore.set({
