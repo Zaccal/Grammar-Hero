@@ -21,7 +21,8 @@ import { EditTopicAlertDialogStore } from './store'
 
 export function EditTopicPublish({ children, ...props }: ButtonProps) {
   const open = EditTopicAlertDialogStore.use(state => state)
-  const formValues = useFormContext<EditTopicFormSchema>().watch()
+  const form = useFormContext<EditTopicFormSchema>()
+  const formValues = form.watch()
   const topic = EditTopicContext.useSelect(state => ({
     title: state.title,
     shortDescription: state.shortDescription,
@@ -57,7 +58,11 @@ export function EditTopicPublish({ children, ...props }: ButtonProps) {
 
           <AlertDialogFooter>
             <AlertDialogCancel>Not sure</AlertDialogCancel>
-            <Button form={EDIT_FORM_ID} type="submit">
+            <Button
+              loading={form.formState.isSubmitting}
+              form={EDIT_FORM_ID}
+              type="submit"
+            >
               Confirm
             </Button>
           </AlertDialogFooter>

@@ -62,6 +62,7 @@ export default function FileUpload({
               <Button
                 variant="outline"
                 className="mt-4"
+                type="button"
                 onClick={openFileDialog}
               >
                 <UploadIcon

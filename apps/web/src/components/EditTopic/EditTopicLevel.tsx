@@ -22,7 +22,7 @@ export function EditTopicLevel() {
             <FormMessage />
             <FormControl>
               <Select onValueChange={field.onChange} value={field.value ?? ''}>
-                <SelectTrigger>
+                <SelectTrigger disabled={form.formState.isSubmitting}>
                   <SelectValue placeholder="Level" />
                 </SelectTrigger>
                 <SelectContent>

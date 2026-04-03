@@ -23,7 +23,7 @@ export function EditTopicDuration() {
             <FormMessage />
             <FormControl>
               <Select onValueChange={field.onChange} value={field.value}>
-                <SelectTrigger>
+                <SelectTrigger disabled={form.formState.isSubmitting}>
                   <SelectValue placeholder="Duration" />
                 </SelectTrigger>
                 <SelectContent>

@@ -13,6 +13,7 @@ import {
   toolbarPlugin,
 } from '@mdxeditor/editor'
 import { Controller, useFormContext } from 'react-hook-form'
+import { cn } from '@/lib/utils'
 import { FormControl, FormItem } from '../ui/form'
 
 interface EditTopicMarkdownEditorProps {
@@ -25,7 +26,9 @@ export function EditTopicMarkdownEditor({
   const form = useFormContext<EditTopicFormSchema>()
 
   return (
-    <div>
+    <div
+      className={cn(className, form.formState.isSubmitting ? 'disabled' : '')}
+    >
       <Controller
         control={form.control}
         name="content"

@@ -1,9 +1,10 @@
+import type { UseMutationOptions } from '@tanstack/react-query'
 import type { FileUploadMutation } from '@/types/fileupload.types'
 import { useMutation } from '@tanstack/react-query'
 
 export const USE_FILE_UPLOAD_MUTATION_KEY = 'use-file-upload-mutation'
 
-export function useFileUploadMutation() {
+export function useFileUploadMutation(options?: UseMutationOptions) {
   return useMutation({
     mutationKey: [USE_FILE_UPLOAD_MUTATION_KEY],
     mutationFn: async (data: FileUploadMutation | File) => {
@@ -28,5 +29,7 @@ export function useFileUploadMutation() {
       )
       return response.json() as Promise<{ url: string }>
     },
+    ...options?.onSuccess,
+    ...options?.onError,
   })
 }

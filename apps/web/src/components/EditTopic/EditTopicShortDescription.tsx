@@ -18,6 +18,7 @@ export function EditTopicShortDescription() {
               <Textarea
                 {...field}
                 placeholder="Enter short description"
+                disabled={form.formState.isSubmitting}
                 variant="lg"
               />
             </FormControl>

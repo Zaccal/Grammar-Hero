@@ -9,10 +9,18 @@ export function createFileMetaData(input: string | File) {
     fileName = input.split('/').pop() || 'file'
 
     const getMimeType = (name: string) => {
-      if (name.endsWith('.png')) { return 'image/png' }
-      if (name.endsWith('.jpg') || name.endsWith('.jpeg')) { return 'image/jpeg' }
-      if (name.endsWith('.gif')) { return 'image/gif' }
-      if (name.endsWith('.webp')) { return 'image/webp' }
+      if (name.endsWith('.png')) {
+        return 'image/png'
+      }
+      if (name.endsWith('.jpg') || name.endsWith('.jpeg')) {
+        return 'image/jpeg'
+      }
+      if (name.endsWith('.gif')) {
+        return 'image/gif'
+      }
+      if (name.endsWith('.webp')) {
+        return 'image/webp'
+      }
       return 'application/octet-stream'
     }
 

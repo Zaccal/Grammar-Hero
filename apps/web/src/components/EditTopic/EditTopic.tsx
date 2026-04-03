@@ -1,9 +1,15 @@
 import type { Topic } from '@server/routers/topics/topics.types'
 import type { CreateTopicFormSchema as EditTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation } from '@tanstack/react-query'
+import lodash from 'lodash'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+import { useFileUploadMutation } from '@/hooks'
 import { EDIT_FORM_ID } from '@/lib/constants'
+import { trpc } from '@/lib/trpc'
 import { createTopicFormSchema as editTopicFormSchema } from '@/schemas/createTopicForm.schema'
+import { durationValues } from '@/schemas/filter.schema'
 import { getServerImage } from '@/utils'
 import { Form } from '../ui/form'
 import { EditTopicContext } from './EditTopicContext'
@@ -30,7 +36,50 @@ export function EditTopic({ children, topic }: EditTopicProps) {
     defaultValues: initialValues,
   })
 
-  async function onSubmit(_data: EditTopicFormSchema) {}
+  const { mutateAsync: uploadFileAsync, isError: isFileUploadError } =
+    useFileUploadMutation({
+      onError: () => {
+        toast.error('Failed to upload image')
+      },
+    })
+
+  const { mutateAsync: updateTopicAsync } = useMutation(
+    trpc.topics.update.mutationOptions({
+      onError: () => {
+        toast.error('Failed to update topic')
+      },
+      onSuccess: () => {
+        toast.success('Topic updated successfully')
+      },
+    })
+  )
+
+  async function uploadImageHandler(file: File | string) {
+    if (typeof file === 'string') {
+      if (lodash.isEqual(file, form.watch('image'))) {
+        return topic.image ?? '/default.png'
+      }
+      return file
+    }
+    return (await uploadFileAsync(file)).url
+  }
+
+  async function onSubmit(data: EditTopicFormSchema) {
+    const image = await uploadImageHandler(data.image)
+    if (isFileUploadError) {
+      return
+    }
+    await updateTopicAsync({
+      topicId: topic.id,
+      data: {
+        ...data,
+        image,
+        durationMin: durationValues[data.duration]!.min,
+        durationMax: durationValues[data.duration]!.max,
+      },
+    })
+    EditTopicAlertDialogStore.set(false)
+  }
 
   return (
     <EditTopicContext.Provider initialValue={initialValues}>

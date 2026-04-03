@@ -14,9 +14,14 @@ export function EditTopicImage() {
     maxFiles: 1,
     initialFiles: [initialImage],
     onFilesChange: filesPreview => {
-      if (!filesPreview.length) { return }
+      if (!filesPreview.length) {
+        return
+      }
       const file = filesPreview[0].file as File
       form.setValue('image', file)
+    },
+    onFilesRemoved: () => {
+      form.setValue('image', '/default.png')
     },
   })
 

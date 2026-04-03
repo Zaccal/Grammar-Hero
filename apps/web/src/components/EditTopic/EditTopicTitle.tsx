@@ -15,7 +15,12 @@ export function EditTopicTitle() {
           <FormItem>
             <FormMessage />
             <FormControl>
-              <Input variant="lg" {...field} placeholder="Enter title" />
+              <Input
+                disabled={form.formState.isSubmitting}
+                variant="lg"
+                {...field}
+                placeholder="Enter title"
+              />
             </FormControl>
           </FormItem>
         )}
