@@ -2,11 +2,11 @@ import type { Topic } from '@server/routers/topics/topics.types'
 import type { CreateTopicFormSchema as EditTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { EDIT_FORM_ID } from '@/lib/constants'
 import { createTopicFormSchema as editTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import { getServerImage } from '@/utils'
 import { Form } from '../ui/form'
 import { EditTopicContext } from './EditTopicContext'
-import { EDIT_FORM_ID } from '@/lib/constants'
 import { EditTopicAlertDialogStore } from './store'
 
 interface EditTopicProps {

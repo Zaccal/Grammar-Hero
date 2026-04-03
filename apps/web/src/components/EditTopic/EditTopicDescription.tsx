@@ -18,7 +18,7 @@ export function EditTopicDescription() {
               <Textarea
                 {...field}
                 placeholder="Enter description"
-                variant={'lg'}
+                variant="lg"
               />
             </FormControl>
           </FormItem>

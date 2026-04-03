@@ -1,3 +1,9 @@
+import type { ButtonProps } from '../ui/button'
+import type { CreateTopicFormSchema as EditTopicFormSchema } from '@/schemas/createTopicForm.schema'
+import lodash from 'lodash'
+import { useState } from 'react'
+import { useFormContext } from 'react-hook-form'
+import { useDidUpdate } from '@/hooks'
 import { EDIT_FORM_ID } from '@/lib/constants'
 import {
   AlertDialog,
@@ -9,17 +15,35 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '../ui/alert-dialog'
-import { Button, type ButtonProps } from '../ui/button'
+import { Button } from '../ui/button'
+import { EditTopicContext } from './EditTopicContext'
 import { EditTopicAlertDialogStore } from './store'
 
 export function EditTopicPublish({ children, ...props }: ButtonProps) {
   const open = EditTopicAlertDialogStore.use(state => state)
+  const formValues = useFormContext<EditTopicFormSchema>().watch()
+  const topic = EditTopicContext.useSelect(state => ({
+    title: state.title,
+    shortDescription: state.shortDescription,
+    content: state.content,
+    image: state.image,
+    level: state.level,
+    description: state.description,
+    duration: state.duration,
+  }))
+  const [isEqualValue, setIsEqualValue] = useState(true)
+
+  useDidUpdate(() => {
+    setIsEqualValue(lodash.isEqual(normalize(topic), normalize(formValues)))
+  }, [formValues])
 
   return (
     <>
       <AlertDialog open={open} onOpenChange={EditTopicAlertDialogStore.set}>
         <AlertDialogTrigger asChild>
-          <Button {...props}>{children}</Button>
+          <Button disabled={isEqualValue} {...props}>
+            {children}
+          </Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -41,4 +65,13 @@ export function EditTopicPublish({ children, ...props }: ButtonProps) {
       </AlertDialog>
     </>
   )
+}
+
+const NORMALIZE_REGEX = /\n+/g
+
+function normalize(obj: any) {
+  return {
+    ...obj,
+    content: obj.content.trim().replace(NORMALIZE_REGEX, '\n\n'),
+  }
 }

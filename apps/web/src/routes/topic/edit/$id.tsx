@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
+import { CreateTopicForm } from '@/components/CreateTopicForm'
 import { EditTopic } from '@/components/EditTopic'
 import ErrorComponent from '@/components/ErrorComponent'
 import Loader from '@/components/ui/loader'
+import { Separator } from '@/components/ui/separator'
 import { trpc } from '@/lib/trpc'
 import ensureSession from '@/middleware'
-import { Separator } from '@/components/ui/separator'
-import { CreateTopicForm } from '@/components/CreateTopicForm'
 
 export const Route = createFileRoute('/topic/edit/$id')({
   component: RouteComponent,
@@ -53,7 +53,7 @@ function RouteComponent() {
         <EditTopic.Publish
           className="w-[80%] sm:w-auto fixed bottom-4 right-1/2 translate-x-1/2 sm:translate-x-0 sm:right-4"
           type="button"
-          size={'lg'}
+          size="lg"
         >
           Edit Topic
         </EditTopic.Publish>

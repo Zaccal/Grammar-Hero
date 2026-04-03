@@ -1,5 +1,6 @@
 import type { CreateTopicFormSchema as EditTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import { useFormContext } from 'react-hook-form'
+import { durationOptions } from '@/schemas/filter.schema'
 import { FormControl, FormField, FormItem, FormMessage } from '../ui/form'
 import {
   Select,
@@ -8,7 +9,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/Select'
-import { durationOptions } from '@/schemas/filter.schema'
 
 export function EditTopicDuration() {
   const form = useFormContext<EditTopicFormSchema>()

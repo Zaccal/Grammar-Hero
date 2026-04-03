@@ -15,7 +15,7 @@ export function EditTopicTitle() {
           <FormItem>
             <FormMessage />
             <FormControl>
-              <Input variant={'lg'} {...field} placeholder="Enter title" />
+              <Input variant="lg" {...field} placeholder="Enter title" />
             </FormControl>
           </FormItem>
         )}

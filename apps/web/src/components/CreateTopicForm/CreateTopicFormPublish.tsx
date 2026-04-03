@@ -11,7 +11,6 @@ import {
   AlertDialogTrigger,
 } from '../ui/alert-dialog'
 import { Button } from '../ui/button'
-import Loader from '../ui/loader'
 import { CreateTopicFormContext } from './CreateTopicFormContext'
 import { alertDialogCreateTopicStore } from './store'
 
