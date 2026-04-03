@@ -13,6 +13,11 @@ export function EditTopicImage() {
     maxSize: UPLOAD_FILE_SIZE_MB * 1024 * 1024,
     maxFiles: 1,
     initialFiles: [initialImage],
+    onFilesChange: filesPreview => {
+      if (!filesPreview.length) return
+      const file = filesPreview[0].file as File
+      form.setValue('image', file)
+    },
   })
 
   return (
