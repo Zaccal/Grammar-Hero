@@ -9,6 +9,7 @@ import {
   getById,
   toggleBookmark,
   toggleLike,
+  updateTopic,
 } from './topics.constroller'
 
 export const topicsRouter = router({
@@ -40,4 +41,9 @@ export const topicsRouter = router({
   delete: protectedProcedure
     .input(z.string())
     .mutation(({ input, ctx }) => deleteTopic(input, ctx.session.user.id)),
+  update: protectedProcedure
+    .input(z.object({ topicId: z.string(), data: topicCreateSchema }))
+    .mutation(({ input, ctx }) =>
+      updateTopic(input.topicId, ctx.session.user.id, input.data)
+    ),
 })

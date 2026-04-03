@@ -5,6 +5,7 @@ import { Prisma } from '../../../prisma/generated/client'
 import prisma from '../../../prisma/index'
 import { getDummyDate, getFormattedTopics } from '../../utils/index'
 import { TOPICS_SELECT } from './constants'
+import type { Topic } from './topics.types'
 
 export async function getAll(input: FilterParamsSchema, userId: string) {
   const cursor = input.cursor ? { id: input.cursor } : undefined
@@ -143,8 +144,7 @@ export async function toggleLike(topicId: string, userId: string) {
     })
 
     return { isLiked: false }
-  }
- else {
+  } else {
     await prisma.like.create({
       data: {
         topicId,
@@ -174,8 +174,7 @@ export async function toggleBookmark(topicId: string, userId: string) {
     })
 
     return { isBookmarked: false }
-  }
- else {
+  } else {
     await prisma.bookmark.create({
       data: {
         userId,
@@ -197,8 +196,38 @@ export async function deleteTopic(topicId: string, userId: string) {
     })
 
     return { success: true, topic }
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === 'P2025') {
+        throw new TRPCError({ code: 'NOT_FOUND', message: 'Topic not found' })
+      }
+
+      throw new TRPCError({
+        code: 'INTERNAL_SERVER_ERROR',
+        message: error.message,
+      })
+    }
+
+    throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR' })
   }
- catch (error) {
+}
+
+export async function updateTopic(
+  topicId: string,
+  userId: string,
+  data: TopicCreateSchema
+) {
+  try {
+    const topic = await prisma.topics.update({
+      where: {
+        id: topicId,
+        userId,
+      },
+      data,
+    })
+
+    return { success: true, topic }
+  } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === 'P2025') {
         throw new TRPCError({ code: 'NOT_FOUND', message: 'Topic not found' })
