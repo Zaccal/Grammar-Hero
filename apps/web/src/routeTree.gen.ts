@@ -22,6 +22,7 @@ import { Route as ChangePasswordRouteImport } from './routes/change-password'
 import { Route as ChangeEmailRouteImport } from './routes/change-email'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TopicIdRouteImport } from './routes/topic/$id'
+import { Route as TopicEditIdRouteImport } from './routes/topic/edit/$id'
 
 const SuccessRoute = SuccessRouteImport.update({
   id: '/success',
@@ -88,6 +89,11 @@ const TopicIdRoute = TopicIdRouteImport.update({
   path: '/topic/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TopicEditIdRoute = TopicEditIdRouteImport.update({
+  id: '/topic/edit/$id',
+  path: '/topic/edit/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -103,6 +109,7 @@ export interface FileRoutesByFullPath {
   '/sign-up': typeof SignUpRoute
   '/success': typeof SuccessRoute
   '/topic/$id': typeof TopicIdRoute
+  '/topic/edit/$id': typeof TopicEditIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -118,6 +125,7 @@ export interface FileRoutesByTo {
   '/sign-up': typeof SignUpRoute
   '/success': typeof SuccessRoute
   '/topic/$id': typeof TopicIdRoute
+  '/topic/edit/$id': typeof TopicEditIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -134,6 +142,7 @@ export interface FileRoutesById {
   '/sign-up': typeof SignUpRoute
   '/success': typeof SuccessRoute
   '/topic/$id': typeof TopicIdRoute
+  '/topic/edit/$id': typeof TopicEditIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -151,6 +160,7 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/success'
     | '/topic/$id'
+    | '/topic/edit/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/success'
     | '/topic/$id'
+    | '/topic/edit/$id'
   id:
     | '__root__'
     | '/'
@@ -181,6 +192,7 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/success'
     | '/topic/$id'
+    | '/topic/edit/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -197,6 +209,7 @@ export interface RootRouteChildren {
   SignUpRoute: typeof SignUpRoute
   SuccessRoute: typeof SuccessRoute
   TopicIdRoute: typeof TopicIdRoute
+  TopicEditIdRoute: typeof TopicEditIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -292,6 +305,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TopicIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/topic/edit/$id': {
+      id: '/topic/edit/$id'
+      path: '/topic/edit/$id'
+      fullPath: '/topic/edit/$id'
+      preLoaderRoute: typeof TopicEditIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -309,6 +329,7 @@ const rootRouteChildren: RootRouteChildren = {
   SignUpRoute: SignUpRoute,
   SuccessRoute: SuccessRoute,
   TopicIdRoute: TopicIdRoute,
+  TopicEditIdRoute: TopicEditIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

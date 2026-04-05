@@ -1,5 +1,5 @@
 import type { ButtonProps } from '../ui/button'
-import { FORM_ID } from '@/lib/constants'
+import { CREATE_FORM_ID } from '@/lib/constants'
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -11,7 +11,6 @@ import {
   AlertDialogTrigger,
 } from '../ui/alert-dialog'
 import { Button } from '../ui/button'
-import Loader from '../ui/loader'
 import { CreateTopicFormContext } from './CreateTopicFormContext'
 import { alertDialogCreateTopicStore } from './store'
 
@@ -46,8 +45,7 @@ export function CreateTopicFormPublish({ children, ...props }: ButtonProps) {
 
           <AlertDialogFooter>
             <AlertDialogCancel>Not sure</AlertDialogCancel>
-            <Button disabled={isPending} type="submit" form={FORM_ID}>
-              {isPending && <Loader className="pt-0" />}
+            <Button loading={isPending} type="submit" form={CREATE_FORM_ID}>
               Publish
             </Button>
           </AlertDialogFooter>

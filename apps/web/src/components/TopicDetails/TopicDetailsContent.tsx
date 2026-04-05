@@ -5,16 +5,15 @@ import rehypeSlug from 'rehype-slug'
 import remarkBreaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
 import { cn } from '@/lib/utils'
+import { TopicDetailsContext } from './TopicDetailsContext'
 
 interface TopicDetailsContentProps {
-  children?: string
   className?: string
 }
 
-export function TopicDetailsContent({
-  children,
-  className,
-}: TopicDetailsContentProps) {
+export function TopicDetailsContent({ className }: TopicDetailsContentProps) {
+  const content = TopicDetailsContext.useSelect(state => state.content)
+
   // TODO: Create a style for highlighted texts
   return (
     <div className={cn(className, 'markdown-typography')}>
@@ -23,7 +22,7 @@ export function TopicDetailsContent({
         remarkPlugins={[remarkGfm, remarkBreaks]}
         rehypePlugins={[rehypeSlug, rehypeAutolinkHeadings, rehypeHighlight]}
       >
-        {children}
+        {content}
       </ReactMarkdown>
     </div>
   )

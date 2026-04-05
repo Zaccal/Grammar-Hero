@@ -6,10 +6,11 @@ import { useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { useFileUploadMutation } from '@/hooks/useFileUploadMutation'
-import { FORM_ID, QUERY_INPUT, QUERY_OPTION } from '@/lib/constants'
-import { queryClient, trpc } from '@/lib/trpc'
+import { CREATE_FORM_ID } from '@/lib/constants'
+import { trpc } from '@/lib/trpc'
 import { createTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import { durationValues } from '@/schemas/filter.schema'
+import { invalidateProfileTopics, invalidateTopics } from '@/utils'
 import { Form } from '../ui/form'
 import { CreateTopicFormContext } from './CreateTopicFormContext'
 import { alertDialogCreateTopicStore, fileUploadStore } from './store'
@@ -60,12 +61,7 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
           fileUploadStore.set({ file: null })
           form.reset()
 
-          await queryClient.invalidateQueries(
-            trpc.profile.getAllMyTopics.infiniteQueryOptions(
-              QUERY_INPUT,
-              QUERY_OPTION
-            )
-          )
+          await invalidateProfileTopics()
         },
         onSettled: () => {
           alertDialogCreateTopicStore.set({
@@ -91,7 +87,7 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
       ...data,
       durationMin: durationValues[data.duration]!.min,
       durationMax: durationValues[data.duration]!.max,
-      image: image ?? data.image,
+      image: image ?? '/default.png',
     })
   }
 
@@ -105,7 +101,7 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
     >
       <Form {...form}>
         <form
-          id={FORM_ID}
+          id={CREATE_FORM_ID}
           className={className}
           onSubmit={form.handleSubmit(onSubmit, () => {
             alertDialogCreateTopicStore.set({

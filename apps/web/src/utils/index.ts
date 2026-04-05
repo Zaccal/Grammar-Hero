@@ -1,3 +1,4 @@
+export * from './createFileMetaData'
 export * from './getComponentName'
 export * from './getCuttedText'
 export * from './getDummyArray'

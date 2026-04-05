@@ -7,7 +7,7 @@ export const createTopicFormSchema = z.object({
   content: z.string().min(100),
   duration: z.string(),
   level: z.enum(['Advanced', 'Basic', 'Intermediate']),
-  image: z.string(),
+  image: z.union([z.string(), z.instanceof(File)]),
 })
 
 export type CreateTopicFormSchema = z.infer<typeof createTopicFormSchema>
