@@ -3,7 +3,11 @@ import { useSearch } from '@tanstack/react-router'
 import { Bookmark } from 'lucide-react'
 import { toast } from 'sonner'
 import { trpc } from '@/lib/trpc'
-import { getOptimisticBookmark, invalidateProfileTopics, invalidateTopics } from '@/utils'
+import {
+  getOptimisticBookmark,
+  invalidateProfileTopics,
+  invalidateTopics,
+} from '@/utils'
 import { Button } from '../ui/button'
 import { TopicsContext } from './TopicsContext'
 

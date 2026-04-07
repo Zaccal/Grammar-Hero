@@ -23,20 +23,12 @@ export function EditTopicPublish({ children, ...props }: ButtonProps) {
   const open = EditTopicAlertDialogStore.use(state => state)
   const form = useFormContext<EditTopicFormSchema>()
   const formValues = form.watch()
-  const topic = EditTopicContext.useSelect(state => ({
-    title: state.title,
-    shortDescription: state.shortDescription,
-    content: state.content,
-    image: state.image,
-    level: state.level,
-    description: state.description,
-    duration: state.duration,
-  }))
+  const topic = EditTopicContext.useSelect(state => state)
   const [isEqualValue, setIsEqualValue] = useState(true)
 
   useDidUpdate(() => {
     setIsEqualValue(lodash.isEqual(normalize(topic), normalize(formValues)))
-  }, [formValues])
+  }, [formValues, topic])
 
   return (
     <>

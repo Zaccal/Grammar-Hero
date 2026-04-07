@@ -10,7 +10,11 @@ import { EDIT_FORM_ID } from '@/lib/constants'
 import { trpc } from '@/lib/trpc'
 import { createTopicFormSchema as editTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import { durationValues } from '@/schemas/filter.schema'
-import { getServerImage } from '@/utils'
+import {
+  getServerImage,
+  invalidateProfileTopics,
+  invalidateTopicId,
+} from '@/utils'
 import { Form } from '../ui/form'
 import { EditTopicContext } from './EditTopicContext'
 import { EditTopicAlertDialogStore } from './store'
@@ -34,9 +38,27 @@ export function EditTopic({ children, topic }: EditTopicProps) {
         : `${topic.durationMin.getUTCMinutes()}-${topic.durationMax.getUTCMinutes()} min`,
   }
 
+  return (
+    <EditTopicContext.Provider initialValue={initialValues}>
+      <EditTopicContent defaultValues={initialValues} topic={topic}>
+        {children}
+      </EditTopicContent>
+    </EditTopicContext.Provider>
+  )
+}
+
+interface EditTopicContentProps extends EditTopicProps {
+  defaultValues: EditTopicFormSchema
+}
+
+function EditTopicContent({
+  children,
+  topic,
+  defaultValues,
+}: EditTopicContentProps) {
   const form = useForm<EditTopicFormSchema>({
     resolver: zodResolver(editTopicFormSchema),
-    defaultValues: initialValues,
+    defaultValues,
   })
 
   const { mutateAsync: uploadFileAsync, isError: isFileUploadError } =
@@ -67,6 +89,8 @@ export function EditTopic({ children, topic }: EditTopicProps) {
     return (await uploadFileAsync(file)).url
   }
 
+  const { set } = EditTopicContext.useSelect()
+
   async function onSubmit(data: EditTopicFormSchema) {
     const image = await uploadImageHandler(data.image)
     if (isFileUploadError) {
@@ -81,21 +105,17 @@ export function EditTopic({ children, topic }: EditTopicProps) {
         durationMax: durationValues[data.duration]!.max,
       },
     })
+    await invalidateProfileTopics()
+    await invalidateTopicId(topic.id)
+    set(data)
     EditTopicAlertDialogStore.set(false)
   }
 
   return (
-    <EditTopicContext.Provider initialValue={initialValues}>
-      <Form {...form}>
-        <form
-          id={EDIT_FORM_ID}
-          onSubmit={form.handleSubmit(onSubmit, () => {
-            EditTopicAlertDialogStore.set(false)
-          })}
-        >
-          {children}
-        </form>
-      </Form>
-    </EditTopicContext.Provider>
+    <Form {...form}>
+      <form id={EDIT_FORM_ID} onSubmit={form.handleSubmit(onSubmit)}>
+        {children}
+      </form>
+    </Form>
   )
 }

@@ -3,7 +3,11 @@ import { useSearch } from '@tanstack/react-router'
 import { Heart } from 'lucide-react'
 import { toast } from 'sonner'
 import { trpc } from '@/lib/trpc'
-import { getOptimisticLike, invalidateProfileTopics, invalidateTopics } from '@/utils'
+import {
+  getOptimisticLike,
+  invalidateProfileTopics,
+  invalidateTopics,
+} from '@/utils'
 import { Button } from '../ui/button'
 import { TopicsContext } from './TopicsContext'
 
