@@ -28,7 +28,10 @@ export function EditTopic({ children, topic }: EditTopicProps) {
     image: getServerImage(topic.image),
     level: topic.level,
     description: topic.description,
-    duration: `${topic.durationMin.getMinutes()}-${topic.durationMax.getMinutes()} min`,
+    duration:
+      topic.durationMax.getUTCMinutes() >= 35
+        ? '35+ min'
+        : `${topic.durationMin.getUTCMinutes()}-${topic.durationMax.getUTCMinutes()} min`,
   }
 
   const form = useForm<EditTopicFormSchema>({
