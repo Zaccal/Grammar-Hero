@@ -86,7 +86,13 @@ function EditTopicContent({
       }
       return file
     }
-    return (await uploadFileAsync(file)).url
+
+    const exchangeFile = topic.image ? topic.image.split('/')[topic.image.split('/').length - 1] : undefined
+
+    return (await uploadFileAsync({
+      file,
+      exchangeFile,
+    })).url
   }
 
   const { set } = EditTopicContext.useSelect()

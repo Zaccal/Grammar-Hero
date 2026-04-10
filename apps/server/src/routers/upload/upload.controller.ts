@@ -22,7 +22,8 @@ export async function uploadImage(
 
   await fs.mkdir(IMAGES_PATH, { recursive: true })
 
-  const fileName = `${userId}-${validFileName.trim()}`
+  const uuid = crypto.randomUUID()
+  const fileName = `${userId}-${uuid}-${validFileName.trim()}`
   const filePath = path.join(IMAGES_PATH, fileName)
 
   if (exchangeFile) {
@@ -55,10 +56,6 @@ export async function removeImage(fileName: string, userId: string) {
       message: 'Invalid file name',
     })
   }
-
-  await mkdir(IMAGES_PATH, {
-    recursive: true,
-  })
 
   let size = 0
   try {
