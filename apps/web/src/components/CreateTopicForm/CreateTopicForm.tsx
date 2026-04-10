@@ -50,10 +50,8 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
   const { mutateAsync: createTopic, isPending: isCreatingTopicPending } =
     useMutation(
       trpc.topics.create.mutationOptions({
-        onError: error => {
-          toast.error('Failed to create topic', {
-            description: error.message,
-          })
+        onError: () => {
+          toast.error('Failed to create topic')
         },
         onSuccess: async () => {
           toast.success('Thank you for your topic!')

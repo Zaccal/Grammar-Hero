@@ -196,7 +196,7 @@ export type TopicsGroupByOutputType = {
   title: string
   shortDescription: string
   description: string
-  durationMax: Date
+  durationMax: Date | null
   durationMin: Date
   image: string | null
   content: string
@@ -232,7 +232,7 @@ export type TopicsWhereInput = {
   title?: Prisma.StringFilter<"Topics"> | string
   shortDescription?: Prisma.StringFilter<"Topics"> | string
   description?: Prisma.StringFilter<"Topics"> | string
-  durationMax?: Prisma.DateTimeFilter<"Topics"> | Date | string
+  durationMax?: Prisma.DateTimeNullableFilter<"Topics"> | Date | string | null
   durationMin?: Prisma.DateTimeFilter<"Topics"> | Date | string
   image?: Prisma.StringNullableFilter<"Topics"> | string | null
   content?: Prisma.StringFilter<"Topics"> | string
@@ -251,7 +251,7 @@ export type TopicsOrderByWithRelationInput = {
   title?: Prisma.SortOrder
   shortDescription?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  durationMax?: Prisma.SortOrder
+  durationMax?: Prisma.SortOrderInput | Prisma.SortOrder
   durationMin?: Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   content?: Prisma.SortOrder
@@ -273,7 +273,7 @@ export type TopicsWhereUniqueInput = Prisma.AtLeast<{
   title?: Prisma.StringFilter<"Topics"> | string
   shortDescription?: Prisma.StringFilter<"Topics"> | string
   description?: Prisma.StringFilter<"Topics"> | string
-  durationMax?: Prisma.DateTimeFilter<"Topics"> | Date | string
+  durationMax?: Prisma.DateTimeNullableFilter<"Topics"> | Date | string | null
   durationMin?: Prisma.DateTimeFilter<"Topics"> | Date | string
   image?: Prisma.StringNullableFilter<"Topics"> | string | null
   content?: Prisma.StringFilter<"Topics"> | string
@@ -292,7 +292,7 @@ export type TopicsOrderByWithAggregationInput = {
   title?: Prisma.SortOrder
   shortDescription?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  durationMax?: Prisma.SortOrder
+  durationMax?: Prisma.SortOrderInput | Prisma.SortOrder
   durationMin?: Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   content?: Prisma.SortOrder
@@ -313,7 +313,7 @@ export type TopicsScalarWhereWithAggregatesInput = {
   title?: Prisma.StringWithAggregatesFilter<"Topics"> | string
   shortDescription?: Prisma.StringWithAggregatesFilter<"Topics"> | string
   description?: Prisma.StringWithAggregatesFilter<"Topics"> | string
-  durationMax?: Prisma.DateTimeWithAggregatesFilter<"Topics"> | Date | string
+  durationMax?: Prisma.DateTimeNullableWithAggregatesFilter<"Topics"> | Date | string | null
   durationMin?: Prisma.DateTimeWithAggregatesFilter<"Topics"> | Date | string
   image?: Prisma.StringNullableWithAggregatesFilter<"Topics"> | string | null
   content?: Prisma.StringWithAggregatesFilter<"Topics"> | string
@@ -328,7 +328,7 @@ export type TopicsCreateInput = {
   title: string
   shortDescription: string
   description: string
-  durationMax: Date | string
+  durationMax?: Date | string | null
   durationMin: Date | string
   image?: string | null
   content: string
@@ -346,7 +346,7 @@ export type TopicsUncheckedCreateInput = {
   title: string
   shortDescription: string
   description: string
-  durationMax: Date | string
+  durationMax?: Date | string | null
   durationMin: Date | string
   image?: string | null
   content: string
@@ -364,7 +364,7 @@ export type TopicsUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMax?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -382,7 +382,7 @@ export type TopicsUncheckedUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMax?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -400,7 +400,7 @@ export type TopicsCreateManyInput = {
   title: string
   shortDescription: string
   description: string
-  durationMax: Date | string
+  durationMax?: Date | string | null
   durationMin: Date | string
   image?: string | null
   content: string
@@ -415,7 +415,7 @@ export type TopicsUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMax?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -429,7 +429,7 @@ export type TopicsUncheckedUpdateManyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMax?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -592,7 +592,7 @@ export type TopicsCreateWithoutUserInput = {
   title: string
   shortDescription: string
   description: string
-  durationMax: Date | string
+  durationMax?: Date | string | null
   durationMin: Date | string
   image?: string | null
   content: string
@@ -609,7 +609,7 @@ export type TopicsUncheckedCreateWithoutUserInput = {
   title: string
   shortDescription: string
   description: string
-  durationMax: Date | string
+  durationMax?: Date | string | null
   durationMin: Date | string
   image?: string | null
   content: string
@@ -655,7 +655,7 @@ export type TopicsScalarWhereInput = {
   title?: Prisma.StringFilter<"Topics"> | string
   shortDescription?: Prisma.StringFilter<"Topics"> | string
   description?: Prisma.StringFilter<"Topics"> | string
-  durationMax?: Prisma.DateTimeFilter<"Topics"> | Date | string
+  durationMax?: Prisma.DateTimeNullableFilter<"Topics"> | Date | string | null
   durationMin?: Prisma.DateTimeFilter<"Topics"> | Date | string
   image?: Prisma.StringNullableFilter<"Topics"> | string | null
   content?: Prisma.StringFilter<"Topics"> | string
@@ -670,7 +670,7 @@ export type TopicsCreateWithoutLikesInput = {
   title: string
   shortDescription: string
   description: string
-  durationMax: Date | string
+  durationMax?: Date | string | null
   durationMin: Date | string
   image?: string | null
   content: string
@@ -687,7 +687,7 @@ export type TopicsUncheckedCreateWithoutLikesInput = {
   title: string
   shortDescription: string
   description: string
-  durationMax: Date | string
+  durationMax?: Date | string | null
   durationMin: Date | string
   image?: string | null
   content: string
@@ -720,7 +720,7 @@ export type TopicsUpdateWithoutLikesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMax?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -737,7 +737,7 @@ export type TopicsUncheckedUpdateWithoutLikesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMax?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -754,7 +754,7 @@ export type TopicsCreateWithoutBookmarkInput = {
   title: string
   shortDescription: string
   description: string
-  durationMax: Date | string
+  durationMax?: Date | string | null
   durationMin: Date | string
   image?: string | null
   content: string
@@ -771,7 +771,7 @@ export type TopicsUncheckedCreateWithoutBookmarkInput = {
   title: string
   shortDescription: string
   description: string
-  durationMax: Date | string
+  durationMax?: Date | string | null
   durationMin: Date | string
   image?: string | null
   content: string
@@ -804,7 +804,7 @@ export type TopicsUpdateWithoutBookmarkInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMax?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -821,7 +821,7 @@ export type TopicsUncheckedUpdateWithoutBookmarkInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMax?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -838,7 +838,7 @@ export type TopicsCreateWithoutExercisesInput = {
   title: string
   shortDescription: string
   description: string
-  durationMax: Date | string
+  durationMax?: Date | string | null
   durationMin: Date | string
   image?: string | null
   content: string
@@ -855,7 +855,7 @@ export type TopicsUncheckedCreateWithoutExercisesInput = {
   title: string
   shortDescription: string
   description: string
-  durationMax: Date | string
+  durationMax?: Date | string | null
   durationMin: Date | string
   image?: string | null
   content: string
@@ -888,7 +888,7 @@ export type TopicsUpdateWithoutExercisesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMax?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -905,7 +905,7 @@ export type TopicsUncheckedUpdateWithoutExercisesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMax?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -922,7 +922,7 @@ export type TopicsCreateManyUserInput = {
   title: string
   shortDescription: string
   description: string
-  durationMax: Date | string
+  durationMax?: Date | string | null
   durationMin: Date | string
   image?: string | null
   content: string
@@ -936,7 +936,7 @@ export type TopicsUpdateWithoutUserInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMax?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -953,7 +953,7 @@ export type TopicsUncheckedUpdateWithoutUserInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMax?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -970,7 +970,7 @@ export type TopicsUncheckedUpdateManyWithoutUserInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMax?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1123,7 +1123,7 @@ export type $TopicsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     title: string
     shortDescription: string
     description: string
-    durationMax: Date
+    durationMax: Date | null
     durationMin: Date
     image: string | null
     content: string

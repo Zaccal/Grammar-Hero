@@ -109,7 +109,6 @@ export async function getById(id: string, userId: string) {
 }
 
 export async function createTopic(data: TopicCreateSchema, userId: string) {
-  // FIXME: if the duration fields is 35+ it breaks (durationMax is missing)
   return await prisma.topics.create({
     data: {
       ...data,
