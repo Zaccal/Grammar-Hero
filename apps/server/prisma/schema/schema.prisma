@@ -24,6 +24,7 @@ model Topics {
   bookmark         Bookmark[]
   likes            Like[]
   user             User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exercises        Exercise[]
 }
 
 model Like {
@@ -50,4 +51,16 @@ enum Level {
   Basic
   Intermediate
   Advanced
+}
+
+model Exercise {
+  id        String   @id @default(cuid()) @map("_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  question  String[]
+  answer    String[]
+  explanation String?
+  hint     String?
+  topicId  String   @map("topic_id")
+  topic    Topics   @relation(fields: [topicId], references: [id], onDelete: Cascade)
 }

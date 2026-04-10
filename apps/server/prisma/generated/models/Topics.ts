@@ -241,6 +241,7 @@ export type TopicsWhereInput = {
   bookmark?: Prisma.BookmarkListRelationFilter
   likes?: Prisma.LikeListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  exercises?: Prisma.ExerciseListRelationFilter
 }
 
 export type TopicsOrderByWithRelationInput = {
@@ -259,6 +260,7 @@ export type TopicsOrderByWithRelationInput = {
   bookmark?: Prisma.BookmarkOrderByRelationAggregateInput
   likes?: Prisma.LikeOrderByRelationAggregateInput
   user?: Prisma.UserOrderByWithRelationInput
+  exercises?: Prisma.ExerciseOrderByRelationAggregateInput
 }
 
 export type TopicsWhereUniqueInput = Prisma.AtLeast<{
@@ -280,6 +282,7 @@ export type TopicsWhereUniqueInput = Prisma.AtLeast<{
   bookmark?: Prisma.BookmarkListRelationFilter
   likes?: Prisma.LikeListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  exercises?: Prisma.ExerciseListRelationFilter
 }, "id">
 
 export type TopicsOrderByWithAggregationInput = {
@@ -333,6 +336,7 @@ export type TopicsCreateInput = {
   bookmark?: Prisma.BookmarkCreateNestedManyWithoutTopicsInput
   likes?: Prisma.LikeCreateNestedManyWithoutTopicInput
   user: Prisma.UserCreateNestedOneWithoutTopicsInput
+  exercises?: Prisma.ExerciseCreateNestedManyWithoutTopicInput
 }
 
 export type TopicsUncheckedCreateInput = {
@@ -350,6 +354,7 @@ export type TopicsUncheckedCreateInput = {
   userId: string
   bookmark?: Prisma.BookmarkUncheckedCreateNestedManyWithoutTopicsInput
   likes?: Prisma.LikeUncheckedCreateNestedManyWithoutTopicInput
+  exercises?: Prisma.ExerciseUncheckedCreateNestedManyWithoutTopicInput
 }
 
 export type TopicsUpdateInput = {
@@ -367,6 +372,7 @@ export type TopicsUpdateInput = {
   bookmark?: Prisma.BookmarkUpdateManyWithoutTopicsNestedInput
   likes?: Prisma.LikeUpdateManyWithoutTopicNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutTopicsNestedInput
+  exercises?: Prisma.ExerciseUpdateManyWithoutTopicNestedInput
 }
 
 export type TopicsUncheckedUpdateInput = {
@@ -384,6 +390,7 @@ export type TopicsUncheckedUpdateInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   bookmark?: Prisma.BookmarkUncheckedUpdateManyWithoutTopicsNestedInput
   likes?: Prisma.LikeUncheckedUpdateManyWithoutTopicNestedInput
+  exercises?: Prisma.ExerciseUncheckedUpdateManyWithoutTopicNestedInput
 }
 
 export type TopicsCreateManyInput = {
@@ -564,6 +571,20 @@ export type TopicsUpdateOneRequiredWithoutBookmarkNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TopicsUpdateToOneWithWhereWithoutBookmarkInput, Prisma.TopicsUpdateWithoutBookmarkInput>, Prisma.TopicsUncheckedUpdateWithoutBookmarkInput>
 }
 
+export type TopicsCreateNestedOneWithoutExercisesInput = {
+  create?: Prisma.XOR<Prisma.TopicsCreateWithoutExercisesInput, Prisma.TopicsUncheckedCreateWithoutExercisesInput>
+  connectOrCreate?: Prisma.TopicsCreateOrConnectWithoutExercisesInput
+  connect?: Prisma.TopicsWhereUniqueInput
+}
+
+export type TopicsUpdateOneRequiredWithoutExercisesNestedInput = {
+  create?: Prisma.XOR<Prisma.TopicsCreateWithoutExercisesInput, Prisma.TopicsUncheckedCreateWithoutExercisesInput>
+  connectOrCreate?: Prisma.TopicsCreateOrConnectWithoutExercisesInput
+  upsert?: Prisma.TopicsUpsertWithoutExercisesInput
+  connect?: Prisma.TopicsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TopicsUpdateToOneWithWhereWithoutExercisesInput, Prisma.TopicsUpdateWithoutExercisesInput>, Prisma.TopicsUncheckedUpdateWithoutExercisesInput>
+}
+
 export type TopicsCreateWithoutUserInput = {
   id?: string
   createdAt?: Date | string
@@ -578,6 +599,7 @@ export type TopicsCreateWithoutUserInput = {
   level: $Enums.Level
   bookmark?: Prisma.BookmarkCreateNestedManyWithoutTopicsInput
   likes?: Prisma.LikeCreateNestedManyWithoutTopicInput
+  exercises?: Prisma.ExerciseCreateNestedManyWithoutTopicInput
 }
 
 export type TopicsUncheckedCreateWithoutUserInput = {
@@ -594,6 +616,7 @@ export type TopicsUncheckedCreateWithoutUserInput = {
   level: $Enums.Level
   bookmark?: Prisma.BookmarkUncheckedCreateNestedManyWithoutTopicsInput
   likes?: Prisma.LikeUncheckedCreateNestedManyWithoutTopicInput
+  exercises?: Prisma.ExerciseUncheckedCreateNestedManyWithoutTopicInput
 }
 
 export type TopicsCreateOrConnectWithoutUserInput = {
@@ -654,6 +677,7 @@ export type TopicsCreateWithoutLikesInput = {
   level: $Enums.Level
   bookmark?: Prisma.BookmarkCreateNestedManyWithoutTopicsInput
   user: Prisma.UserCreateNestedOneWithoutTopicsInput
+  exercises?: Prisma.ExerciseCreateNestedManyWithoutTopicInput
 }
 
 export type TopicsUncheckedCreateWithoutLikesInput = {
@@ -670,6 +694,7 @@ export type TopicsUncheckedCreateWithoutLikesInput = {
   level: $Enums.Level
   userId: string
   bookmark?: Prisma.BookmarkUncheckedCreateNestedManyWithoutTopicsInput
+  exercises?: Prisma.ExerciseUncheckedCreateNestedManyWithoutTopicInput
 }
 
 export type TopicsCreateOrConnectWithoutLikesInput = {
@@ -702,6 +727,7 @@ export type TopicsUpdateWithoutLikesInput = {
   level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
   bookmark?: Prisma.BookmarkUpdateManyWithoutTopicsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutTopicsNestedInput
+  exercises?: Prisma.ExerciseUpdateManyWithoutTopicNestedInput
 }
 
 export type TopicsUncheckedUpdateWithoutLikesInput = {
@@ -718,6 +744,7 @@ export type TopicsUncheckedUpdateWithoutLikesInput = {
   level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   bookmark?: Prisma.BookmarkUncheckedUpdateManyWithoutTopicsNestedInput
+  exercises?: Prisma.ExerciseUncheckedUpdateManyWithoutTopicNestedInput
 }
 
 export type TopicsCreateWithoutBookmarkInput = {
@@ -734,6 +761,7 @@ export type TopicsCreateWithoutBookmarkInput = {
   level: $Enums.Level
   likes?: Prisma.LikeCreateNestedManyWithoutTopicInput
   user: Prisma.UserCreateNestedOneWithoutTopicsInput
+  exercises?: Prisma.ExerciseCreateNestedManyWithoutTopicInput
 }
 
 export type TopicsUncheckedCreateWithoutBookmarkInput = {
@@ -750,6 +778,7 @@ export type TopicsUncheckedCreateWithoutBookmarkInput = {
   level: $Enums.Level
   userId: string
   likes?: Prisma.LikeUncheckedCreateNestedManyWithoutTopicInput
+  exercises?: Prisma.ExerciseUncheckedCreateNestedManyWithoutTopicInput
 }
 
 export type TopicsCreateOrConnectWithoutBookmarkInput = {
@@ -782,6 +811,7 @@ export type TopicsUpdateWithoutBookmarkInput = {
   level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
   likes?: Prisma.LikeUpdateManyWithoutTopicNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutTopicsNestedInput
+  exercises?: Prisma.ExerciseUpdateManyWithoutTopicNestedInput
 }
 
 export type TopicsUncheckedUpdateWithoutBookmarkInput = {
@@ -797,6 +827,91 @@ export type TopicsUncheckedUpdateWithoutBookmarkInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  likes?: Prisma.LikeUncheckedUpdateManyWithoutTopicNestedInput
+  exercises?: Prisma.ExerciseUncheckedUpdateManyWithoutTopicNestedInput
+}
+
+export type TopicsCreateWithoutExercisesInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  title: string
+  shortDescription: string
+  description: string
+  durationMax: Date | string
+  durationMin: Date | string
+  image?: string | null
+  content: string
+  level: $Enums.Level
+  bookmark?: Prisma.BookmarkCreateNestedManyWithoutTopicsInput
+  likes?: Prisma.LikeCreateNestedManyWithoutTopicInput
+  user: Prisma.UserCreateNestedOneWithoutTopicsInput
+}
+
+export type TopicsUncheckedCreateWithoutExercisesInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  title: string
+  shortDescription: string
+  description: string
+  durationMax: Date | string
+  durationMin: Date | string
+  image?: string | null
+  content: string
+  level: $Enums.Level
+  userId: string
+  bookmark?: Prisma.BookmarkUncheckedCreateNestedManyWithoutTopicsInput
+  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutTopicInput
+}
+
+export type TopicsCreateOrConnectWithoutExercisesInput = {
+  where: Prisma.TopicsWhereUniqueInput
+  create: Prisma.XOR<Prisma.TopicsCreateWithoutExercisesInput, Prisma.TopicsUncheckedCreateWithoutExercisesInput>
+}
+
+export type TopicsUpsertWithoutExercisesInput = {
+  update: Prisma.XOR<Prisma.TopicsUpdateWithoutExercisesInput, Prisma.TopicsUncheckedUpdateWithoutExercisesInput>
+  create: Prisma.XOR<Prisma.TopicsCreateWithoutExercisesInput, Prisma.TopicsUncheckedCreateWithoutExercisesInput>
+  where?: Prisma.TopicsWhereInput
+}
+
+export type TopicsUpdateToOneWithWhereWithoutExercisesInput = {
+  where?: Prisma.TopicsWhereInput
+  data: Prisma.XOR<Prisma.TopicsUpdateWithoutExercisesInput, Prisma.TopicsUncheckedUpdateWithoutExercisesInput>
+}
+
+export type TopicsUpdateWithoutExercisesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
+  bookmark?: Prisma.BookmarkUpdateManyWithoutTopicsNestedInput
+  likes?: Prisma.LikeUpdateManyWithoutTopicNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutTopicsNestedInput
+}
+
+export type TopicsUncheckedUpdateWithoutExercisesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  durationMax?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  bookmark?: Prisma.BookmarkUncheckedUpdateManyWithoutTopicsNestedInput
   likes?: Prisma.LikeUncheckedUpdateManyWithoutTopicNestedInput
 }
 
@@ -828,6 +943,7 @@ export type TopicsUpdateWithoutUserInput = {
   level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
   bookmark?: Prisma.BookmarkUpdateManyWithoutTopicsNestedInput
   likes?: Prisma.LikeUpdateManyWithoutTopicNestedInput
+  exercises?: Prisma.ExerciseUpdateManyWithoutTopicNestedInput
 }
 
 export type TopicsUncheckedUpdateWithoutUserInput = {
@@ -844,6 +960,7 @@ export type TopicsUncheckedUpdateWithoutUserInput = {
   level?: Prisma.EnumLevelFieldUpdateOperationsInput | $Enums.Level
   bookmark?: Prisma.BookmarkUncheckedUpdateManyWithoutTopicsNestedInput
   likes?: Prisma.LikeUncheckedUpdateManyWithoutTopicNestedInput
+  exercises?: Prisma.ExerciseUncheckedUpdateManyWithoutTopicNestedInput
 }
 
 export type TopicsUncheckedUpdateManyWithoutUserInput = {
@@ -868,11 +985,13 @@ export type TopicsUncheckedUpdateManyWithoutUserInput = {
 export type TopicsCountOutputType = {
   bookmark: number
   likes: number
+  exercises: number
 }
 
 export type TopicsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bookmark?: boolean | TopicsCountOutputTypeCountBookmarkArgs
   likes?: boolean | TopicsCountOutputTypeCountLikesArgs
+  exercises?: boolean | TopicsCountOutputTypeCountExercisesArgs
 }
 
 /**
@@ -899,6 +1018,13 @@ export type TopicsCountOutputTypeCountLikesArgs<ExtArgs extends runtime.Types.Ex
   where?: Prisma.LikeWhereInput
 }
 
+/**
+ * TopicsCountOutputType without action
+ */
+export type TopicsCountOutputTypeCountExercisesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ExerciseWhereInput
+}
+
 
 export type TopicsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -916,6 +1042,7 @@ export type TopicsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   bookmark?: boolean | Prisma.Topics$bookmarkArgs<ExtArgs>
   likes?: boolean | Prisma.Topics$likesArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  exercises?: boolean | Prisma.Topics$exercisesArgs<ExtArgs>
   _count?: boolean | Prisma.TopicsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["topics"]>
 
@@ -971,6 +1098,7 @@ export type TopicsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   bookmark?: boolean | Prisma.Topics$bookmarkArgs<ExtArgs>
   likes?: boolean | Prisma.Topics$likesArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  exercises?: boolean | Prisma.Topics$exercisesArgs<ExtArgs>
   _count?: boolean | Prisma.TopicsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TopicsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -986,6 +1114,7 @@ export type $TopicsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     bookmark: Prisma.$BookmarkPayload<ExtArgs>[]
     likes: Prisma.$LikePayload<ExtArgs>[]
     user: Prisma.$UserPayload<ExtArgs>
+    exercises: Prisma.$ExercisePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1397,6 +1526,7 @@ export interface Prisma__TopicsClient<T, Null = never, ExtArgs extends runtime.T
   bookmark<T extends Prisma.Topics$bookmarkArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Topics$bookmarkArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   likes<T extends Prisma.Topics$likesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Topics$likesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  exercises<T extends Prisma.Topics$exercisesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Topics$exercisesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ExercisePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1884,6 +2014,30 @@ export type Topics$likesArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.LikeScalarFieldEnum | Prisma.LikeScalarFieldEnum[]
+}
+
+/**
+ * Topics.exercises
+ */
+export type Topics$exercisesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Exercise
+   */
+  select?: Prisma.ExerciseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Exercise
+   */
+  omit?: Prisma.ExerciseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExerciseInclude<ExtArgs> | null
+  where?: Prisma.ExerciseWhereInput
+  orderBy?: Prisma.ExerciseOrderByWithRelationInput | Prisma.ExerciseOrderByWithRelationInput[]
+  cursor?: Prisma.ExerciseWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ExerciseScalarFieldEnum | Prisma.ExerciseScalarFieldEnum[]
 }
 
 /**

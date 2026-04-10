@@ -52,3 +52,8 @@ export type Like = Prisma.LikeModel
  * 
  */
 export type Bookmark = Prisma.BookmarkModel
+/**
+ * Model Exercise
+ * 
+ */
+export type Exercise = Prisma.ExerciseModel
