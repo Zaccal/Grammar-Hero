@@ -33,7 +33,7 @@ export function EditTopic({ children, topic }: EditTopicProps) {
     level: topic.level,
     description: topic.description,
     duration:
-      topic.durationMax.getUTCMinutes() >= 35
+      topic.durationMax == null
         ? '35+ min'
         : `${topic.durationMin.getUTCMinutes()}-${topic.durationMax.getUTCMinutes()} min`,
   }

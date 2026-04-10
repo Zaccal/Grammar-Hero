@@ -11,8 +11,7 @@ export function useFileUploadMutation(options?: UseMutationOptions) {
       const formData = new FormData()
       if (data instanceof File) {
         formData.append('file', data)
-      }
- else {
+      } else {
         formData.append('file', data.file)
         if (data.exchangeFile) {
           formData.append('exchangeFile', data.exchangeFile)
