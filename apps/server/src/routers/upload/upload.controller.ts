@@ -1,11 +1,12 @@
 import type { Context } from 'hono'
 import { Buffer } from 'node:buffer'
 import { promises as fs } from 'node:fs'
-import { mkdir, stat, unlink } from 'node:fs/promises'
+import { stat, unlink } from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 import { TRPCError } from '@trpc/server'
 import { getNormonalizeFile } from '@/utils/getNormonalizeFile'
+import { ca } from 'zod/v4/locales'
 
 export const IMAGES_PATH = path.join(process.cwd(), './src/images')
 
@@ -35,16 +36,30 @@ export async function uploadImage(
   return c.json({ url: `upload/images/${fileName}` }, 201)
 }
 
-export async function getImage(fileName: string) {
+export async function getImage(fileName?: string) {
+  if (!fileName) {
+    return new Response(null, { status: 404 })
+  }
+
   const filePath = path.join(process.cwd(), './src/images', fileName)
 
-  const buffer = await fs.readFile(filePath)
+  try {
+    const buffer = await fs.readFile(filePath)
 
-  return new Response(new Uint8Array(buffer), {
-    headers: {
-      'Content-Type': 'image/png',
-    },
-  })
+    return new Response(new Uint8Array(buffer), {
+      headers: {
+        'Content-Type': 'image/png',
+      },
+    })
+  } catch (err: any) {
+    if (err.code === 'ENOENT') {
+      return new Response(null, { status: 404 })
+    }
+    throw new TRPCError({
+      code: 'INTERNAL_SERVER_ERROR',
+      message: 'Failed to read image',
+    })
+  }
 }
 
 export async function removeImage(fileName: string, userId: string) {
