@@ -1,13 +1,12 @@
 import { UPLOAD_FILE_SIZE_MB } from '@server/routers/upload/constants'
-import { useMutationState } from '@tanstack/react-query'
 import {
-  USE_FILE_UPLOAD_MUTATION_KEY,
   useDidUpdate,
   useFileUpload,
 } from '@/hooks/index'
 import FileUpload from '../ui/FileUpload'
-import { CreateTopicFormContext } from './CreateTopicFormContext'
 import { fileUploadStore } from './store'
+import { useFormContext } from 'react-hook-form'
+import type { CreateTopicFormSchema } from '@/schemas/createTopicForm.schema'
 
 interface CreateTopicFormFileUploadProps {
   className?: string
@@ -16,14 +15,8 @@ interface CreateTopicFormFileUploadProps {
 export function CreateTopicFormFileUpload({
   className,
 }: CreateTopicFormFileUploadProps) {
-  const isError =
-    useMutationState({
-      filters: {
-        mutationKey: [USE_FILE_UPLOAD_MUTATION_KEY],
-        status: 'error',
-      },
-    }).length > 0
-  const isPending = CreateTopicFormContext.useSelect(state => state.isPending)
+  const form = useFormContext<CreateTopicFormSchema>()
+  const isPending = form.formState.isSubmitting
 
   const [fileUploadState, fileUploadActions] = useFileUpload({
     accept: 'image/jpeg,image/png,image/jpg',
@@ -47,9 +40,6 @@ export function CreateTopicFormFileUpload({
 
   return (
     <>
-      {isError && (
-        <p className="text-destructive mb-4">Failed to upload file try again</p>
-      )}
       <div className={isPending ? 'disabled' : ''}>
         <FileUpload
           maxSizeMb={UPLOAD_FILE_SIZE_MB}

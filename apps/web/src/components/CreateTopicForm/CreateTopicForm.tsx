@@ -31,7 +31,6 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
   const {
     mutateAsync: uploadFile,
     isError: isFileUploadError,
-    isPending: isFileUploadPending,
   } = useFileUploadMutation()
 
   const form = useForm<CreateTopicFormSchema>({
@@ -47,7 +46,7 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
     },
   })
 
-  const { mutateAsync: createTopic, isPending: isCreatingTopicPending } =
+  const { mutateAsync: createTopic } =
     useMutation(
       trpc.topics.create.mutationOptions({
         onError: () => {
@@ -84,7 +83,7 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
     await createTopic({
       ...data,
       durationMin: durationValues[data.duration]!.min,
-      durationMax: durationValues[data.duration]!.max,
+      durationMax: durationValues[data.duration].max,
       image: image ?? '/default.png',
     })
   }
@@ -92,9 +91,7 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
   return (
     <CreateTopicFormContext.Provider
       initialValue={{
-        form,
         markdownEditorRef,
-        isPending: isCreatingTopicPending || isFileUploadPending,
       }}
     >
       <Form {...form}>

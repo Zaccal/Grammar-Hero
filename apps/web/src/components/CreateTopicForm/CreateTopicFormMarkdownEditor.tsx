@@ -11,10 +11,11 @@ import {
   thematicBreakPlugin,
   toolbarPlugin,
 } from '@mdxeditor/editor'
-import { Controller } from 'react-hook-form'
+import { Controller, useFormContext } from 'react-hook-form'
 import { FormControl, FormItem } from '../ui/form'
 import { CreateTopicFormContext } from './CreateTopicFormContext'
 import '@mdxeditor/editor/style.css'
+import type { CreateTopicFormSchema } from '@/schemas/createTopicForm.schema'
 
 interface CreateTopicFormMarkdownEditorProps {
   className?: string
@@ -23,11 +24,11 @@ interface CreateTopicFormMarkdownEditorProps {
 export function CreateTopicFormMarkdownEditor({
   className,
 }: CreateTopicFormMarkdownEditorProps) {
-  const form = CreateTopicFormContext.useSelect(state => state.form)
+  const form = useFormContext<CreateTopicFormSchema>()
   const editorRef = CreateTopicFormContext.useSelect(
     state => state.markdownEditorRef
   )
-  const isPending = CreateTopicFormContext.useSelect(state => state.isPending)
+  const isPending = form.formState.isSubmitting
 
   return (
     <div className={isPending ? 'disabled' : ''}>

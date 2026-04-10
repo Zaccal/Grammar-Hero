@@ -36,7 +36,6 @@ function RouteComponent() {
       <CreateTopicForm.Publish
         className="w-[80%] sm:w-auto fixed bottom-4 right-1/2 translate-x-1/2 sm:translate-x-0 sm:right-4  "
         size="lg"
-        type="button"
       >
         Publish
       </CreateTopicForm.Publish>

@@ -1,10 +1,11 @@
 import { FormControl, FormField, FormItem, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
-import { CreateTopicFormContext } from './CreateTopicFormContext'
+import type { CreateTopicFormSchema } from '@/schemas/createTopicForm.schema'
+import { useFormContext } from 'react-hook-form'
 
 export function CreateTopicFormTitle() {
-  const form = CreateTopicFormContext.useSelect(state => state.form)
-  const isPending = CreateTopicFormContext.useSelect(state => state.isPending)
+  const form = useFormContext<CreateTopicFormSchema>()
+  const isPending = form.formState.isSubmitting
 
   return (
     <>

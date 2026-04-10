@@ -1,6 +1,7 @@
 import type { UseMutationOptions } from '@tanstack/react-query'
 import type { FileUploadMutation } from '@/types/fileupload.types'
 import { useMutation } from '@tanstack/react-query'
+import { toast } from 'sonner'
 
 export const USE_FILE_UPLOAD_MUTATION_KEY = 'use-file-upload-mutation'
 
@@ -30,6 +31,8 @@ export function useFileUploadMutation(options?: UseMutationOptions) {
       return response.json() as Promise<{ url: string }>
     },
     ...options?.onSuccess,
-    ...options?.onError,
+    onError: () => {
+      toast.error("Failed to upload file")
+    }
   })
 }

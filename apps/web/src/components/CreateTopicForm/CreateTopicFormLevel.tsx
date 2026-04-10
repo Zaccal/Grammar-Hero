@@ -6,11 +6,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/Select'
-import { CreateTopicFormContext } from './CreateTopicFormContext'
+import type { CreateTopicFormSchema } from '@/schemas/createTopicForm.schema'
+import { useFormContext } from 'react-hook-form'
 
 export function CreateTopicFormLevel() {
-  const form = CreateTopicFormContext.useSelect(state => state.form)
-  const isPending = CreateTopicFormContext.useSelect(state => state.isPending)
+  const form = useFormContext<CreateTopicFormSchema>()
+  const isPending = form.formState.isSubmitting
 
   return (
     <>

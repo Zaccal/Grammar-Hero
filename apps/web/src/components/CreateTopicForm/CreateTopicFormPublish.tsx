@@ -1,3 +1,4 @@
+import type { CreateTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import type { ButtonProps } from '../ui/button'
 import { CREATE_FORM_ID } from '@/lib/constants'
 import {
@@ -11,11 +12,12 @@ import {
   AlertDialogTrigger,
 } from '../ui/alert-dialog'
 import { Button } from '../ui/button'
-import { CreateTopicFormContext } from './CreateTopicFormContext'
 import { alertDialogCreateTopicStore } from './store'
+import { useFormContext } from 'react-hook-form'
 
 export function CreateTopicFormPublish({ children, ...props }: ButtonProps) {
-  const isPending = CreateTopicFormContext.useSelect(state => state.isPending)
+  const form = useFormContext<CreateTopicFormSchema>()
+  const isPending = form.formState.isSubmitting
 
   // I need the controlled state because I want to close the alertDialog when the loadihng state is finished
   const open = alertDialogCreateTopicStore.use(state => state.open)
