@@ -6,7 +6,6 @@ import path from 'node:path'
 import process from 'node:process'
 import { TRPCError } from '@trpc/server'
 import { getNormonalizeFile } from '@/utils/getNormonalizeFile'
-import { ca } from 'zod/v4/locales'
 
 export const IMAGES_PATH = path.join(process.cwd(), './src/images')
 
@@ -51,7 +50,8 @@ export async function getImage(fileName?: string) {
         'Content-Type': 'image/png',
       },
     })
-  } catch (err: any) {
+  }
+ catch (err: any) {
     if (err.code === 'ENOENT') {
       return new Response(null, { status: 404 })
     }

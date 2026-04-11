@@ -28,10 +28,8 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
   const file = fileUploadStore.use(state => state.file)
   const markdownEditorRef = useRef<MDXEditorMethods>(null)
 
-  const {
-    mutateAsync: uploadFile,
-    isError: isFileUploadError,
-  } = useFileUploadMutation()
+  const { mutateAsync: uploadFile, isError: isFileUploadError } =
+    useFileUploadMutation()
 
   const form = useForm<CreateTopicFormSchema>({
     resolver: zodResolver(createTopicFormSchema),
@@ -43,30 +41,71 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
       level: undefined,
       description: '',
       duration: '',
+      exercises: [
+        {
+          id: '1',
+          question: 'What is the correct translation of ""?',
+          answers: [
+            {
+              id: '1',
+              text: 'something',
+              isCorrect: true,
+            },
+            {
+              id: '2',
+              text: 'something',
+              isCorrect: false,
+            },
+          ],
+          explanation:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          hint: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          isMultipleChoice: false,
+        },
+        {
+          id: '2',
+          question: 'Why do we use this form?',
+          answers: [
+            {
+              id: '1',
+              text: 'something',
+              isCorrect: true,
+            },
+            {
+              id: '2',
+              text: 'something',
+              isCorrect: false,
+            },
+          ],
+          explanation:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          hint: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          isMultipleChoice: true,
+        },
+      ],
     },
   })
 
-  const { mutateAsync: createTopic } =
-    useMutation(
-      trpc.topics.create.mutationOptions({
-        onError: () => {
-          toast.error('Failed to create topic')
-        },
-        onSuccess: async () => {
-          toast.success('Thank you for your topic!')
-          markdownEditorRef.current?.setMarkdown('')
-          fileUploadStore.set({ file: null })
-          form.reset()
+  const { mutateAsync: createTopic } = useMutation(
+    trpc.topics.create.mutationOptions({
+      onError: () => {
+        toast.error('Failed to create topic')
+      },
+      onSuccess: async () => {
+        toast.success('Thank you for your topic!')
+        markdownEditorRef.current?.setMarkdown('')
+        fileUploadStore.set({ file: null })
+        form.reset()
 
-          await invalidateProfileTopics()
-        },
-        onSettled: () => {
-          alertDialogCreateTopicStore.set({
-            open: false,
-          })
-        },
-      })
-    )
+        await invalidateProfileTopics()
+      },
+      onSettled: () => {
+        alertDialogCreateTopicStore.set({
+          open: false,
+        })
+      },
+    })
+  )
 
   async function uploadImageHandler() {
     if (!file) {

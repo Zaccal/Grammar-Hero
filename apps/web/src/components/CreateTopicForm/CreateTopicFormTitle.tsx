@@ -1,7 +1,7 @@
-import { FormControl, FormField, FormItem, FormMessage } from '../ui/form'
-import { Input } from '../ui/input'
 import type { CreateTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import { useFormContext } from 'react-hook-form'
+import { FormControl, FormField, FormItem, FormMessage } from '../ui/form'
+import { Input } from '../ui/input'
 
 export function CreateTopicFormTitle() {
   const form = useFormContext<CreateTopicFormSchema>()

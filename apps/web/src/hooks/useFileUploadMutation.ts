@@ -32,7 +32,7 @@ export function useFileUploadMutation(options?: UseMutationOptions) {
     },
     ...options?.onSuccess,
     onError: () => {
-      toast.error("Failed to upload file")
-    }
+      toast.error('Failed to upload file')
+    },
   })
 }

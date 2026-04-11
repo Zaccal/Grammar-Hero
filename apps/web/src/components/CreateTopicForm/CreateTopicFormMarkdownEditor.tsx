@@ -1,3 +1,4 @@
+import type { CreateTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import {
   headingsPlugin,
   KitchenSinkToolbar,
@@ -15,7 +16,6 @@ import { Controller, useFormContext } from 'react-hook-form'
 import { FormControl, FormItem } from '../ui/form'
 import { CreateTopicFormContext } from './CreateTopicFormContext'
 import '@mdxeditor/editor/style.css'
-import type { CreateTopicFormSchema } from '@/schemas/createTopicForm.schema'
 
 interface CreateTopicFormMarkdownEditorProps {
   className?: string

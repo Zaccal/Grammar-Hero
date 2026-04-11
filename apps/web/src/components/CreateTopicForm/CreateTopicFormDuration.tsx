@@ -1,3 +1,5 @@
+import type { CreateTopicFormSchema } from '@/schemas/createTopicForm.schema'
+import { useFormContext } from 'react-hook-form'
 import { durationOptions } from '@/schemas/filter.schema'
 import { FormControl, FormField, FormItem, FormMessage } from '../ui/form'
 import {
@@ -7,8 +9,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/Select'
-import type { CreateTopicFormSchema } from '@/schemas/createTopicForm.schema'
-import { useFormContext } from 'react-hook-form'
 
 export function CreateTopicFormDuration() {
   const form = useFormContext<CreateTopicFormSchema>()

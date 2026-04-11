@@ -1,5 +1,24 @@
 import { z } from 'zod'
 
+export const answerSchema = z.object({
+  id: z.string(),
+  text: z.string(),
+  isCorrect: z.boolean(),
+})
+
+export type AnswerSchema = z.infer<typeof answerSchema>
+
+export const exerciseSchema = z.object({
+  id: z.string(),
+  question: z.string(),
+  answers: z.array(answerSchema),
+  explanation: z.string().optional(),
+  hint: z.string().optional(),
+  isMultipleChoice: z.boolean().optional(),
+})
+
+export type ExerciseSchema = z.infer<typeof exerciseSchema>
+
 export const createTopicFormSchema = z.object({
   title: z.string().min(3),
   description: z.string().min(100),
@@ -8,6 +27,7 @@ export const createTopicFormSchema = z.object({
   duration: z.string(),
   level: z.enum(['Advanced', 'Basic', 'Intermediate']),
   image: z.union([z.string(), z.instanceof(File)]),
+  exercises: z.array(exerciseSchema),
 })
 
 export type CreateTopicFormSchema = z.infer<typeof createTopicFormSchema>

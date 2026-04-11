@@ -57,10 +57,21 @@ model Exercise {
   id        String   @id @default(cuid()) @map("_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
-  question  String[]
-  answer    String[]
+  question  String
+  answers   Answer[]
   explanation String?
+  isMultipleChoice Boolean @default(false) @map("is_multiple_choice")
   hint     String?
   topicId  String   @map("topic_id")
   topic    Topics   @relation(fields: [topicId], references: [id], onDelete: Cascade)
+}
+
+model Answer {
+  id        String   @id @default(cuid()) @map("_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  text      String
+  isCorrect Boolean  @default(false) @map("is_correct")
+  exercise  Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  exerciseId String   @map("exercise_id")
 }

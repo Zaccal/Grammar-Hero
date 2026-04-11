@@ -1,3 +1,5 @@
+import type { CreateTopicFormSchema } from '@/schemas/createTopicForm.schema'
+import { useFormContext } from 'react-hook-form'
 import { FormControl, FormField, FormItem, FormMessage } from '../ui/form'
 import {
   Select,
@@ -6,8 +8,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/Select'
-import type { CreateTopicFormSchema } from '@/schemas/createTopicForm.schema'
-import { useFormContext } from 'react-hook-form'
 
 export function CreateTopicFormLevel() {
   const form = useFormContext<CreateTopicFormSchema>()

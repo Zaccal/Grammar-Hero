@@ -57,3 +57,8 @@ export type Bookmark = Prisma.BookmarkModel
  * 
  */
 export type Exercise = Prisma.ExerciseModel
+/**
+ * Model Answer
+ * 
+ */
+export type Answer = Prisma.AnswerModel

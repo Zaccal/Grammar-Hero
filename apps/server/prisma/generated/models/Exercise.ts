@@ -28,7 +28,9 @@ export type ExerciseMinAggregateOutputType = {
   id: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  question: string | null
   explanation: string | null
+  isMultipleChoice: boolean | null
   hint: string | null
   topicId: string | null
 }
@@ -37,7 +39,9 @@ export type ExerciseMaxAggregateOutputType = {
   id: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  question: string | null
   explanation: string | null
+  isMultipleChoice: boolean | null
   hint: string | null
   topicId: string | null
 }
@@ -47,8 +51,8 @@ export type ExerciseCountAggregateOutputType = {
   createdAt: number
   updatedAt: number
   question: number
-  answer: number
   explanation: number
+  isMultipleChoice: number
   hint: number
   topicId: number
   _all: number
@@ -59,7 +63,9 @@ export type ExerciseMinAggregateInputType = {
   id?: true
   createdAt?: true
   updatedAt?: true
+  question?: true
   explanation?: true
+  isMultipleChoice?: true
   hint?: true
   topicId?: true
 }
@@ -68,7 +74,9 @@ export type ExerciseMaxAggregateInputType = {
   id?: true
   createdAt?: true
   updatedAt?: true
+  question?: true
   explanation?: true
+  isMultipleChoice?: true
   hint?: true
   topicId?: true
 }
@@ -78,8 +86,8 @@ export type ExerciseCountAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   question?: true
-  answer?: true
   explanation?: true
+  isMultipleChoice?: true
   hint?: true
   topicId?: true
   _all?: true
@@ -161,9 +169,9 @@ export type ExerciseGroupByOutputType = {
   id: string
   createdAt: Date
   updatedAt: Date
-  question: string[]
-  answer: string[]
+  question: string
   explanation: string | null
+  isMultipleChoice: boolean
   hint: string | null
   topicId: string
   _count: ExerciseCountAggregateOutputType | null
@@ -193,11 +201,12 @@ export type ExerciseWhereInput = {
   id?: Prisma.StringFilter<"Exercise"> | string
   createdAt?: Prisma.DateTimeFilter<"Exercise"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Exercise"> | Date | string
-  question?: Prisma.StringNullableListFilter<"Exercise">
-  answer?: Prisma.StringNullableListFilter<"Exercise">
+  question?: Prisma.StringFilter<"Exercise"> | string
   explanation?: Prisma.StringNullableFilter<"Exercise"> | string | null
+  isMultipleChoice?: Prisma.BoolFilter<"Exercise"> | boolean
   hint?: Prisma.StringNullableFilter<"Exercise"> | string | null
   topicId?: Prisma.StringFilter<"Exercise"> | string
+  answers?: Prisma.AnswerListRelationFilter
   topic?: Prisma.XOR<Prisma.TopicsScalarRelationFilter, Prisma.TopicsWhereInput>
 }
 
@@ -206,10 +215,11 @@ export type ExerciseOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   question?: Prisma.SortOrder
-  answer?: Prisma.SortOrder
   explanation?: Prisma.SortOrderInput | Prisma.SortOrder
+  isMultipleChoice?: Prisma.SortOrder
   hint?: Prisma.SortOrderInput | Prisma.SortOrder
   topicId?: Prisma.SortOrder
+  answers?: Prisma.AnswerOrderByRelationAggregateInput
   topic?: Prisma.TopicsOrderByWithRelationInput
 }
 
@@ -220,11 +230,12 @@ export type ExerciseWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ExerciseWhereInput | Prisma.ExerciseWhereInput[]
   createdAt?: Prisma.DateTimeFilter<"Exercise"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Exercise"> | Date | string
-  question?: Prisma.StringNullableListFilter<"Exercise">
-  answer?: Prisma.StringNullableListFilter<"Exercise">
+  question?: Prisma.StringFilter<"Exercise"> | string
   explanation?: Prisma.StringNullableFilter<"Exercise"> | string | null
+  isMultipleChoice?: Prisma.BoolFilter<"Exercise"> | boolean
   hint?: Prisma.StringNullableFilter<"Exercise"> | string | null
   topicId?: Prisma.StringFilter<"Exercise"> | string
+  answers?: Prisma.AnswerListRelationFilter
   topic?: Prisma.XOR<Prisma.TopicsScalarRelationFilter, Prisma.TopicsWhereInput>
 }, "id">
 
@@ -233,8 +244,8 @@ export type ExerciseOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   question?: Prisma.SortOrder
-  answer?: Prisma.SortOrder
   explanation?: Prisma.SortOrderInput | Prisma.SortOrder
+  isMultipleChoice?: Prisma.SortOrder
   hint?: Prisma.SortOrderInput | Prisma.SortOrder
   topicId?: Prisma.SortOrder
   _count?: Prisma.ExerciseCountOrderByAggregateInput
@@ -249,9 +260,9 @@ export type ExerciseScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Exercise"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Exercise"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Exercise"> | Date | string
-  question?: Prisma.StringNullableListFilter<"Exercise">
-  answer?: Prisma.StringNullableListFilter<"Exercise">
+  question?: Prisma.StringWithAggregatesFilter<"Exercise"> | string
   explanation?: Prisma.StringNullableWithAggregatesFilter<"Exercise"> | string | null
+  isMultipleChoice?: Prisma.BoolWithAggregatesFilter<"Exercise"> | boolean
   hint?: Prisma.StringNullableWithAggregatesFilter<"Exercise"> | string | null
   topicId?: Prisma.StringWithAggregatesFilter<"Exercise"> | string
 }
@@ -260,10 +271,11 @@ export type ExerciseCreateInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  question?: Prisma.ExerciseCreatequestionInput | string[]
-  answer?: Prisma.ExerciseCreateanswerInput | string[]
+  question: string
   explanation?: string | null
+  isMultipleChoice?: boolean
   hint?: string | null
+  answers?: Prisma.AnswerCreateNestedManyWithoutExerciseInput
   topic: Prisma.TopicsCreateNestedOneWithoutExercisesInput
 }
 
@@ -271,21 +283,23 @@ export type ExerciseUncheckedCreateInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  question?: Prisma.ExerciseCreatequestionInput | string[]
-  answer?: Prisma.ExerciseCreateanswerInput | string[]
+  question: string
   explanation?: string | null
+  isMultipleChoice?: boolean
   hint?: string | null
   topicId: string
+  answers?: Prisma.AnswerUncheckedCreateNestedManyWithoutExerciseInput
 }
 
 export type ExerciseUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  question?: Prisma.ExerciseUpdatequestionInput | string[]
-  answer?: Prisma.ExerciseUpdateanswerInput | string[]
+  question?: Prisma.StringFieldUpdateOperationsInput | string
   explanation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isMultipleChoice?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  answers?: Prisma.AnswerUpdateManyWithoutExerciseNestedInput
   topic?: Prisma.TopicsUpdateOneRequiredWithoutExercisesNestedInput
 }
 
@@ -293,20 +307,21 @@ export type ExerciseUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  question?: Prisma.ExerciseUpdatequestionInput | string[]
-  answer?: Prisma.ExerciseUpdateanswerInput | string[]
+  question?: Prisma.StringFieldUpdateOperationsInput | string
   explanation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isMultipleChoice?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   topicId?: Prisma.StringFieldUpdateOperationsInput | string
+  answers?: Prisma.AnswerUncheckedUpdateManyWithoutExerciseNestedInput
 }
 
 export type ExerciseCreateManyInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  question?: Prisma.ExerciseCreatequestionInput | string[]
-  answer?: Prisma.ExerciseCreateanswerInput | string[]
+  question: string
   explanation?: string | null
+  isMultipleChoice?: boolean
   hint?: string | null
   topicId: string
 }
@@ -315,9 +330,9 @@ export type ExerciseUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  question?: Prisma.ExerciseUpdatequestionInput | string[]
-  answer?: Prisma.ExerciseUpdateanswerInput | string[]
+  question?: Prisma.StringFieldUpdateOperationsInput | string
   explanation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isMultipleChoice?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -325,9 +340,9 @@ export type ExerciseUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  question?: Prisma.ExerciseUpdatequestionInput | string[]
-  answer?: Prisma.ExerciseUpdateanswerInput | string[]
+  question?: Prisma.StringFieldUpdateOperationsInput | string
   explanation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isMultipleChoice?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   topicId?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -342,21 +357,13 @@ export type ExerciseOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type StringNullableListFilter<$PrismaModel = never> = {
-  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
-  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
-  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
-  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
-  isEmpty?: boolean
-}
-
 export type ExerciseCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   question?: Prisma.SortOrder
-  answer?: Prisma.SortOrder
   explanation?: Prisma.SortOrder
+  isMultipleChoice?: Prisma.SortOrder
   hint?: Prisma.SortOrder
   topicId?: Prisma.SortOrder
 }
@@ -365,7 +372,9 @@ export type ExerciseMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  question?: Prisma.SortOrder
   explanation?: Prisma.SortOrder
+  isMultipleChoice?: Prisma.SortOrder
   hint?: Prisma.SortOrder
   topicId?: Prisma.SortOrder
 }
@@ -374,9 +383,16 @@ export type ExerciseMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  question?: Prisma.SortOrder
   explanation?: Prisma.SortOrder
+  isMultipleChoice?: Prisma.SortOrder
   hint?: Prisma.SortOrder
   topicId?: Prisma.SortOrder
+}
+
+export type ExerciseScalarRelationFilter = {
+  is?: Prisma.ExerciseWhereInput
+  isNot?: Prisma.ExerciseWhereInput
 }
 
 export type ExerciseCreateNestedManyWithoutTopicInput = {
@@ -421,42 +437,40 @@ export type ExerciseUncheckedUpdateManyWithoutTopicNestedInput = {
   deleteMany?: Prisma.ExerciseScalarWhereInput | Prisma.ExerciseScalarWhereInput[]
 }
 
-export type ExerciseCreatequestionInput = {
-  set: string[]
+export type ExerciseCreateNestedOneWithoutAnswersInput = {
+  create?: Prisma.XOR<Prisma.ExerciseCreateWithoutAnswersInput, Prisma.ExerciseUncheckedCreateWithoutAnswersInput>
+  connectOrCreate?: Prisma.ExerciseCreateOrConnectWithoutAnswersInput
+  connect?: Prisma.ExerciseWhereUniqueInput
 }
 
-export type ExerciseCreateanswerInput = {
-  set: string[]
-}
-
-export type ExerciseUpdatequestionInput = {
-  set?: string[]
-  push?: string | string[]
-}
-
-export type ExerciseUpdateanswerInput = {
-  set?: string[]
-  push?: string | string[]
+export type ExerciseUpdateOneRequiredWithoutAnswersNestedInput = {
+  create?: Prisma.XOR<Prisma.ExerciseCreateWithoutAnswersInput, Prisma.ExerciseUncheckedCreateWithoutAnswersInput>
+  connectOrCreate?: Prisma.ExerciseCreateOrConnectWithoutAnswersInput
+  upsert?: Prisma.ExerciseUpsertWithoutAnswersInput
+  connect?: Prisma.ExerciseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ExerciseUpdateToOneWithWhereWithoutAnswersInput, Prisma.ExerciseUpdateWithoutAnswersInput>, Prisma.ExerciseUncheckedUpdateWithoutAnswersInput>
 }
 
 export type ExerciseCreateWithoutTopicInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  question?: Prisma.ExerciseCreatequestionInput | string[]
-  answer?: Prisma.ExerciseCreateanswerInput | string[]
+  question: string
   explanation?: string | null
+  isMultipleChoice?: boolean
   hint?: string | null
+  answers?: Prisma.AnswerCreateNestedManyWithoutExerciseInput
 }
 
 export type ExerciseUncheckedCreateWithoutTopicInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  question?: Prisma.ExerciseCreatequestionInput | string[]
-  answer?: Prisma.ExerciseCreateanswerInput | string[]
+  question: string
   explanation?: string | null
+  isMultipleChoice?: boolean
   hint?: string | null
+  answers?: Prisma.AnswerUncheckedCreateNestedManyWithoutExerciseInput
 }
 
 export type ExerciseCreateOrConnectWithoutTopicInput = {
@@ -492,20 +506,80 @@ export type ExerciseScalarWhereInput = {
   id?: Prisma.StringFilter<"Exercise"> | string
   createdAt?: Prisma.DateTimeFilter<"Exercise"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Exercise"> | Date | string
-  question?: Prisma.StringNullableListFilter<"Exercise">
-  answer?: Prisma.StringNullableListFilter<"Exercise">
+  question?: Prisma.StringFilter<"Exercise"> | string
   explanation?: Prisma.StringNullableFilter<"Exercise"> | string | null
+  isMultipleChoice?: Prisma.BoolFilter<"Exercise"> | boolean
   hint?: Prisma.StringNullableFilter<"Exercise"> | string | null
   topicId?: Prisma.StringFilter<"Exercise"> | string
+}
+
+export type ExerciseCreateWithoutAnswersInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  question: string
+  explanation?: string | null
+  isMultipleChoice?: boolean
+  hint?: string | null
+  topic: Prisma.TopicsCreateNestedOneWithoutExercisesInput
+}
+
+export type ExerciseUncheckedCreateWithoutAnswersInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  question: string
+  explanation?: string | null
+  isMultipleChoice?: boolean
+  hint?: string | null
+  topicId: string
+}
+
+export type ExerciseCreateOrConnectWithoutAnswersInput = {
+  where: Prisma.ExerciseWhereUniqueInput
+  create: Prisma.XOR<Prisma.ExerciseCreateWithoutAnswersInput, Prisma.ExerciseUncheckedCreateWithoutAnswersInput>
+}
+
+export type ExerciseUpsertWithoutAnswersInput = {
+  update: Prisma.XOR<Prisma.ExerciseUpdateWithoutAnswersInput, Prisma.ExerciseUncheckedUpdateWithoutAnswersInput>
+  create: Prisma.XOR<Prisma.ExerciseCreateWithoutAnswersInput, Prisma.ExerciseUncheckedCreateWithoutAnswersInput>
+  where?: Prisma.ExerciseWhereInput
+}
+
+export type ExerciseUpdateToOneWithWhereWithoutAnswersInput = {
+  where?: Prisma.ExerciseWhereInput
+  data: Prisma.XOR<Prisma.ExerciseUpdateWithoutAnswersInput, Prisma.ExerciseUncheckedUpdateWithoutAnswersInput>
+}
+
+export type ExerciseUpdateWithoutAnswersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  question?: Prisma.StringFieldUpdateOperationsInput | string
+  explanation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isMultipleChoice?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  topic?: Prisma.TopicsUpdateOneRequiredWithoutExercisesNestedInput
+}
+
+export type ExerciseUncheckedUpdateWithoutAnswersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  question?: Prisma.StringFieldUpdateOperationsInput | string
+  explanation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isMultipleChoice?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  topicId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ExerciseCreateManyTopicInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  question?: Prisma.ExerciseCreatequestionInput | string[]
-  answer?: Prisma.ExerciseCreateanswerInput | string[]
+  question: string
   explanation?: string | null
+  isMultipleChoice?: boolean
   hint?: string | null
 }
 
@@ -513,32 +587,63 @@ export type ExerciseUpdateWithoutTopicInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  question?: Prisma.ExerciseUpdatequestionInput | string[]
-  answer?: Prisma.ExerciseUpdateanswerInput | string[]
+  question?: Prisma.StringFieldUpdateOperationsInput | string
   explanation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isMultipleChoice?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  answers?: Prisma.AnswerUpdateManyWithoutExerciseNestedInput
 }
 
 export type ExerciseUncheckedUpdateWithoutTopicInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  question?: Prisma.ExerciseUpdatequestionInput | string[]
-  answer?: Prisma.ExerciseUpdateanswerInput | string[]
+  question?: Prisma.StringFieldUpdateOperationsInput | string
   explanation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isMultipleChoice?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  answers?: Prisma.AnswerUncheckedUpdateManyWithoutExerciseNestedInput
 }
 
 export type ExerciseUncheckedUpdateManyWithoutTopicInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  question?: Prisma.ExerciseUpdatequestionInput | string[]
-  answer?: Prisma.ExerciseUpdateanswerInput | string[]
+  question?: Prisma.StringFieldUpdateOperationsInput | string
   explanation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isMultipleChoice?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
+
+/**
+ * Count Type ExerciseCountOutputType
+ */
+
+export type ExerciseCountOutputType = {
+  answers: number
+}
+
+export type ExerciseCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  answers?: boolean | ExerciseCountOutputTypeCountAnswersArgs
+}
+
+/**
+ * ExerciseCountOutputType without action
+ */
+export type ExerciseCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ExerciseCountOutputType
+   */
+  select?: Prisma.ExerciseCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ExerciseCountOutputType without action
+ */
+export type ExerciseCountOutputTypeCountAnswersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AnswerWhereInput
+}
 
 
 export type ExerciseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -546,11 +651,13 @@ export type ExerciseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   createdAt?: boolean
   updatedAt?: boolean
   question?: boolean
-  answer?: boolean
   explanation?: boolean
+  isMultipleChoice?: boolean
   hint?: boolean
   topicId?: boolean
+  answers?: boolean | Prisma.Exercise$answersArgs<ExtArgs>
   topic?: boolean | Prisma.TopicsDefaultArgs<ExtArgs>
+  _count?: boolean | Prisma.ExerciseCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["exercise"]>
 
 export type ExerciseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -558,8 +665,8 @@ export type ExerciseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   createdAt?: boolean
   updatedAt?: boolean
   question?: boolean
-  answer?: boolean
   explanation?: boolean
+  isMultipleChoice?: boolean
   hint?: boolean
   topicId?: boolean
   topic?: boolean | Prisma.TopicsDefaultArgs<ExtArgs>
@@ -570,8 +677,8 @@ export type ExerciseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   createdAt?: boolean
   updatedAt?: boolean
   question?: boolean
-  answer?: boolean
   explanation?: boolean
+  isMultipleChoice?: boolean
   hint?: boolean
   topicId?: boolean
   topic?: boolean | Prisma.TopicsDefaultArgs<ExtArgs>
@@ -582,15 +689,17 @@ export type ExerciseSelectScalar = {
   createdAt?: boolean
   updatedAt?: boolean
   question?: boolean
-  answer?: boolean
   explanation?: boolean
+  isMultipleChoice?: boolean
   hint?: boolean
   topicId?: boolean
 }
 
-export type ExerciseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "question" | "answer" | "explanation" | "hint" | "topicId", ExtArgs["result"]["exercise"]>
+export type ExerciseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "question" | "explanation" | "isMultipleChoice" | "hint" | "topicId", ExtArgs["result"]["exercise"]>
 export type ExerciseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  answers?: boolean | Prisma.Exercise$answersArgs<ExtArgs>
   topic?: boolean | Prisma.TopicsDefaultArgs<ExtArgs>
+  _count?: boolean | Prisma.ExerciseCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ExerciseIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   topic?: boolean | Prisma.TopicsDefaultArgs<ExtArgs>
@@ -602,15 +711,16 @@ export type ExerciseIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 export type $ExercisePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Exercise"
   objects: {
+    answers: Prisma.$AnswerPayload<ExtArgs>[]
     topic: Prisma.$TopicsPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     createdAt: Date
     updatedAt: Date
-    question: string[]
-    answer: string[]
+    question: string
     explanation: string | null
+    isMultipleChoice: boolean
     hint: string | null
     topicId: string
   }, ExtArgs["result"]["exercise"]>
@@ -1007,6 +1117,7 @@ readonly fields: ExerciseFieldRefs;
  */
 export interface Prisma__ExerciseClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  answers<T extends Prisma.Exercise$answersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Exercise$answersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   topic<T extends Prisma.TopicsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TopicsDefaultArgs<ExtArgs>>): Prisma.Prisma__TopicsClient<runtime.Types.Result.GetResult<Prisma.$TopicsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1040,9 +1151,9 @@ export interface ExerciseFieldRefs {
   readonly id: Prisma.FieldRef<"Exercise", 'String'>
   readonly createdAt: Prisma.FieldRef<"Exercise", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Exercise", 'DateTime'>
-  readonly question: Prisma.FieldRef<"Exercise", 'String[]'>
-  readonly answer: Prisma.FieldRef<"Exercise", 'String[]'>
+  readonly question: Prisma.FieldRef<"Exercise", 'String'>
   readonly explanation: Prisma.FieldRef<"Exercise", 'String'>
+  readonly isMultipleChoice: Prisma.FieldRef<"Exercise", 'Boolean'>
   readonly hint: Prisma.FieldRef<"Exercise", 'String'>
   readonly topicId: Prisma.FieldRef<"Exercise", 'String'>
 }
@@ -1443,6 +1554,30 @@ export type ExerciseDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Limit how many Exercises to delete.
    */
   limit?: number
+}
+
+/**
+ * Exercise.answers
+ */
+export type Exercise$answersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Answer
+   */
+  select?: Prisma.AnswerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Answer
+   */
+  omit?: Prisma.AnswerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AnswerInclude<ExtArgs> | null
+  where?: Prisma.AnswerWhereInput
+  orderBy?: Prisma.AnswerOrderByWithRelationInput | Prisma.AnswerOrderByWithRelationInput[]
+  cursor?: Prisma.AnswerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AnswerScalarFieldEnum | Prisma.AnswerScalarFieldEnum[]
 }
 
 /**

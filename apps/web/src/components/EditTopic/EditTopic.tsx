@@ -87,9 +87,7 @@ function EditTopicContent({
       return file
     }
 
-    const exchangeFile = topic.image
-      ? topic.image.split('/').at(-1)
-      : undefined
+    const exchangeFile = topic.image ? topic.image.split('/').at(-1) : undefined
 
     return (
       await uploadFileAsync({

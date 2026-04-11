@@ -122,6 +122,7 @@ describe('topics', () => {
         durationMax: '00:10:00',
         level: 'Basic',
         image: 'image',
+        exercises: [],
       },
       '123'
     )

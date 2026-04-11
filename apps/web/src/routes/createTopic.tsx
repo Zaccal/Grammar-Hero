@@ -33,6 +33,18 @@ function RouteComponent() {
       </CreateTopicForm.MarkdownHint>
       <CreateTopicForm.MarkdownEditor className="mt-4" />
 
+      <CreateTopicForm.Exercises>
+        <CreateTopicForm.ExercisesList>
+          {(exercise, index) => (
+            <CreateTopicForm.ExercisesItem
+              key={exercise.id}
+              exercise={exercise}
+              index={index}
+            />
+          )}
+        </CreateTopicForm.ExercisesList>
+      </CreateTopicForm.Exercises>
+
       <CreateTopicForm.Publish
         className="w-[80%] sm:w-auto fixed bottom-4 right-1/2 translate-x-1/2 sm:translate-x-0 sm:right-4  "
         size="lg"

@@ -58,7 +58,8 @@ export const ModelName = {
   Topics: 'Topics',
   Like: 'Like',
   Bookmark: 'Bookmark',
-  Exercise: 'Exercise'
+  Exercise: 'Exercise',
+  Answer: 'Answer'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -178,13 +179,25 @@ export const ExerciseScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   question: 'question',
-  answer: 'answer',
   explanation: 'explanation',
+  isMultipleChoice: 'isMultipleChoice',
   hint: 'hint',
   topicId: 'topicId'
 } as const
 
 export type ExerciseScalarFieldEnum = (typeof ExerciseScalarFieldEnum)[keyof typeof ExerciseScalarFieldEnum]
+
+
+export const AnswerScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  text: 'text',
+  isCorrect: 'isCorrect',
+  exerciseId: 'exerciseId'
+} as const
+
+export type AnswerScalarFieldEnum = (typeof AnswerScalarFieldEnum)[keyof typeof AnswerScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -2,6 +2,9 @@ import { CreateTopicForm as Root } from './CreateTopicForm'
 import { CreateTopicFormContext } from './CreateTopicFormContext'
 import { CreateTopicFormDescription } from './CreateTopicFormDescription'
 import { CreateTopicFormDuration } from './CreateTopicFormDuration'
+import { CreateTopicFormExercises } from './CreateTopicFormExercises'
+import { CreateTopicFormExercisesItem } from './CreateTopicFormExercisesItem/CreateTopicFormExercisesItem'
+import { CreateTopicFormExercisesList } from './CreateTopicFormExercisesList'
 import { CreateTopicFormFileUpload } from './CreateTopicFormFileUpload'
 import { CreateTopicFormLevel } from './CreateTopicFormLevel'
 import { CreateTopicFormMarkdownEditor } from './CreateTopicFormMarkdownEditor'
@@ -26,4 +29,7 @@ export const CreateTopicForm = {
   Level: CreateTopicFormLevel,
   Duration: CreateTopicFormDuration,
   Publish: CreateTopicFormPublish,
+  Exercises: CreateTopicFormExercises,
+  ExercisesList: CreateTopicFormExercisesList,
+  ExercisesItem: CreateTopicFormExercisesItem,
 }

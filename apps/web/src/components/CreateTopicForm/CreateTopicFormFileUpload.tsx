@@ -1,12 +1,9 @@
+import type { CreateTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import { UPLOAD_FILE_SIZE_MB } from '@server/routers/upload/constants'
-import {
-  useDidUpdate,
-  useFileUpload,
-} from '@/hooks/index'
+import { useFormContext } from 'react-hook-form'
+import { useDidUpdate, useFileUpload } from '@/hooks/index'
 import FileUpload from '../ui/FileUpload'
 import { fileUploadStore } from './store'
-import { useFormContext } from 'react-hook-form'
-import type { CreateTopicFormSchema } from '@/schemas/createTopicForm.schema'
 
 interface CreateTopicFormFileUploadProps {
   className?: string
