@@ -1,10 +1,14 @@
-import type {
-  CreateTopicFormSchema,
-} from '@/schemas/createTopicForm.schema'
+import type { UseFieldArrayRemove, UseFieldArrayReplace } from 'react-hook-form'
+import type { CreateTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import { DragDropProvider } from '@dnd-kit/react'
 import { isSortable, useSortable } from '@dnd-kit/react/sortable'
 import { GripVertical, Minus, Plus } from 'lucide-react'
-import { Controller, useFieldArray, useFormContext, type UseFieldArrayRemove, type UseFieldArrayReplace } from 'react-hook-form'
+import {
+  Controller,
+  useFieldArray,
+
+  useFormContext
+} from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
@@ -21,6 +25,8 @@ export default function CreateTopicFormExercisesItemAnswers({
     control: form.control,
     name: `exercises.${exerciseIndex}.answers`,
   })
+  const errors = form.formState.errors
+  const answersError = errors.exercises?.[exerciseIndex]?.answers?.root?.message
 
   function appendAnswerHandler() {
     const id = crypto.randomUUID()
@@ -29,6 +35,7 @@ export default function CreateTopicFormExercisesItemAnswers({
 
   return (
     <div className="mt-4">
+      {answersError && <p className='my-2 text-sm text-destructive'>{answersError}</p>}
       <div className="mb-4 space-y-2">
         <DragDropProvider
           onDragEnd={event => {
@@ -85,18 +92,28 @@ function CreateTopicFormExercisesItemAnswersRow({
     id,
     index: answerIndex,
   })
-  const isMultipleChoice = form.watch(`exercises.${exerciseIndex}.isMultipleChoice`)
-  const isCorrect = form.watch(`exercises.${exerciseIndex}.answers.${answerIndex}.isCorrect`)
+  const isMultipleChoice = form.watch(
+    `exercises.${exerciseIndex}.isMultipleChoice`
+  )
+  const isCorrect = form.watch(
+    `exercises.${exerciseIndex}.answers.${answerIndex}.isCorrect`
+  )
   const answers = form.watch(`exercises.${exerciseIndex}.answers`)
 
   function handleCheckboxChange() {
     if (isMultipleChoice) {
-      form.setValue(`exercises.${exerciseIndex}.answers.${answerIndex}.isCorrect`, !isCorrect)
-    } else {
-      replace(answers.map((answer, index) => ({
-        ...answer,
-        isCorrect: answerIndex === index ? !isCorrect : false,
-      })))
+      form.setValue(
+        `exercises.${exerciseIndex}.answers.${answerIndex}.isCorrect`,
+        !isCorrect
+      )
+    }
+ else {
+      replace(
+        answers.map((answer, index) => ({
+          ...answer,
+          isCorrect: answerIndex === index ? !isCorrect : false,
+        }))
+      )
     }
   }
 

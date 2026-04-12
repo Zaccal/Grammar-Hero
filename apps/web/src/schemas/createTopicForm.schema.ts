@@ -10,8 +10,12 @@ export type AnswerSchema = z.infer<typeof answerSchema>
 
 export const exerciseSchema = z.object({
   id: z.string(),
-  question: z.string(),
-  answers: z.array(answerSchema),
+  question: z.string().min(1, "Please enter a question"),
+  answers: z.array(answerSchema)
+    .min(2, "Please provide at least 2 answers")
+    .refine((answers) => answers.some((answer) => answer.isCorrect), {
+      message: "Please provide at least one correct answer",
+    }),
   explanation: z.string().optional(),
   hint: z.string().optional(),
   isMultipleChoice: z.boolean().optional(),

@@ -10,9 +10,12 @@ export default function CreateTopicFormExercisesItemQuestion({
   index,
 }: CreateTopicFormExercisesItemQuestionProps) {
   const form = useFormContext<CreateTopicFormSchema>()
+  const errors = form.formState.errors
+  const questionError = errors.exercises?.[index]?.question?.message
 
   return (
     <>
+      {questionError && <p className="text-sm text-destructive mb-2">{questionError}</p>}
       <Controller
         name={`exercises.${index}.question`}
         control={form.control}
