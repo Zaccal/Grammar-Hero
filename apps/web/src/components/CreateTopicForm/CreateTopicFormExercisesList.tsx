@@ -1,6 +1,4 @@
-import type {
-  ExerciseSchema,
-} from '@/schemas/createTopicForm.schema'
+import type { ExerciseSchema } from '@/schemas/createTopicForm.schema'
 import { DragDropProvider } from '@dnd-kit/react'
 import { isSortable } from '@dnd-kit/react/sortable'
 import { useExercisesContext } from './CreateTopicFormExercisesContext'

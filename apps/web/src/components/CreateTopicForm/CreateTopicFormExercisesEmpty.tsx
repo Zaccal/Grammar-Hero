@@ -13,7 +13,9 @@ import { useExercisesContext } from './CreateTopicFormExercisesContext'
 export function CreateTopicFormExercisesEmpty() {
   const { fields, append } = useExercisesContext()
 
-  if (fields.length > 0) { return null }
+  if (fields.length > 0) {
+    return null
+  }
 
   return (
     <Empty>

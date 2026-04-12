@@ -10,7 +10,9 @@ export function CreateTopicFormExercisesCreateExercises({
 }: ButtonProps) {
   const { append, fields } = useExercisesContext()
 
-  if (fields.length === 0) { return null }
+  if (fields.length === 0) {
+    return null
+  }
 
   return (
     <>

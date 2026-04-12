@@ -23,6 +23,6 @@ export function useExercisesContext() {
     throw new Error(
       'useExercisesListContext must be used inside CreateTopicFormExercises'
     )
-}
+  }
   return context
 }
