@@ -1,6 +1,4 @@
-import type {
-  ExerciseSchema,
-} from '@/schemas/createTopicForm.schema'
+import type { ExerciseSchema } from '@/schemas/createTopicForm.schema'
 import { useSortable } from '@dnd-kit/react/sortable'
 import { CircleQuestionMark, GripVertical, Trash } from 'lucide-react'
 import { Button } from '../../ui/button'
@@ -20,9 +18,8 @@ export function CreateTopicFormExercisesItem({
   exercise,
   index,
 }: CreateTopicFormExercisesItemProps) {
-  const { remove, update: _update } = CreateTopicFormExercisesListContext.useSelect(
-    state => state
-  )
+  const { remove, update: _update } =
+    CreateTopicFormExercisesListContext.useSelect(state => state)
   const { ref, handleRef } = useSortable({
     id: exercise.id,
     index,
@@ -58,9 +55,7 @@ export function CreateTopicFormExercisesItem({
       <div className="mt-4">
         <CreateTopicFormExercisesItemQuestion index={index} />
         <CreateTopicFormExercisesItemChoices index={index} />
-        <CreateTopicFormExercisesItemAnswers
-          exerciseIndex={index}
-        />
+        <CreateTopicFormExercisesItemAnswers exerciseIndex={index} />
       </div>
 
       <Separator className="my-5" />

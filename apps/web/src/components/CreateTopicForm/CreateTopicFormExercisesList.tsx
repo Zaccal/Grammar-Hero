@@ -26,7 +26,9 @@ export function CreateTopicFormExercisesList({
     >
       <DragDropProvider
         onDragEnd={event => {
-          if (event.canceled) { return }
+          if (event.canceled) {
+            return
+          }
           const { source } = event.operation
           if (isSortable(source)) {
             const { initialIndex, index } = source

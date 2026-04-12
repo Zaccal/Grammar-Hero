@@ -28,7 +28,13 @@ export default function CreateTopicFormExercisesItemChoices({
             control={form.control}
             name={`exercises.${index}.isMultipleChoice`}
             render={({ field }) => (
-              <Switch checked={field.value} onCheckedChange={field.onChange} />
+              <Switch checked={field.value} onCheckedChange={value => {
+                field.onChange(value)
+
+                const answers = form.getValues(`exercises.${index}.answers`)
+                form.setValue(`exercises.${index}.answers`,
+                  answers.map(answer => ({ ...answer, isCorrect: false})))
+              }} />
             )}
           />
         </div>

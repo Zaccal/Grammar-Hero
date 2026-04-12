@@ -1,11 +1,10 @@
 import type {
   CreateTopicFormSchema,
-  ExerciseSchema,
 } from '@/schemas/createTopicForm.schema'
 import { DragDropProvider } from '@dnd-kit/react'
 import { isSortable, useSortable } from '@dnd-kit/react/sortable'
 import { GripVertical, Minus, Plus } from 'lucide-react'
-import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
+import { Controller, useFieldArray, useFormContext, type UseFieldArrayRemove, type UseFieldArrayReplace } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
@@ -18,7 +17,7 @@ export default function CreateTopicFormExercisesItemAnswers({
   exerciseIndex,
 }: CreateTopicFormExercisesItemAnswersProps) {
   const form = useFormContext<CreateTopicFormSchema>()
-  const { fields, append, move, remove } = useFieldArray({
+  const { fields, append, move, remove, replace } = useFieldArray({
     control: form.control,
     name: `exercises.${exerciseIndex}.answers`,
   })
@@ -33,7 +32,9 @@ export default function CreateTopicFormExercisesItemAnswers({
       <div className="mb-4 space-y-2">
         <DragDropProvider
           onDragEnd={event => {
-            if (event.canceled) { return }
+            if (event.canceled) {
+              return
+            }
             const { source } = event.operation
             if (isSortable(source)) {
               const { initialIndex, index } = source
@@ -46,6 +47,7 @@ export default function CreateTopicFormExercisesItemAnswers({
           {fields.map((answer, index) => (
             <CreateTopicFormExercisesItemAnswersRow
               remove={remove}
+              replace={replace}
               key={answer.id}
               answerIndex={index}
               exerciseIndex={exerciseIndex}
@@ -67,7 +69,8 @@ interface CreateTopicFormExercisesItemAnswersRowProps {
   answerIndex: number
   exerciseIndex: number
   id: string
-  remove: (index: number) => void
+  remove: UseFieldArrayRemove
+  replace: UseFieldArrayReplace<CreateTopicFormSchema>
 }
 
 function CreateTopicFormExercisesItemAnswersRow({
@@ -75,12 +78,27 @@ function CreateTopicFormExercisesItemAnswersRow({
   exerciseIndex,
   id,
   remove,
+  replace,
 }: CreateTopicFormExercisesItemAnswersRowProps) {
   const form = useFormContext<CreateTopicFormSchema>()
   const { ref, handleRef } = useSortable({
     id,
     index: answerIndex,
   })
+  const isMultipleChoice = form.watch(`exercises.${exerciseIndex}.isMultipleChoice`)
+  const isCorrect = form.watch(`exercises.${exerciseIndex}.answers.${answerIndex}.isCorrect`)
+  const answers = form.watch(`exercises.${exerciseIndex}.answers`)
+
+  function handleCheckboxChange() {
+    if (isMultipleChoice) {
+      form.setValue(`exercises.${exerciseIndex}.answers.${answerIndex}.isCorrect`, !isCorrect)
+    } else {
+      replace(answers.map((answer, index) => ({
+        ...answer,
+        isCorrect: answerIndex === index ? !isCorrect : false,
+      })))
+    }
+  }
 
   return (
     <div ref={ref} className="flex items-center gap-3">
@@ -91,7 +109,7 @@ function CreateTopicFormExercisesItemAnswersRow({
           <Checkbox
             defaultChecked={field.value}
             checked={field.value}
-            onCheckedChange={field.onChange}
+            onCheckedChange={handleCheckboxChange}
           />
         )}
       />
