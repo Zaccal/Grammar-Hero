@@ -31,7 +31,7 @@ export function CreateTopicFormMarkdownEditor({
   const isPending = form.formState.isSubmitting
 
   return (
-    <div className={isPending ? 'disabled h-96' : 'h-96'}>
+    <div className={isPending ? 'disabled' : ''}>
       <Controller
         control={form.control}
         name="content"

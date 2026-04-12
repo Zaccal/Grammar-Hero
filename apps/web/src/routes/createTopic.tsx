@@ -31,7 +31,9 @@ function RouteComponent() {
           here
         </CreateTopicForm.MarkdownHintLink>
       </CreateTopicForm.MarkdownHint>
-      <CreateTopicForm.MarkdownEditor className="mt-4" />
+
+      {/* TODO: refactor concept of adding exercises */}
+      <CreateTopicForm.MarkdownEditor className="mt-4 h-96" />
 
       <CreateTopicForm.Exercises>
         <CreateTopicForm.ExercisesEmpty />

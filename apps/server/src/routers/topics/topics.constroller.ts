@@ -115,14 +115,12 @@ export async function createTopic(data: TopicCreateSchema, userId: string) {
       durationMin: getDummyDate(data.durationMin)!,
       durationMax: getDummyDate(data.durationMax)!,
       exercises: {
-        createMany: {
-          data: data.exercises.map(({ answers, ...rest }) => ({
-            ...rest,
-            answers: {
-              create: answers,
-            },
-          })),
-        },
+        create: data.exercises.map(({ answers, ...rest }) => ({
+          ...rest,
+          answers: {
+            create: answers,
+          },
+        })),
       },
       user: {
         connect: {

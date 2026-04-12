@@ -11,7 +11,8 @@
     "duration": "30-45 minutes",
     "likes": 30,
     "userId": "user-5",
-    "image": "/default.png"
+    "image": "/default.png",
+    "exercises": []
   },
   {
     "id": "6",
@@ -25,7 +26,8 @@
     "duration": "30-45 minutes",
     "likes": 12,
     "userId": "user-6",
-    "image": "/default.png"
+    "image": "/default.png",
+    "exercises": []
   },
   {
     "id": "7",
@@ -39,7 +41,8 @@
     "duration": "30-45 minutes",
     "likes": 14,
     "userId": "user-7",
-    "image": "/default.png"
+    "image": "/default.png",
+    "exercises": []
   },
   {
     "id": "8",
@@ -53,7 +56,8 @@
     "duration": "30-45 minutes",
     "likes": 10,
     "userId": "user-8",
-    "image": "/default.png"
+    "image": "/default.png",
+    "exercises": []
   },
   {
     "id": "9",
@@ -67,7 +71,8 @@
     "duration": "30-45 minutes",
     "likes": 19,
     "userId": "user-9",
-    "image": "/default.png"
+    "image": "/default.png",
+    "exercises": []
   },
   {
     "id": "10",
@@ -81,7 +86,8 @@
     "duration": "30-45 minutes",
     "likes": 11,
     "userId": "user-10",
-    "image": "/default.png"
+    "image": "/default.png",
+    "exercises": []
   },
   {
     "id": "11",
@@ -95,7 +101,8 @@
     "duration": "30-45 minutes",
     "likes": 13,
     "userId": "user-11",
-    "image": "/default.png"
+    "image": "/default.png",
+    "exercises": []
   },
   {
     "id": "12",
@@ -109,7 +116,8 @@
     "duration": "30-45 minutes",
     "likes": 7,
     "userId": "user-12",
-    "image": "/default.png"
+    "image": "/default.png",
+    "exercises": []
   },
   {
     "id": "13",
@@ -123,7 +131,8 @@
     "duration": "30-45 minutes",
     "likes": 21,
     "userId": "user-13",
-    "image": "/default.png"
+    "image": "/default.png",
+    "exercises": []
   },
   {
     "id": "14",
@@ -137,7 +146,8 @@
     "duration": "30-45 minutes",
     "likes": 17,
     "userId": "user-14",
-    "image": "/default.png"
+    "image": "/default.png",
+"exercises": []
   },
   {
     "id": "15",
@@ -151,7 +161,8 @@
     "duration": "30-45 minutes",
     "likes": 20,
     "userId": "user-15",
-    "image": "/default.png"
+    "image": "/default.png",
+"exercises": []
   },
   {
     "id": "16",
@@ -165,7 +176,8 @@
     "duration": "30-45 minutes",
     "likes": 16,
     "userId": "user-16",
-    "image": "/default.png"
+    "image": "/default.png",
+"exercises": []
   },
   {
     "id": "17",
@@ -179,7 +191,8 @@
     "duration": "30-45 minutes",
     "likes": 23,
     "userId": "user-17",
-    "image": "/default.png"
+    "image": "/default.png",
+"exercises": []
   },
   {
     "id": "18",
@@ -193,7 +206,8 @@
     "duration": "30-45 minutes",
     "likes": 14,
     "userId": "user-18",
-    "image": "/default.png"
+    "image": "/default.png",
+"exercises": []
   },
   {
     "id": "19",
@@ -207,7 +221,8 @@
     "duration": "30-45 minutes",
     "likes": 27,
     "userId": "user-19",
-    "image": "/default.png"
+    "image": "/default.png",
+"exercises": []
   },
   {
     "id": "20",
@@ -221,7 +236,8 @@
     "duration": "30-45 minutes",
     "likes": 22,
     "userId": "user-20",
-    "image": "/default.png"
+    "image": "/default.png",
+"exercises": []
   },
   {
     "id": "21",
@@ -235,7 +251,8 @@
     "duration": "30-45 minutes",
     "likes": 12,
     "userId": "user-21",
-    "image": "/default.png"
+    "image": "/default.png",
+"exercises": []
   },
   {
     "id": "22",
@@ -249,7 +266,8 @@
     "duration": "30-45 minutes",
     "likes": 18,
     "userId": "user-22",
-    "image": "/default.png"
+    "image": "/default.png",
+"exercises": []
   },
   {
     "id": "23",
@@ -263,7 +281,8 @@
     "duration": "30-45 minutes",
     "likes": 15,
     "userId": "user-23",
-    "image": "/default.png"
+    "image": "/default.png",
+"exercises": []
   },
   {
     "id": "24",
@@ -277,7 +296,8 @@
     "duration": "30-45 minutes",
     "likes": 19,
     "userId": "user-24",
-    "image": "/default.png"
+    "image": "/default.png",
+"exercises": []
   },
   {
     "id": "25",
@@ -291,7 +311,8 @@
     "duration": "30-45 minutes",
     "likes": 24,
     "userId": "user-25",
-    "image": "/default.png"
+    "image": "/default.png",
+"exercises": []
   },
   {
     "id": "26",
@@ -305,7 +326,8 @@
     "duration": "30-45 minutes",
     "likes": 12,
     "userId": "user-26",
-    "image": "/default.png"
+    "image": "/default.png",
+"exercises": []
   },
   {
     "id": "27",
@@ -319,7 +341,8 @@
     "duration": "30-45 minutes",
     "likes": 20,
     "userId": "user-27",
-    "image": "/default.png"
+    "image": "/default.png",
+"exercises": []
   },
   {
     "id": "28",
@@ -333,7 +356,8 @@
     "duration": "30-45 minutes",
     "likes": 15,
     "userId": "user-28",
-    "image": "/default.png"
+    "image": "/default.png",
+"exercises": []
   },
   {
     "id": "29",
@@ -347,7 +371,8 @@
     "duration": "30-45 minutes",
     "likes": 11,
     "userId": "user-29",
-    "image": "/default.png"
+    "image": "/default.png",
+"exercises": []
   },
   {
     "id": "30",
@@ -361,6 +386,7 @@
     "duration": "30-45 minutes",
     "likes": 26,
     "userId": "user-30",
-    "image": "/default.png"
+    "image": "/default.png",
+"exercises": []
   }
 ]

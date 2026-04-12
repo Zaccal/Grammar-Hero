@@ -13,5 +13,6 @@ export const TOPICS_SELECT: TopicsSelect = {
   durationMax: true,
   user: true,
   image: true,
+  exercises: true,
   _count: true,
 }
