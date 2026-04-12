@@ -15,7 +15,9 @@ export default function CreateTopicFormExercisesItemQuestion({
 
   return (
     <>
-      {questionError && <p className="text-sm text-destructive mb-2">{questionError}</p>}
+      {questionError && (
+        <p className="text-sm text-destructive mb-2">{questionError}</p>
+      )}
       <Controller
         name={`exercises.${index}.question`}
         control={form.control}

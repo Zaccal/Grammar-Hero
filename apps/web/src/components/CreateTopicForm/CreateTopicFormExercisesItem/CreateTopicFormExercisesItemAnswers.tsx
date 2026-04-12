@@ -3,12 +3,7 @@ import type { CreateTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import { DragDropProvider } from '@dnd-kit/react'
 import { isSortable, useSortable } from '@dnd-kit/react/sortable'
 import { GripVertical, Minus, Plus } from 'lucide-react'
-import {
-  Controller,
-  useFieldArray,
-
-  useFormContext
-} from 'react-hook-form'
+import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
@@ -35,7 +30,9 @@ export default function CreateTopicFormExercisesItemAnswers({
 
   return (
     <div className="mt-4">
-      {answersError && <p className='my-2 text-sm text-destructive'>{answersError}</p>}
+      {answersError && (
+        <p className="my-2 text-sm text-destructive">{answersError}</p>
+      )}
       <div className="mb-4 space-y-2">
         <DragDropProvider
           onDragEnd={event => {

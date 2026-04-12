@@ -3,6 +3,8 @@ import { CreateTopicFormContext } from './CreateTopicFormContext'
 import { CreateTopicFormDescription } from './CreateTopicFormDescription'
 import { CreateTopicFormDuration } from './CreateTopicFormDuration'
 import { CreateTopicFormExercises } from './CreateTopicFormExercises'
+import { CreateTopicFormExercisesCreateExercises } from './CreateTopicFormExercisesCreateExercises'
+import { CreateTopicFormExercisesEmpty } from './CreateTopicFormExercisesEmpty'
 import { CreateTopicFormExercisesItem } from './CreateTopicFormExercisesItem/CreateTopicFormExercisesItem'
 import { CreateTopicFormExercisesList } from './CreateTopicFormExercisesList'
 import { CreateTopicFormFileUpload } from './CreateTopicFormFileUpload'
@@ -32,4 +34,6 @@ export const CreateTopicForm = {
   Exercises: CreateTopicFormExercises,
   ExercisesList: CreateTopicFormExercisesList,
   ExercisesItem: CreateTopicFormExercisesItem,
+  CreateExercises: CreateTopicFormExercisesCreateExercises,
+  ExercisesEmpty: CreateTopicFormExercisesEmpty,
 }

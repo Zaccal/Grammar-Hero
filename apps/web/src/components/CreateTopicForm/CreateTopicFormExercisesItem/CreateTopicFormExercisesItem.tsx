@@ -3,7 +3,7 @@ import { useSortable } from '@dnd-kit/react/sortable'
 import { CircleQuestionMark, GripVertical, Trash } from 'lucide-react'
 import { Button } from '../../ui/button'
 import { Separator } from '../../ui/separator'
-import { CreateTopicFormExercisesListContext } from '../CreateTopicFormExercisesListContext'
+import { useExercisesContext } from '../CreateTopicFormExercisesContext'
 import CreateTopicFormExercisesItemAnswers from './CreateTopicFormExercisesItemAnswers'
 import CreateTopicFormExercisesItemChoices from './CreateTopicFormExercisesItemChoices'
 import CreateTopicFormExercisesItemFooter from './CreateTopicFormExercisesItemFooter'
@@ -18,8 +18,7 @@ export function CreateTopicFormExercisesItem({
   exercise,
   index,
 }: CreateTopicFormExercisesItemProps) {
-  const { remove, update: _update } =
-    CreateTopicFormExercisesListContext.useSelect(state => state)
+  const { remove } = useExercisesContext()
   const { ref, handleRef } = useSortable({
     id: exercise.id,
     index,

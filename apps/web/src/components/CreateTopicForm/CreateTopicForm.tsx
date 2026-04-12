@@ -41,48 +41,7 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
       level: undefined,
       description: '',
       duration: '',
-      exercises: [
-        {
-          id: '1',
-          question: 'What is the correct translation of ""?',
-          answers: [
-            {
-              id: '1',
-              text: 'something',
-              isCorrect: true,
-            },
-            {
-              id: '2',
-              text: 'something',
-              isCorrect: false,
-            },
-          ],
-          explanation:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-          hint: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-          isMultipleChoice: false,
-        },
-        {
-          id: '2',
-          question: 'Why do we use this form?',
-          answers: [
-            {
-              id: '1',
-              text: 'something',
-              isCorrect: true,
-            },
-            {
-              id: '2',
-              text: 'something',
-              isCorrect: false,
-            },
-          ],
-          explanation:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-          hint: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-          isMultipleChoice: true,
-        },
-      ],
+      exercises: [],
     },
   })
 

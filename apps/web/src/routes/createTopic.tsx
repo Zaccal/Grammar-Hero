@@ -10,7 +10,7 @@ export const Route = createFileRoute('/createTopic')({
 
 function RouteComponent() {
   return (
-    <CreateTopicForm.Root className="container mt-10">
+    <CreateTopicForm.Root className="container my-10">
       <CreateTopicForm.FileUpload className="mb-6" />
       <div className="space-y-4">
         <CreateTopicForm.Title />
@@ -34,6 +34,7 @@ function RouteComponent() {
       <CreateTopicForm.MarkdownEditor className="mt-4" />
 
       <CreateTopicForm.Exercises>
+        <CreateTopicForm.ExercisesEmpty />
         <CreateTopicForm.ExercisesList>
           {(exercise, index) => (
             <CreateTopicForm.ExercisesItem
@@ -43,6 +44,7 @@ function RouteComponent() {
             />
           )}
         </CreateTopicForm.ExercisesList>
+        <CreateTopicForm.CreateExercises />
       </CreateTopicForm.Exercises>
 
       <CreateTopicForm.Publish
