@@ -9,3 +9,20 @@ export type Topics = inferRouterOutputs<AppRouter>['topics']['getAll']
 export type TopicPayload = Prisma.TopicsGetPayload<{
   select: typeof TOPICS_SELECT
 }>
+
+export type Exercise = Prisma.ExerciseGetPayload<{
+  select: {
+    id: true
+    question: true
+    explanation: true
+    isMultipleChoice: true
+    hint: true
+    answers: {
+      select: {
+        id: true
+        text: true
+        isCorrect: true
+      }
+    }
+  }
+}>

@@ -1,4 +1,7 @@
-import type { TopicPayload } from '@/routers/topics/topics.types'
+import type {
+  TopicPayload,
+  TopicWithAnswers,
+} from '@/routers/topics/topics.types'
 
 export function getFormattedTopics(topics: TopicPayload[]) {
   return topics.map(topic => {

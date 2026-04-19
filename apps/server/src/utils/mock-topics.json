@@ -147,7 +147,7 @@
     "likes": 17,
     "userId": "user-14",
     "image": "/default.png",
-"exercises": []
+    "exercises": []
   },
   {
     "id": "15",
@@ -162,7 +162,7 @@
     "likes": 20,
     "userId": "user-15",
     "image": "/default.png",
-"exercises": []
+    "exercises": []
   },
   {
     "id": "16",
@@ -177,7 +177,7 @@
     "likes": 16,
     "userId": "user-16",
     "image": "/default.png",
-"exercises": []
+    "exercises": []
   },
   {
     "id": "17",
@@ -192,7 +192,7 @@
     "likes": 23,
     "userId": "user-17",
     "image": "/default.png",
-"exercises": []
+    "exercises": []
   },
   {
     "id": "18",
@@ -207,7 +207,7 @@
     "likes": 14,
     "userId": "user-18",
     "image": "/default.png",
-"exercises": []
+    "exercises": []
   },
   {
     "id": "19",
@@ -222,7 +222,7 @@
     "likes": 27,
     "userId": "user-19",
     "image": "/default.png",
-"exercises": []
+    "exercises": []
   },
   {
     "id": "20",
@@ -237,7 +237,7 @@
     "likes": 22,
     "userId": "user-20",
     "image": "/default.png",
-"exercises": []
+    "exercises": []
   },
   {
     "id": "21",
@@ -252,7 +252,7 @@
     "likes": 12,
     "userId": "user-21",
     "image": "/default.png",
-"exercises": []
+    "exercises": []
   },
   {
     "id": "22",
@@ -267,7 +267,7 @@
     "likes": 18,
     "userId": "user-22",
     "image": "/default.png",
-"exercises": []
+    "exercises": []
   },
   {
     "id": "23",
@@ -282,7 +282,7 @@
     "likes": 15,
     "userId": "user-23",
     "image": "/default.png",
-"exercises": []
+    "exercises": []
   },
   {
     "id": "24",
@@ -297,7 +297,7 @@
     "likes": 19,
     "userId": "user-24",
     "image": "/default.png",
-"exercises": []
+    "exercises": []
   },
   {
     "id": "25",
@@ -312,7 +312,7 @@
     "likes": 24,
     "userId": "user-25",
     "image": "/default.png",
-"exercises": []
+    "exercises": []
   },
   {
     "id": "26",
@@ -327,7 +327,7 @@
     "likes": 12,
     "userId": "user-26",
     "image": "/default.png",
-"exercises": []
+    "exercises": []
   },
   {
     "id": "27",
@@ -342,7 +342,7 @@
     "likes": 20,
     "userId": "user-27",
     "image": "/default.png",
-"exercises": []
+    "exercises": []
   },
   {
     "id": "28",
@@ -357,7 +357,7 @@
     "likes": 15,
     "userId": "user-28",
     "image": "/default.png",
-"exercises": []
+    "exercises": []
   },
   {
     "id": "29",
@@ -372,7 +372,7 @@
     "likes": 11,
     "userId": "user-29",
     "image": "/default.png",
-"exercises": []
+    "exercises": []
   },
   {
     "id": "30",
@@ -387,6 +387,6 @@
     "likes": 26,
     "userId": "user-30",
     "image": "/default.png",
-"exercises": []
+    "exercises": []
   }
 ]

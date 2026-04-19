@@ -2,6 +2,7 @@ import { createRouter, RouterProvider } from '@tanstack/react-router'
 import ReactDOM from 'react-dom/client'
 import Loader from './components/ui/loader'
 import { routeTree } from './routeTree.gen'
+import type { ResultSchema } from './schemas/result.schema'
 
 const router = createRouter({
   routeTree,
@@ -13,6 +14,12 @@ const router = createRouter({
 declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router
+  }
+  interface HistoryState {
+    quizResults?: {
+      selectedAnswers: ResultSchema
+      topicId: string
+    }
   }
 }
 

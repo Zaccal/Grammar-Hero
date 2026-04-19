@@ -1,6 +1,4 @@
-import type { TopicsSelect } from 'prisma/generated/models'
-
-export const TOPICS_SELECT: TopicsSelect = {
+export const TOPICS_SELECT = {
   id: true,
   createdAt: true,
   updatedAt: true,
@@ -13,6 +11,21 @@ export const TOPICS_SELECT: TopicsSelect = {
   durationMax: true,
   user: true,
   image: true,
-  exercises: true,
+  exercises: {
+    select: {
+      id: true,
+      question: true,
+      explanation: true,
+      isMultipleChoice: true,
+      hint: true,
+      answers: {
+        select: {
+          id: true,
+          text: true,
+          isCorrect: true,
+        },
+      },
+    },
+  },
   _count: true,
-}
+} as const

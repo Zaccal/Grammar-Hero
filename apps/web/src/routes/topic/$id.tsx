@@ -53,6 +53,7 @@ function RouteComponent() {
       <Separator className="my-3" />
       <TopicDetails.Image />
       <TopicDetails.Content className="mt-12!" />
+      <TopicDetails.Exercises />
     </TopicDetails.Root>
   )
 }

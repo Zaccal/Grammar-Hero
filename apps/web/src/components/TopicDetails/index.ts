@@ -8,6 +8,7 @@ import { TopicDetailsDropdown } from './TopicDetailsDropdown'
 import { TopicDetailsDropdownContentProtected } from './TopicDetailsDropdownContentProtected'
 import { TopicDetailsDropdownContentPublic } from './TopicDetailsDropdownContentPublic'
 import { TopicDetailsEdit } from './TopicDetailsEdit'
+import { TopicDetailsExercises } from './TopicDetailsExercises'
 import { TopicDetailsHeader } from './TopicDetailsHeader'
 import { TopicDetailsImage } from './TopicDetailsImage'
 import { TopicDetailsLike } from './TopicDetailsLike'
@@ -30,4 +31,5 @@ export const TopicDetails = {
   Content: TopicDetailsContent,
   Like: TopicDetailsLike,
   Bookmark: TopicDetailsBookmark,
+  Exercises: TopicDetailsExercises,
 }

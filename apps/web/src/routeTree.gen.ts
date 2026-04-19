@@ -22,6 +22,8 @@ import { Route as ChangePasswordRouteImport } from './routes/change-password'
 import { Route as ChangeEmailRouteImport } from './routes/change-email'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TopicIdRouteImport } from './routes/topic/$id'
+import { Route as TopicExercisesResultRouteImport } from './routes/topic/exercises/result'
+import { Route as TopicExercisesIdRouteImport } from './routes/topic/exercises/$id'
 import { Route as TopicEditIdRouteImport } from './routes/topic/edit/$id'
 
 const SuccessRoute = SuccessRouteImport.update({
@@ -89,6 +91,16 @@ const TopicIdRoute = TopicIdRouteImport.update({
   path: '/topic/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TopicExercisesResultRoute = TopicExercisesResultRouteImport.update({
+  id: '/topic/exercises/result',
+  path: '/topic/exercises/result',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TopicExercisesIdRoute = TopicExercisesIdRouteImport.update({
+  id: '/topic/exercises/$id',
+  path: '/topic/exercises/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TopicEditIdRoute = TopicEditIdRouteImport.update({
   id: '/topic/edit/$id',
   path: '/topic/edit/$id',
@@ -110,6 +122,8 @@ export interface FileRoutesByFullPath {
   '/success': typeof SuccessRoute
   '/topic/$id': typeof TopicIdRoute
   '/topic/edit/$id': typeof TopicEditIdRoute
+  '/topic/exercises/$id': typeof TopicExercisesIdRoute
+  '/topic/exercises/result': typeof TopicExercisesResultRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -126,6 +140,8 @@ export interface FileRoutesByTo {
   '/success': typeof SuccessRoute
   '/topic/$id': typeof TopicIdRoute
   '/topic/edit/$id': typeof TopicEditIdRoute
+  '/topic/exercises/$id': typeof TopicExercisesIdRoute
+  '/topic/exercises/result': typeof TopicExercisesResultRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -143,6 +159,8 @@ export interface FileRoutesById {
   '/success': typeof SuccessRoute
   '/topic/$id': typeof TopicIdRoute
   '/topic/edit/$id': typeof TopicEditIdRoute
+  '/topic/exercises/$id': typeof TopicExercisesIdRoute
+  '/topic/exercises/result': typeof TopicExercisesResultRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -161,6 +179,8 @@ export interface FileRouteTypes {
     | '/success'
     | '/topic/$id'
     | '/topic/edit/$id'
+    | '/topic/exercises/$id'
+    | '/topic/exercises/result'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -177,6 +197,8 @@ export interface FileRouteTypes {
     | '/success'
     | '/topic/$id'
     | '/topic/edit/$id'
+    | '/topic/exercises/$id'
+    | '/topic/exercises/result'
   id:
     | '__root__'
     | '/'
@@ -193,6 +215,8 @@ export interface FileRouteTypes {
     | '/success'
     | '/topic/$id'
     | '/topic/edit/$id'
+    | '/topic/exercises/$id'
+    | '/topic/exercises/result'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -210,6 +234,8 @@ export interface RootRouteChildren {
   SuccessRoute: typeof SuccessRoute
   TopicIdRoute: typeof TopicIdRoute
   TopicEditIdRoute: typeof TopicEditIdRoute
+  TopicExercisesIdRoute: typeof TopicExercisesIdRoute
+  TopicExercisesResultRoute: typeof TopicExercisesResultRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -305,6 +331,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TopicIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/topic/exercises/result': {
+      id: '/topic/exercises/result'
+      path: '/topic/exercises/result'
+      fullPath: '/topic/exercises/result'
+      preLoaderRoute: typeof TopicExercisesResultRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/topic/exercises/$id': {
+      id: '/topic/exercises/$id'
+      path: '/topic/exercises/$id'
+      fullPath: '/topic/exercises/$id'
+      preLoaderRoute: typeof TopicExercisesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/topic/edit/$id': {
       id: '/topic/edit/$id'
       path: '/topic/edit/$id'
@@ -330,6 +370,8 @@ const rootRouteChildren: RootRouteChildren = {
   SuccessRoute: SuccessRoute,
   TopicIdRoute: TopicIdRoute,
   TopicEditIdRoute: TopicEditIdRoute,
+  TopicExercisesIdRoute: TopicExercisesIdRoute,
+  TopicExercisesResultRoute: TopicExercisesResultRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
