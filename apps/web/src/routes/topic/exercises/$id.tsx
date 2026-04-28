@@ -1,10 +1,10 @@
+import { useQuery } from '@tanstack/react-query'
+import { createFileRoute } from '@tanstack/react-router'
 import ErrorComponent from '@/components/ErrorComponent'
 import { Exercises } from '@/components/Exercises'
 import Loader from '@/components/ui/loader'
 import { trpc } from '@/lib/trpc'
 import ensureSession from '@/middleware'
-import { useQuery } from '@tanstack/react-query'
-import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/topic/exercises/$id')({
   component: RouteComponent,
@@ -49,14 +49,14 @@ function RouteComponent() {
           )}
         </Exercises.Slider>
         <div className="flex flex-col gap-4">
-          <Exercises.Action fullWidth action="next" size={'lg'}>
+          <Exercises.Action fullWidth action="next" size="lg">
             Next
           </Exercises.Action>
           <Exercises.Action
             fullWidth
             action="prev"
-            variant={'outline'}
-            size={'lg'}
+            variant="outline"
+            size="lg"
           >
             Previous
           </Exercises.Action>

@@ -1,10 +1,11 @@
+import type { ButtonProps } from '../ui/button'
+import { useRouter } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
-import { Button, type ButtonProps } from '../ui/button'
+import { toast } from 'sonner'
+import { Button } from '../ui/button'
+import { ExercisesContext } from './ExercisesContext'
 import { useExercisesSliderContext } from './ExercisesSlider/ExercisesSliderContext'
 import { ExercisesStore } from './store'
-import { ExercisesContext } from './ExercisesContext'
-import { toast } from 'sonner'
-import { useRouter } from '@tanstack/react-router'
 
 interface ExercisesActionProps extends ButtonProps {
   action: 'next' | 'prev'
@@ -20,7 +21,7 @@ export function ExercisesAction({ action, ...props }: ExercisesActionProps) {
   const router = useRouter()
 
   function updateButtonStates() {
-    if (!emblaApi) return
+    if (!emblaApi) { return }
     setIsDisabledNext(!emblaApi.canScrollNext())
     setIsDisabledPrev(!emblaApi.canScrollPrev())
   }
@@ -55,7 +56,7 @@ export function ExercisesAction({ action, ...props }: ExercisesActionProps) {
   }
 
   function handleClick() {
-    if (!emblaApi) return
+    if (!emblaApi) { return }
 
     if (action === 'next') {
       if (isDisabledNext) {
@@ -63,7 +64,8 @@ export function ExercisesAction({ action, ...props }: ExercisesActionProps) {
         return
       }
       emblaApi.scrollNext()
-    } else {
+    }
+ else {
       emblaApi.scrollPrev()
     }
   }

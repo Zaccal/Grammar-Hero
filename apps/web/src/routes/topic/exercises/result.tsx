@@ -1,12 +1,12 @@
-import { Button } from '@/components/ui/button'
-import ensureSession from '@/middleware'
-import { getCountOfCorrectAnswers } from '@/utils'
 import {
   createFileRoute,
   useRouter,
   useRouterState,
 } from '@tanstack/react-router'
 import { notFound } from '@tanstack/router-core'
+import { Button } from '@/components/ui/button'
+import ensureSession from '@/middleware'
+import { getCountOfCorrectAnswers } from '@/utils'
 
 export const Route = createFileRoute('/topic/exercises/result')({
   component: RouteComponent,
@@ -43,9 +43,8 @@ function RouteComponent() {
             params: {
               id: quizResults.topicId,
             },
-          })
-        }
-        size={'lg'}
+          })}
+        size="lg"
         className="mt-8 mx-auto block"
       >
         Go back
@@ -63,19 +62,22 @@ function getDinoStatus(countCorrect: number, total: number) {
       title: 'You are a dino!',
       description: 'You scored a high score. Keep up the good work!',
     }
-  } else if (percentage >= 70) {
+  }
+ else if (percentage >= 70) {
     return {
       image: '/dino-ok.png',
       title: 'You are doing well!',
       description: 'You scored a good score. Keep practicing!',
     }
-  } else if (percentage >= 50) {
+  }
+ else if (percentage >= 50) {
     return {
       image: '/dino-sad.png',
       title: 'You need to work harder!',
       description: 'You scored a low score. Keep practicing!',
     }
-  } else {
+  }
+ else {
     return {
       image: '/dino-sad.png',
       title: 'You need to work harder!',

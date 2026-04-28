@@ -1,8 +1,8 @@
+import type { ResultSchema } from './schemas/result.schema'
 import { createRouter, RouterProvider } from '@tanstack/react-router'
 import ReactDOM from 'react-dom/client'
 import Loader from './components/ui/loader'
 import { routeTree } from './routeTree.gen'
-import type { ResultSchema } from './schemas/result.schema'
 
 const router = createRouter({
   routeTree,

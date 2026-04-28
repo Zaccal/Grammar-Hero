@@ -5,7 +5,6 @@ import { Prisma } from '../../../prisma/generated/client'
 import prisma from '../../../prisma/index'
 import { getDummyDate, getFormattedTopics } from '../../utils/index'
 import { TOPICS_SELECT } from './constants'
-import type { TopicPayload } from './topics.types'
 
 export async function getAll(input: FilterParamsSchema, userId: string) {
   const cursor = input.cursor ? { id: input.cursor } : undefined
@@ -151,7 +150,8 @@ export async function toggleLike(topicId: string, userId: string) {
     })
 
     return { isLiked: false }
-  } else {
+  }
+ else {
     await prisma.like.create({
       data: {
         topicId,
@@ -181,7 +181,8 @@ export async function toggleBookmark(topicId: string, userId: string) {
     })
 
     return { isBookmarked: false }
-  } else {
+  }
+ else {
     await prisma.bookmark.create({
       data: {
         userId,
@@ -203,7 +204,8 @@ export async function deleteTopic(topicId: string, userId: string) {
     })
 
     return { success: true, topic }
-  } catch (error) {
+  }
+ catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === 'P2025') {
         throw new TRPCError({ code: 'NOT_FOUND', message: 'Topic not found' })
@@ -238,7 +240,8 @@ export async function updateTopic(
     })
 
     return { success: true, topic }
-  } catch (error) {
+  }
+ catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === 'P2025') {
         throw new TRPCError({ code: 'NOT_FOUND', message: 'Topic not found' })

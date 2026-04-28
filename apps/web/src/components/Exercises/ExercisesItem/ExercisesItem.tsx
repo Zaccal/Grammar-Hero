@@ -1,7 +1,6 @@
-import { cn } from '@/lib/utils'
 import type { AnswerSchema } from '@/schemas/createTopicForm.schema'
+import { cn } from '@/lib/utils'
 import { getRandomColor } from '@/utils'
-import { useState } from 'react'
 import { ExercisesStore } from '../store'
 
 interface ExercisesItemProps {
@@ -35,7 +34,8 @@ export function ExercisesItem({
             a => a.id !== answer.id
           ),
         }
-      } else {
+      }
+ else {
         return {
           ...state,
           selectedAnswers: [

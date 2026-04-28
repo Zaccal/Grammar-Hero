@@ -1,5 +1,5 @@
-import { Flag } from "lucide-react";
-import { Progress } from "../ui/progress";
+import { Flag } from 'lucide-react'
+import { Progress } from '../ui/progress'
 
 export function ExercisesProgress() {
   return (
@@ -10,5 +10,5 @@ export function ExercisesProgress() {
         <Flag className="text-orange-400" />
       </div>
     </>
-  );
+  )
 }

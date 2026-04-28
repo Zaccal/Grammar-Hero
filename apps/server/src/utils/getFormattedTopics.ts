@@ -1,6 +1,5 @@
 import type {
   TopicPayload,
-  TopicWithAnswers,
 } from '@/routers/topics/topics.types'
 
 export function getFormattedTopics(topics: TopicPayload[]) {

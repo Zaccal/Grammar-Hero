@@ -1,8 +1,7 @@
 import type { Topic } from '@server/routers/topics/topics.types'
+import useEmblaCarousel from 'embla-carousel-react'
 import { ExercisesContext } from './ExercisesContext'
 import { ExercisesSliderContext } from './ExercisesSlider/ExercisesSliderContext'
-import useEmblaCarousel from 'embla-carousel-react'
-import { useEffect } from 'react'
 
 interface ExercisesProps {
   children?: React.ReactNode | React.ReactNode[]

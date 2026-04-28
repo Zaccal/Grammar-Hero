@@ -1,8 +1,8 @@
+import type { ReactNode } from 'react'
 import { useDidUpdate } from '@/hooks'
 import { ExercisesContext } from '../ExercisesContext'
-import { useExercisesSliderContext } from './ExercisesSliderContext'
-import type { ReactNode } from 'react'
 import { ExercisesStore } from '../store'
+import { useExercisesSliderContext } from './ExercisesSliderContext'
 
 interface ExercisesSliderProps {
   children: (exercisesIndex: number) => ReactNode
@@ -13,7 +13,7 @@ export function ExercisesSlider({ children }: ExercisesSliderProps) {
   const exercises = ExercisesContext.useSelect(state => state.exercises)
 
   useDidUpdate(() => {
-    if (!emblaApi) return
+    if (!emblaApi) { return }
 
     ExercisesStore.set(state => ({
       ...state,

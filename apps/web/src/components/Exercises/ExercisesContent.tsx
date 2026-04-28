@@ -1,7 +1,5 @@
 import type { AnswerSchema } from '@/schemas/createTopicForm.schema'
-import useEmblaCarousel from 'embla-carousel-react'
 import { ExercisesContext } from './ExercisesContext'
-import { ExercisesStore } from './store'
 
 interface ExercisesContentProps {
   children: (
