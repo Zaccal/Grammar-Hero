@@ -6,6 +6,8 @@ export const answerSchema = z.object({
   isCorrect: z.boolean().optional().default(false),
 })
 
+export type AnswerSchema = z.infer<typeof answerSchema>
+
 export const exerciseSchema = z.object({
   question: z.string(),
   answers: z.array(answerSchema),

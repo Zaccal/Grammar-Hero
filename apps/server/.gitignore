@@ -53,3 +53,5 @@ lerna-debug.log*
 next-env.d.ts
 
 ./src/images/*
+
+./prisma/seed.ts
