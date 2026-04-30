@@ -37,12 +37,12 @@ function RouteComponent() {
               key={exerciseIndex}
               currentExerciseIndex={exerciseIndex}
             >
-              {(answer, index, exerciseId) => (
+              {(answer, index, exercise) => (
                 <Exercises.Item
                   key={answer.id}
                   answer={answer}
                   index={index}
-                  exerciseId={exerciseId}
+                  exercise={exercise}
                 />
               )}
             </Exercises.Content>

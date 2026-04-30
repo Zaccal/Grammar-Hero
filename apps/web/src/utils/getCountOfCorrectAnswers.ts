@@ -1,7 +1,7 @@
-import type { ResultSchema } from '@/schemas/result.schema'
+import type { SelectedAnswer } from '@/types/result.type'
 
-export function getCountOfCorrectAnswers(selectedAnswers: ResultSchema) {
-  return selectedAnswers.reduce((score, answer) => {
+export function getCountOfCorrectAnswers(selectedAnswers: SelectedAnswer[]) {
+  return selectedAnswers.reduce((score, { answer }) => {
     if (answer.isCorrect) {
       score += 1
     }

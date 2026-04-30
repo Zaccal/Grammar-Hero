@@ -1,4 +1,4 @@
-import type { ResultSchema } from './schemas/result.schema'
+import type { Result } from './types/result.type'
 import { createRouter, RouterProvider } from '@tanstack/react-router'
 import ReactDOM from 'react-dom/client'
 import Loader from './components/ui/loader'
@@ -16,10 +16,7 @@ declare module '@tanstack/react-router' {
     router: typeof router
   }
   interface HistoryState {
-    quizResults?: {
-      selectedAnswers: ResultSchema
-      topicId: string
-    }
+    quizResults?: Result
   }
 }
 

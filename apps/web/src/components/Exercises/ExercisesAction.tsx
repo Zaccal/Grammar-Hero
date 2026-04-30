@@ -2,6 +2,7 @@ import type { ButtonProps } from '../ui/button'
 import { useRouter } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
+import { validateAnswers } from '@/utils/validationAnswers'
 import { Button } from '../ui/button'
 import { ExercisesContext } from './ExercisesContext'
 import { useExercisesSliderContext } from './ExercisesSlider/ExercisesSliderContext'
@@ -36,7 +37,7 @@ export function ExercisesAction({ action, ...props }: ExercisesActionProps) {
   }, [emblaApi])
 
   function onFinish() {
-    if (selectedAnswers.length !== exercises.length) {
+    if (!validateAnswers(selectedAnswers, exercises)) {
       toast.error('You must answer all questions before finishing')
       return
     }
@@ -52,7 +53,7 @@ export function ExercisesAction({ action, ...props }: ExercisesActionProps) {
     })
 
     ExercisesStore.set({
-      currentExerciseState: 0,
+      currentExerciseIndex: 0,
       selectedAnswers: [],
     })
   }
@@ -67,9 +68,14 @@ export function ExercisesAction({ action, ...props }: ExercisesActionProps) {
         onFinish()
         return
       }
+      ExercisesStore.set(state => ({
+        currentExerciseIndex: state.currentExerciseIndex + 1,
+      }))
       emblaApi.scrollNext()
-    }
- else {
+    } else {
+      ExercisesStore.set(state => ({
+        currentExerciseIndex: state.currentExerciseIndex - 1,
+      }))
       emblaApi.scrollPrev()
     }
   }

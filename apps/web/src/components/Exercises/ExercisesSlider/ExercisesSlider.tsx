@@ -27,8 +27,8 @@ export function ExercisesSlider({ children }: ExercisesSliderProps) {
     <div className="embla mb-12">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="embla__container gap-8">
-          {exercises.map((_, index) => (
-            <div className="embla__slide" key={index}>
+          {exercises.map((data, index) => (
+            <div className="embla__slide" key={data.id}>
               {children(index)}
             </div>
           ))}

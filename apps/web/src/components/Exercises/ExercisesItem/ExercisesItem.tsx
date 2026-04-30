@@ -1,3 +1,4 @@
+import type { Exercise } from '@server/routers/topics/topics.types'
 import type { AnswerSchema } from '@/schemas/createTopicForm.schema'
 import { cn } from '@/lib/utils'
 import { getRandomColor } from '@/utils'
@@ -5,44 +6,43 @@ import { ExercisesStore } from '../store'
 
 interface ExercisesItemProps {
   answer: AnswerSchema
-  exerciseId: string
+  exercise: Exercise
   index: number
 }
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-export function ExercisesItem({
-  answer,
-  index,
-  exerciseId,
-}: ExercisesItemProps) {
+export function ExercisesItem({ answer, index, exercise }: ExercisesItemProps) {
   const letter = ALPHABET[index]
   const isSelected = ExercisesStore.use(state =>
-    state.selectedAnswers.some(selected => selected.id === answer.id)
+    state.selectedAnswers.some(selected => selected.answer.id === answer.id)
   )
 
   function onSelect() {
     ExercisesStore.set(state => {
       const alreadySelected = state.selectedAnswers.some(
-        selected => selected.id === answer.id
+        selected => selected.answer.id === answer.id
       )
 
       if (alreadySelected) {
         return {
           ...state,
           selectedAnswers: state.selectedAnswers.filter(
-            a => a.id !== answer.id
+            selected => selected.answer.id !== answer.id
           ),
         }
       }
- else {
-        return {
-          ...state,
-          selectedAnswers: [
-            ...state.selectedAnswers.filter(a => a.exerciseId !== exerciseId),
-            { ...answer, exerciseId },
-          ],
-        }
+
+      return {
+        ...state,
+        selectedAnswers: [
+          ...state.selectedAnswers.filter(selected =>
+            exercise.isMultipleChoice
+              ? true
+              : selected.exercise.id !== exercise.id
+          ),
+          { exercise, answer },
+        ],
       }
     })
   }
@@ -61,7 +61,7 @@ export function ExercisesItem({
           getRandomColor()
         )}
       >
-        {letter}
+        {letter ?? answer.text[0]}
       </span>
       <p className="flex-1">{answer.text}</p>
     </div>

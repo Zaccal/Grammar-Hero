@@ -1,16 +1,12 @@
-import type { AnswerSchema } from '@/schemas/createTopicForm.schema'
+import type { SelectedAnswer } from '@/types/result.type'
 import { createStore } from '@/hooks/createStore'
 
-type SelectedAnswers = AnswerSchema & {
-  exerciseId: string
-}
-
 interface ExercisesStoreProps {
-  currentExerciseState: number
-  selectedAnswers: SelectedAnswers[]
+  currentExerciseIndex: number
+  selectedAnswers: SelectedAnswer[]
 }
 
 export const ExercisesStore = createStore<ExercisesStoreProps>({
-  currentExerciseState: 0,
+  currentExerciseIndex: 0,
   selectedAnswers: [],
 })

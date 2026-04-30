@@ -7,6 +7,9 @@ interface CreateTopicFormExercisesProps {
   className?: string
 }
 
+// TODO: Make an item small when I drag it
+// TODO: Make every item small when I drag it
+
 export function CreateTopicFormExercises({
   children,
   className,
