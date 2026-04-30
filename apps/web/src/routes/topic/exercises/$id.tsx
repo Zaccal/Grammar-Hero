@@ -48,12 +48,16 @@ function RouteComponent() {
             </Exercises.Content>
           )}
         </Exercises.Slider>
-        <div className="flex flex-col gap-4">
-          <Exercises.Action fullWidth action="next" size="lg">
-            Next
-          </Exercises.Action>
-          <Exercises.Action fullWidth action="prev" variant="outline" size="lg">
+
+        <div className="grid grid-cols-3 gap-4">
+          <Exercises.Action action="prev" variant="outline" size="lg">
             Previous
+          </Exercises.Action>
+          <div className="justify-self-center">
+            <Exercises.Hint />
+          </div>
+          <Exercises.Action action="next" size="lg">
+            Next
           </Exercises.Action>
         </div>
       </Exercises.Root>

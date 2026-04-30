@@ -1,6 +1,7 @@
 import type { Exercise } from '@server/routers/topics/topics.types'
 import type { AnswerSchema } from '@/schemas/createTopicForm.schema'
 import { ExercisesContext } from './ExercisesContext'
+import { ExercisesStore } from './store'
 
 interface ExercisesContentProps {
   children: (
@@ -19,6 +20,7 @@ export function ExercisesContent({
     currentExerciseIndex
   ]
   const answers = exercise.answers
+  const isShowHint = ExercisesStore.use(state => state.isShowHint)
 
   return (
     <div>
@@ -33,6 +35,12 @@ export function ExercisesContent({
       <div className="space-y-4">
         {answers.map((answer, index) => children(answer, index, exercise))}
       </div>
+      {isShowHint && (
+        <div className="rounded-md p-4 mt-4 border border-muted-foreground bg-muted text-muted-foreground">
+          <h4 className="font-semibold">Hint</h4>
+          <p>{exercise.hint}</p>
+        </div>
+      )}
     </div>
   )
 }
