@@ -52,12 +52,7 @@ function RouteComponent() {
           <Exercises.Action fullWidth action="next" size="lg">
             Next
           </Exercises.Action>
-          <Exercises.Action
-            fullWidth
-            action="prev"
-            variant="outline"
-            size="lg"
-          >
+          <Exercises.Action fullWidth action="prev" variant="outline" size="lg">
             Previous
           </Exercises.Action>
         </div>

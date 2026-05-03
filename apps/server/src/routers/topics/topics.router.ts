@@ -1,7 +1,10 @@
 import z from 'zod'
 import { protectedProcedure, router } from '@/lib/trpc'
 import { filterParamsSchema } from '@/schemas/filterParams.schema'
-import { topicCreateSchema } from '../../schemas/topics.schema'
+import {
+  topicCreateSchema,
+  topicUpdateSchema,
+} from '../../schemas/topics.schema'
 import {
   createTopic,
   deleteTopic,
@@ -42,7 +45,7 @@ export const topicsRouter = router({
     .input(z.string())
     .mutation(({ input, ctx }) => deleteTopic(input, ctx.session.user.id)),
   update: protectedProcedure
-    .input(z.object({ topicId: z.string(), data: topicCreateSchema }))
+    .input(z.object({ topicId: z.string(), data: topicUpdateSchema }))
     .mutation(({ input, ctx }) =>
       updateTopic(input.topicId, ctx.session.user.id, input.data)
     ),

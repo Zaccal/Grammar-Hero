@@ -1,4 +1,7 @@
-import type { TopicCreateSchema } from '../../schemas/topics.schema'
+import type {
+  TopicCreateSchema,
+  TopicUpdateSchema,
+} from '../../schemas/topics.schema'
 import type { FilterParamsSchema } from '@/schemas/filterParams.schema'
 import { TRPCError } from '@trpc/server'
 import { Prisma } from '../../../prisma/generated/client'
@@ -150,8 +153,7 @@ export async function toggleLike(topicId: string, userId: string) {
     })
 
     return { isLiked: false }
-  }
- else {
+  } else {
     await prisma.like.create({
       data: {
         topicId,
@@ -181,8 +183,7 @@ export async function toggleBookmark(topicId: string, userId: string) {
     })
 
     return { isBookmarked: false }
-  }
- else {
+  } else {
     await prisma.bookmark.create({
       data: {
         userId,
@@ -204,8 +205,7 @@ export async function deleteTopic(topicId: string, userId: string) {
     })
 
     return { success: true, topic }
-  }
- catch (error) {
+  } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === 'P2025') {
         throw new TRPCError({ code: 'NOT_FOUND', message: 'Topic not found' })
@@ -224,24 +224,50 @@ export async function deleteTopic(topicId: string, userId: string) {
 export async function updateTopic(
   topicId: string,
   userId: string,
-  data: TopicCreateSchema
+  data: TopicUpdateSchema
 ) {
   try {
-    const topic = await prisma.topics.update({
-      where: {
-        id: topicId,
-        userId,
-      },
-      data: {
-        ...data,
-        durationMin: getDummyDate(data.durationMin)!,
-        durationMax: getDummyDate(data.durationMax)!,
-      },
+    const topic = await prisma.$transaction(async tx => {
+      await tx.topics.update({
+        where: { id: topicId, userId },
+        data: {
+          title: data.title,
+          description: data.description,
+          shortDescription: data.shortDescription,
+          content: data.content,
+          image: data.image,
+          level: data.level,
+          durationMin: getDummyDate(data.durationMin)!,
+          durationMax: getDummyDate(data.durationMax)!,
+        },
+      })
+
+      await Promise.all(
+        data.exercises.map(async exercise => {
+          const { id, answers, ...exerciseInput } = exercise
+
+          await tx.exercise.update({
+            where: { id },
+            data: exerciseInput,
+          })
+
+          await Promise.all(
+            answers.map(answer =>
+              tx.answer.update({
+                where: { id: answer.id },
+                data: {
+                  text: answer.text,
+                  isCorrect: answer.isCorrect,
+                },
+              })
+            )
+          )
+        })
+      )
     })
 
     return { success: true, topic }
-  }
- catch (error) {
+  } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === 'P2025') {
         throw new TRPCError({ code: 'NOT_FOUND', message: 'Topic not found' })

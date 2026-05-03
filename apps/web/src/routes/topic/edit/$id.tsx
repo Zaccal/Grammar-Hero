@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
-import { CreateTopicForm } from '@/components/CreateTopicForm'
 import { EditTopic } from '@/components/EditTopic'
 import ErrorComponent from '@/components/ErrorComponent'
 import Loader from '@/components/ui/loader'
@@ -43,13 +42,29 @@ function RouteComponent() {
           <EditTopic.Duration />
         </div>
         <Separator className="my-5" />
-        <CreateTopicForm.MarkdownHint>
+        <EditTopic.MarkdownHint>
           We use markdown to format the topic content. You can learn markdown{' '}
-          <CreateTopicForm.MarkdownHintLink href="https://www.markdowntutorial.com/">
+          <EditTopic.MarkdownHintLink href="https://www.markdowntutorial.com/">
             here
-          </CreateTopicForm.MarkdownHintLink>
-        </CreateTopicForm.MarkdownHint>
-        <EditTopic.MarkdownEditor className="mt-4" />
+          </EditTopic.MarkdownHintLink>
+        </EditTopic.MarkdownHint>
+
+        <EditTopic.MarkdownEditor className="mt-4 h-96" />
+
+        <EditTopic.Exercises>
+          <EditTopic.ExercisesEmpty />
+          <EditTopic.ExercisesList>
+            {(exercise, index) => (
+              <EditTopic.ExercisesItem
+                key={exercise.id}
+                exercise={exercise}
+                index={index}
+              />
+            )}
+          </EditTopic.ExercisesList>
+          <EditTopic.CreateExercises />
+        </EditTopic.Exercises>
+
         <EditTopic.Publish
           className="w-[80%] sm:w-auto fixed bottom-4 right-1/2 translate-x-1/2 sm:translate-x-0 sm:right-4"
           type="button"

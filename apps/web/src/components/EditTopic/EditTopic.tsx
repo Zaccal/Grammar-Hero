@@ -1,5 +1,8 @@
 import type { Topic } from '@server/routers/topics/topics.types'
-import type { CreateTopicFormSchema as EditTopicFormSchema } from '@/schemas/createTopicForm.schema'
+import type {
+  CreateTopicFormSchema as EditTopicFormSchema,
+  ExerciseSchema,
+} from '@/schemas/createTopicForm.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import lodash from 'lodash'
@@ -25,7 +28,7 @@ interface EditTopicProps {
 }
 
 export function EditTopic({ children, topic }: EditTopicProps) {
-  const initialValues = {
+  const initialValues: EditTopicFormSchema = {
     title: topic.title,
     shortDescription: topic.shortDescription,
     content: topic.content,
@@ -36,6 +39,7 @@ export function EditTopic({ children, topic }: EditTopicProps) {
       topic.durationMax == null
         ? '35+ min'
         : `${topic.durationMin.getUTCMinutes()}-${topic.durationMax.getUTCMinutes()} min`,
+    exercises: topic.exercises as ExerciseSchema[],
   }
 
   return (

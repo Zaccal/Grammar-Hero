@@ -39,3 +39,23 @@ export const topicCreateSchema = z.object({
 })
 
 export type TopicCreateSchema = z.infer<typeof topicCreateSchema>
+
+export const answerUpdateSchema = z.object({
+  id: z.string(),
+  text: z.string(),
+  isCorrect: z.boolean().optional().default(false),
+})
+
+export type AnswerUpdateSchema = z.infer<typeof answerUpdateSchema>
+
+export const exerciseUpdateSchema = exerciseSchema.extend({
+  id: z.string().nonempty(),
+  answers: z.array(answerUpdateSchema),
+})
+
+export const topicUpdateSchema = topicCreateSchema.extend({
+  exercises: z.array(exerciseUpdateSchema),
+})
+
+export type ExerciseUpdateSchema = z.infer<typeof exerciseUpdateSchema>
+export type TopicUpdateSchema = z.infer<typeof topicUpdateSchema>

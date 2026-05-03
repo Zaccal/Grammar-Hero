@@ -25,6 +25,8 @@ model Topics {
   likes            Like[]
   user             User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   exercises        Exercise[]
+
+  @@unique([id, userId])
 }
 
 model Like {

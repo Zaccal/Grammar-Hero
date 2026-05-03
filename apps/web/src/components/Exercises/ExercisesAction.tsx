@@ -21,7 +21,9 @@ export function ExercisesAction({ action, ...props }: ExercisesActionProps) {
   const router = useRouter()
 
   function updateButtonStates() {
-    if (!emblaApi) { return }
+    if (!emblaApi) {
+      return
+    }
     setIsDisabledNext(!emblaApi.canScrollNext())
     setIsDisabledPrev(!emblaApi.canScrollPrev())
   }
@@ -56,7 +58,9 @@ export function ExercisesAction({ action, ...props }: ExercisesActionProps) {
   }
 
   function handleClick() {
-    if (!emblaApi) { return }
+    if (!emblaApi) {
+      return
+    }
 
     if (action === 'next') {
       if (isDisabledNext) {

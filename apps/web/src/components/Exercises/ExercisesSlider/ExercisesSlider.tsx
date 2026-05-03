@@ -13,7 +13,9 @@ export function ExercisesSlider({ children }: ExercisesSliderProps) {
   const exercises = ExercisesContext.useSelect(state => state.exercises)
 
   useDidUpdate(() => {
-    if (!emblaApi) { return }
+    if (!emblaApi) {
+      return
+    }
 
     ExercisesStore.set(state => ({
       ...state,
