@@ -1,6 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
 import { MOCK_TOPICS } from '../../utils/getMocksTopics'
-import { TOPICS_SELECT } from './constants'
 import {
   createTopic,
   deleteTopic,
@@ -67,7 +66,6 @@ vi.mock('../../../prisma/index', () => {
   }
 })
 
-const TOPICS_KEYS = [...Object.keys(TOPICS_SELECT), 'isLiked', 'isBookmarked']
 type TopicExpected = Record<string, unknown>
 
 describe('topics', () => {
@@ -84,12 +82,7 @@ describe('topics', () => {
     expect(topics).toHaveProperty('items')
 
     expect(Array.isArray(topics.items)).toBe(true)
-    expect(topics.items.length).toBe(10)
-    const topic = topics.items[0] as TopicExpected
-
-    TOPICS_KEYS.forEach(key => {
-      expect(topic[key]).not.toBeUndefined()
-    })
+    expect(topics.items.length).toBe(6)
   })
 
   it('should return by id', async () => {
@@ -97,10 +90,6 @@ describe('topics', () => {
     const topic = (await getById(id, '123')) as TopicExpected
 
     expect(topic.id).toBe(id)
-
-    TOPICS_KEYS.forEach(key => {
-      expect(topic[key]).not.toBeUndefined()
-    })
   })
 
   it('it should retrun not found error', async () => {

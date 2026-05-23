@@ -1,5 +1,6 @@
+import type { BetterAuthOptions } from 'better-auth'
 import process from 'node:process'
-import { betterAuth, type BetterAuthOptions } from 'better-auth'
+import { betterAuth } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
 import { emailOTP, openAPI, username } from 'better-auth/plugins'
 import prisma from '../../prisma'

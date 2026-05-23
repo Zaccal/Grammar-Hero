@@ -6,6 +6,7 @@ import {
   getLikedTopics,
 } from './profile.controller'
 
+// TODO: Write tests
 export const profileRouter = router({
   getAllMyTopics: protectedProcedure
     .input(paginationShema)

@@ -72,7 +72,8 @@ export function ExercisesAction({ action, ...props }: ExercisesActionProps) {
         currentExerciseIndex: state.currentExerciseIndex + 1,
       }))
       emblaApi.scrollNext()
-    } else {
+    }
+ else {
       ExercisesStore.set(state => ({
         currentExerciseIndex: state.currentExerciseIndex - 1,
       }))

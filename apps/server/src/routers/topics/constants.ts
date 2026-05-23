@@ -28,4 +28,18 @@ export const TOPICS_SELECT = {
     },
   },
   _count: true,
+  likes: {
+    select: {
+      userId: true,
+      id: true,
+      topicId: true,
+    },
+  },
+  bookmark: {
+    select: {
+      userId: true,
+      id: true,
+      topicId: true,
+    },
+  },
 } as const

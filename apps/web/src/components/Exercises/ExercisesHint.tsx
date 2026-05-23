@@ -18,8 +18,7 @@ export function ExercisesHint({ children, ...props }: ButtonProps) {
   return (
     <Button
       onClick={() =>
-        ExercisesStore.set(state => ({ isShowHint: !state.isShowHint }))
-      }
+        ExercisesStore.set(state => ({ isShowHint: !state.isShowHint }))}
       title="Show hint"
       {...props}
       size="icon"
