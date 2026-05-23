@@ -1,11 +1,11 @@
 import process from 'node:process'
-import { betterAuth } from 'better-auth'
+import { betterAuth, type BetterAuthOptions } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
 import { emailOTP, openAPI, username } from 'better-auth/plugins'
 import prisma from '../../prisma'
 import { EmailTemplate, resend } from './resend'
 
-export const auth: ReturnType<typeof betterAuth> = betterAuth({
+const authOptions = {
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
@@ -85,7 +85,11 @@ export const auth: ReturnType<typeof betterAuth> = betterAuth({
       httpOnly: true,
     },
   },
-})
+} as BetterAuthOptions
+
+export const auth = betterAuth(authOptions) as ReturnType<
+  typeof betterAuth<typeof authOptions>
+>
 
 export interface BetterAuthVariables {
   Variables: {
