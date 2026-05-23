@@ -15,6 +15,7 @@ import {
   updateTopic,
 } from './topics.constroller'
 
+// TODO: Write tests
 export const topicsRouter = router({
   getAll: protectedProcedure
     .input(filterParamsSchema)
