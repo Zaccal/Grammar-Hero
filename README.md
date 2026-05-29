@@ -1,6 +1,6 @@
 <div align="center">
     <picture>
-      <img alt="Grammar Hero Logo" src="./apps/web/public/Logo.png" height="228">
+      <img alt="Grammar Hero Logo" src="./apps/web/public/Logo.webp" height="228">
     </picture>
   <h1>Grammar Hero</h1>
 </div>

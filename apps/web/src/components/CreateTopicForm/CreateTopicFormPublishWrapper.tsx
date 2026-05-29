@@ -10,11 +10,11 @@ export function CreateTopicFormPublishWrapper({
 }: ButtonProps) {
   return (
     <Suspense
-      fallback={
+      fallback={(
         <Button {...props} loading disabled variant="secondary">
           Loading
         </Button>
-      }
+      )}
     >
       <CreateTopicFormPublish {...props}>{children}</CreateTopicFormPublish>
     </Suspense>

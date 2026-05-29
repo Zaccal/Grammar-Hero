@@ -4,3 +4,4 @@ node_modules
 .env
 ./apps/server/src/images/*
 ./apps/server/prisma/seed.ts
+.vercel

@@ -3,7 +3,6 @@ import prisma from '../../../prisma/index'
 import { getFormattedTopics } from '../../utils/index'
 import { TOPICS_SELECT } from '../topics/constants'
 
-// TODO: Combine all endpoints into one
 export async function getAllMyTopics(
   userId: string,
   pagination: PaginationShema

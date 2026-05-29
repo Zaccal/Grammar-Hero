@@ -1,5 +1,5 @@
-import { lazy, Suspense } from 'react'
 import type { EditTopicMarkdownEditorProps } from './EditTopicMarkdownEditor'
+import { lazy, Suspense } from 'react'
 import { Skeleton } from '../ui/skeleton'
 
 const EditTopicMarkdownEditor = lazy(() => import('./EditTopicMarkdownEditor'))

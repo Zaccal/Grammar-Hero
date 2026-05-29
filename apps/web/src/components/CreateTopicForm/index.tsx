@@ -1,8 +1,3 @@
-import type { ButtonProps } from '../ui/button'
-import type { CreateTopicFormMarkdownEditorProps } from './CreateTopicFormMarkdownEditor'
-import { lazy, Suspense } from 'react'
-import { Button } from '../ui/button'
-import { Skeleton } from '../ui/skeleton'
 import { CreateTopicForm as Root } from './CreateTopicForm'
 import { CreateTopicFormContext } from './CreateTopicFormContext'
 import { CreateTopicFormDescription } from './CreateTopicFormDescription'
@@ -14,14 +9,14 @@ import { CreateTopicFormExercisesItem } from './CreateTopicFormExercisesItem/Cre
 import { CreateTopicFormExercisesList } from './CreateTopicFormExercisesList'
 import { CreateTopicFormFileUpload } from './CreateTopicFormFileUpload'
 import { CreateTopicFormLevel } from './CreateTopicFormLevel'
+import { CreateTopicFormMarkdownEditorWrapper } from './CreateTopicFormMarkdownEditorWrapper'
 import {
   CreateTopicFormMarkdownHint,
   CreateTopicFormMarkdownHintLink,
 } from './CreateTopicFormMarkdownHint'
+import { CreateTopicFormPublishWrapper } from './CreateTopicFormPublishWrapper'
 import { CreateTopicFormShortDescription } from './CreateTopicFormShortDescription'
 import { CreateTopicFormTitle } from './CreateTopicFormTitle'
-import { CreateTopicFormPublishWrapper } from './CreateTopicFormPublishWrapper'
-import { CreateTopicFormMarkdownEditorWrapper } from './CreateTopicFormMarkdownEditorWrapper'
 
 export const CreateTopicForm = {
   Root,
