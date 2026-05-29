@@ -1,4 +1,4 @@
-import z from 'zod'
+import * as z from 'zod/mini'
 
 export const changeEmailSchema = z.object({
   newEmail: z.email('Invalid email address'),

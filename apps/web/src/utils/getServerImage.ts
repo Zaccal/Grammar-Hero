@@ -7,7 +7,7 @@ export function getServerImage(image: string | null) {
     }
   }
 
-  return image !== '/default.png'
+  return image !== '/default.webp'
     ? `${import.meta.env.VITE_SERVER_URL}/api/${image}`
     : image
 }

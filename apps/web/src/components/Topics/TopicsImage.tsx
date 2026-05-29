@@ -8,7 +8,7 @@ interface TopicsImageProps extends Omit<MorphingDialogImageProps, 'src'> {
 export function TopicsImage({ src, ...props }: TopicsImageProps) {
   return (
     <>
-      <MorphingDialogImage loading="lazy" {...props} src={src ?? '/bg.png'} />
+      <MorphingDialogImage loading="lazy" {...props} src={src ?? '/bg.webp'} />
     </>
   )
 }

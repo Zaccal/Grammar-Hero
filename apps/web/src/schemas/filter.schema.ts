@@ -1,4 +1,4 @@
-import z from 'zod'
+import * as z from 'zod/mini'
 
 export const sortField = z.enum([
   'createdAt',
@@ -7,9 +7,9 @@ export const sortField = z.enum([
   'likes',
   'duration',
 ])
-export const level = z
-  .enum(['Advanced', 'Basic', 'Intermediate', 'All'])
-  .optional()
+export const level = z.optional(
+  z.enum(['Advanced', 'Basic', 'Intermediate', 'All'])
+)
 export const sort = z.enum(['asc', 'desc'])
 
 export type SortField = z.infer<typeof sortField>
@@ -20,7 +20,7 @@ export const filterFormSchema = z.object({
   sort,
   sortField,
   level,
-  duration: z.string().optional(),
+  duration: z.optional(z.string()),
 })
 
 export type FilterFormSchema = z.infer<typeof filterFormSchema>

@@ -25,13 +25,13 @@ export const SUCCESS_DELETING_ACCOUNT: SuccessSchemaType = {
 
 export const MEDIA_ICONS: Record<Media, string> = {
   whatsapp: '/whatsapp.png',
-  linkedin: '/linkedin.png',
-  facebook: '/facebook.png',
+  linkedin: '/linkedin.webp',
+  facebook: '/facebook.webp',
   messenger: '/messenger.png',
   reddit: '/reddit.png',
   telegram: '/telegram.png',
   twitter: '/twitter.png',
-  line: '/line.png',
+  line: '/line.webp',
 }
 
 export const MEDIA_COLORS: Record<Media, string> = {

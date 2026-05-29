@@ -37,7 +37,7 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
       title: '',
       shortDescription: '',
       content: '',
-      image: '/default.png',
+      image: '/default.webp',
       level: undefined,
       description: '',
       duration: '',
@@ -82,7 +82,7 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
       ...data,
       durationMin: durationValues[data.duration]!.min,
       durationMax: durationValues[data.duration].max,
-      image: image ?? '/default.png',
+      image: image ?? '/default.webp',
     })
   }
 

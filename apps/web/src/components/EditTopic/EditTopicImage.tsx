@@ -21,7 +21,7 @@ export function EditTopicImage() {
       form.setValue('image', file)
     },
     onFilesRemoved: () => {
-      form.setValue('image', '/default.png')
+      form.setValue('image', '/default.webp')
     },
   })
 

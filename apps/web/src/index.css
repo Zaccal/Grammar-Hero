@@ -223,7 +223,7 @@ body {
   }
 
   .hero-background {
-    background: url('/bg.png') no-repeat center center;
+    background: url('/bg.webp') no-repeat center center;
     background-size: cover;
   }
 

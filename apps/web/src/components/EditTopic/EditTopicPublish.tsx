@@ -1,10 +1,10 @@
 import type { ButtonProps } from '../ui/button'
 import type { CreateTopicFormSchema as EditTopicFormSchema } from '@/schemas/createTopicForm.schema'
-import lodash from 'lodash'
 import { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { useDidUpdate } from '@/hooks'
 import { EDIT_FORM_ID } from '@/lib/constants'
+import { isEqual } from '@/utils/isEqual'
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -19,7 +19,7 @@ import { Button } from '../ui/button'
 import { EditTopicContext } from './EditTopicContext'
 import { EditTopicAlertDialogStore } from './store'
 
-export function EditTopicPublish({ children, ...props }: ButtonProps) {
+export default function EditTopicPublish({ children, ...props }: ButtonProps) {
   const open = EditTopicAlertDialogStore.use(state => state)
   const form = useFormContext<EditTopicFormSchema>()
   const formValues = form.watch()
@@ -27,7 +27,7 @@ export function EditTopicPublish({ children, ...props }: ButtonProps) {
   const [isEqualValue, setIsEqualValue] = useState(true)
 
   useDidUpdate(() => {
-    setIsEqualValue(lodash.isEqual(normalize(topic), normalize(formValues)))
+    setIsEqualValue(isEqual(normalize(topic), normalize(formValues)))
   }, [formValues, topic])
 
   return (

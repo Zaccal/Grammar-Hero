@@ -1,26 +1,29 @@
 import type { CreateTopicFormSchema as EditTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import {
+  BoldItalicUnderlineToggles,
+  CreateLink,
   headingsPlugin,
-  KitchenSinkToolbar,
+  InsertTable,
   linkDialogPlugin,
   linkPlugin,
   listsPlugin,
-  markdownShortcutPlugin,
+  ListsToggle,
   MDXEditor,
   quotePlugin,
   tablePlugin,
   thematicBreakPlugin,
   toolbarPlugin,
+  UndoRedo,
 } from '@mdxeditor/editor'
 import { Controller, useFormContext } from 'react-hook-form'
 import { cn } from '@/lib/utils'
 import { FormControl, FormItem } from '../ui/form'
 
-interface EditTopicMarkdownEditorProps {
+export interface EditTopicMarkdownEditorProps {
   className?: string
 }
 
-export function EditTopicMarkdownEditor({
+export default function EditTopicMarkdownEditor({
   className,
 }: EditTopicMarkdownEditorProps) {
   const form = useFormContext<EditTopicFormSchema>()
@@ -49,13 +52,22 @@ export function EditTopicMarkdownEditor({
                   listsPlugin(),
                   quotePlugin(),
                   thematicBreakPlugin(),
-                  markdownShortcutPlugin(),
                   linkPlugin(),
                   linkDialogPlugin(),
                   tablePlugin(),
                   toolbarPlugin({
                     toolbarClassName: 'markdown-editor-toolbar',
-                    toolbarContents: () => <KitchenSinkToolbar />,
+                    toolbarContents: () => (
+                      <>
+                        <>
+                          <UndoRedo />
+                          <BoldItalicUnderlineToggles />
+                          <ListsToggle />
+                          <CreateLink />
+                          <InsertTable />
+                        </>
+                      </>
+                    ),
                   }),
                 ]}
               />

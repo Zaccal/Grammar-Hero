@@ -5,7 +5,6 @@ import type {
 } from '@/schemas/createTopicForm.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
-import lodash from 'lodash'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { useFileUploadMutation } from '@/hooks'
@@ -18,6 +17,7 @@ import {
   invalidateProfileTopics,
   invalidateTopicId,
 } from '@/utils'
+import { isEqual } from '@/utils/isEqual'
 import { Form } from '../ui/form'
 import { EditTopicContext } from './EditTopicContext'
 import { EditTopicAlertDialogStore } from './store'
@@ -85,8 +85,8 @@ function EditTopicContent({
 
   async function uploadImageHandler(file: File | string) {
     if (typeof file === 'string') {
-      if (lodash.isEqual(file, form.watch('image'))) {
-        return topic.image ?? '/default.png'
+      if (isEqual(file, form.watch('image'))) {
+        return topic.image ?? '/default.webp'
       }
       return file
     }

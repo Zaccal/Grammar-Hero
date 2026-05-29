@@ -58,28 +58,28 @@ function getDinoStatus(countCorrect: number, total: number) {
 
   if (percentage >= 90) {
     return {
-      image: '/dino-happy.png',
+      image: '/dino-happy.webp',
       title: 'You are a dino!',
       description: 'You scored a high score. Keep up the good work!',
     }
   }
  else if (percentage >= 70) {
     return {
-      image: '/dino-ok.png',
+      image: '/dino-ok.webp',
       title: 'You are doing well!',
       description: 'You scored a good score. Keep practicing!',
     }
   }
  else if (percentage >= 50) {
     return {
-      image: '/dino-sad.png',
+      image: '/dino-sad.webp',
       title: 'You need to work harder!',
       description: 'You scored a low score. Keep practicing!',
     }
   }
  else {
     return {
-      image: '/dino-sad.png',
+      image: '/dino-sad.webp',
       title: 'You need to work harder!',
       description: 'You scored a low score. Keep practicing!',
     }

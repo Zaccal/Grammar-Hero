@@ -15,7 +15,10 @@ import {
 import { Button } from '../ui/button'
 import { alertDialogCreateTopicStore } from './store'
 
-export function CreateTopicFormPublish({ children, ...props }: ButtonProps) {
+export default function CreateTopicFormPublish({
+  children,
+  ...props
+}: ButtonProps) {
   const form = useFormContext<CreateTopicFormSchema>()
   const isPending = form.formState.isSubmitting
 

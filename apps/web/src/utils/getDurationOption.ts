@@ -1,8 +1,8 @@
 import { DURATION_REGEX } from '@server/lib/constants'
-import z from 'zod'
+import * as z from 'zod/mini'
 import { durationValues } from '@/schemas/filter.schema'
 
-const getDurationOptionParamSchema = z.string().regex(DURATION_REGEX)
+const getDurationOptionParamSchema = z.string().check(z.regex(DURATION_REGEX))
 
 export function getDurationOption(min?: string, max?: string) {
   const parseResultMin = getDurationOptionParamSchema.safeParse(min)

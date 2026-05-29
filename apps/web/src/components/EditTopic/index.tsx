@@ -1,3 +1,8 @@
+import type { ButtonProps } from '../ui/button'
+import type { EditTopicMarkdownEditorProps } from './EditTopicMarkdownEditor'
+import { lazy, Suspense } from 'react'
+import { Button } from '../ui/button'
+import { Skeleton } from '../ui/skeleton'
 import { EditTopic as Root } from './EditTopic'
 import { EditTopicDescription } from './EditTopicDescription'
 import { EditTopicDuration } from './EditTopicDuration'
@@ -12,10 +17,11 @@ import {
 } from './EditTopicFormMarkdownHint'
 import { EditTopicImage } from './EditTopicImage'
 import { EditTopicLevel } from './EditTopicLevel'
-import { EditTopicMarkdownEditor } from './EditTopicMarkdownEditor'
-import { EditTopicPublish } from './EditTopicPublish'
 import { EditTopicShortDescription } from './EditTopicShortDescription'
 import { EditTopicTitle } from './EditTopicTitle'
+import '@mdxeditor/editor/style.css'
+import EditTopicPublishWrapper from './EditTopicPublishWrapper'
+import EditTopicMarkdownEditorWrapper from './EditTopicMarkdownEditorWrapper'
 
 export const EditTopic = {
   Root,
@@ -25,8 +31,8 @@ export const EditTopic = {
   Description: EditTopicDescription,
   Level: EditTopicLevel,
   Duration: EditTopicDuration,
-  MarkdownEditor: EditTopicMarkdownEditor,
-  Publish: EditTopicPublish,
+  MarkdownEditor: EditTopicMarkdownEditorWrapper,
+  Publish: EditTopicPublishWrapper,
   Exercises: EditTopicFormExercises,
   ExercisesList: EditTopicFormExercisesList,
   ExercisesItem: EditTopicFormExercisesItem,
