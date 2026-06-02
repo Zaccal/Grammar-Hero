@@ -2,7 +2,6 @@ import type { FilterParamsSchema } from '@server/schemas/filterParams.schema'
 import { filterParamsSchema } from '@server/schemas/filterParams.schema'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
-import ErrorComponent from '@/components/ErrorComponent'
 import { Filter } from '@/components/Filter/index'
 import {
   Greeting,
@@ -38,8 +37,9 @@ function HomeComponent() {
   )
   const topics = topicsQuery.data?.pages.flatMap(page => page.items)
 
+  throw new Error('Soekrop')
   if (topicsQuery.isError) {
-    return <ErrorComponent error={topicsQuery.error} />
+    throw new Error(`Topics query error: ${topicsQuery.error?.message}`)
   }
 
   return (

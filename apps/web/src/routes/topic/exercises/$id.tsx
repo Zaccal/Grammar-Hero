@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
-import ErrorComponent from '@/components/ErrorComponent'
 import { Exercises } from '@/components/Exercises'
 import Loader from '@/components/ui/loader'
 import { trpc } from '@/lib/trpc'
@@ -24,7 +23,7 @@ function RouteComponent() {
     return <Loader />
   }
   if (isError) {
-    return <ErrorComponent error={error} />
+    throw new Error(`Exercises query error: ${error?.message}`)
   }
 
   return (

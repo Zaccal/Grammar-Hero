@@ -1,6 +1,8 @@
 import type { Result } from './types/result.type'
 import { createRouter, RouterProvider } from '@tanstack/react-router'
 import ReactDOM from 'react-dom/client'
+import DefaultErrorComponent from './components/DefaultErrorComponent/DefaultErrorComponent'
+import DefaultNotFoundErrorComponent from './components/DefaultNotFoundErrorComponent/DefaultNotFoundErrorComponent'
 import Loader from './components/ui/loader'
 import { routeTree } from './routeTree.gen'
 
@@ -8,6 +10,8 @@ const router = createRouter({
   routeTree,
   defaultPreload: 'intent',
   defaultPendingComponent: () => <Loader />,
+  defaultErrorComponent: error => <DefaultErrorComponent {...error} />,
+  defaultNotFoundComponent: () => <DefaultNotFoundErrorComponent />,
   context: {},
 })
 

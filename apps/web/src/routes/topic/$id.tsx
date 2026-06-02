@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
-import ErrorComponent from '@/components/ErrorComponent'
 import { TopicDetails } from '@/components/TopicDetails/index'
 import Loader from '@/components/ui/loader'
 import { Separator } from '@/components/ui/separator'
@@ -22,7 +21,7 @@ function RouteComponent() {
     return <Loader />
   }
   if (isError) {
-    return <ErrorComponent error={error} />
+    throw new Error(`Topic query error: ${error?.message}`)
   }
 
   // after push to topic page remove overflow-hidden from the body

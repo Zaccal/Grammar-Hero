@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import { EditTopic } from '@/components/EditTopic'
-import ErrorComponent from '@/components/ErrorComponent'
 import Loader from '@/components/ui/loader'
 import { Separator } from '@/components/ui/separator'
 import { trpc } from '@/lib/trpc'
@@ -25,7 +24,7 @@ function RouteComponent() {
     return <Loader />
   }
   if (isError) {
-    return <ErrorComponent error={error} />
+    throw new Error(`Edit topic query error: ${error?.message}`)
   }
 
   return (

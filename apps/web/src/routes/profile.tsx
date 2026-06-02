@@ -12,7 +12,6 @@ import {
   Trash,
 } from 'lucide-react'
 import { DeleteAccount } from '@/components/DeleteAccount'
-import ErrorComponent from '@/components/ErrorComponent'
 import { PaginationTopics } from '@/components/PaginationTopics'
 import { ProfileTab } from '@/components/ProfileTabs/index'
 import ScrollToTopButton from '@/components/ScrollToTopButton/ScrollToTopButton'
@@ -65,7 +64,7 @@ function RouteComponent() {
     bookmarkedTopicsQuery.isError
 
   if (isError && error) {
-    return <ErrorComponent error={error} />
+    throw new Error(`Profile query error: ${error?.message}`)
   }
 
   return (
