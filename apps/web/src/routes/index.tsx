@@ -37,7 +37,6 @@ function HomeComponent() {
   )
   const topics = topicsQuery.data?.pages.flatMap(page => page.items)
 
-  throw new Error('Soekrop')
   if (topicsQuery.isError) {
     throw new Error(`Topics query error: ${topicsQuery.error?.message}`)
   }
