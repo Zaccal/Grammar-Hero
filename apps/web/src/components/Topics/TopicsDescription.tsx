@@ -7,6 +7,7 @@ interface TopicsDescriptionProps {
 export function TopicsDescription({ children }: TopicsDescriptionProps) {
   return (
     <MorphingDialogDescription
+      className="break-place"
       disableLayoutAnimation
       variants={{
         initial: { opacity: 0, scale: 0.8, y: 100 },

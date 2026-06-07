@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { TriangleAlert } from 'lucide-react'
 import { toast } from 'sonner'
-import { trpc } from '@/lib/trpc'
+import { queryClient, trpc } from '@/lib/trpc'
 import { invalidateProfileTopics } from '@/utils/invalidateProfileTopics'
 import { Button } from '../ui/button'
 import {
@@ -13,7 +13,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from '../ui/dialog'
-
+import { invalidateTopics } from '@/utils'
+import { useSearch } from '@tanstack/react-router'
 interface DeleteTopicModalProps extends DialogProps {
   topicId: string
 }
@@ -31,6 +32,9 @@ export function DeleteTopicModal({ topicId, ...props }: DeleteTopicModalProps) {
         navigate({
           to: '/',
           replace: true,
+        })
+        queryClient.invalidateQueries({
+          queryKey: trpc.topics.getAll.infiniteQueryKey(),
         })
         toast.success('Topic deleted successfully')
       },

@@ -8,6 +8,7 @@ import {
   linkPlugin,
   listsPlugin,
   ListsToggle,
+  markdownShortcutPlugin,
   MDXEditor,
   quotePlugin,
   tablePlugin,
@@ -52,6 +53,7 @@ export default function CreateTopicFormMarkdownEditor({
                 contentEditableClassName="markdown-typography"
                 plugins={[
                   headingsPlugin(),
+                  markdownShortcutPlugin(),
                   listsPlugin(),
                   quotePlugin(),
                   thematicBreakPlugin(),

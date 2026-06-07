@@ -34,7 +34,7 @@ export function TopicsPreviewCard() {
           </MinimalCardTitle>
           <MinimalCardDescription
             title={state.shortDescription}
-            className="h-[48px]"
+            className="h-[48px] overflow-hidden break-all"
           >
             {getCuttedText(state.shortDescription, 58)}
           </MinimalCardDescription>

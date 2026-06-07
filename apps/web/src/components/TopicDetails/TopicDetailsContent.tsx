@@ -16,7 +16,7 @@ export function TopicDetailsContent({ className }: TopicDetailsContentProps) {
 
   // TODO: Create a style for highlighted texts
   return (
-    <div className={cn(className, 'markdown-typography')}>
+    <div className={cn(className, 'markdown-typography wrap-break-word')}>
       {' '}
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkBreaks]}

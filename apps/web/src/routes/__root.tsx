@@ -30,7 +30,7 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
     links: [
       {
         rel: 'icon',
-        href: '/Logo.png',
+        href: '/Logo.webp',
       },
     ],
   }),
