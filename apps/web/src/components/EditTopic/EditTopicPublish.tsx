@@ -30,11 +30,14 @@ export default function EditTopicPublish({ children, ...props }: ButtonProps) {
     setIsEqualValue(isEqual(normalize(topic), normalize(formValues)))
   }, [formValues, topic])
 
+  const isSubmitDisabled =
+    isEqualValue || form.formState.isSubmitting || props.disabled
+
   return (
     <>
       <AlertDialog open={open} onOpenChange={EditTopicAlertDialogStore.set}>
         <AlertDialogTrigger asChild>
-          <Button disabled={isEqualValue} {...props}>
+          <Button {...props} disabled={isSubmitDisabled}>
             {children}
           </Button>
         </AlertDialogTrigger>
@@ -51,6 +54,7 @@ export default function EditTopicPublish({ children, ...props }: ButtonProps) {
           <AlertDialogFooter>
             <AlertDialogCancel>Not sure</AlertDialogCancel>
             <Button
+              disabled={isSubmitDisabled}
               loading={form.formState.isSubmitting}
               form={EDIT_FORM_ID}
               type="submit"

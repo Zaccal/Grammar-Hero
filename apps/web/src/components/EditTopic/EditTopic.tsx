@@ -28,19 +28,7 @@ interface EditTopicProps {
 }
 
 export function EditTopic({ children, topic }: EditTopicProps) {
-  const initialValues: EditTopicFormSchema = {
-    title: topic.title,
-    shortDescription: topic.shortDescription,
-    content: topic.content,
-    image: getServerImage(topic.image),
-    level: topic.level,
-    description: topic.description,
-    duration:
-      topic.durationMax == null
-        ? '35+ min'
-        : `${topic.durationMin.getUTCMinutes()}-${topic.durationMax.getUTCMinutes()} min`,
-    exercises: topic.exercises as ExerciseSchema[],
-  }
+  const initialValues = getEditTopicFormValues(topic)
 
   return (
     <EditTopicContext.Provider initialValue={initialValues}>
@@ -108,7 +96,7 @@ function EditTopicContent({
     if (isFileUploadError) {
       return
     }
-    await updateTopicAsync({
+    const response = await updateTopicAsync({
       topicId: topic.id,
       data: {
         ...data,
@@ -119,7 +107,13 @@ function EditTopicContent({
     })
     await invalidateProfileTopics()
     await invalidateTopicId(topic.id)
-    set(data)
+
+    const updatedValues = response.topic
+      ? getEditTopicFormValues(response.topic)
+      : { ...data, image: getServerImage(image) }
+
+    form.reset(updatedValues)
+    set(updatedValues)
     EditTopicAlertDialogStore.set(false)
   }
 
@@ -130,4 +124,47 @@ function EditTopicContent({
       </form>
     </Form>
   )
+}
+
+type EditTopicFormValuesTopic = Pick<
+  Topic,
+  | 'title'
+  | 'shortDescription'
+  | 'content'
+  | 'image'
+  | 'level'
+  | 'description'
+  | 'durationMin'
+  | 'durationMax'
+  | 'exercises'
+>
+
+function getEditTopicFormValues(
+  topic: EditTopicFormValuesTopic
+): EditTopicFormSchema {
+  return {
+    title: topic.title,
+    shortDescription: topic.shortDescription,
+    content: topic.content,
+    image: getServerImage(topic.image),
+    level: topic.level,
+    description: topic.description,
+    duration: getDurationLabel(topic.durationMin, topic.durationMax),
+    exercises: topic.exercises as ExerciseSchema[],
+  }
+}
+
+function getDurationLabel(
+  durationMin: Date | string,
+  durationMax: Date | string | null
+) {
+  if (durationMax == null) {
+    return '35+ min'
+  }
+
+  return `${getUTCMinutes(durationMin)}-${getUTCMinutes(durationMax)} min`
+}
+
+function getUTCMinutes(date: Date | string) {
+  return new Date(date).getUTCMinutes()
 }

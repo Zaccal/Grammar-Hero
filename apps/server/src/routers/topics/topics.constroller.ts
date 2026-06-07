@@ -245,33 +245,92 @@ export async function updateTopic(
         },
       })
 
+      const existingExercises = await tx.exercise.findMany({
+        where: { topicId },
+        select: { id: true },
+      })
+      const existingExerciseIds = new Set(
+        existingExercises.map(({ id }) => id)
+      )
+
       await Promise.all(
         data.exercises.map(async exercise => {
           const { id, answers, ...exerciseInput } = exercise
 
-          await tx.exercise.update({
-            where: { id },
+          if (!id || !existingExerciseIds.has(id)) {
+            await tx.exercise.create({
+              data: {
+                ...exerciseInput,
+                topicId,
+                answers: {
+                  create: answers.map(({ id: _id, ...answer }) => answer),
+                },
+              },
+            })
+
+            return
+          }
+
+          const existingAnswers = await tx.answer.findMany({
+            where: { exerciseId: id },
+            select: { id: true },
+          })
+          const existingAnswerIds = new Set(existingAnswers.map(({ id }) => id))
+
+          const updatedExercise = await tx.exercise.updateMany({
+            where: { id, topicId },
             data: exerciseInput,
           })
 
+          if (updatedExercise.count === 0) {
+            throw new TRPCError({
+              code: 'NOT_FOUND',
+              message: 'Exercise not found',
+            })
+          }
+
           await Promise.all(
-            answers.map(answer =>
-              tx.answer.update({
-                where: { id: answer.id },
-                data: {
-                  text: answer.text,
-                  isCorrect: answer.isCorrect,
-                },
+            answers.map(async answer => {
+              const { id: answerId, ...answerInput } = answer
+
+              if (!answerId || !existingAnswerIds.has(answerId)) {
+                return tx.answer.create({
+                  data: {
+                    ...answerInput,
+                    exerciseId: id,
+                  },
+                })
+              }
+
+              const updatedAnswer = await tx.answer.updateMany({
+                where: { id: answerId, exerciseId: id },
+                data: answerInput,
               })
-            )
+
+              if (updatedAnswer.count === 0) {
+                throw new TRPCError({
+                  code: 'NOT_FOUND',
+                  message: 'Answer not found',
+                })
+              }
+            })
           )
         })
       )
+
+      return tx.topics.findUnique({
+        where: { id: topicId },
+        select: TOPICS_SELECT,
+      })
     })
 
     return { success: true, topic }
   }
  catch (error) {
+    if (error instanceof TRPCError) {
+      throw error
+    }
+
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === 'P2025') {
         throw new TRPCError({ code: 'NOT_FOUND', message: 'Topic not found' })
