@@ -18,7 +18,9 @@ export function TopicDetailsHeader() {
       <Badge className="mb-2 md:mb-4" variant={getVariantLevel(level)}>
         {level}
       </Badge>
-      <h1 className="text-2xl md:text-4xl font-black pb-6">{title}</h1>
+      <h1 className="text-2xl md:text-4xl font-black pb-6 wrap-break-word leading-14">
+        {title}
+      </h1>
       <div className="xs:flex-row flex-col-reverse flex xs:items-center gap-4 md:gap-3 text-muted-foreground">
         <div className="flex items-center gap-2">
           <Avatar className="size-7 md:size-8">
