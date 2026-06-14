@@ -16,7 +16,9 @@ const authOptions = {
     username(),
     emailOTP({
       sendVerificationOTP: async ({ email, otp }) => {
-        await sendEmail(EmailTemplate.EMAIL_VERIFICATION_OTP, [email], { otp })
+        await sendEmail(EmailTemplate.EMAIL_VERIFICATION_OTP, [email], {
+          OTP: otp,
+        })
       },
     }),
   ],
