@@ -13,8 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '../ui/dialog'
-import { invalidateTopics } from '@/utils'
-import { useSearch } from '@tanstack/react-router'
+
 interface DeleteTopicModalProps extends DialogProps {
   topicId: string
 }
