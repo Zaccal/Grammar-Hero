@@ -4,7 +4,7 @@ import { betterAuth } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
 import { emailOTP, openAPI, username } from 'better-auth/plugins'
 import prisma from '../../prisma'
-import { EmailTemplate, resend, sendEmail } from './resend'
+import { EmailTemplate, sendEmail } from './resend'
 
 const authOptions = {
   database: prismaAdapter(prisma, {

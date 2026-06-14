@@ -36,7 +36,8 @@ export async function sendEmail(
         message: 'Failed to send verification code',
       })
     }
-  } catch (error) {
+  }
+ catch (error) {
     if (error instanceof APIError) {
       throw error
     }
