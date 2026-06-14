@@ -249,9 +249,7 @@ export async function updateTopic(
         where: { topicId },
         select: { id: true },
       })
-      const existingExerciseIds = new Set(
-        existingExercises.map(({ id }) => id)
-      )
+      const existingExerciseIds = new Set(existingExercises.map(({ id }) => id))
 
       await Promise.all(
         data.exercises.map(async exercise => {

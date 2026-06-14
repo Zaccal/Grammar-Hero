@@ -4,7 +4,7 @@ import { betterAuth } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
 import { emailOTP, openAPI, username } from 'better-auth/plugins'
 import prisma from '../../prisma'
-import { EmailTemplate, resend } from './resend'
+import { EmailTemplate, sendEmail } from './resend'
 
 const authOptions = {
   database: prismaAdapter(prisma, {
@@ -16,15 +16,7 @@ const authOptions = {
     username(),
     emailOTP({
       sendVerificationOTP: async ({ email, otp }) => {
-        void resend.emails.send({
-          to: [email],
-          template: {
-            id: EmailTemplate.EMAIL_VERIFICATION_OTP,
-            variables: {
-              OTP: otp,
-            },
-          },
-        })
+        await sendEmail(EmailTemplate.EMAIL_VERIFICATION_OTP, [email], { otp })
       },
     }),
   ],
@@ -47,15 +39,9 @@ const authOptions = {
     deleteUser: {
       enabled: true,
       sendDeleteAccountVerification: async ({ url, user }) => {
-        void resend.emails.send({
-          to: [user.email],
-          template: {
-            id: EmailTemplate.EMAIL_DELETING_ACCOUNT,
-            variables: {
-              username: user.name,
-              confirmationLink: url,
-            },
-          },
+        await sendEmail(EmailTemplate.EMAIL_DELETING_ACCOUNT, [user.email], {
+          username: user.name,
+          confirmationLink: url,
         })
       },
     },
@@ -67,15 +53,9 @@ const authOptions = {
   },
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
-      void resend.emails.send({
-        to: [user.email],
-        template: {
-          id: EmailTemplate.EMAIL_VERIFICATION_LINK,
-          variables: {
-            username: user.name,
-            changeEmailLink: url,
-          },
-        },
+      await sendEmail(EmailTemplate.EMAIL_VERIFICATION_LINK, [user.email], {
+        username: user.name,
+        changeEmailLink: url,
       })
     },
   },
