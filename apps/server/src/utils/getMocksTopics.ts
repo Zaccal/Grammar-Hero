@@ -1,4 +1,4 @@
-import type { TopicPayload } from '@/routers/topics/topics.types'
+import type { TopicPayload } from '../routers/topics/topics.types'
 import fs from 'node:fs'
 import path from 'node:path'
 

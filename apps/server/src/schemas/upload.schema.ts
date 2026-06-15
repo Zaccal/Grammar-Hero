@@ -1,5 +1,5 @@
 import z from 'zod'
-import { UPLOAD_FILE_SIZE_MB } from '@/routers/upload/constants'
+import { UPLOAD_FILE_SIZE_MB } from '../routers/upload/constants'
 
 const fileSchema = z
   .custom<File>()

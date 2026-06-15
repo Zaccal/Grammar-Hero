@@ -1,6 +1,6 @@
 import z from 'zod'
-import { protectedProcedure, router } from '@/lib/trpc'
-import { filterParamsSchema } from '@/schemas/filterParams.schema'
+import { protectedProcedure, router } from '../../lib/trpc'
+import { filterParamsSchema } from '../../schemas/filterParams.schema'
 import {
   topicCreateSchema,
   topicUpdateSchema,

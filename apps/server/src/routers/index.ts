@@ -1,4 +1,4 @@
-import { protectedProcedure, publicProcedure, router } from '@/lib/trpc'
+import { protectedProcedure, publicProcedure, router } from '../lib/trpc'
 import { profileRouter } from './profile/profile.route'
 import { reportRouter } from './report/report.router'
 import { topicsRouter } from './topics/topics.router'

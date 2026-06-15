@@ -1,5 +1,5 @@
-import { protectedProcedure, router } from '@/lib/trpc'
-import { reportSchema } from '@/schemas/report.schema'
+import { protectedProcedure, router } from '../../lib/trpc'
+import { reportSchema } from '../../schemas/report.schema'
 import { createReport } from './report.conroller'
 
 export const reportRouter = router({

@@ -1,8 +1,8 @@
+import type { FilterParamsSchema } from '../../schemas/filterParams.schema'
 import type {
   TopicCreateSchema,
   TopicUpdateSchema,
 } from '../../schemas/topics.schema'
-import type { FilterParamsSchema } from '@/schemas/filterParams.schema'
 import { TRPCError } from '@trpc/server'
 import { Prisma } from '../../../prisma/generated/client'
 import prisma from '../../../prisma/index'

@@ -1,4 +1,4 @@
-import type { PaginationShema } from '@/schemas/pagination.schema'
+import type { PaginationShema } from '../../schemas/pagination.schema'
 import prisma from '../../../prisma/index'
 import { getFormattedTopics } from '../../utils/index'
 import { TOPICS_SELECT } from '../topics/constants'

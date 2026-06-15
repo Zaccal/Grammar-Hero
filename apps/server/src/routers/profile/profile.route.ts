@@ -1,5 +1,5 @@
-import { protectedProcedure, router } from '@/lib/trpc'
-import { paginationShema } from '@/schemas/pagination.schema'
+import { protectedProcedure, router } from '../../lib/trpc'
+import { paginationShema } from '../../schemas/pagination.schema'
 import {
   getAllMyTopics,
   getBookmarkedTopics,

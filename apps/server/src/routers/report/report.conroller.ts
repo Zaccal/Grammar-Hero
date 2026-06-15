@@ -1,7 +1,7 @@
-import type { ReportSchema } from '@/schemas/report.schema'
+import type { ReportSchema } from '../../schemas/report.schema'
 import { TRPCError } from '@trpc/server'
 import prisma from 'prisma'
-import { EmailTemplate, resend } from '@/lib/resend'
+import { EmailTemplate, resend } from '../../lib/resend'
 
 export async function createReport(input: ReportSchema) {
   const localUser = await prisma.user.findFirst({
