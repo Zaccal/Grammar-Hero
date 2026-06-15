@@ -28,8 +28,7 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
   const file = fileUploadStore.use(state => state.file)
   const markdownEditorRef = useRef<MDXEditorMethods>(null)
 
-  const { mutateAsync: uploadFile, isError: isFileUploadError } =
-    useFileUploadMutation()
+  const { mutateAsync: uploadFile } = useFileUploadMutation()
 
   const form = useForm<CreateTopicFormSchema>({
     resolver: zodResolver(createTopicFormSchema),
@@ -50,40 +49,66 @@ export function CreateTopicForm({ children, className }: CreateTopicFormProps) {
       onError: () => {
         toast.error('Failed to create topic')
       },
-      onSuccess: async () => {
-        toast.success('Thank you for your topic!')
-        markdownEditorRef.current?.setMarkdown('')
-        fileUploadStore.set({ file: null })
-        form.reset()
+    })
+  )
 
-        await invalidateProfileTopics()
-      },
-      onSettled: () => {
-        alertDialogCreateTopicStore.set({
-          open: false,
-        })
+  const { mutateAsync: updateTopic } = useMutation(
+    trpc.topics.update.mutationOptions({
+      onError: () => {
+        toast.error('Failed to update topic image')
       },
     })
   )
 
-  async function uploadImageHandler() {
+  async function uploadImageHandler(topicId: string) {
     if (!file) {
       return
     }
-    return (await uploadFile(file)).url
+    return (
+      await uploadFile({
+        file,
+        type: 'preview',
+        topicId,
+      })
+    ).url
   }
 
   async function onSubmit(data: CreateTopicFormSchema) {
-    const image = await uploadImageHandler()
-    if (isFileUploadError) {
-      return
-    }
-    await createTopic({
+    const topicData = {
       ...data,
       durationMin: durationValues[data.duration]!.min,
       durationMax: durationValues[data.duration].max,
-      image: image ?? '/default.webp',
-    })
+    }
+
+    try {
+      const topic = await createTopic({
+        ...topicData,
+        image: '/default.webp',
+      })
+      const image = await uploadImageHandler(topic.id)
+
+      if (image) {
+        await updateTopic({
+          topicId: topic.id,
+          data: {
+            ...topicData,
+            image,
+          },
+        })
+      }
+
+      toast.success('Thank you for your topic!')
+      markdownEditorRef.current?.setMarkdown('')
+      fileUploadStore.set({ file: null })
+      form.reset()
+
+      await invalidateProfileTopics()
+    }
+ finally {
+      alertDialogCreateTopicStore.set({
+        open: false,
+      })
+    }
   }
 
   return (

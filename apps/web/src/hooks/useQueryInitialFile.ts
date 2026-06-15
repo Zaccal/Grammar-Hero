@@ -1,11 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
-import { getServerImage } from '@/utils'
 
 export function useQueryInitalFile(url: string) {
   return useQuery({
     queryKey: ['inital-file', url],
     queryFn: async () => {
-      const response = await fetch(getServerImage(url), {
+      const response = await fetch(url, {
         credentials: 'include',
       })
       if (!response.ok) {

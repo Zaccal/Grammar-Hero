@@ -2,7 +2,6 @@ import type { UdpateProfileSchema } from '@/schemas/updateProfile.schema'
 import { UPLOAD_FILE_SIZE_MB } from '@server/routers/upload/constants'
 import { useFormContext } from 'react-hook-form'
 import { useFileUpload } from '@/hooks'
-import { getServerImage } from '@/utils'
 import AvatarFileUpload from '../ui/AvatarFileUpload'
 
 interface EditProfileAvatarFieldProps {
@@ -33,7 +32,7 @@ export function EditProfileAvatarField({
             name: 'inital file',
             size: UPLOAD_FILE_SIZE_MB * 1024 * 1024,
             type: 'image/jpeg,image/png,image/jpg',
-            url: getServerImage(initalState),
+            url: initalState,
           },
         ]
       : undefined,

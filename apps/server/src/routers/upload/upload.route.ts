@@ -1,29 +1,29 @@
 import type { BetterAuthVariables } from '@/lib/auth'
 import { zValidator } from '@hono/zod-validator'
+import { TRPCError } from '@trpc/server'
 import { Hono } from 'hono'
-import { serveStatic } from 'hono/serve-static'
 import { authMiddleware } from '@/middlewares/auth.middleware'
 import { uploadSchema } from '@/schemas/upload.schema'
-import { getImage, uploadImage } from './upload.controller'
+import { upload } from './upload.controller'
 
 export const uploadRoute = new Hono<BetterAuthVariables>()
 
 uploadRoute.use('/*', authMiddleware)
 
 uploadRoute.post('/', zValidator('form', uploadSchema), async c => {
-  const { file, exchangeFile } = c.req.valid('form')
+  const { file, type, topicId } = c.req.valid('form')
   const user = c.get('user')
 
-  return uploadImage(file, user!.id, c, exchangeFile)
-})
+  if (type === 'avatar' && user) {
+    return upload(file, user.id, 'avatar', c)
+  }
 
-uploadRoute.get(
-  '/images/:fileName',
-  serveStatic({
-    root: './src/images',
-    getContent: async (_, c) => {
-      const fileName = c.req.param('fileName')
-      return getImage(fileName)
-    },
+  if (topicId) {
+    return upload(file, topicId, type, c)
+  }
+
+  throw new TRPCError({
+    code: 'BAD_REQUEST',
+    message: 'topicId is required for preview',
   })
-)
+})

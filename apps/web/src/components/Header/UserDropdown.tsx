@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { toast } from 'sonner'
 import { useSession, useTheme } from '@/hooks'
 import { useSignOut } from '@/hooks/useSignOut'
-import { getServerImage, getUserImageFallbackText } from '@/utils'
+import { getUserImageFallbackText } from '@/utils'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import {
   DropdownMenu,
@@ -41,7 +41,7 @@ function UserDropdown() {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar className="size-12 text-base">
-          <AvatarImage src={getServerImage(user.image ?? '')} />
+          <AvatarImage src={user.image ?? undefined} />
           <AvatarFallback>
             {getUserImageFallbackText(user.displayUsername ?? user.name)}
           </AvatarFallback>

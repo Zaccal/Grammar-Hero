@@ -1,6 +1,6 @@
 import { useFileUploadMutation } from './useFileUploadMutation'
 
-export function useAvatarUpload(currentAvatar?: string | null) {
+export function useAvatarUpload() {
   const uploadFileMutaion = useFileUploadMutation()
 
   return async function (image?: null | File) {
@@ -11,8 +11,7 @@ export function useAvatarUpload(currentAvatar?: string | null) {
     return (
       await uploadFileMutaion.mutateAsync({
         file: image,
-        // Here you pass FILE NAME (without path)
-        exchangeFile: currentAvatar?.split('/')[2] ?? undefined,
+        type: 'avatar',
       })
     ).url
   }

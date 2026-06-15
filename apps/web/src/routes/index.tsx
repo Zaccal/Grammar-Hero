@@ -20,7 +20,7 @@ import {
 import { QUERY_OPTION } from '@/lib/constants'
 import { trpc } from '@/lib/trpc'
 import ensureSession from '@/middleware'
-import { getReadTime, getServerImage } from '@/utils/index'
+import { getReadTime } from '@/utils/index'
 
 export const Route = createFileRoute('/')({
   component: HomeComponent,
@@ -95,7 +95,7 @@ function HomeComponent() {
                   </TopicsDialog.Preview>
                   <TopicsDialog.Content>
                     <TopicsDialog.Image
-                      src={getServerImage(topic.image)}
+                      src={topic.image}
                       alt={topic.title}
                       className="w-full max-h-[400px] h-full"
                     />

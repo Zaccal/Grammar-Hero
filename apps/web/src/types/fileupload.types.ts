@@ -12,5 +12,6 @@ export interface FileUploadStore {
 
 export interface FileUploadMutation {
   file: File
-  exchangeFile?: string
+  type: 'avatar' | 'preview'
+  topicId?: string
 }

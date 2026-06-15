@@ -12,11 +12,7 @@ import { EDIT_FORM_ID } from '@/lib/constants'
 import { trpc } from '@/lib/trpc'
 import { createTopicFormSchema as editTopicFormSchema } from '@/schemas/createTopicForm.schema'
 import { durationValues } from '@/schemas/filter.schema'
-import {
-  getServerImage,
-  invalidateProfileTopics,
-  invalidateTopicId,
-} from '@/utils'
+import { invalidateProfileTopics, invalidateTopicId } from '@/utils'
 import { isEqual } from '@/utils/isEqual'
 import { Form } from '../ui/form'
 import { EditTopicContext } from './EditTopicContext'
@@ -79,12 +75,11 @@ function EditTopicContent({
       return file
     }
 
-    const exchangeFile = topic.image ? topic.image.split('/').at(-1) : undefined
-
     return (
       await uploadFileAsync({
         file,
-        exchangeFile,
+        type: 'preview',
+        topicId: topic.id,
       })
     ).url
   }
@@ -110,7 +105,7 @@ function EditTopicContent({
 
     const updatedValues = response.topic
       ? getEditTopicFormValues(response.topic)
-      : { ...data, image: getServerImage(image) }
+      : { ...data, image }
 
     form.reset(updatedValues)
     set(updatedValues)
@@ -146,7 +141,7 @@ function getEditTopicFormValues(
     title: topic.title,
     shortDescription: topic.shortDescription,
     content: topic.content,
-    image: getServerImage(topic.image),
+    image: topic.image ?? '/default.webp',
     level: topic.level,
     description: topic.description,
     duration: getDurationLabel(topic.durationMin, topic.durationMax),
